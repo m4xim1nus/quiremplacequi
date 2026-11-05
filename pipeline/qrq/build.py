@@ -9,7 +9,7 @@ from pathlib import Path
 import polars as pl
 import yaml
 
-from . import bilan, cohortes, flux, naissances, piscine, stock, teo2
+from . import bilan, cohortes, flux, ip1910, naissances, piscine, stock, teo2
 from .sources import SOURCES
 
 REFERENTIELS = Path(__file__).resolve().parents[1] / "referentiels"
@@ -48,6 +48,7 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     ]
     tables["cohortes_calage"] = cohortes.ecarts_calage(sim, entrees, cibles, tables["flux"], raw)
     tables["teo2"] = teo2.lire_teo2()
+    tables["ip1910"] = ip1910.lire_ip1910(raw)
 
     if export.exists():
         shutil.rmtree(export)
