@@ -72,9 +72,12 @@
   <header class="colonne">
     <h1>Le temps long</h1>
     <p class="chapeau">
-      Belges, Italiens, Polonais, Espagnols, Portugais, Maghrébins : chaque vague d’immigration a
-      suscité son discours de l’« invasion ». Comment ces vagues sont-elles montées, comment se
-      sont-elles taries, et que sont devenus leurs descendants ?
+      Belges, Italiens, Polonais, Espagnols, Portugais, Maghrébins : plusieurs vagues d’immigration
+      ont suscité des discours d’hostilité, parfois d’« invasion » (le massacre des Italiens
+      d’Aigues-Mortes en 1893, étudié par Gérard Noiriel ; l’opinion de l’entre-deux-guerres,
+      étudiée par Ralph Schor ; la crainte d’une « invasion » italienne en 1961, relevée par Jérémy
+      Mourlane). Comment ces vagues sont-elles montées, comment se sont-elles taries, et que sont
+      devenus leurs descendants ?
     </p>
     <p class="brouillon">Page en construction. Textes en brouillon, à valider.</p>
   </header>
@@ -101,7 +104,7 @@
         c.pic1.part
       )} de la population. Avant 2006, un point par recensement."
       source="Insee, recensements et estimations de population (séries 2381757 et 6793226)"
-      champ="France métropolitaine jusqu’en 1982, hors Mayotte de 1990 à 2013, France depuis 2014 (traits pointillés)"
+      champ="France métropolitaine jusqu’en 1982, hors Mayotte de 1990 à 2013, France depuis 2014 (traits pointillés). En 1911, le territoire recensé n’inclut pas l’Alsace-Moselle, allemande de 1871 à 1918"
       statut="2024 et 2025 provisoires ; rupture de série en 2024 (nouveau protocole de collecte), courbe interrompue"
       fichiers={['b1_stock.csv']}
     >
@@ -149,31 +152,46 @@
     <h2>Plus vite qu’avant ?</h2>
     <p>
       Dans les années 1920, la part des immigrés est passée de {pct(data.vitesses.v1920.partDebut)} à
-      {pct(data.vitesses.v1920.partFin)} :
-      <strong>{points(data.vitesses.v1920.points)}</strong> en dix ans, soit {milliers(
-        data.vitesses.v1920.effectif
-      )} immigrés de plus. Dans les années 2010, de {pct(data.vitesses.v2010.partDebut)} à {pct(
-        data.vitesses.v2010.partFin
-      )} : <strong>{points(data.vitesses.v2010.points)}</strong>, soit {milliers(
-        data.vitesses.v2010.effectif
-      )} de plus. En nombre, les deux décennies se valent ; rapportée à la population, la hausse des années
-      1920 a été {data.vitesses.v1920.points > data.vitesses.v2010.points
-        ? 'nettement plus rapide'
-        : 'moins rapide'}.
+      {pct(data.vitesses.v1920.partFin)} : <strong>{points(data.vitesses.v1920.points)}</strong> en
+      dix ans, soit {milliers(data.vitesses.v1920.effectif)} immigrés de plus. De 2015 à 2025, de
+      {pct(data.vitesses.v2015.partDebut)} à {pct(data.vitesses.v2015.partFin)} :
+      <strong>{points(data.vitesses.v2015.points)}</strong>, soit {milliers(
+        data.vitesses.v2015.effectif
+      )}
+      de plus ; une fois retiré l’effet de la nouvelle collecte du recensement de 2024 ({milliers(
+        data.vitesses.collecte
+      )}), il reste {points(data.vitesses.v2015Corrigee.points)} et {milliers(
+        data.vitesses.v2015Corrigee.effectif
+      )} de plus.
+    </p>
+    <p>
+      <strong
+        >{data.vitesses.v2015Corrigee.effectif > data.vitesses.v1920.effectif
+          ? 'En nombre, la hausse récente est la plus forte'
+          : 'En nombre, la hausse des années 1920 reste la plus forte'}</strong
+      >. Rapportée à la population, celle des années 1920 {data.vitesses.v1920.points >
+      data.vitesses.v2015.points
+        ? 'reste plus rapide'
+        : 'n’est plus la plus rapide'} ({points(data.vitesses.v1920.points)} contre {points(
+        data.vitesses.v2015.points
+      )} sans correction, {points(data.vitesses.v2015Corrigee.points)} après correction).
     </p>
     <div class="tuiles">
-      {#each [data.vitesses.v1920, data.vitesses.v2010] as v (v.debut)}
+      {#each [{ v: data.vitesses.v1920, note: '' }, { v: data.vitesses.v2010, note: '' }, { v: data.vitesses.v2015, note: 'brut, avec la rupture de 2024' }, { v: data.vitesses.v2015Corrigee, note: 'corrigé de l’effet de collecte de 2024' }] as t, i (i)}
         <div class="tuile">
-          <span class="periode">{v.debut} → {v.fin}</span>
-          <span class="grand">{points(v.points)}</span>
-          <span>{milliers(v.effectif)} immigrés de plus</span>
-          <span class="discret">{milliers(v.effectifParAn)} par an en moyenne</span>
+          <span class="periode">{t.v.debut} → {t.v.fin}</span>
+          <span class="grand">{points(t.v.points)}</span>
+          <span>{milliers(t.v.effectif)} immigrés de plus</span>
+          <span class="discret"
+            >{milliers(t.v.effectifParAn)} par an en moyenne{t.note ? ` · ${t.note}` : ''}</span
+          >
         </div>
       {/each}
     </div>
     <p class="note">
-      Calcul sur la série ci-dessus (Insee). Le champ diffère : métropole en 1921-1931, France en
-      2010-2020 (hors Mayotte en 2010).
+      Calcul sur la série ci-dessus (Insee). Le champ diffère : métropole en 1921-1931, France hors
+      Mayotte en 2010, France ensuite. L’effet de collecte de 2024 est l’estimation de l’Insee (note
+      méthodologique de rupture de série), retirée du stock de 2025.
     </p>
   </section>
 
@@ -181,11 +199,16 @@
     <div class="colonne">
       <h2>Vague par vague</h2>
       <p>
-        Chaque vague monte, culmine puis reflue. Parmi les nationalités européennes : {liste(
-          europe
-        )}. Puis {liste(ailleurs.slice(0, 4))}. Aujourd’hui, les Italiens ne représentent plus que {pct(
+        La plupart des vagues européennes montent, culminent puis refluent : {liste(europe)}.
+        Aujourd’hui, les Italiens ne représentent plus que {pct(
           data.vagues.find((v) => v.nationalite === 'Italiens')!.derniere.part
-        )} de la population.
+        )} de la population. Les vagues venues du Maghreb culminent plus tard : {liste(
+          ailleurs.filter((v) => ['Algériens', 'Marocains', 'Tunisiens'].includes(v.nationalite))
+        )} ; la part des Algériens remonte depuis 2010 ({pct(c.algerie2010.part)} en 2010, {pct(
+          c.algerie2020.part
+        )} en 2020). D’autres n’ont pas encore de pic : {c.enHausse
+          .map((n) => n.charAt(0).toLowerCase() + n.slice(1))
+          .join(', ')} sont à leur plus haut en 2020.
       </p>
       <p class="avertissement">
         <strong>Attention au concept.</strong> Ces courbes comptent des <em>étrangers</em> par nationalité,
@@ -215,6 +238,11 @@
         yMax={yMaxNat}
         xTicks={[1920, 1970, 2020]}
       />
+      <p class="note">
+        Algériens : avant 1962, ils étaient juridiquement français ; les recensements d’époque les
+        comptaient à part, comme « musulmans algériens ». La série de l’Insee les range néanmoins
+        avec les étrangers dès 1954 et 1962 (U9).
+      </p>
       {#snippet tableau()}
         <table>
           <thead><tr><th>Nationalité</th><th>Pic</th><th>Année du pic</th><th>2020</th></tr></thead>
@@ -235,11 +263,12 @@
       <p>
         Depuis 1968, on suit les immigrés par pays de naissance, naturalisés compris. Les immigrés
         nés en Espagne ou en Italie étaient {milliers(c.espIt.debut.immigres)} en {c.espIt.debut
-          .annee}, {milliers(c.espIt.fin.immigres)} en {c.espIt.fin.annee} : la vague s’écoule par les
-        décès et les retours. Les immigrés nés au Portugal culminent en {c.portugal.annee}
-        ({milliers(c.portugal.immigres)}) ; ceux nés en Algérie passent de {milliers(
-          c.algerie.debut.immigres
-        )} en {c.algerie.debut.annee} à {milliers(c.algerie.fin.immigres)} en {c.algerie.fin.annee}.
+          .annee}, {milliers(c.espIt.fin.immigres)} en {c.espIt.fin.annee} : le stock baisse sous l’effet
+        des décès et des retours, que la statistique ne mesure pas séparément. Les immigrés nés au Portugal
+        sont presque aussi nombreux en {c.portugalFin.annee} ({milliers(c.portugalFin.immigres)})
+        qu’au plus haut des huit dates disponibles ({milliers(c.portugal.immigres)} en {c.portugal
+          .annee}) ; ceux nés en Algérie passent de {milliers(c.algerie.debut.immigres)} en {c
+          .algerie.debut.annee} à {milliers(c.algerie.fin.immigres)} en {c.algerie.fin.annee}.
       </p>
     </div>
     <TLCadre
@@ -249,7 +278,12 @@
       )} immigrés nés en Espagne ou en Italie vivaient en France. Même échelle pour toutes les facettes ; les Afriques sahélienne et guinéenne ne sont distinguées que depuis 2006."
       source="Insee, Immigrés et descendants d’immigrés, édition 2023 (6793226)"
       champ="France métropolitaine jusqu’en 1990, hors Mayotte de 1999 à 2013, France ensuite"
-      statut="huit dates seulement ; 2021 provisoire"
+      statut="huit dates seulement ; 2021 provisoire : l’ensemble des immigrés y vaut {data
+        .ensemble2021.pays !== null
+        ? milliers(data.ensemble2021.pays)
+        : '—'}, contre {data.ensemble2021.b1 !== null
+        ? milliers(data.ensemble2021.b1)
+        : '—'} dans la série réajustée ci-dessus"
       fichiers={['b2_pays.csv']}
     >
       <TLFacettes
@@ -269,14 +303,17 @@
     <div class="colonne">
       <h2>Ce qu’il reste d’une vague</h2>
       <p>
-        Les descendants des vagues européennes sont partout. En 2019-2020, <strong
+        Les descendants des vagues européennes sont nombreux. En 2019-2020, <strong
           >{pctEntier(c.g3Sud18a59!)} des petits-enfants d’immigrés de 18 à 59 ans ont au moins un grand-parent
           venu d’Espagne, d’Italie ou du Portugal</strong
         >, et {pctEntier(c.g3SudFrance!)} ont aussi au moins un grand-parent originaire de France. Parmi
         ceux qui descendent de l’Europe du Sud, {pctEntier(c.g3SudUn)} n’ont qu’un seul grand-parent immigré
         sur quatre ; {pctEntier(c.g3SudQuatre)} en ont quatre. Dès la deuxième génération, {pctEntier(
           c.g2SudUn
-        )} des enfants d’immigrés d’Europe du Sud n’ont qu’un parent immigré.
+        )} des enfants d’immigrés d’Europe du Sud n’ont qu’un parent immigré. Ces chiffres d’IP 1910 (enquête
+        Emploi et TeO2) diffèrent légèrement de ceux du livre TeO2 cités sur la page Générations ({data.teo2UnGrandParent}
+        % des petits-enfants d’immigrés de 18 à 59 ans n’y ont qu’un grand-parent immigré) : mêmes enquêtes,
+        regroupements et pondérations différents.
       </p>
       <p>
         Chez les plus jeunes, les origines changent : parmi les petits-enfants d’immigrés de moins
@@ -292,11 +329,11 @@
     </div>
 
     <TLCadre
-      titre="Petits-enfants d’immigrés (G3) : origine de leurs grands-parents"
+      titre="Petits-enfants d’immigrés (G3) de moins de 18 ans et de 18 à 59 ans : origine de leurs grands-parents"
       lecture="{pctEntier(
         c.g3SudMoins18!
       )} des petits-enfants d’immigrés de moins de 18 ans ont au moins un grand-parent venu d’Espagne, d’Italie ou du Portugal. Un même petit-enfant peut avoir des grands-parents de plusieurs origines : les barres ne s’additionnent pas."
-      source="Insee Première n° 1910 (2022, révisé 2023), figure 3a, d’après l’enquête Emploi et TeO2"
+      source="Insee Première n° 1910 (2022, révisé 2023), figure 3a, d’après l’enquête Emploi et TeO2 (pas le livre TeO2)"
       champ={data.champs.fig3a.replace(/^Champ : /, '').replace(/\.$/, '')}
       statut="enquêtes 2019-2020"
       fichiers={['ip1910.csv']}
@@ -321,8 +358,8 @@
       lecture="parmi les petits-enfants d’immigrés de 18 à 59 ans ayant au moins un grand-parent venu d’Europe du Sud, {pctEntier(
         c.g3SudUn
       )} n’en ont qu’un seul immigré sur quatre."
-      source="Insee Première n° 1910 (2022, révisé 2023), figure 3a"
-      champ={data.champs.fig3a.replace(/^Champ : /, '').replace(/\.$/, '')}
+      source="Insee Première n° 1910 (2022, révisé 2023), figure 3a (pas le livre TeO2)"
+      champ="petits-enfants d’immigrés de 18 à 59 ans, France métropolitaine, logement ordinaire"
       statut="enquêtes 2019-2020"
       fichiers={['ip1910.csv']}
     >
@@ -340,7 +377,7 @@
     </TLCadre>
 
     <TLCadre
-      titre="Enfants d’immigrés (G2) : un ou deux parents immigrés, selon l’origine"
+      titre="Enfants d’immigrés (G2), tous âges : un ou deux parents immigrés, selon l’origine"
       lecture="{pctEntier(
         c.g2SudUn
       )} des enfants d’immigrés d’Europe du Sud n’ont qu’un parent immigré ; {pctEntier(
@@ -366,8 +403,15 @@
     </TLCadre>
 
     <TLCadre
-      titre="Petits-enfants d’immigrés selon l’âge : une vague chasse l’autre"
-      lecture="les petits-enfants d’immigrés d’Europe du Sud sont surtout adultes, ceux du Maghreb surtout enfants : la troisième génération des vagues postcoloniales est encore jeune."
+      titre="Petits-enfants d’immigrés (G3) selon l’âge et l’origine des grands-parents, 0-59 ans"
+      lecture="{data.g3Synthese
+        .map(
+          (o) =>
+            `les petits-enfants d’immigrés ${o.origine === 'Maghreb' ? 'du Maghreb' : 'd’Europe du Sud'} représentent ${pct(o.moins18 ?? 0)} des 0-17 ans et ${pct(o.de18a59 ?? 0)} des 18-59 ans`
+        )
+        .join(
+          ' ; '
+        )}. Les origines s’ajoutent : la troisième génération issue du Maghreb est surtout jeune, celle d’Europe du Sud présente à tous les âges."
       source="Insee Première n° 1910 (2022, révisé 2023), figure 2c"
       champ={data.champs.fig2c.replace(/^Champ : /, '').replace(/\.$/, '')}
       statut="enquêtes 2019-2020 ; G3 mesurés seulement avant 60 ans (U8)"
@@ -402,14 +446,16 @@
     <aside class="nuance colonne">
       <h3>Un précédent, pas une preuve</h3>
       <p>
-        Les vagues européennes de l’entre-deux-guerres se sont fondues dans la population. Cela ne
-        prouve pas que les immigrations venues du Maghreb, d’Afrique subsaharienne ou de Turquie
-        suivront le même chemin, ni le contraire. Les auteurs de l’enquête TeO2 l’écrivent : « Il
-        est encore trop tôt pour savoir si les immigrations postcoloniales suivront la même
-        dynamique démographique » (TeO2, chap. 8, §43). Ils notent aussi que la saillance des
-        origines s’éclaire en partie par « l’expérience d’altérisation : le renvoi aux origines et
-        les assignations » (chap. 9, §39), tout en soulignant que la causalité est difficile à
-        établir.
+        Pour les descendants des migrations européennes de l’entre-deux-guerres, « la dynamique
+        d’incorporation dans le groupe majoritaire est perceptible » (TeO2, chap. 8, §43). Le groupe
+        « Espagne, Italie, Portugal » des graphiques ci-dessus mêle d’ailleurs ces vagues anciennes
+        et des arrivées d’après 1950. Ce précédent ne prouve pas que les immigrations venues du
+        Maghreb, d’Afrique subsaharienne ou de Turquie suivront le même chemin, ni le contraire. Les
+        auteurs de l’enquête TeO2 l’écrivent : « Il est encore trop tôt pour savoir si les
+        immigrations postcoloniales suivront la même dynamique démographique » (TeO2, chap. 8, §43).
+        Ils notent aussi que la saillance des origines s’éclaire par « l’expérience d’altérisation :
+        le renvoi aux origines et les assignations » (chap. 9, §39), tout en soulignant que la
+        causalité est difficile à établir.
       </p>
     </aside>
 

@@ -32,3 +32,11 @@ export function teo2(fichier: string, ligne: string, colonne: string): number {
   if (!r) throw new Error(`TeO2 : cellule introuvable ${fichier} / ${ligne} / ${colonne}`);
   return Number(r.valeur);
 }
+
+/** Descendants d'immigrés mesurés en 2025 (enquête Emploi), témoin du modèle de cohortes. */
+export function descendants2025(): { effectif: number; part_un_parent: number } {
+  const rows = csvParse(readFileSync(resolve(EXPORT, 'cohortes_calage.csv'), 'utf8'));
+  const f = (cle: string) =>
+    Number(rows.find((r) => r.temoin === 'descendants_2025' && r.cle === cle)!.observe);
+  return { effectif: f('effectif'), part_un_parent: f('part_un_parent') };
+}

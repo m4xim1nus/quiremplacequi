@@ -49,7 +49,12 @@ les questions de `docs/CADRAGE.md` §9 et `docs/PISCINE.md` §9.
   (`pipeline/qrq/cohortes.py`, 1911-2025, calé sur IP 1910 et les sorties Insee, contrôlé par les
   descendants 2025 et les décès d'immigrés).
 - [x] Saisie référencée de TeO2 (506 cellules, `pipeline/referentiels/teo2/`).
-- [ ] Revue de Max : la piscine v1 en local (`cd site && npm run dev`, puis
+- [x] Pages `/temps-long` (B1, B2, B3, B5) et `/generations` (E1-E3, E9-E10, F2, encadré OID),
+  `/limites`, `/methode`, `/donnees` ; piscine de 1921 à 2025.
+- [x] Relecture factuelle indépendante de tous les textes (2026-11-05) : 4 bloquants, 13 points à
+  corriger, tous traités (cadrage de la vitesse des vagues, nationalité des enfants, encadré OID
+  réduit à ce qui est établi, populations explicitées, paradoxe transversal…).
+- [ ] Revue de Max : la piscine v1 et les pages en local (`cd site && npm run dev`, puis
   `/piscine`), les paramètres de `piscine.yaml`.
 - [ ] Graphiques bruts de relecture de B1 et B2 (`pipeline/explo/`).
 

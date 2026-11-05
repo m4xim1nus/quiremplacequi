@@ -49,7 +49,7 @@ U8:
   reference: "docs/spike/teo2.md"
 U9:
   titre: "Avant 1968, on compte surtout des étrangers"
-  detail: "Les séries anciennes portent sur la nationalité ; les naturalisations font « disparaître » des étrangers sans réduire le nombre d'immigrés. Les Algériens ne sont comptés comme étrangers qu'à partir de 1962 dans les recensements d'époque."
+  detail: "Les séries anciennes portent sur la nationalité ; les naturalisations font « disparaître » des étrangers sans réduire le nombre d'immigrés. Avant 1962, les Algériens étaient juridiquement français et les recensements d'époque les comptaient à part ; les séries rétrospectives de l'Insee les rangent pourtant parmi les étrangers dès 1954."
   traitement: "Changement de concept tracé sur la frise"
   verifie: true
   reference: "docs/spike/historique.md §3"
@@ -71,9 +71,10 @@ U12:
   verifie: false
 U13:
   titre: "L'origine des enfants de deux parents immigrés"
-  detail: "Par convention, celle du père."
+  detail: "Quand les deux parents immigrés viennent de pays différents (10 % des descendants), on retient par convention l'origine du père. Retenir celle de la mère réduirait les origines maghrébines (39 % au lieu de 45 % des enfants de deux parents immigrés) et augmenterait les origines européennes."
   traitement: "Note"
-  verifie: false
+  verifie: true
+  reference: "TeO2, ch. 24, §15-16 et figure 3"
 U14:
   titre: "Le champ de TeO2"
   detail: "18-59 ans, France métropolitaine, logement ordinaire, collecte 2019-2020 perturbée par le Covid."

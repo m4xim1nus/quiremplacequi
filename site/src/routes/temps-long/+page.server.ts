@@ -40,7 +40,16 @@ export const load = () => {
       g3SudQuatre: nb('Espagne, Italie, Portugal').parts[3],
       g2SudUn: g2('Espagne, Italie, Portugal').un,
       g2MaghrebUn: g2('Maghreb').un,
-      g2EnsembleUn: g2('Ensemble des G2').un
+      g2EnsembleUn: g2('Ensemble des G2').un,
+      portugalFin: pays('Portugal').at(-1)!,
+      algerie2010: d.vagues
+        .find((v) => v.nationalite === 'Algériens')!
+        .points.find((p) => p.annee === 2010)!,
+      algerie2020: d.vagues.find((v) => v.nationalite === 'Algériens')!.derniere,
+      enHausse: d.vagues.filter((v) => v.pic.annee === v.derniere.annee).map((v) => v.nationalite),
+      europeReflux: d.vagues
+        .filter((v) => v.groupe === 'europe' && v.derniere.part < v.pic.part)
+        .map((v) => v.nationalite)
     }
   };
 };

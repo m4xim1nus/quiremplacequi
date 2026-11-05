@@ -21,9 +21,12 @@
     </p>
     <p>
       Il commence par ce qui est vrai : il n’y a jamais eu autant d’immigrés en France,
-      {milliers(data.immigres2025)} en 2025, soit {pct(data.part2025)} de la population, contre
-      {pct(data.partDebut)} en {data.debut}. Puis il regarde ce que les chiffres bruts cachent : les
-      départs, les définitions, les générations qui se mêlent.
+      {milliers(data.immigres2025)} en 2025 (chiffre provisoire, dont environ {milliers(
+        data.collecte2024
+      )} dus à l’amélioration de la collecte du recensement en 2024), soit {pct(data.part2025)} de la
+      population, contre {pct(data.part1931)} au sommet de 1931 et {pct(data.partDebut)} en
+      {data.debut} (France métropolitaine avant 1990). Puis il regarde ce que les chiffres bruts cachent
+      : les départs, les définitions, les générations qui se mêlent.
     </p>
     <p class="brouillon">Site en construction. Textes en brouillon.</p>
   </div>

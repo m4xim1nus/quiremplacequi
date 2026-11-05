@@ -446,8 +446,10 @@
       {#if statut}<span class="badge {ligne.statut_flux}">{statut.libelle}</span>
         {statut.detail}{/if}
       {#if generations}
-        <span class="badge modele">Modèle</span> G2 et G3 : modèle de cohortes calé sur l’état civil et
-        l’enquête Insee de 2019-2020 (IP 1910), pas une observation annuelle.
+        <span class="badge modele">Modèle</span> G2 et G3 : modèle de cohortes calé sur l’état civil
+        et l’enquête Insee de 2019-2020 (IP 1910), pas une observation annuelle.
+        {#if annee < 1968}Avant 1968, ils dépendent aussi d’une hypothèse sur les enfants d’immigrés
+          vivants en 1911 : des ordres de grandeur seulement.{/if}
       {/if}
       {#if evenement}<strong class="evenement"
           >{evenement.code ? `${evenement.code} · ` : ''}{evenement.libelle}.</strong

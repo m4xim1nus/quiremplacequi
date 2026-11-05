@@ -44,6 +44,9 @@
   const dis = $derived(d.e9.discriminations);
   const disDe = (l: string) => dis.find((x) => x.libelle === l)!.valeur;
   const ide = $derived(d.e10.identification);
+  const effectifs = $derived(d.e3.origines.map((o) => o.effectif));
+  const doublon = (n: number) => effectifs.filter((x) => x === n).length > 1;
+  const doublonValeur = $derived(effectifs.find((n) => doublon(n)));
   const quatreGp = (o: string) =>
     d.e3.origines.find((x) => x.libelle === o)!.segments.find((s) => s.cle === '4')!.valeur;
 </script>
@@ -61,8 +64,8 @@
     <h1>Générations</h1>
     <p class="chapeau">
       Combien sont-ils ? Tout dépend de qui l’on compte. Et que deviennent les enfants d’immigrés :
-      un bloc à part, ou une population qui se mêle aux autres, malgré des discriminations qui
-      persistent ?
+      un bloc à part, ou une population qui se mêle aux autres ? Avec, en regard, les inégalités et
+      les discriminations déclarées, y compris par les enfants nés en France.
     </p>
     <p class="brouillon">
       Page en construction. Textes en brouillon. Les chiffres viennent de l’enquête Trajectoires et
@@ -77,10 +80,13 @@
       Avec la définition de l’immigré (né étranger à l’étranger), {pc(p('g1').cumul)} des 18-59 ans vivant
       en métropole. En y ajoutant les enfants d’immigrés, puis leurs petits-enfants, on passe à
       {pc(p('g3').cumul)}. Le chiffre de {pc(e1.total41)}, souvent cité, compte en plus les
-      originaires des outre-mer et leurs enfants ({pc(e1.om)}) et les conjoints de toutes ces
-      personnes ({pc(e1.conjoints)}, part déduite du texte). Du premier au dernier cran, le chiffre
-      est multiplié par {virgule(e1.etendue)} : il ne mesure pas une population qui grandit, il mesure
-      une définition.
+      originaires des outre-mer et leurs enfants ({pc(e1.om)}), puis d’autres liens ({pc(
+        e1.conjoints
+      )}, part déduite :
+      {pc(e1.total41)} moins les autres crans) : selon la note 6 du chapitre, surtout des conjoints, mais
+      aussi les petits-enfants d’originaires des outre-mer et les conjoints de descendants plus lointains.
+      Du premier au dernier cran, le chiffre est multiplié par {virgule(e1.etendue)}. Un chiffre à
+      une date ne dit rien de la croissance : il change surtout avec la définition.
     </p>
     <GENFigure
       titre="La part de la population « liée à l’immigration », selon la définition"
@@ -89,7 +95,7 @@
       )} des 18-59 ans ont un lien à l’immigration sur trois générations."
       source="TeO2 (Ined-Insee, 2026), ch. 8, tableau 1 et texte du §19 (41 %, note 6)"
       champ={d.champs.teo2_18_59}
-      statut="Saisi ; le cran « conjoints » est déduit (41 % moins la somme des autres crans)"
+      statut="Saisi ; le cran « conjoints et autres liens » est déduit (41 % moins la somme des autres crans)"
       badges={['U14']}
     >
       <GENCurseur paliers={e1.paliers} couleurs={COUL_PALIERS} champ="18-59 ans" />
@@ -112,6 +118,9 @@
     <p>
       L’Insee fait le même compte sur les 0-59 ans, enfants compris : {pc(e1.ip1910[0].cumul)}
       d’immigrés, {pc(e1.ip1910[2].cumul)} avec leurs enfants, {pc(e1.ip1910[3].cumul)} avec leurs petits-enfants.
+      Sur la même tranche des 18-59 ans, l’Insee arrive à {pc(e1.ip1910_18_59)}, contre
+      {pc(p('g3').cumul)} dans TeO2 : les deux sources et leurs méthodes diffèrent (enquête Emploi d’un
+      côté, enquête spécialisée de l’autre).
     </p>
     <GENFigure
       titre="Le même compte chez les 0-59 ans (Insee)"
@@ -142,28 +151,39 @@
     <aside class="contradicteurs">
       <h3>Ce que disent les contradicteurs</h3>
       <p class="etat">
-        Brouillon : la note citée a été lue par un résumé, à relire avant publication.
+        Brouillon. D’après le résumé publié : la note complète n’a pas encore été lue.
       </p>
       <p>
-        <strong>La version forte.</strong> Une note de l’Observatoire de l’immigration et de la démographie
-        (« Les scénarios démographiques de la France au XXIe siècle », 21 septembre 2026) projette la
-        population par origine sur trois générations. Les personnes « sans ascendance migratoire » deviendraient
-        minoritaires vers 2050 ou 2060, selon le scénario.
+        <strong>La version forte.</strong> L’Observatoire de l’immigration et de la démographie a publié
+        le 21 septembre 2026 une note intitulée « Les scénarios démographiques de la France au XXIe siècle
+        », qui projette la population par origine sur trois générations. D’après son résumé, les personnes
+        « sans ascendance migratoire » y deviendraient minoritaires dans certains scénarios, et l’émigration,
+        y compris celle des natifs, n’y est pas modélisée.
       </p>
       <p>
-        <strong>Ce que le curseur montre.</strong> La catégorie « sans ascendance » rétrécit par
-        construction quand on remonte les générations : {pc(e1.sansAscendance.deuxGenerations)} des 18-59
-        ans ne sont ni immigrés ni enfants d’immigrés, mais {pc(e1.sansAscendance.troisGenerations)} seulement
-        n’ont aucun parent ni grand-parent immigré (originaires des outre-mer et Français de l’étranger
-        compris dans ce dernier chiffre). Compter une génération de plus, c’est faire baisser la part
-        des « sans ascendance », même sans aucune nouvelle arrivée. Or ceux qui en sortent sont surtout
-        des enfants de couples mixtes : {pc(e1.g3Un)} des petits-enfants d’immigrés n’ont qu’un seul grand-parent
-        immigré sur quatre. La note ne modélise pas non plus l’émigration, ni celle des immigrés, ni celle
-        des natifs.
+        <strong>L’argument du site</strong>, qui répond à une projection par une photo de 2019-2020
+        : la catégorie « sans ascendance » rétrécit mécaniquement quand on compte plus de
+        générations.
+        {pc(e1.sansAscendance.deuxGenerations)} des 18-59 ans ne sont ni immigrés ni enfants d’immigrés,
+        mais
+        {pc(e1.sansAscendance.troisGenerations)} seulement n’ont aucun parent ni grand-parent immigré
+        (originaires des outre-mer et Français de l’étranger compris dans ce dernier chiffre). Compter
+        une génération de plus fait baisser la part des « sans ascendance », même sans nouvelle arrivée.
+        La définition de l’ascendance retenue par la note n’étant pas connue, on ne peut pas dire si elle
+        produit cet effet.
+      </p>
+      <p>
+        Le mélange, lui, est mesuré. {pc(e1.g3Un)} des petits-enfants d’immigrés de 18 à 59 ans n’ont
+        qu’un grand-parent immigré sur quatre ; chez les moins de 18 ans, les plus concernés par une projection,
+        c’est {pc(e1.g3Moins18.un)}, et {pc(e1.g3Moins18.quatre)} en ont quatre (Insee, IP 1910, fig.
+        3a). Selon TeO2 (ch. 8, §39), la mixité s’installe dès la génération des grands-parents pour
+        {pc(e1.lignages.grandsParents)} des petits-enfants d’immigrés, et à la génération des parents
+        pour
+        {pc(e1.lignages.parents)}.
       </p>
       <p class="etat">
-        À vérifier avant publication : les hypothèses exactes de la note (fécondité, mixité,
-        définition de l’ascendance) ; la contre-projection viendra avec le mode projection de la
+        À vérifier avant publication : le contenu exact de la note (scénarios, fécondité, mixité,
+        définition de l’ascendance). La contre-projection viendra avec le mode projection de la
         piscine.
       </p>
     </aside>
@@ -233,7 +253,7 @@
       chemin (TeO2, ch. 8) : le précédent européen est un précédent, pas une preuve.
     </p>
     <GENFigure
-      titre="Nombre de grands-parents immigrés des petits-enfants d’immigrés (G3)"
+      titre="Petits-enfants d’immigrés (G3) de 18 à 59 ans : nombre de grands-parents immigrés"
       lecture="{pc(
         d.e3.ensemble[0].valeur
       )} des G3 de 18 à 59 ans n’ont qu’un grand-parent immigré sur quatre."
@@ -256,7 +276,7 @@
       />
     </GENFigure>
     <GENFigure
-      titre="Selon l’origine des grands-parents immigrés (enfants des enquêtés)"
+      titre="Enfants des enquêtés, tous âges, qui sont petits-enfants d’immigrés : selon l’origine des grands-parents"
       lecture="{pc(
         quatreGp('Europe du Sud')
       )} des petits-enfants d’immigrés venus d’Europe du Sud ont quatre grands-parents immigrés, contre {pc(
@@ -267,7 +287,17 @@
       statut="Saisi ; la source donne le même effectif non pondéré (2 532) pour le Maghreb et l’Europe du Sud"
       badges={['U14']}
     >
-      <GENEmpile lignes={d.e3.origines} legende={LEG_GP} />
+      <GENEmpile
+        lignes={d.e3.origines.map((o) => ({
+          ...o,
+          fin: doublon(o.effectif) ? `n = ${o.effectif.toLocaleString('fr-FR')} *` : undefined
+        }))}
+        legende={LEG_GP}
+      />
+      <p class="note-graphique">
+        * La source donne le même effectif non pondéré ({doublonValeur?.toLocaleString('fr-FR')})
+        pour le Maghreb et l’Europe du Sud : coïncidence ou coquille, à vérifier auprès des auteurs.
+      </p>
       {#snippet tableau()}
         <table>
           <thead><tr><th>Origine</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead>
@@ -319,10 +349,11 @@
     </GENFigure>
 
     <p>
-      À âge, diplôme et situation familiale identiques, le risque de chômage reste plus élevé pour
-      certaines origines, et l’écart ne disparaît pas chez les enfants d’immigrés : environ {pts(
-        choG2Maghreb.hommes
-      )} pour les fils d’immigrés du Maghreb, comme pour leurs pères ({pts(choG1Maghreb.hommes)}).
+      À caractéristiques identiques (âge, diplôme, nationalité, vie en couple, santé, niveau de
+      français, arrivée avant 16 ans, couple mixte des parents, quartier prioritaire et région), le
+      risque de chômage reste plus élevé pour certaines origines, y compris chez les enfants
+      d’immigrés : environ {pts(choG2Maghreb.hommes)} pour les fils d’immigrés du Maghreb. Pour d’autres
+      origines, l’écart est proche de zéro, comme pour les enfants d’immigrés d’Europe du Sud.
     </p>
     <GENFigure
       titre="Écart de risque de chômage avec la population majoritaire, à caractéristiques identiques"
@@ -333,7 +364,7 @@
       champ="actifs de 18 à 59 ans, France métropolitaine, 2019-2020"
       statut="Lu sur une figure sans étiquettes, à ± {virgule(
         d.e9.precisionCho ?? 0
-      )} point ; le §35 du chapitre donne des valeurs qui semblent inverser hommes et femmes pour le Maghreb : écart signalé, à éclaircir avec les auteurs"
+      )} point ; les intervalles de confiance de la figure ne sont pas repris, et beaucoup incluent zéro (écart non significatif) ; le texte du §35 donne d’autres valeurs que la figure"
       badges={['U14']}
     >
       <GENPoints
@@ -354,14 +385,15 @@
     <p>
       {pc(disDe('Population majoritaire'))} des personnes de la population majoritaire déclarent avoir
       subi une discrimination au cours des cinq dernières années. C’est {pc(disDe('Immigrés (G1)'))} des
-      immigrés et {pc(disDe('Enfants de deux parents immigrés (G2)'))} des enfants de deux parents immigrés,
-      jusqu’à {pc(disDe('G2 · origine : Afrique subsaharienne'))} pour ceux dont les parents viennent
-      d’Afrique subsaharienne.
+      immigrés et {pc(disDe('Enfants de deux parents immigrés (G2)'))} des enfants de deux parents immigrés.
+      Selon l’origine, les enfants d’immigrés (un ou deux parents immigrés) venus d’Afrique subsaharienne
+      sont {pc(disDe('Enfants d’immigrés (un ou deux parents), Afrique subsaharienne'))} à en déclarer,
+      ceux d’Europe du Sud {pc(disDe('Enfants d’immigrés (un ou deux parents), Europe du Sud'))}.
     </p>
     <GENFigure
       titre="Discriminations déclarées au cours des cinq dernières années"
       lecture="{pc(
-        disDe('G2 · origine : Maghreb')
+        disDe('Enfants d’immigrés (un ou deux parents), Maghreb')
       )} des enfants d’immigrés venus du Maghreb déclarent une discrimination."
       source="TeO2 (Ined-Insee, 2026), ch. 16, tableau 2 (discriminations autodéclarées)"
       champ="18-59 ans, France métropolitaine, 2019-2020"
@@ -372,21 +404,29 @@
   </section>
 
   <section class="colonne">
-    <h2>Le paradoxe : plus français, plus discriminés</h2>
+    <h2>Le paradoxe : la France citée comme origine, et des discriminations déclarées</h2>
     <p>
-      D’une génération à l’autre, l’identification à la France seule progresse : {pc(ide[0].valeur)} des
-      immigrés, {pc(ide[1].valeur)} des enfants de deux parents immigrés, {pc(ide[2].valeur)} des enfants
-      d’un seul parent immigré, {pc(ide[3].valeur)} des petits-enfants, contre {pc(ide[4].valeur)} dans
-      la population majoritaire. Dans le même temps, les enfants de deux parents immigrés déclarent plus
-      de discriminations que leurs parents ({pc(d.e10.discriParGen[1].valeur)} contre {pc(
-        d.e10.discriParGen[0].valeur
-      )}). Cette lecture croisée des chapitres 9 et 16 est celle du site, pas une phrase du livre :
-      elle rapproche deux tableaux aux définitions voisines.
+      Interrogés sur leurs origines (question ouverte), les enquêtés citent plus souvent la France
+      seule d’une génération à l’autre : {pc(ide[0].valeur)} des immigrés, {pc(ide[1].valeur)} des enfants
+      de deux parents immigrés, {pc(ide[2].valeur)} des enfants d’un seul parent immigré, {pc(
+        ide[3].valeur
+      )}
+      des petits-enfants, contre {pc(ide[4].valeur)} dans la population majoritaire. Dans le même temps,
+      les enfants de deux parents immigrés déclarent plus de discriminations que les immigrés de l’enquête
+      ({pc(d.e10.discriParGen[1].valeur)} contre {pc(d.e10.discriParGen[0].valeur)}). La comparaison
+      est transversale : les immigrés enquêtés ne sont pas les parents des enfants d’immigrés
+      enquêtés. Le paradoxe vaut pour certaines origines seulement : les enfants d’immigrés d’Europe
+      du Sud déclarent moins de discriminations ({pc(
+        disDe('Enfants d’immigrés (un ou deux parents), Europe du Sud')
+      )}) que les immigrés venus d’Europe du Sud ({pc(disDe('Immigrés, Europe du Sud'))}). Cette
+      lecture croisée des chapitres 9 et 16 est celle du site, pas une phrase du livre.
     </p>
     <div class="paire">
       <GENFigure
-        titre="S’identifier à la France seule"
-        lecture="{pc(ide[3].valeur)} des petits-enfants d’immigrés s’identifient à la France seule."
+        titre="Citer la France seule comme origine"
+        lecture="{pc(
+          ide[3].valeur
+        )} des petits-enfants d’immigrés citent la France seule comme origine."
         source="TeO2, ch. 9, tableau 4"
         champ="18-59 ans, France métropolitaine, 2019-2020"
         statut="Saisi ; dans la source, la ligne des immigrés somme à {100 +
@@ -483,6 +523,11 @@
   }
   .contradicteurs h3 {
     margin: 0.75rem 0 0.25rem;
+  }
+  .note-graphique {
+    font-size: var(--t-0);
+    color: var(--ardoise);
+    margin: 0.5rem 0 0;
   }
   .etat {
     font-size: var(--t-0);

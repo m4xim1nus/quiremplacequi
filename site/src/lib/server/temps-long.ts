@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { csvParse } from 'd3-dsv';
-import { EXPORT, incertitudes } from './donnees';
+import { EXPORT, incertitudes, piscine, teo2 } from './donnees';
 import { vagues, vitesse, type PointStock } from '$lib/temps-long';
 
 const csv = (f: string) => csvParse(readFileSync(resolve(EXPORT, f), 'utf8'));
@@ -129,10 +129,46 @@ export function tempsLong() {
     ) as { i: number; classe: string; part: number }[]
   }));
 
+  // Décennie récente, brute et corrigée de l'effet de la nouvelle collecte de 2024 (U5), porté par
+  // l'ajustement des immigrés de l'année 2023 dans la piscine (saisie référencée du pipeline).
+  const v2015 = vitesse(serie, 2015, 2025);
+  const collecte = piscine().annees.find((a) => a.annee === 2023)?.ajust_imm ?? 0;
+  const s2025 = serie.find((p) => p.annee === 2025)!;
+  const partCorrigee = (100 * (s2025.immigres - collecte)) / s2025.population;
+  const v2015Corrigee = {
+    ...v2015,
+    effectif: v2015.effectif - collecte,
+    effectifParAn: Math.round((v2015.effectif - collecte) / 10),
+    partFin: Math.round(partCorrigee * 10) / 10,
+    points: Math.round((partCorrigee - v2015.partDebut) * 10) / 10
+  };
+
+  // Figure 2c : part de chaque origine chez les 0-17 et les 18-59 ans.
+  const g3Synthese = ['Espagne, Italie, Portugal', 'Maghreb'].map((o) => ({
+    origine: o,
+    moins18: cellule('Figure 2c', '0-17', o),
+    de18a59: cellule('Figure 2c', '18-59', o)
+  }));
+
+  // Ensemble des immigrés en 2021 : série par pays (provisoire) contre série B1 (réajustée).
+  const ens2021 = paysBrut.find((r) => r.pays === 'Ensemble' && r.annee === '2021');
+
   const u = incertitudes();
   return {
     serie,
-    vitesses: { v1920: vitesse(serie, 1921, 1931), v2010: vitesse(serie, 2010, 2020) },
+    vitesses: {
+      v1920: vitesse(serie, 1921, 1931),
+      v2010: vitesse(serie, 2010, 2020),
+      v2015,
+      v2015Corrigee,
+      collecte
+    },
+    g3Synthese,
+    ensemble2021: {
+      pays: ens2021 ? num(ens2021.immigres) : null,
+      b1: serie.find((p) => p.annee === 2021)?.immigres ?? null
+    },
+    teo2UnGrandParent: teo2('ch08_tableau4.yaml', '1', 'Ensemble des G3 (enquête principale)'),
     vagues: nat,
     pays,
     g3Origines,

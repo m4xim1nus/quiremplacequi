@@ -12,6 +12,8 @@ export const load = () => {
     part2025: a25.part_immigres,
     immigres2025: a25.immigres,
     naissances2022: a22.naissances!,
+    part1931: an(1931).part_immigres,
+    collecte2024: an(2023).ajust_imm!,
     entreesImm2022: a22.entrees_imm!
   };
 };

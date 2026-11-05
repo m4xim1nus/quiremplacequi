@@ -30,8 +30,10 @@
   <h2>Trois régimes de données</h2>
   <ul>
     <li>
-      <strong>Mesuré</strong> : ce que l’Insee publie (stocks d’immigrés, naissances, décès ; entrées,
-      sorties et décès des immigrés de 2006 à 2022).
+      <strong>Publié par l’Insee</strong> : stocks d’immigrés, naissances, décès, entrées des immigrés
+      et des non-immigrés. Les sorties (2006-2022) sont calculées par l’Insee par différence entre le
+      solde migratoire et les entrées (U2) ; les décès d’immigrés sont estimés par l’Insee, l’état civil
+      ne les identifiant pas (U18). La piscine les appelle « mesurés » par commodité.
     </li>
     <li>
       <strong>Reconstruit</strong> : ce qui se déduit de mesures sans être publié tel quel (le flux net
@@ -66,9 +68,10 @@
     Valeurs calées à chaque calcul : taux de départ des immigrés {pct(
       100 * data.calage.taux_departs
     )}
-    par an (calé sur les sorties mesurées par l’Insee) ; part des naissances « deux parents nés à l’étranger
-    » attribuée à deux parents immigrés : {pct(100 * data.calage.correction_deux)} ; part des naissances
-    « un parent né à l’étranger » attribuée à un parent immigré :
+    par an (calé sur les sorties publiées par l’Insee de 2006 à 2021 ; 2022, atypique, est exclue) ; part
+    des naissances « deux parents nés à l’étranger » attribuée à deux parents immigrés : {pct(
+      100 * data.calage.correction_deux
+    )} ; part des naissances « un parent né à l’étranger » attribuée à un parent immigré :
     {pct(100 * data.calage.correction_un)} (calées sur l’enquête Insee de 2019-2020, IP 1910).
   </p>
 
@@ -98,6 +101,14 @@
     mesurés par l’enquête Emploi (logement ordinaire, hors Mayotte) ; décès d’immigrés sur
     {data.deces.annees} ans, {milliers(data.deces.modele)} dans le modèle contre
     {milliers(data.deces.observe)} estimés par l’Insee.
+  </p>
+
+  <p>
+    Limites connues : le modèle surestime les immigrés d’environ un point de pourcentage par rapport
+    à l’enquête de 2019-2020, surtout chez les jeunes adultes et les plus de 75 ans (l’enquête ne
+    couvre que les logements ordinaires, sans foyers ni résidences) ; il compte moins d’enfants d’un
+    seul parent immigré que l’enquête Emploi de 2025 ; la troisième génération au-delà de 60 ans n’a
+    aucune cible ; avant 1968, les générations dépendent d’une hypothèse sur 1911.
   </p>
 
   <h2>Les décès d’immigrés dans la piscine</h2>

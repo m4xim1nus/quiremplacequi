@@ -74,10 +74,15 @@ export function donneesGenerations() {
     { cle: 'g2a', libelle: 'Enfants de deux parents immigrés (G2)', ajout: g2a, deduit: false },
     { cle: 'g2b', libelle: 'Enfants d’un parent immigré (G2)', ajout: g2b, deduit: false },
     { cle: 'g3', libelle: 'Petits-enfants d’immigrés (G3)', ajout: g3, deduit: false },
-    { cle: 'om', libelle: 'Originaires des outre-mer et leurs enfants', ajout: om, deduit: false },
+    {
+      cle: 'om',
+      libelle: 'Originaires des outre-mer et leurs enfants (hors petits-enfants)',
+      ajout: om,
+      deduit: false
+    },
     {
       cle: 'conjoints',
-      libelle: 'Conjoints sans lien personnel à la migration',
+      libelle: 'Conjoints et autres liens',
       ajout: conjoints,
       deduit: true
     }
@@ -109,6 +114,23 @@ export function donneesGenerations() {
       deduit: false
     }
   ]);
+  const ip18 = (c: string) => ip1910('Figure 1', '18-59', c);
+  const ip1910_18_59 =
+    Math.round(
+      (ip18('Immigrés  (G1)') +
+        ip18("Descendants d'immigrés (G2) / Deux parents immigrés") +
+        ip18("Descendants d'immigrés (G2) / Un parent immigré") +
+        ip18("Descendants d'immigrés (G3) / Quatre  grands-parents immigrés") +
+        ip18("Descendants d'immigrés (G3) / Origines mixtes")) *
+        10
+    ) / 10;
+  const g3Moins18 = (n: string) =>
+    ip1910(
+      'Figure 3a',
+      'Ensemble des G3 de moins de 18 ans',
+      `Nombre de grands-parents immigrés / ${n}`,
+      'Descendants G3 de moins de 18 ans'
+    );
   const sansAscendance = {
     deuxGenerations: 100 - g1 - g2a - g2b,
     troisGenerations: v(T1, 'Sans ascendance immigrée sur trois générations', POURCENT)
@@ -170,8 +192,16 @@ export function donneesGenerations() {
   };
   const e3Origines = ORIGINES_T6.map((o) => ({
     libelle: o,
-    segments: nbGp.map((n) => ({ cle: n, valeur: v(T6, LIGNES_T6[n], o) }))
+    segments: nbGp.map((n) => ({ cle: n, valeur: v(T6, LIGNES_T6[n], o) })),
+    effectif: v(T6, 'Effectif non pondéré', o)
   }));
+  // TeO2 ch. 8, §39 : mixité dès les grands-parents (1 grand-parent immigré, ou 2 de lignées
+  // différentes) et mixité à la génération des parents (2 grands-parents de la même lignée).
+  const lignages = {
+    grandsParents:
+      v(T6, '1 grand-parent immigré', 'Ensemble') + v(T6, 'De lignée différente', 'Ensemble'),
+    parents: v(T6, 'De la même lignée', 'Ensemble')
+  };
   const ip3a = ['France', 'Espagne, Italie, Portugal', 'Maghreb'].map((o) => ({
     origine: o,
     part: ip1910(
@@ -210,8 +240,10 @@ export function donneesGenerations() {
     ['G1', 'Immigrés (G1)'],
     ['G2', 'Enfants de deux parents immigrés (G2)'],
     ['G2.5', 'Enfants d’un parent immigré (G2)'],
-    ['G2 Maghreb', 'G2 · origine : Maghreb'],
-    ['G2 Afrique sub.', 'G2 · origine : Afrique subsaharienne'],
+    ['G2 Maghreb', 'Enfants d’immigrés (un ou deux parents), Maghreb'],
+    ['G2 Afrique sub.', 'Enfants d’immigrés (un ou deux parents), Afrique subsaharienne'],
+    ['G1 Europe du Sud', 'Immigrés, Europe du Sud'],
+    ['G2 Europe du Sud', 'Enfants d’immigrés (un ou deux parents), Europe du Sud'],
     ['Ensemble', 'Ensemble']
   ];
   const discriminations = groupesDis.map(([l, libelle]) => ({
@@ -250,7 +282,10 @@ export function donneesGenerations() {
       om,
       ip1910: pIp,
       sansAscendance,
-      g3Un: e3Ensemble[0].valeur
+      g3Un: e3Ensemble[0].valeur,
+      g3Moins18: { un: g3Moins18('Un'), quatre: g3Moins18('Quatre') },
+      ip1910_18_59,
+      lignages
     },
     e2: { colonnes: COLS, lignes: e2 },
     e3: { ensemble: e3Ensemble, origines: e3Origines, ip3a },

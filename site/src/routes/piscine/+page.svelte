@@ -12,7 +12,7 @@
   <title>La piscine · Qui remplace qui ?</title>
   <meta
     name="description"
-    content="Toute la population résidant en France vue comme une eau qui se renouvelle : naissances, décès, arrivées, départs, de 1968 à 2025."
+    content="Toute la population résidant en France vue comme une eau qui se renouvelle : naissances, décès, arrivées, départs, de 1921 à 2025."
   />
 </svelte:head>
 
@@ -53,23 +53,29 @@
     </p>
     <p>
       <strong>De qui naissent les enfants ?</strong> C’est la vraie question : tout le monde meurt,
-      tout le monde est remplacé. En 2022, sur {milliers(c.naissances2022)} naissances, {milliers(
+      tout le monde est remplacé, et la thèse du « grand remplacement » parle de composition, pas de
+      renouvellement. En 2022, sur {milliers(c.naissances2022)} naissances, environ {milliers(
         c.nais2022.g2a
-      )} enfants avaient deux parents immigrés, {milliers(c.nais2022.g2b)} un seul, et {milliers(
-        c.nais2022.g3
-      )} étaient des petits-enfants d’immigrés (modèle). Ces enfants naissent français. Leurs propres
-      enfants, s’ils ont des parents nés en France, seront des petits-enfants d’immigrés, puis ne seront
-      plus rien de particulier pour la statistique : la teinte se dilue de génération en génération.
+      )} enfants avaient deux parents immigrés et {milliers(c.nais2022.g2b)} un seul (état civil, corrigé
+      de l’écart entre « né à l’étranger » et « immigré ») ; environ {milliers(c.nais2022.g3)}
+      étaient des petits-enfants d’immigrés (modèle). Ces enfants sont français dès la naissance si l’un
+      de leurs parents l’est, et le deviennent sinon en principe à leur majorité (droit du sol).
     </p>
     <p>
-      <strong>Pas deux blocs, des couches qui se recouvrent.</strong> En 2025, la piscine compte
-      {pct((100 * c.immigres2025) / c.pop2025)} d’immigrés, {pct(
-        (100 * (c.g2a2025 + c.g2b2025)) / c.pop2025
-      )} d’enfants d’immigrés (dont environ la moitié n’ont qu’un parent immigré) et {pct(
-        (100 * c.g32025) / c.pop2025
-      )} de petits-enfants d’immigrés. Ces catégories ne s’additionnent pas en un « camp » :
-      {c.g3UnGrandParent} % des petits-enfants d’immigrés de 18 à 59 ans n’ont qu’un seul grand-parent
-      immigré sur quatre (TeO2, ch. 8, tableau 4).
+      <strong>Si les unions restent aussi mixtes qu’aujourd’hui</strong>, leurs propres enfants
+      auront le plus souvent des parents nés en France, et la teinte se diluera de génération en
+      génération. Cette incorporation est « perceptible » pour les descendants des vagues
+      européennes de l’entre-deux-guerres (TeO2, ch. 8) ; pour les immigrations plus récentes, il
+      est trop tôt pour le dire (voir
+      <a href="/generations">Générations</a>).
+    </p>
+    <p>
+      <strong>Pas deux blocs, des couches qui se recouvrent.</strong> En 2025, le modèle compte
+      {pct((100 * (c.g2a2025 + c.g2b2025)) / c.pop2025)} d’enfants d’immigrés ; l’enquête Emploi de l’Insee
+      en mesure {milliers(c.descendants2025)}, soit {pct((100 * c.descendants2025) / c.pop2025)} de la
+      population, dont {c.descendantsUnParent} % n’ont qu’un parent immigré. Ces catégories ne s’additionnent
+      pas en un « camp » : {c.g3UnGrandParent} % des petits-enfants d’immigrés de 18 à 59 ans n’ont qu’un
+      seul grand-parent immigré sur quatre (TeO2, ch. 8, tableau 4).
     </p>
   </section>
 
