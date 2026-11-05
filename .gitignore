@@ -1,0 +1,30 @@
+# Python (pipeline/)
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Node / SvelteKit (site/)
+node_modules/
+.svelte-kit/
+site/build/
+dist/
+
+# Sources téléchargées (cache local, régénérable : `qrq download`)
+data/raw/
+data/qrq.sqlite
+
+# Matériau d'origine du projet : privé, jamais versionné (voir CLAUDE.md)
+source/
+
+# Graphiques bruts de relecture
+pipeline/explo/out_figures/
+
+# Copie de data/export/ servie par le site (site/scripts/donnees.mjs)
+site/static/donnees/
+
+# Divers
+.DS_Store
+*.log
+.env
+.obsidian/
