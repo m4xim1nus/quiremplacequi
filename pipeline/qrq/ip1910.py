@@ -52,7 +52,10 @@ def lire_ip1910(raw: Path) -> list[dict]:
                 break
             valeurs = [(j, nombre(c)) for j, c in enumerate(r) if j > 0 and nombre(c) is not None]
             if not valeurs:
-                bloc = r[0]
+                # Ligne de section seulement si toutes les autres cellules sont vides ; une ligne de
+                # « nd » (non disponible) n'est ni une section ni une donnée.
+                if not any(c for c in r[1:]):
+                    bloc = r[0]
                 continue
             for j, v in valeurs:
                 out.append(
