@@ -119,8 +119,10 @@ bash build.sh                        # build complet, celui de Cloudflare Pages
 
 Toute nouvelle source se déclare dans `pipeline/qrq/sources.py`, sa lecture
 dans un module par famille (`stock.py`, `flux.py`, `bilan.py`,
-`naissances.py`), l'assemblage dans `build.py`, et ses contrôles dans
-`check.py`. Les paramètres du modèle de la piscine sont dans
+`naissances.py`, `ip1910.py`, `teo2.py`), l'assemblage dans `build.py`, et ses
+contrôles dans `check.py`. Le modèle de cohortes des générations est dans
+`cohortes.py` (paramètres `referentiels/cohortes.yaml`) ; méthode écrite dans
+`docs/METHODO.md`, à tenir à jour avec la page `/methode`. Les paramètres du modèle de la piscine sont dans
 `pipeline/referentiels/piscine.yaml` (statut `a_valider` tant que Max ne les a
 pas relus) ; le registre des incertitudes dans
 `pipeline/referentiels/incertitudes.yaml`.

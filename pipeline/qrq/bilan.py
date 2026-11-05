@@ -39,3 +39,26 @@ def lire_bilan(raw: Path) -> list[dict]:
                 }
             )
     return out
+
+
+def completer_avant_1946(bilan: list[dict], population: dict[int, float]) -> None:
+    """Complète l'onglet FM avant 1946 : population au 1er janvier manquante (1939-1945) lue dans
+    les pyramides par âge (POP3, métropole), et solde migratoire, absent avant 1946, calculé par
+    différence (résidu, U1). Les lignes complétées sont marquées `complete`."""
+    fm = {b["annee"]: b for b in bilan if b["onglet"] == "FM"}
+    for a, b in fm.items():
+        if a < 1946 and b["population"] is None and a in population:
+            b["population"] = round(population[a])
+            b["complete"] = "population_pyramides"
+    for a, b in fm.items():
+        suiv = fm.get(a + 1)
+        if a < 1946 and b["solde_migratoire"] is None and b["population"] is not None and suiv and suiv["population"] is not None:
+            residu = suiv["population"] - b["population"] - b["solde_naturel"]
+            if 1938 <= a <= 1945:  # 1938 : passage du bilan aux pyramides (sources différentes)
+                # Guerre : les pyramides ne comptent pas les prisonniers et déportés hors du
+                # territoire ; l'écart n'est pas une migration mais un ajustement de champ.
+                b["solde_migratoire"], b["ajustement"] = 0, residu
+                b["complete"] = (b.get("complete", "") + " guerre_ajustement").strip()
+            else:
+                b["solde_migratoire"], b["ajustement"] = residu, 0
+                b["complete"] = (b.get("complete", "") + " solde_par_difference").strip()

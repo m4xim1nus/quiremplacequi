@@ -15,4 +15,6 @@ npm ci --no-audit --no-fund
 npm run build
 echo "Fichiers dans site/build/ : $(find build -type f | wc -l)"
 test -f build/index.html && test -f build/404.html && test -f build/_headers
-test -f build/piscine.html && test -f build/donnees/piscine.csv
+test -f build/piscine.html && test -f build/temps-long.html && test -f build/generations.html
+test -f build/limites.html && test -f build/methode.html && test -f build/donnees.html
+test -f build/donnees/piscine.csv && test -f build/donnees/teo2.csv

@@ -154,6 +154,10 @@ def _flux(a, b, fx, immigres, r_moy, r_min, r_max, collecte_2024) -> dict:
         o["deces_ni"] = deces - o["deces_imm"]
         o["net_imm"] = d_imm + o["deces_imm"]
         o["net_ni"] = bil["solde_migratoire"] - o["net_imm"]
+        if "guerre" in (bil.get("complete") or ""):
+            # 1939-1945 : l'écart des pyramides (prisonniers hors du territoire) est un ajustement.
+            o["ajust_imm"], o["net_imm"] = o["net_imm"], 0
+            o["net_ni"] = 0
         o["ajust_ni"] = d_imm_ni - (naissances - o["deces_ni"] + o["net_ni"])
     return o
 

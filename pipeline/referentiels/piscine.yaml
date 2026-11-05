@@ -2,13 +2,13 @@
 # Décision de Max (2026-11-05) : 2006-2022 mesuré ; avant 2006, reconstruit et marqué (vanne nette).
 statut: a_valider          # passe à `valide` quand Max a relu ces paramètres
 echelle: 10000             # personnes représentées par une particule
-debut: 1968
+debut: 1921
 fin: 2025                  # dernier stock au 1er janvier
 
 # Avant 2006 : stocks d'immigrés des recensements (série 2381757), interpolés linéairement entre deux
-# recensements. Les dates de collecte (mars 1968, février 1975, mars 1982, mars 1990, mars 1999) sont
-# assimilées au 1er janvier : approximation documentée.
-recensements: [1968, 1975, 1982, 1990, 1999, 2006]
+# recensements. Les dates de collecte (mars ou février de l'année) sont assimilées au 1er janvier :
+# approximation documentée. Pas de recensement de 1937 à 1945 (guerre) : interpolation 1936-1946.
+recensements: [1921, 1926, 1931, 1936, 1946, 1954, 1962, 1968, 1975, 1982, 1990, 1999, 2006]
 
 # Bilan démographique : onglet FM (métropole) jusqu'à cette année incluse, FR ensuite, pour suivre le
 # champ des stocks d'immigrés (métropole jusqu'en 1982, hors Mayotte dès 1990 : U6).
@@ -31,6 +31,10 @@ saisies:
 
 # Événements affichés sur la frise et dans la piscine.
 evenements:
+  - {annee: 1931, code: null, libelle: "Crise des années 1930 : retours et expulsions, notamment de travailleurs polonais"}
+  - {annee: 1939, code: U6, libelle: "Seconde Guerre mondiale : pas de recensement jusqu'en 1946 ; les pyramides ne comptent pas les prisonniers hors du territoire (ajustement, pas migration)"}
+  - {annee: 1945, code: U1, libelle: "Avant 1946, population lue dans les pyramides des âges ; solde migratoire par différence"}
+  - {annee: 1962, code: null, libelle: "Indépendance de l'Algérie : arrivée des rapatriés, pour la plupart non immigrés"}
   - {annee: 1974, code: null, libelle: "Suspension de l'immigration de travail (juillet 1974)"}
   - {annee: 1990, code: U6, libelle: "Changement de champ : les départements d'outre-mer entrent dans les séries"}
   - {annee: 2006, code: null, libelle: "Début des flux mesurés par l'Insee (entrées, sorties, décès d'immigrés)"}

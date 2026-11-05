@@ -199,8 +199,19 @@ mouvement continu de l'eau. Sur mobile, on affiche moins de particules (1 pour
 | v3 | + 1851-1968 (étrangers), une vague suivie de bout en bout | Séries historiques (spike historique) |
 | cycle 2 | Projections 2070, contrefactuels, curseurs dans le navigateur | Projections Insee 2026 |
 
-**v0 faite le 2026-11-05** (`/piscine` en local), en attente de la revue de
-Max.
+**v0 faite le 2026-11-05**, revue par Max le même jour : rendre les liquides
+« non miscibles » pour lire les volumes, montrer les débits par l'épaisseur des
+tuyaux, intégrer les descendants et les mixtes. **v1 faite le 2026-11-05** :
+- l'eau **décantée** (défaut) range chaque teinte en couche, avec sa part
+  affichée ; le bouton « Mélangée » remet tout dans la même eau ;
+- les quatre **tuyaux** ont une épaisseur proportionnelle au débit de l'année
+  (même échelle), en bandes par teinte : le robinet des naissances montre de qui
+  naissent les enfants ;
+- **cinq teintes** (G1, G2 deux parents, G2 un parent, G3, autres), rampe
+  ordinale d'une seule teinte validée en clair et en sombre ;
+- **1921-2025** ; la guerre (pyramides sans les prisonniers) et les changements
+  de champ sont des ajustements, jamais des flux.
+Les générations viennent du modèle de cohortes (`docs/METHODO.md`).
 
 La v1 du site embarque au moins la piscine v2. La v3 dépend de ce que le
 spike historique trouve sous forme exploitable.

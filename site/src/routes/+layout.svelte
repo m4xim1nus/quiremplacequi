@@ -4,7 +4,14 @@
 
   let { data, children } = $props();
 
-  const LIENS = [{ href: '/piscine', libelle: 'La piscine' }];
+  const LIENS = [
+    { href: '/piscine', libelle: 'La piscine' },
+    { href: '/temps-long', libelle: 'Le temps long' },
+    { href: '/generations', libelle: 'Générations' },
+    { href: '/limites', libelle: 'Ce qu’on ne sait pas' },
+    { href: '/methode', libelle: 'Méthode' },
+    { href: '/donnees', libelle: 'Données' }
+  ];
   const date = $derived(
     new Date(data.genereLe).toLocaleDateString('fr-FR', {
       day: 'numeric',
@@ -35,7 +42,8 @@
 
 <footer class="pied page">
   <p>
-    Prototype en construction. Données publiques uniquement (Insee). Calculs arrêtés au {date}.
+    Site en construction. Données publiques uniquement (Insee, Ined). Calculs arrêtés au {date},
+    reproductibles à partir des <a href="/donnees">fichiers publiés</a>.
   </p>
   <p>Aucun cookie, aucun traceur, aucune ressource tierce.</p>
 </footer>
@@ -58,7 +66,9 @@
   }
   nav {
     display: flex;
-    gap: 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.3rem 1.1rem;
+    font-size: var(--t-0);
   }
   nav a {
     color: var(--ardoise);

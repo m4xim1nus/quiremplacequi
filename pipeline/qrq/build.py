@@ -28,12 +28,12 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
         "flux": flux.lire_flux(raw),
         "naissances_parents": naissances.lire_naissances_parents(raw),
     }
-    psc = piscine.construire(
-        tables["b1_stock"], tables["bilan"], tables["flux"], referentiel("piscine")
-    )
     # Modèle de cohortes (générations), calé sur IP 1910 et les sorties Insee.
     pc = referentiel("cohortes")
     entrees = cohortes.preparer(raw, tables["b1_stock"], tables["bilan"], tables["naissances_parents"], pc)
+    # Avant 1946, le bilan n'a pas de population : on la lit dans les pyramides (métropole).
+    bilan.completer_avant_1946(tables["bilan"], {a: float(v.sum()) for a, v in entrees.ages.items() if a < 1946})
+    psc = piscine.construire(tables["b1_stock"], tables["bilan"], tables["flux"], referentiel("piscine"))
     cibles = cohortes.lire_cibles_ip1910(raw)
     sorties = {f["annee"]: f["sorties_imm"] for f in tables["flux"] if f["sorties_imm"] is not None}
     sim, cal = cohortes.caler(entrees, pc, cibles, sorties)

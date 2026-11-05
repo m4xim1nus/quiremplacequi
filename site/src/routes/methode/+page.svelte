@@ -1,0 +1,142 @@
+<script lang="ts">
+  import { milliers, pct } from '$lib/format';
+  let { data } = $props();
+  const v = (x: number, n = 2) => x.toFixed(n).replace('.', ',');
+  const LIB: Record<string, string> = {
+    G1: 'Immigrés',
+    G2a: 'G2, deux parents',
+    G2b: 'G2, un parent',
+    G3: 'G3'
+  };
+</script>
+
+<svelte:head>
+  <title>Méthode · Qui remplace qui ?</title>
+  <meta
+    name="description"
+    content="Comment les chiffres du site sont produits, modélisés et contrôlés."
+  />
+</svelte:head>
+
+<article class="page colonne">
+  <h1>Méthode</h1>
+  <p class="chapeau">
+    Des sources publiques, lues par un programme ; des identités comptables vérifiées à chaque
+    calcul ; un modèle là où la statistique ne mesure pas, calé sur ce qu’elle mesure et affiché
+    comme tel.
+  </p>
+  <p class="brouillon">Textes en brouillon.</p>
+
+  <h2>Trois régimes de données</h2>
+  <ul>
+    <li>
+      <strong>Mesuré</strong> : ce que l’Insee publie (stocks d’immigrés, naissances, décès ; entrées,
+      sorties et décès des immigrés de 2006 à 2022).
+    </li>
+    <li>
+      <strong>Reconstruit</strong> : ce qui se déduit de mesures sans être publié tel quel (le flux net
+      des immigrés entre deux recensements, avant 2006).
+    </li>
+    <li>
+      <strong>Modélisé</strong> : les enfants et petits-enfants d’immigrés, année par année et âge par
+      âge (modèle de cohortes), et les décès d’immigrés hors 2006-2022.
+    </li>
+  </ul>
+
+  <h2>Les identités comptables, vérifiées à chaque calcul</h2>
+  <p>
+    Population de l’année suivante = population + naissances − décès + entrées − sorties (+
+    ajustements). Immigrés de l’année suivante = immigrés + entrées − sorties − décès :
+    <strong>aucune naissance</strong>, puisqu’un enfant né en France n’est pas un immigré. Les
+    changements de champ (outre-mer en 1990, Mayotte en 2014), l’effet de la nouvelle collecte du
+    recensement en 2024 et les années de guerre sont des ajustements, jamais des arrivées. Le calcul
+    échoue si une identité ne tient pas.
+  </p>
+
+  <h2>Le modèle de cohortes</h2>
+  <p>
+    De 1911 à 2025, le modèle suit les immigrés (G1), leurs enfants nés en France (G2, avec deux
+    parents ou un seul parent immigré) et leurs petits-enfants (G3), âge par âge. Chaque année, il
+    applique la mortalité nationale par âge (aucune hypothèse de surmortalité par origine), fait
+    naître les enfants selon la composition observée des naissances, et ajuste les arrivées
+    d’immigrés pour retomber sur les stocks des recensements. Statut des paramètres :
+    <strong>{data.statut === 'valide' ? 'validés' : 'à valider'}</strong>.
+  </p>
+  <p>
+    Valeurs calées à chaque calcul : taux de départ des immigrés {pct(
+      100 * data.calage.taux_departs
+    )}
+    par an (calé sur les sorties mesurées par l’Insee) ; part des naissances « deux parents nés à l’étranger
+    » attribuée à deux parents immigrés : {pct(100 * data.calage.correction_deux)} ; part des naissances
+    « un parent né à l’étranger » attribuée à un parent immigré :
+    {pct(100 * data.calage.correction_un)} (calées sur l’enquête Insee de 2019-2020, IP 1910).
+  </p>
+
+  <h3>Le modèle face à ses cibles et à ses témoins</h3>
+  <table>
+    <caption>Part de chaque génération en 2020 (modèle / enquête IP 1910), en %</caption>
+    <thead
+      ><tr
+        ><th scope="col">Génération</th><th scope="col">Âge</th><th scope="col">Modèle</th><th
+          scope="col">IP 1910</th
+        ></tr
+      ></thead
+    >
+    <tbody>
+      {#each data.ip as r (r.groupe + r.classe)}
+        <tr
+          ><td>{LIB[r.groupe]}</td><td>{r.classe}</td><td class="n">{v(r.modele, 1)}</td><td
+            class="n">{v(r.observe, 1)}</td
+          ></tr
+        >
+      {/each}
+    </tbody>
+  </table>
+  <p>
+    Témoins indépendants (non utilisés pour caler) : descendants d’immigrés en 2025,
+    {milliers(data.descendants.modele)} dans le modèle contre {milliers(data.descendants.observe)}
+    mesurés par l’enquête Emploi (logement ordinaire, hors Mayotte) ; décès d’immigrés sur
+    {data.deces.annees} ans, {milliers(data.deces.modele)} dans le modèle contre
+    {milliers(data.deces.observe)} estimés par l’Insee.
+  </p>
+
+  <h2>Les décès d’immigrés dans la piscine</h2>
+  <p>
+    Hors de 2006-2022, la piscine estime les décès d’immigrés en appliquant à leur part dans la
+    population le rapport observé de {data.ratio.calage[0]} à {data.ratio.calage[1]} entre leur part dans
+    les décès et leur part dans la population ({v(data.ratio.moyen)} en moyenne, de {v(
+      data.ratio.min
+    )}
+    à {v(data.ratio.max)}).
+  </p>
+
+  <h2>Reproduire</h2>
+  <p>
+    Le programme télécharge les tableurs de l’Insee, en note l’empreinte, calcule et contrôle tout :
+    <code>qrq download</code>, <code>qrq build</code>, <code>qrq check</code>. Les fichiers produits
+    sont sur la page <a href="/donnees">Données</a>.
+  </p>
+</article>
+
+<style>
+  table {
+    border-collapse: collapse;
+    font-size: var(--t-0);
+    font-variant-numeric: tabular-nums;
+    margin: 0.5rem 0 1rem;
+  }
+  caption {
+    text-align: left;
+    color: var(--ardoise);
+    margin-bottom: 0.3rem;
+  }
+  th,
+  td {
+    padding: 0.25rem 1rem 0.25rem 0;
+    border-bottom: 1px solid var(--reglure);
+    text-align: left;
+  }
+  .n {
+    text-align: right;
+  }
+</style>
