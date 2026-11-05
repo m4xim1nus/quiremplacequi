@@ -38,3 +38,7 @@ réfléchir avant d'arbitrer, `[refusé]` tranché négatif (trace gardée).
 - [creuser] Édition des 30 questions qui sert de modèle : 2021 (33 entrées) ou *L'Immigration en 30 questions* (2026, sommaire non vu) (claude, 2026-11-05)
 - [creuser] Contacter l'ICM : tableur des 206 publications « idées reçues », texte de l'AFP du 5 juin 2026 (claude, 2026-11-05)
 - [ ] Wiki de Max : la synthèse `teo2-mythe-deux-blocs` compte ≈ 8 points de conjoints dans le 41 % ; le tableau 1 du ch. 8 en donne ≈ 5 (le reste : outre-mer) (claude, 2026-11-05)
+- [→A] Piscine v0 : rendre les flux plus lisibles (traînées aux robinets, débit proportionnel visible, compteur cumulé « depuis 1968 : X naissances, Y arrivées ») (claude, 2026-11-05)
+- [→A] Piscine : avant 2006, le flux net est constant entre deux recensements (interpolation linéaire) ; 1974 ne se voit donc pas dans la piscine. Le dire, ou chercher une série annuelle des entrées (OFII/ONI) pour l'époque (claude, 2026-11-05)
+- [→A] Piscine : scrollytelling (baignoire → piscine → robinet des naissances), `docs/PISCINE.md` §4 (claude, 2026-11-05)
+- [site] Direction visuelle propre au projet (`docs/CONCEPTION.md`) : la v0 reprend Lexend et une palette « eau » provisoire (claude, 2026-11-05)

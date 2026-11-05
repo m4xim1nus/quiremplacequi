@@ -1,0 +1,106 @@
+# Registre des incertitudes (docs/CADRAGE.md §7), affiché sur la page « Ce qu'on ne sait pas » et sur
+# chaque graphique concerné. `verifie` : confirmé par le spike (docs/spike/), avec sa référence.
+U1:
+  titre: "Le solde migratoire n'est pas observé"
+  detail: "Il est calculé par différence entre la variation de la population et le solde naturel ; il intègre les aléas du recensement."
+  traitement: "Mention « résidu », bande d'incertitude"
+  verifie: true
+  reference: "Insee, bilan démographique 8999013, note 1 des onglets FM et FR"
+U2:
+  titre: "Les sorties sont un résidu du résidu"
+  detail: "Sorties = solde migratoire − entrées. Sorties d'immigrés : 26 000 en 2022, contre 65 000 à 125 000 de 2006 à 2021."
+  traitement: "Vanne floue ; moyenne pluriannuelle, valeurs annuelles en pointillés"
+  verifie: true
+  reference: "Insee Première 2107, encadré Méthodes et figure 2a"
+U3:
+  titre: "Les bilans arrivent avec retard"
+  detail: "Les entrées sont connues jusqu'en 2024, les sorties et les soldes par statut jusqu'en 2022 seulement."
+  traitement: "Zone « pas encore mesuré »"
+  verifie: true
+  reference: "Insee Première 2107, figures 2a et 2b (2023-2024 : nd)"
+U4:
+  titre: "Pas d'enquête de recensement en 2021"
+  detail: "Les données de 2019 à 2023 ont été réajustées ; les documents de l'Insee ne listent pas tous les mêmes années."
+  traitement: "Annotation sur la frise"
+  verifie: true
+  reference: "docs/spike/insee.md §5"
+U5:
+  titre: "Rupture de série en 2024"
+  detail: "Le nouveau protocole de collecte du recensement ajoute 242 000 immigrés en apparence entre 2023 et 2024 : la hausse corrigée est de 198 000, contre 440 000 sans correction."
+  traitement: "Rupture tracée sur toutes les courbes ; l'effet de collecte n'est jamais compté comme une arrivée"
+  verifie: true
+  reference: "Insee, note méthodologique de rupture de série (04/06/2026), p. 4 et 7"
+U6:
+  titre: "Les champs changent"
+  detail: "Métropole jusqu'en 1982 (stocks) ou 1989 (bilans utilisés ici), France hors Mayotte de 1990 à 2013, France entière depuis 2014."
+  traitement: "Badge de champ ; les changements de champ sont des ajustements visibles, jamais des flux"
+  verifie: true
+  reference: "Notes des tableurs 2381757, 8999013 et 8998082"
+U7:
+  titre: "Les personnes en situation irrégulière"
+  detail: "Partiellement captées par le recensement, jamais identifiées comme telles."
+  traitement: "Fourchettes seulement"
+  verifie: false
+U8:
+  titre: "La troisième génération n'est mesurée qu'avant 60 ans"
+  detail: "TeO2 couvre les 18-59 ans ; IP 1910 les 0-59 ans."
+  traitement: "Masque visuel"
+  verifie: true
+  reference: "docs/spike/teo2.md"
+U9:
+  titre: "Avant 1968, on compte surtout des étrangers"
+  detail: "Les séries anciennes portent sur la nationalité ; les naturalisations font « disparaître » des étrangers sans réduire le nombre d'immigrés. Les Algériens ne sont comptés comme étrangers qu'à partir de 1962 dans les recensements d'époque."
+  traitement: "Changement de concept tracé sur la frise"
+  verifie: true
+  reference: "docs/spike/historique.md §3"
+U10:
+  titre: "Ce que la statistique ne voit pas"
+  detail: "Les migrations juives de 1880-1939 ne sont pas mesurées comme telles (pas de statistique religieuse) : seulement des ordres de grandeur d'historiens."
+  traitement: "Encadré qualitatif"
+  verifie: true
+  reference: "docs/spike/historique.md §4"
+U11:
+  titre: "Titres de séjour ≠ entrées"
+  detail: "Mineurs exclus, régularisations, délais : les titres du ministère de l'Intérieur et les entrées de l'Insee ne mesurent pas la même chose."
+  traitement: "Graphique de réconciliation (cycle 2)"
+  verifie: false
+U12:
+  titre: "Les définitions internationales diffèrent"
+  detail: "Né à l'étranger (ONU, Eurostat) contre né étranger à l'étranger (Insee)."
+  traitement: "Bascule de définition (cycle 2)"
+  verifie: false
+U13:
+  titre: "L'origine des enfants de deux parents immigrés"
+  detail: "Par convention, celle du père."
+  traitement: "Note"
+  verifie: false
+U14:
+  titre: "Le champ de TeO2"
+  detail: "18-59 ans, France métropolitaine, logement ordinaire, collecte 2019-2020 perturbée par le Covid."
+  traitement: "Badge de champ"
+  verifie: true
+  reference: "docs/spike/teo2.md"
+U15:
+  titre: "Des données déclaratives"
+  detail: "Discriminations, identifications, langues : TeO2 mesure l'expérience déclarée."
+  traitement: "Mention « déclaré »"
+  verifie: true
+  reference: "docs/spike/teo2.md"
+U16:
+  titre: "Une projection n'est pas une prévision"
+  detail: "Aucune projection officielle par origine : toute projection par origine est un modèle maison."
+  traitement: "Curseurs, éventail, badge « modèle »"
+  verifie: true
+  reference: "Insee Première 2108"
+U17:
+  titre: "La piscine est un modèle avant 2006"
+  detail: "Avant 2006, les arrivées et les départs d'immigrés ne sont pas séparables : seul le flux net est reconstruit, à partir des stocks des recensements et de décès estimés."
+  traitement: "Vanne nette, badge « reconstruit », fourchette sur les décès"
+  verifie: true
+  reference: "docs/SOURCES.md §3 ; pipeline/referentiels/piscine.yaml"
+U18:
+  titre: "Les décès d'immigrés sont estimés"
+  detail: "L'état civil n'identifie pas les immigrés : l'Insee modélise leurs décès (2006-2022), le site les estime hors de cette période."
+  traitement: "Mention « estimé »"
+  verifie: true
+  reference: "Insee Première 2107, encadré Méthodes"

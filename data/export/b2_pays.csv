@@ -1,0 +1,161 @@
+annee,pays,immigres,champ
+1968,Afrique,642000,metropole
+1975,Afrique,1087000,metropole
+1982,Afrique,1340000,metropole
+1990,Afrique,1501000,france_hors_mayotte
+1999,Afrique,1701000,france_hors_mayotte
+2006,Afrique,2167000,france_hors_mayotte
+2010,Afrique,2362000,france_hors_mayotte
+2021,Afrique,3310000,france
+1968,Maghreb,597000,metropole
+1975,Maghreb,993000,metropole
+1982,Maghreb,1168000,metropole
+1990,Maghreb,1221000,france_hors_mayotte
+1999,Maghreb,1299000,france_hors_mayotte
+2006,Maghreb,1553000,france_hors_mayotte
+2010,Maghreb,1643000,france_hors_mayotte
+2021,Maghreb,2038000,france
+1968,Algérie,378000,metropole
+1975,Algérie,555000,metropole
+1982,Algérie,598000,metropole
+1990,Algérie,556000,france_hors_mayotte
+1999,Algérie,575000,france_hors_mayotte
+2006,Algérie,692000,france_hors_mayotte
+2010,Algérie,730000,france_hors_mayotte
+2021,Algérie,887000,france
+1968,"Maroc, Tunisie",219000,metropole
+1975,"Maroc, Tunisie",438000,metropole
+1982,"Maroc, Tunisie",570000,metropole
+1990,"Maroc, Tunisie",665000,france_hors_mayotte
+1999,"Maroc, Tunisie",725000,france_hors_mayotte
+2006,"Maroc, Tunisie",861000,france_hors_mayotte
+2010,"Maroc, Tunisie",913000,france_hors_mayotte
+2021,"Maroc, Tunisie",1151000,france
+1968,Afrique guinéenne ou centrale,,metropole
+1975,Afrique guinéenne ou centrale,,metropole
+1982,Afrique guinéenne ou centrale,,metropole
+1990,Afrique guinéenne ou centrale,,france_hors_mayotte
+1999,Afrique guinéenne ou centrale,,france_hors_mayotte
+2006,Afrique guinéenne ou centrale,264000,france_hors_mayotte
+2010,Afrique guinéenne ou centrale,313000,france_hors_mayotte
+2021,Afrique guinéenne ou centrale,506000,france
+1968,Afrique sahélienne,,metropole
+1975,Afrique sahélienne,,metropole
+1982,Afrique sahélienne,,metropole
+1990,Afrique sahélienne,,france_hors_mayotte
+1999,Afrique sahélienne,,france_hors_mayotte
+2006,Afrique sahélienne,169000,france_hors_mayotte
+2010,Afrique sahélienne,197000,france_hors_mayotte
+2021,Afrique sahélienne,342000,france
+1968,Autres pays d'Afrique,44000,metropole
+1975,Autres pays d'Afrique,94000,metropole
+1982,Autres pays d'Afrique,172000,metropole
+1990,Autres pays d'Afrique,280000,france_hors_mayotte
+1999,Autres pays d'Afrique,402000,france_hors_mayotte
+2006,Autres pays d'Afrique,182000,france_hors_mayotte
+2010,Autres pays d'Afrique,210000,france_hors_mayotte
+2021,Autres pays d'Afrique,424000,france
+1968,Asie,81000,metropole
+1975,Asie,140000,metropole
+1982,Asie,322000,metropole
+1990,Asie,478000,france_hors_mayotte
+1999,Asie,552000,france_hors_mayotte
+2006,Asie,692000,france_hors_mayotte
+2010,Asie,761000,france_hors_mayotte
+2021,Asie,945000,france
+1968,Turquie,43000,metropole
+1975,Turquie,76000,metropole
+1982,Turquie,121000,metropole
+1990,Turquie,168000,france_hors_mayotte
+1999,Turquie,174000,france_hors_mayotte
+2006,Turquie,229000,france_hors_mayotte
+2010,Turquie,246000,france_hors_mayotte
+2021,Turquie,251000,france
+1968,Chine,3000,metropole
+1975,Chine,4000,metropole
+1982,Chine,6000,metropole
+1990,Chine,18000,france_hors_mayotte
+1999,Chine,35000,france_hors_mayotte
+2006,Chine,71000,france_hors_mayotte
+2010,Chine,90000,france_hors_mayotte
+2021,Chine,110000,france
+1968,Asie du Sud-Est,18000,metropole
+1975,Asie du Sud-Est,26000,metropole
+1982,Asie du Sud-Est,123000,metropole
+1990,Asie du Sud-Est,156000,france_hors_mayotte
+1999,Asie du Sud-Est,161000,france_hors_mayotte
+2006,Asie du Sud-Est,160000,france_hors_mayotte
+2010,Asie du Sud-Est,162000,france_hors_mayotte
+2021,Asie du Sud-Est,163000,france
+1968,Autres pays d'Asie,18000,metropole
+1975,Autres pays d'Asie,35000,metropole
+1982,Autres pays d'Asie,72000,metropole
+1990,Autres pays d'Asie,136000,france_hors_mayotte
+1999,Autres pays d'Asie,177000,france_hors_mayotte
+2006,Autres pays d'Asie,233000,france_hors_mayotte
+2010,Autres pays d'Asie,264000,france_hors_mayotte
+2021,Autres pays d'Asie,421000,france
+1968,Europe,2479000,metropole
+1975,Europe,2612000,metropole
+1982,Europe,2312000,metropole
+1990,Europe,2103000,france_hors_mayotte
+1999,Europe,1940000,france_hors_mayotte
+2006,Europe,2016000,france_hors_mayotte
+2010,Europe,2093000,france_hors_mayotte
+2021,Europe,2304000,france
+1968,Europe du Sud,1737000,metropole
+1975,Europe du Sud,1915000,metropole
+1982,Europe du Sud,1681000,metropole
+1990,Europe du Sud,1482000,france_hors_mayotte
+1999,Europe du Sud,1268000,france_hors_mayotte
+2006,Europe du Sud,1169000,france_hors_mayotte
+2010,Europe du Sud,1141000,france_hors_mayotte
+2021,Europe du Sud,1130000,france
+1968,"Espagne, Italie",1456000,metropole
+1975,"Espagne, Italie",1260000,metropole
+1982,"Espagne, Italie",1042000,metropole
+1990,"Espagne, Italie",882000,france_hors_mayotte
+1999,"Espagne, Italie",696000,france_hors_mayotte
+2006,"Espagne, Italie",600000,france_hors_mayotte
+2010,"Espagne, Italie",552000,france_hors_mayotte
+2021,"Espagne, Italie",531000,france
+1968,Portugal,282000,metropole
+1975,Portugal,655000,metropole
+1982,Portugal,638000,metropole
+1990,Portugal,600000,france_hors_mayotte
+1999,Portugal,572000,france_hors_mayotte
+2006,Portugal,570000,france_hors_mayotte
+2010,Portugal,588000,france_hors_mayotte
+2021,Portugal,599000,france
+1968,Autres pays d'Europe,741000,metropole
+1975,Autres pays d'Europe,697000,metropole
+1982,Autres pays d'Europe,632000,metropole
+1990,Autres pays d'Europe,622000,france_hors_mayotte
+1999,Autres pays d'Europe,672000,france_hors_mayotte
+2006,Autres pays d'Europe,847000,france_hors_mayotte
+2010,Autres pays d'Europe,952000,france_hors_mayotte
+2021,Autres pays d'Europe,1175000,france
+1968,Pays de l’UE27,,metropole
+1975,Pays de l’UE27,,metropole
+1982,Pays de l’UE27,,metropole
+1990,Pays de l’UE27,,france_hors_mayotte
+1999,Pays de l’UE27,,france_hors_mayotte
+2006,Pays de l’UE27,497000,france_hors_mayotte
+2010,Pays de l’UE27,536000,france_hors_mayotte
+2021,Pays de l’UE27,613000,france
+1968,"Amérique, Océanie",37000,metropole
+1975,"Amérique, Océanie",49000,metropole
+1982,"Amérique, Océanie",63000,metropole
+1990,"Amérique, Océanie",141000,france_hors_mayotte
+1999,"Amérique, Océanie",181000,france_hors_mayotte
+2006,"Amérique, Océanie",261000,france_hors_mayotte
+2010,"Amérique, Océanie",299000,france_hors_mayotte
+2021,"Amérique, Océanie",404000,france
+1968,Ensemble,3238000,metropole
+1975,Ensemble,3887000,metropole
+1982,Ensemble,4037000,metropole
+1990,Ensemble,4222000,france_hors_mayotte
+1999,Ensemble,4374000,france_hors_mayotte
+2006,Ensemble,5136000,france_hors_mayotte
+2010,Ensemble,5514000,france_hors_mayotte
+2021,Ensemble,6964000,france

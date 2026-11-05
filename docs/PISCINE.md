@@ -199,6 +199,9 @@ mouvement continu de l'eau. Sur mobile, on affiche moins de particules (1 pour
 | v3 | + 1851-1968 (étrangers), une vague suivie de bout en bout | Séries historiques (spike historique) |
 | cycle 2 | Projections 2070, contrefactuels, curseurs dans le navigateur | Projections Insee 2026 |
 
+**v0 faite le 2026-11-05** (`/piscine` en local), en attente de la revue de
+Max.
+
 La v1 du site embarque au moins la piscine v2. La v3 dépend de ce que le
 spike historique trouve sous forme exploitable.
 

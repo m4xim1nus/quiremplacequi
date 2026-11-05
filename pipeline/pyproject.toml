@@ -1,0 +1,35 @@
+[project]
+name = "qrq"
+version = "0.0.0"
+description = "Pipeline Qui remplace qui ? : statistique publique (Insee, Ined) → SQLite + exports du site"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = [
+    "httpx>=0.28",
+    "polars>=1.0",
+    "openpyxl>=3.1",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+qrq = "qrq.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "matplotlib>=3.9",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["qrq"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "donnees: tests sur les fichiers téléchargés et la base produite, sautés s'ils sont absents",
+]
+addopts = "-ra"

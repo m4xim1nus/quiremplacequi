@@ -106,25 +106,33 @@ comme une comptabilité, pas comme une explication.
 
 ## Commandes
 
-Pas encore de pipeline : étape 1 (spike sources) close, étape 2 à ouvrir. Rapports dans
-`docs/spike/`, scripts datés dans `docs/spike/scripts/<famille>/`, fichiers
-dans `data/raw/spike/<famille>/` (non versionnés). Lancer les scripts de
-spike depuis la racine, sans projet et en mode isolé :
-
-```bash
-uv run --no-project --with openpyxl --with polars python -I docs/spike/scripts/<famille>/<script>.py
-```
-
-Commandes visées à l'étape 2 (copiées de 2p2e) :
-
 ```bash
 cd pipeline && uv sync               # environnement Python
-cd pipeline && uv run qrq download   # sources → data/raw/ (+ manifeste.json)
+cd pipeline && uv run qrq download   # sources Insee → data/raw/insee/ (+ manifeste.json)
 cd pipeline && uv run qrq build      # → data/qrq.sqlite (non versionnée) + data/export/
 cd pipeline && uv run qrq check      # identités comptables, invariants, témoins
-cd pipeline && uv run pytest
+cd pipeline && uv run pytest         # tests (les tests `donnees` exigent l'export, versionné)
+cd site && npm ci && npm run dev     # site en local (copie data/export/ dans static/donnees/)
+cd site && npm run check && npm test && npm run format:check
 bash build.sh                        # build complet, celui de Cloudflare Pages
 ```
+
+Toute nouvelle source se déclare dans `pipeline/qrq/sources.py`, sa lecture
+dans un module par famille (`stock.py`, `flux.py`, `bilan.py`,
+`naissances.py`), l'assemblage dans `build.py`, et ses contrôles dans
+`check.py`. Les paramètres du modèle de la piscine sont dans
+`pipeline/referentiels/piscine.yaml` (statut `a_valider` tant que Max ne les a
+pas relus) ; le registre des incertitudes dans
+`pipeline/referentiels/incertitudes.yaml`.
+
+Site : SvelteKit statique, toute valeur affichée est lue au prérendu dans
+`site/src/lib/server/donnees.ts` à partir de `data/export/` (jamais de chiffre
+en dur dans les textes). La piscine : logique pure dans
+`site/src/lib/piscine.ts` (testée), moteur de particules dans
+`site/src/lib/moteur.ts`, dessin Canvas 2D dans
+`site/src/lib/components/Piscine.svelte`. `/piscine?annee=2013&lecture` ouvre
+une année et lance l'animation. Les scripts de spike
+(`docs/spike/scripts/`) restent du matériau daté.
 
 ## Langue
 

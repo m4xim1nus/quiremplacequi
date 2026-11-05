@@ -1,0 +1,40 @@
+# Paramètres de la piscine v0 (docs/PISCINE.md §6 et §8). Choix sensibles : validés par Max.
+# Décision de Max (2026-11-05) : 2006-2022 mesuré ; avant 2006, reconstruit et marqué (vanne nette).
+statut: a_valider          # passe à `valide` quand Max a relu ces paramètres
+echelle: 10000             # personnes représentées par une particule
+debut: 1968
+fin: 2025                  # dernier stock au 1er janvier
+
+# Avant 2006 : stocks d'immigrés des recensements (série 2381757), interpolés linéairement entre deux
+# recensements. Les dates de collecte (mars 1968, février 1975, mars 1982, mars 1990, mars 1999) sont
+# assimilées au 1er janvier : approximation documentée.
+recensements: [1968, 1975, 1982, 1990, 1999, 2006]
+
+# Bilan démographique : onglet FM (métropole) jusqu'à cette année incluse, FR ensuite, pour suivre le
+# champ des stocks d'immigrés (métropole jusqu'en 1982, hors Mayotte dès 1990 : U6).
+bilan_metropole_jusqua: 1989
+
+# Décès d'immigrés hors 2006-2022 (non publiés) : r × (stock d'immigrés / population) × décès totaux,
+# où r est le rapport observé sur la période de calage (IP 2107). Fourchette = min et max observés.
+deces_immigres:
+  calage: [2006, 2022]
+
+# Saisies référencées : valeurs qui n'existent qu'en PDF (CLAUDE.md, règles dures).
+saisies:
+  effet_collecte_2024_immigres:
+    valeur: 242000
+    unite: personnes
+    libelle: "Effet du nouveau protocole de collecte du recensement sur le nombre d'immigrés entre 2023 et 2024"
+    reference: "Insee, Note méthodologique sur la rupture de série 2024 (04/06/2026), p. 4 : « Nous le chiffrons à +242 000 immigrés et -242 000 non-immigrés »"
+    url: https://www.insee.fr/fr/statistiques/fichier/2383177/Note_methodo_rupture_serie_immigration.pdf
+    incertitude: U5
+
+# Événements affichés sur la frise et dans la piscine.
+evenements:
+  - {annee: 1974, code: null, libelle: "Suspension de l'immigration de travail (juillet 1974)"}
+  - {annee: 1990, code: U6, libelle: "Changement de champ : les départements d'outre-mer entrent dans les séries"}
+  - {annee: 2006, code: null, libelle: "Début des flux mesurés par l'Insee (entrées, sorties, décès d'immigrés)"}
+  - {annee: 2013, code: U6, libelle: "Mayotte entre dans le champ des stocks au 1er janvier 2014"}
+  - {annee: 2021, code: U4, libelle: "Pas d'enquête annuelle de recensement en 2021 ; données 2019-2023 réajustées"}
+  - {annee: 2023, code: U3, libelle: "Sorties pas encore publiées : flux de 2023 et 2024 incomplets"}
+  - {annee: 2024, code: U5, libelle: "Rupture de série : nouveau protocole de collecte du recensement"}

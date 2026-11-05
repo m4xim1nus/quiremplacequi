@@ -1,0 +1,69 @@
+{
+ "genere_le": "2026-11-05T07:20:27+00:00",
+ "sources": {
+  "stock": {
+   "fichier": "insee/demo-etran-part-pop-etran-immig.xlsx",
+   "octets": 31337,
+   "page": "https://www.insee.fr/fr/statistiques/2381757",
+   "sha256": "64f28422c0ece89671fbc22daf4b6ec6c6fc201bda96914156a6f31f9ffdc45f",
+   "telecharge_le": "2026-11-05T07:17:02+00:00",
+   "titre": "Population immigrée et étrangère en France (1921-2025)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/2381757/demo-etran-part-pop-etran-immig.xlsx"
+  },
+  "flux": {
+   "fichier": "insee/IP2107.xlsx",
+   "octets": 53337,
+   "page": "https://www.insee.fr/fr/statistiques/8998082",
+   "sha256": "4884fc6b5180fc52ff40ba457c140c185102ffab44b5079493198803953459e4",
+   "telecharge_le": "2026-11-05T07:17:02+00:00",
+   "titre": "Insee Première 2107 : flux migratoires 2006-2024",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/8998082/IP2107.xlsx"
+  },
+  "bilan": {
+   "fichier": "insee/1_Pop_annu_compo_evol.xlsx",
+   "octets": 49210,
+   "page": "https://www.insee.fr/fr/statistiques/8999013",
+   "sha256": "4bb55a15123eefa7d2961e611085abb8a5cf42dbb91bbd358225b2e62b0fa08f",
+   "telecharge_le": "2026-11-05T07:17:02+00:00",
+   "titre": "Bilan démographique : population au 1er janvier et composantes (séries longues)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/8999013/1_Pop_annu_compo_evol.xlsx"
+  },
+  "naissances_parents": {
+   "fichier": "insee/demo-naiss-natio-pays-2.xlsx",
+   "octets": 111857,
+   "page": "https://www.insee.fr/fr/statistiques/2381382",
+   "sha256": "62d4f24ddf5e1cb30fcfc0761ea8e4c8d927c59dc3f618cb8f5c544bc4293007",
+   "telecharge_le": "2026-11-05T07:17:02+00:00",
+   "titre": "Naissances selon la nationalité et le pays de naissance des parents (1998-2025)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/2381382/demo-naiss-natio-pays-2.xlsx"
+  },
+  "pays_long": {
+   "fichier": "insee/IMMFRA23-F2.xlsx",
+   "octets": 20317,
+   "page": "https://www.insee.fr/fr/statistiques/6793226",
+   "sha256": "782c9811688cfd78119100422cb39a85ecb63a5ff139d8a0ed54c28c4187d792",
+   "telecharge_le": "2026-11-05T07:17:02+00:00",
+   "titre": "Immigrés et descendants d'immigrés, éd. 2023 : histoire des migrations (1911-2021)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/6793226/IMMFRA23-F2.xlsx"
+  },
+  "ip1910": {
+   "fichier": "insee/ip1910.xlsx",
+   "octets": 60654,
+   "page": "https://www.insee.fr/fr/statistiques/6468640",
+   "sha256": "abdddf581944e4022b0de36479edc6e3b532bab5442f84e04ef00d7ae41ae154",
+   "telecharge_le": "2026-11-05T07:17:02+00:00",
+   "titre": "Insee Première 1910 : diversité des origines et mixité des unions",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/6468640/ip1910.xlsx"
+  },
+  "pays": {
+   "fichier": "insee/demo-etran-repart-immig-pays.xlsx",
+   "octets": 199436,
+   "page": "https://www.insee.fr/fr/statistiques/2381755",
+   "sha256": "0890039e033aacc97f1a56217efff75c18629d3ed37d1f6f7f108449b3e627a7",
+   "telecharge_le": "2026-11-05T07:17:02+00:00",
+   "titre": "Immigrés par pays de naissance (2006-2025)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/2381755/demo-etran-repart-immig-pays.xlsx"
+  }
+ },
+ "licence_sources": "Licence Ouverte 2.0 (Etalab)"
+}

@@ -32,12 +32,22 @@ le robinet des naissances ; partiel pour la piscine (4 vannes mesurées de 2006
 à 2022 seulement), B2, E9-E10. Quatre décisions de Max (§5). Restent ouvertes
 les questions de `docs/CADRAGE.md` §9 et `docs/PISCINE.md` §9.
 
-## Étape 2 : pipeline et piscine v0 (prochaine)
+## Étape 2 : pipeline et piscine v0 (en cours)
 
-Package `qrq` (`download` → `build` → `check`), tests des identités
-comptables, `incertitudes.yaml`. Séries de B1 et B2, bilans démographiques,
-flux. Piscine v0 (1968-2025, 4 vannes, 2 teintes) en prototype local, avec
-les graphiques bruts de relecture.
+- [x] Package `qrq` (`download` → `build` → `check`) : 7 tableurs Insee, export
+  `data/export/` (stock 1911-2025, pays 1968-2021, nationalités 1901-2020,
+  bilans, flux 2006-2024, naissances par origine des parents, piscine).
+  15 contrôles (identités comptables, champs, témoins), tests pytest.
+- [x] Registres `incertitudes.yaml` (U1-U18) et `piscine.yaml` (paramètres à
+  valider).
+- [x] Site SvelteKit (copié de 2p2e) et prototype de la piscine v0 sur
+  `/piscine` : 1968-2025, 4 vannes, 2 teintes, régimes mesuré / partiel /
+  reconstruit affichés, ajustements de champ et de collecte visibles.
+- [ ] Revue de Max : la piscine v0 en local (`cd site && npm run dev`, puis
+  `/piscine`), les paramètres de `piscine.yaml`.
+- [ ] Graphiques bruts de relecture de B1 et B2 (`pipeline/explo/`).
+
+**Livrable** : piscine v0 relue par Max, paramètres validés.
 
 ## Étape 3 : modèle de la piscine et modules E, F2
 
