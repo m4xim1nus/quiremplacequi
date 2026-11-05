@@ -1,0 +1,42 @@
+# Modèle de cohortes des générations (qrq/cohortes.py, docs/PISCINE.md §6). Choix sensibles :
+# validés par Max. Les coefficients marqués « calé » sont recalculés à chaque build.
+statut: a_valider
+debut: 1911          # premier stock d'immigrés connu (6793226) ; la piscine s'affiche dès 1968
+fin: 2025
+bilan_metropole_jusqua: 1989
+
+initial:
+  # Enfants d'immigrés vivants en 1911 (inconnus) : rapport au stock d'immigrés. Effet négligeable
+  # sur les cibles de 2019-2025 (ils ont alors plus de 60 ans ou sont décédés).
+  g2_rapport_g1: 0.8
+
+naissances:
+  # De 1998 à 2025, l'état civil donne le pays de naissance des parents, pas leur statut d'immigré
+  # (les Français nés à l'étranger y comptent, et les DOM aussi). Part des naissances G2a = part
+  # « deux parents nés à l'étranger » × correction_deux ; G2b = part « un parent né à l'étranger »
+  # × correction_un. Les deux corrections sont calées pour que le modèle retrouve les G2 à deux
+  # parents et à un parent des 0-17 ans d'IP 1910 (2019-2020, métropole). Avant 1998 : composition
+  # déduite de la photo 2019-2020 (IP 1910, part des G2 et des G3 par âge parmi les nés en France).
+  correction_deux: null  # calé
+  correction_un: null    # calé
+  beta_ancien: null    # calé : G3 avant 1960 = beta × part des G2 parmi les 20-44 ans non immigrés
+  beta_recent: null    # calé : idem après 2019
+
+departs:
+  # Départs d'immigrés : taux annuel × forme par âge. Le taux est calé sur la moyenne des sorties
+  # mesurées par l'Insee (2006-2021 ; 2022 exclu, valeur atypique : U2). Forme retenue sur une grille
+  # (explo/calage_departs.py) : la plus proche de la part des immigrés par âge en 2019-2020 (IP 1910) ;
+  # départs fréquents des jeunes adultes (études) et autour de la retraite. Les arrivées se déduisent
+  # du stock observé suivant.
+  taux: null           # calé
+  forme:
+    - {de: 0, a: 14, poids: 0.5}
+    - {de: 15, a: 17, poids: 1.0}
+    - {de: 18, a: 29, poids: 3.0}
+    - {de: 30, a: 54, poids: 1.0}
+    - {de: 55, a: 69, poids: 3.0}
+    - {de: 70, a: 105, poids: 1.0}
+
+calage:
+  annee_ip1910: 2020   # 1er janvier 2020, milieu de la collecte 2019-2020
+  sorties: [2006, 2022]  # années [début, fin[ des sorties Insee utilisées pour caler le taux

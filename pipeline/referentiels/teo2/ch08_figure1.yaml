@@ -1,0 +1,35 @@
+source:
+  chapitre: 8
+  objet: "Figure 1"
+  titre: "Origine des répondant·es par lien à l’immigration"
+  auteurs: "Mathieu Ferry, Pierre Tanneau, Patrick Simon"
+  url: "https://books.openedition.org/ined/26366"
+  emplacement: "§11-13"
+  image: "data/raw/spike/teo2/ch08/Chap8_fig1.jpg.jpg"
+  champ: "France métropolitaine, personnes âgées de 18 à 59 ans (G1, G2, G3)"
+  unite: "%"
+  note: "Barres empilées à 100 % (axe « P. 100 »), valeurs étiquetées dans la figure ; pas de note dans l’image. Saisie : « Turquie, MO » n’a pas d’étiquette pour la G3 (segment invisible, valeur inférieure à 1) : cellule omise. Les colonnes somment à 100 à l’arrondi (G1 101, G2 99)."
+cellules:
+  - {ligne: "Maghreb", colonne: "G1", valeur: 32, approx: false}
+  - {ligne: "Maghreb", colonne: "G2", valeur: 38, approx: false}
+  - {ligne: "Maghreb", colonne: "G3", valeur: 6, approx: false}
+  - {ligne: "Afrique subsaharienne", colonne: "G1", valeur: 20, approx: false}
+  - {ligne: "Afrique subsaharienne", colonne: "G2", valeur: 9, approx: false}
+  - {ligne: "Afrique subsaharienne", colonne: "G3", valeur: 2, approx: false}
+  - {ligne: "Turquie, MO", colonne: "G1", valeur: 7, approx: false}
+  - {ligne: "Turquie, MO", colonne: "G2", valeur: 4, approx: false}
+  - {ligne: "Asie", colonne: "G1", valeur: 9, approx: false}
+  - {ligne: "Asie", colonne: "G2", valeur: 5, approx: false}
+  - {ligne: "Asie", colonne: "G3", valeur: 2, approx: false}
+  - {ligne: "Europe du Sud", colonne: "G1", valeur: 11, approx: false}
+  - {ligne: "Europe du Sud", colonne: "G2", valeur: 32, approx: false}
+  - {ligne: "Europe du Sud", colonne: "G3", valeur: 56, approx: false}
+  - {ligne: "Autres UE 27", colonne: "G1", valeur: 9, approx: false}
+  - {ligne: "Autres UE 27", colonne: "G2", valeur: 7, approx: false}
+  - {ligne: "Autres UE 27", colonne: "G3", valeur: 27, approx: false}
+  - {ligne: "Autres pays", colonne: "G1", valeur: 13, approx: false}
+  - {ligne: "Autres pays", colonne: "G2", valeur: 4, approx: false}
+  - {ligne: "Autres pays", colonne: "G3", valeur: 7, approx: false}
+controles:
+  - {"axe": "colonne", "pour": ["G1", "G2"], "parmi": ["Maghreb", "Afrique subsaharienne", "Turquie, MO", "Asie", "Europe du Sud", "Autres UE 27", "Autres pays"], "attendu": 100, "tolerance": 1}
+  - {"axe": "colonne", "pour": ["G3"], "parmi": ["Maghreb", "Afrique subsaharienne", "Asie", "Europe du Sud", "Autres UE 27", "Autres pays"], "attendu": 100, "tolerance": 1}

@@ -1,0 +1,38 @@
+source:
+  chapitre: 8
+  objet: "Figure 2"
+  titre: "Lien à la migration des répondant·es par origine"
+  auteurs: "Mathieu Ferry, Pierre Tanneau, Patrick Simon"
+  url: "https://books.openedition.org/ined/26366"
+  emplacement: "§14-15"
+  image: "data/raw/spike/teo2/ch08/Chap8_fig2.jpg.jpg"
+  champ: "France métropolitaine, personnes âgées de 18 à 59 ans ayant un lien à l’immigration (G1, G2, G3)"
+  unite: "%"
+  note: "Barres empilées à 100 % (axe « P. 100 »), valeurs étiquetées ; pas de note dans l’image. Chaque colonne (origine) somme à 100 à l’arrondi (101 pour Afrique sub., Asie et Ensemble)."
+cellules:
+  - {ligne: "G1", colonne: "Maghreb", valeur: 46, approx: false}
+  - {ligne: "G1", colonne: "Afrique sub.", valeur: 67, approx: false}
+  - {ligne: "G1", colonne: "Turquie, MO", valeur: 63, approx: false}
+  - {ligne: "G1", colonne: "Asie", valeur: 60, approx: false}
+  - {ligne: "G1", colonne: "Europe du Sud", valeur: 14, approx: false}
+  - {ligne: "G1", colonne: "Autres UE 27", valeur: 24, approx: false}
+  - {ligne: "G1", colonne: "Autres pays", valeur: 59, approx: false}
+  - {ligne: "G1", colonne: "Ensemble", valeur: 38, approx: false}
+  - {ligne: "G2", colonne: "Maghreb", valeur: 48, approx: false}
+  - {ligne: "G2", colonne: "Afrique sub.", valeur: 29, approx: false}
+  - {ligne: "G2", colonne: "Turquie, MO", valeur: 35, approx: false}
+  - {ligne: "G2", colonne: "Asie", valeur: 31, approx: false}
+  - {ligne: "G2", colonne: "Europe du Sud", valeur: 35, approx: false}
+  - {ligne: "G2", colonne: "Autres UE 27", valeur: 18, approx: false}
+  - {ligne: "G2", colonne: "Autres pays", valeur: 15, approx: false}
+  - {ligne: "G2", colonne: "Ensemble", valeur: 34, approx: false}
+  - {ligne: "G3", colonne: "Maghreb", valeur: 6, approx: false}
+  - {ligne: "G3", colonne: "Afrique sub.", valeur: 5, approx: false}
+  - {ligne: "G3", colonne: "Turquie, MO", valeur: 2, approx: false}
+  - {ligne: "G3", colonne: "Asie", valeur: 10, approx: false}
+  - {ligne: "G3", colonne: "Europe du Sud", valeur: 51, approx: false}
+  - {ligne: "G3", colonne: "Autres UE 27", valeur: 58, approx: false}
+  - {ligne: "G3", colonne: "Autres pays", valeur: 26, approx: false}
+  - {ligne: "G3", colonne: "Ensemble", valeur: 29, approx: false}
+controles:
+  - {"axe": "colonne", "pour": ["Maghreb", "Afrique sub.", "Turquie, MO", "Asie", "Europe du Sud", "Autres UE 27", "Autres pays", "Ensemble"], "parmi": ["G1", "G2", "G3"], "attendu": 100, "tolerance": 1}

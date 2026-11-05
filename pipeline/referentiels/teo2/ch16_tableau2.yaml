@@ -1,0 +1,88 @@
+source:
+  chapitre: 16
+  objet: "Tableau 2"
+  titre: "Indicateurs de discrimination selon l’origine et le lien à la migration (%)"
+  auteurs: "Haley McAvay, Jean-Luc Primon, Mirna Safi, Patrick Simon"
+  url: "https://books.openedition.org/ined/26422"
+  emplacement: "§9"
+  image: "data/raw/spike/teo2/ch16/TABLEAUX_CHAP_16_2.jpg.jpg"
+  champ: "Individus âgés de 18 à 59 ans (France métropolitaine) ; discriminations autodéclarées : au cours des cinq dernières années"
+  unite: "%"
+  note: "Source : enquête Trajectoires et Origines 2, Ined-Insee, 2019-2020. Champ : individus âgés de 18 à 59 ans. Lecture : 22 % des G1 ont rapporté au moins une discrimination situationnelle et 24 % ont déclaré avoir été discriminés dans les cinq dernières années ; 35 % des G1 ont déclaré au moins une discrimination sur l’un des deux indicateurs. Parmi les personnes qui ont rapporté une discrimination situationnelle, 73 % ont mentionné un motif ethnoracial (origine et/ou couleur de peau). Note : pourcentages pondérés, effectifs non pondérés disponibles en annexe de l’ouvrage. Saisie : l’en-tête « Discriminations » couvre les colonnes « Situationnelles » et « Autodéclarées » (libellés complétés). Colonnes non additives (indicateurs distincts, la 3e est l’union des deux premières). Aucune cellule vide. Le 14 % de la ligne « Population majoritaire » est un taux de 2019-2020 ; le 14 % de 2008 pour l’ensemble est une autre valeur (ch. 16 §3 et §22)."
+cellules:
+  - {ligne: "Population majoritaire", colonne: "Discriminations situationnelles", valeur: 16, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Discriminations autodéclarées", valeur: 14, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Au moins un type de discrimination", valeur: 25, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 13, approx: false}
+  - {ligne: "G1", colonne: "Discriminations situationnelles", valeur: 22, approx: false}
+  - {ligne: "G1", colonne: "Discriminations autodéclarées", valeur: 24, approx: false}
+  - {ligne: "G1", colonne: "Au moins un type de discrimination", valeur: 35, approx: false}
+  - {ligne: "G1", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 73, approx: false}
+  - {ligne: "G2", colonne: "Discriminations situationnelles", valeur: 30, approx: false}
+  - {ligne: "G2", colonne: "Discriminations autodéclarées", valeur: 29, approx: false}
+  - {ligne: "G2", colonne: "Au moins un type de discrimination", valeur: 42, approx: false}
+  - {ligne: "G2", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 77, approx: false}
+  - {ligne: "G2.5", colonne: "Discriminations situationnelles", valeur: 21, approx: false}
+  - {ligne: "G2.5", colonne: "Discriminations autodéclarées", valeur: 20, approx: false}
+  - {ligne: "G2.5", colonne: "Au moins un type de discrimination", valeur: 31, approx: false}
+  - {ligne: "G2.5", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 48, approx: false}
+  - {ligne: "Ensemble", colonne: "Discriminations situationnelles", valeur: 17, approx: false}
+  - {ligne: "Ensemble", colonne: "Discriminations autodéclarées", valeur: 18, approx: false}
+  - {ligne: "Ensemble", colonne: "Au moins un type de discrimination", valeur: 28, approx: false}
+  - {ligne: "Ensemble", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 32, approx: false}
+  - {ligne: "G1 Outre-mer", colonne: "Discriminations situationnelles", valeur: 28, approx: false}
+  - {ligne: "G1 Outre-mer", colonne: "Discriminations autodéclarées", valeur: 29, approx: false}
+  - {ligne: "G1 Outre-mer", colonne: "Au moins un type de discrimination", valeur: 44, approx: false}
+  - {ligne: "G1 Outre-mer", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 67, approx: false}
+  - {ligne: "G1 Maghreb", colonne: "Discriminations situationnelles", valeur: 24, approx: false}
+  - {ligne: "G1 Maghreb", colonne: "Discriminations autodéclarées", valeur: 25, approx: false}
+  - {ligne: "G1 Maghreb", colonne: "Au moins un type de discrimination", valeur: 36, approx: false}
+  - {ligne: "G1 Maghreb", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 82, approx: false}
+  - {ligne: "G1 Afrique sub.", colonne: "Discriminations situationnelles", valeur: 26, approx: false}
+  - {ligne: "G1 Afrique sub.", colonne: "Discriminations autodéclarées", valeur: 35, approx: false}
+  - {ligne: "G1 Afrique sub.", colonne: "Au moins un type de discrimination", valeur: 44, approx: false}
+  - {ligne: "G1 Afrique sub.", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 84, approx: false}
+  - {ligne: "G1 Asie", colonne: "Discriminations situationnelles", valeur: 15, approx: false}
+  - {ligne: "G1 Asie", colonne: "Discriminations autodéclarées", valeur: 18, approx: false}
+  - {ligne: "G1 Asie", colonne: "Au moins un type de discrimination", valeur: 28, approx: false}
+  - {ligne: "G1 Asie", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 68, approx: false}
+  - {ligne: "G1 Turquie, MO", colonne: "Discriminations situationnelles", valeur: 20, approx: false}
+  - {ligne: "G1 Turquie, MO", colonne: "Discriminations autodéclarées", valeur: 20, approx: false}
+  - {ligne: "G1 Turquie, MO", colonne: "Au moins un type de discrimination", valeur: 30, approx: false}
+  - {ligne: "G1 Turquie, MO", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 69, approx: false}
+  - {ligne: "G1 Europe du Sud", colonne: "Discriminations situationnelles", valeur: 14, approx: false}
+  - {ligne: "G1 Europe du Sud", colonne: "Discriminations autodéclarées", valeur: 19, approx: false}
+  - {ligne: "G1 Europe du Sud", colonne: "Au moins un type de discrimination", valeur: 27, approx: false}
+  - {ligne: "G1 Europe du Sud", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 63, approx: false}
+  - {ligne: "G1 Autres UE 27", colonne: "Discriminations situationnelles", valeur: 20, approx: false}
+  - {ligne: "G1 Autres UE 27", colonne: "Discriminations autodéclarées", valeur: 22, approx: false}
+  - {ligne: "G1 Autres UE 27", colonne: "Au moins un type de discrimination", valeur: 34, approx: false}
+  - {ligne: "G1 Autres UE 27", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 55, approx: false}
+  - {ligne: "G2 Outre-mer", colonne: "Discriminations situationnelles", valeur: 28, approx: false}
+  - {ligne: "G2 Outre-mer", colonne: "Discriminations autodéclarées", valeur: 33, approx: false}
+  - {ligne: "G2 Outre-mer", colonne: "Au moins un type de discrimination", valeur: 42, approx: false}
+  - {ligne: "G2 Outre-mer", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 67, approx: false}
+  - {ligne: "G2 Maghreb", colonne: "Discriminations situationnelles", valeur: 34, approx: false}
+  - {ligne: "G2 Maghreb", colonne: "Discriminations autodéclarées", valeur: 35, approx: false}
+  - {ligne: "G2 Maghreb", colonne: "Au moins un type de discrimination", valeur: 48, approx: false}
+  - {ligne: "G2 Maghreb", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 75, approx: false}
+  - {ligne: "G2 Afrique sub.", colonne: "Discriminations situationnelles", valeur: 35, approx: false}
+  - {ligne: "G2 Afrique sub.", colonne: "Discriminations autodéclarées", valeur: 41, approx: false}
+  - {ligne: "G2 Afrique sub.", colonne: "Au moins un type de discrimination", valeur: 52, approx: false}
+  - {ligne: "G2 Afrique sub.", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 80, approx: false}
+  - {ligne: "G2 Asie", colonne: "Discriminations situationnelles", valeur: 17, approx: false}
+  - {ligne: "G2 Asie", colonne: "Discriminations autodéclarées", valeur: 28, approx: false}
+  - {ligne: "G2 Asie", colonne: "Au moins un type de discrimination", valeur: 34, approx: false}
+  - {ligne: "G2 Asie", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 59, approx: false}
+  - {ligne: "G2 Turquie, MO", colonne: "Discriminations situationnelles", valeur: 28, approx: false}
+  - {ligne: "G2 Turquie, MO", colonne: "Discriminations autodéclarées", valeur: 28, approx: false}
+  - {ligne: "G2 Turquie, MO", colonne: "Au moins un type de discrimination", valeur: 41, approx: false}
+  - {ligne: "G2 Turquie, MO", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 79, approx: false}
+  - {ligne: "G2 Europe du Sud", colonne: "Discriminations situationnelles", valeur: 17, approx: false}
+  - {ligne: "G2 Europe du Sud", colonne: "Discriminations autodéclarées", valeur: 12, approx: false}
+  - {ligne: "G2 Europe du Sud", colonne: "Au moins un type de discrimination", valeur: 25, approx: false}
+  - {ligne: "G2 Europe du Sud", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 46, approx: false}
+  - {ligne: "G2 Autres UE 27", colonne: "Discriminations situationnelles", valeur: 14, approx: false}
+  - {ligne: "G2 Autres UE 27", colonne: "Discriminations autodéclarées", valeur: 15, approx: false}
+  - {ligne: "G2 Autres UE 27", colonne: "Au moins un type de discrimination", valeur: 23, approx: false}
+  - {ligne: "G2 Autres UE 27", colonne: "Motifs ethnoraciaux dans les discriminations situationnelles", valeur: 28, approx: false}

@@ -4,8 +4,11 @@
 
 import {
   alea,
+  couches,
   mouvements,
   particules,
+  stocks,
+  TEINTES,
   type AnneePiscine,
   type Mouvement,
   type Teinte,
@@ -16,10 +19,10 @@ import {
 export const SCENE = {
   bassin: { x0: 0.1, x1: 0.9, haut: 0.2, bas: 0.93 },
   vannes: {
-    naissances: { x: 0.22, y: 0.135 },
-    arrivees: { x: 0.78, y: 0.135 },
-    deces: { x: 0.1, y: 0.99 },
-    departs: { x: 0.9, y: 0.99 }
+    naissances: { x: 0.26, y: 0.1 },
+    arrivees: { x: 0.74, y: 0.1 },
+    deces: { x: 0.17, y: 1.0 },
+    departs: { x: 0.83, y: 1.0 }
   }
 } as const;
 
@@ -43,6 +46,8 @@ export interface Particule {
   alpha: number;
   /** L'ajustement est montré (anneau gris) ou silencieux (arrondi). */
   marque: boolean;
+  /** Position relative dans sa couche quand l'eau est décantée (0-1). */
+  rang: number;
 }
 
 export class Moteur {
@@ -54,6 +59,10 @@ export class Moteur {
   private curseur = 0;
   private anneeFile = -1;
   private r = alea(1);
+  /** 0 = eau mélangée, 1 = décantée en couches (non miscible) ; `decanteCible` est animé. */
+  decante = 1;
+  decanteCible = 1;
+  bornes: Record<Teinte, [number, number]> = couches({ 0: 1, 1: 0, 2: 0, 3: 0, 4: 0 });
   debut: number;
   fin: number;
 
@@ -92,9 +101,10 @@ export class Moteur {
         this.particules.push(this.nouvelle(this.r(), v, v, teinte, ETATS.eau, null));
       }
     };
-    ajouter(particules(l.non_immigres, this.echelle), 0);
-    ajouter(particules(l.immigres, this.echelle), 1);
-    // Les immigrés ne forment pas une couche : on mélange l'ordre de dessin.
+    const st = stocks(l);
+    for (const t of TEINTES) ajouter(particules(st[t], this.echelle), t);
+    this.bornes = couches(this.compter());
+    // Ordre de dessin mélangé : aucune teinte ne recouvre les autres.
     for (let i = this.particules.length - 1; i > 0; i--) {
       const j = Math.floor(this.r() * (i + 1));
       [this.particules[i], this.particules[j]] = [this.particules[j], this.particules[i]];
@@ -111,7 +121,21 @@ export class Moteur {
     etat: number,
     vanne: Vanne | null
   ): Particule {
-    return { u, v, vCible, x: 0, y: 0, vx: 0, vy: 0, teinte, etat, vanne, alpha: 1, marque: false };
+    return {
+      u,
+      v,
+      vCible,
+      x: 0,
+      y: 0,
+      vx: 0,
+      vy: 0,
+      teinte,
+      etat,
+      vanne,
+      alpha: 1,
+      marque: false,
+      rang: this.r()
+    };
   }
 
   private preparer(a: number) {
@@ -222,9 +246,15 @@ export class Moteur {
     const { x0, x1, haut, bas } = SCENE.bassin;
     const marge = 0.012;
     const hauteur = (bas - haut) * niveau;
+    let v = p.v;
+    if (this.decante > 0) {
+      const [lo, hi] = this.bornes[p.teinte];
+      const vd = lo + (hi - lo) * (0.08 + 0.84 * p.rang);
+      v = v + (vd - v) * this.decante;
+    }
     return [
       x0 + marge + p.u * (x1 - x0 - 2 * marge),
-      bas - marge - p.v * Math.max(0, hauteur - 2 * marge)
+      bas - marge - v * Math.max(0, hauteur - 2 * marge)
     ];
   }
 
@@ -234,6 +264,10 @@ export class Moteur {
     const niveau = this.niveau();
     const surface = bassin.bas - (bassin.bas - bassin.haut) * niveau;
     const agitation = calme ? 0 : 0.004;
+    const pas = calme ? 1 : Math.min(1, dt * 2.5);
+    this.decante += (this.decanteCible - this.decante) * pas;
+    if (Math.abs(this.decanteCible - this.decante) < 0.002) this.decante = this.decanteCible;
+    this.bornes = couches(this.compter());
     for (let i = this.particules.length - 1; i >= 0; i--) {
       const p = this.particules[i];
       if (p.etat === ETATS.eau || p.etat === ETATS.apparait || p.etat === ETATS.disparait) {
@@ -281,9 +315,17 @@ export class Moteur {
     }
   }
 
-  /** Comptes de particules par teinte dans l'eau (tests et lecture). */
-  comptes(): [number, number] {
-    const c: [number, number] = [0, 0];
+  /** Particules par teinte dans l'eau (hors chutes et sorties en cours). */
+  compter(): Record<Teinte, number> {
+    const c: Record<Teinte, number> = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
+    for (const p of this.particules)
+      if (p.etat === ETATS.eau || p.etat === ETATS.apparait) c[p.teinte]++;
+    return c;
+  }
+
+  /** Comptes par teinte, chutes comprises, sorties exclues (tests). */
+  comptes(): number[] {
+    const c = [0, 0, 0, 0, 0];
     for (const p of this.particules)
       if (p.etat !== ETATS.sort && p.etat !== ETATS.disparait) c[p.teinte]++;
     return c;

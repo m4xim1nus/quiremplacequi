@@ -1,0 +1,44 @@
+source:
+  chapitre: 11
+  objet: "Figure 1"
+  titre: "Risques nets de chômage chez les actifs selon l’origine (effets marginaux par rapport à la population majoritaire)"
+  auteurs: "Dominique Meurs, Mathieu Ichou, Emmanuel Valat"
+  url: "https://books.openedition.org/ined/26387"
+  emplacement: "§10 (figure appelée au §10 ; commentée aux §11-12)"
+  image: "data/raw/spike/teo2/ch11/Chap11_Figure1.jpg.jpg"
+  champ: "Actifs (France métropolitaine, 18-59 ans), écart par rapport à la population majoritaire à caractéristiques identiques (âge, diplôme, arrivée avant 16 ans, couple mixte, nationalité, vie en couple, santé, français, QPV, région)"
+  unite: "points de pourcentage"
+  note: "Figure à deux panneaux (Hommes, Femmes) : points = effets marginaux, barres = intervalles de confiance ; AUCUNE ÉTIQUETTE. Valeurs LUES SUR LE GRAPHIQUE : position du centre de chaque point mesurée par traitement d’image (échelle des axes calée sur les graduations, 13,1 pixels par point), arrondie au dixième ; précision retenue ± 0,5 point (largeur du marqueur et résolution de l’image). Les intervalles de confiance ne sont pas saisis. Lignes dans l’ordre de la figure. Les valeurs de l’image ne sont pas toutes significatives (l’intervalle contient 0 pour beaucoup) : le texte (§11) retient comme sur-chômage les immigrés et descendants du Maghreb et les descendants d’Afrique subsaharienne (hommes) ; pour les femmes, aussi les immigrées d’Afrique subsaharienne, Turquie et Moyen-Orient. Contradiction texte/figure : la conclusion (§35) écrit hommes d’Afrique du Nord +11 / descendants +7 et femmes +4 / +6, alors que la figure donne hommes ≈ +6 / +6 et femmes ≈ +11,7 / +6 : ne pas citer le §35."
+cellules:
+  - {ligne: "G1 Maghreb", colonne: "Hommes", valeur: 6.1, approx: true, precision: 0.5}
+  - {ligne: "G1 Maghreb", colonne: "Femmes", valeur: 11.7, approx: true, precision: 0.5}
+  - {ligne: "G1 Afrique sub.", colonne: "Hommes", valeur: 2.4, approx: true, precision: 0.5}
+  - {ligne: "G1 Afrique sub.", colonne: "Femmes", valeur: 7.1, approx: true, precision: 0.5}
+  - {ligne: "G1 Turquie, MO", colonne: "Hommes", valeur: 2.5, approx: true, precision: 0.5}
+  - {ligne: "G1 Turquie, MO", colonne: "Femmes", valeur: 10.1, approx: true, precision: 0.5}
+  - {ligne: "G1 Asie", colonne: "Hommes", valeur: -2.5, approx: true, precision: 0.5}
+  - {ligne: "G1 Asie", colonne: "Femmes", valeur: 6.4, approx: true, precision: 0.5}
+  - {ligne: "G1 Europe du Sud", colonne: "Hommes", valeur: -1.3, approx: true, precision: 0.5}
+  - {ligne: "G1 Europe du Sud", colonne: "Femmes", valeur: -1.3, approx: true, precision: 0.5}
+  - {ligne: "G1 Autres UE 27", colonne: "Hommes", valeur: 0.4, approx: true, precision: 0.5}
+  - {ligne: "G1 Autres UE 27", colonne: "Femmes", valeur: 4.5, approx: true, precision: 0.5}
+  - {ligne: "G1 Autres pays", colonne: "Hommes", valeur: 5.6, approx: true, precision: 0.5}
+  - {ligne: "G1 Autres pays", colonne: "Femmes", valeur: 6.3, approx: true, precision: 0.5}
+  - {ligne: "G2 Maghreb", colonne: "Hommes", valeur: 6.3, approx: true, precision: 0.5}
+  - {ligne: "G2 Maghreb", colonne: "Femmes", valeur: 6.0, approx: true, precision: 0.5}
+  - {ligne: "G2 Afrique sub.", colonne: "Hommes", valeur: 6.0, approx: true, precision: 0.5}
+  - {ligne: "G2 Afrique sub.", colonne: "Femmes", valeur: 5.6, approx: true, precision: 0.5}
+  - {ligne: "G2 Turquie, MO", colonne: "Hommes", valeur: 3.2, approx: true, precision: 0.5}
+  - {ligne: "G2 Turquie, MO", colonne: "Femmes", valeur: 6.6, approx: true, precision: 0.5}
+  - {ligne: "G2 Asie", colonne: "Hommes", valeur: 4.1, approx: true, precision: 0.5}
+  - {ligne: "G2 Asie", colonne: "Femmes", valeur: 3.7, approx: true, precision: 0.5}
+  - {ligne: "G2 Europe du Sud", colonne: "Hommes", valeur: 0.8, approx: true, precision: 0.5}
+  - {ligne: "G2 Europe du Sud", colonne: "Femmes", valeur: 0.1, approx: true, precision: 0.5}
+  - {ligne: "G2 Autres UE 27", colonne: "Hommes", valeur: 5.9, approx: true, precision: 0.5}
+  - {ligne: "G2 Autres UE 27", colonne: "Femmes", valeur: 1.9, approx: true, precision: 0.5}
+  - {ligne: "G2 Autres pays", colonne: "Hommes", valeur: 1.9, approx: true, precision: 0.5}
+  - {ligne: "G2 Autres pays", colonne: "Femmes", valeur: 1.2, approx: true, precision: 0.5}
+  - {ligne: "G1 Outre-mer", colonne: "Hommes", valeur: 2.8, approx: true, precision: 0.5}
+  - {ligne: "G1 Outre-mer", colonne: "Femmes", valeur: 3.0, approx: true, precision: 0.5}
+  - {ligne: "G2 Outre-mer", colonne: "Hommes", valeur: 4.1, approx: true, precision: 0.5}
+  - {ligne: "G2 Outre-mer", colonne: "Femmes", valeur: 0.6, approx: true, precision: 0.5}

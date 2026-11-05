@@ -29,6 +29,20 @@ export interface AnneePiscine {
   ajust_ni?: number | null;
   non_ventile_imm?: number | null;
   non_ventile_ni?: number | null;
+  // Générations (modèle de cohortes, piscine v1).
+  g2a?: number;
+  g2b?: number;
+  g3?: number;
+  autres?: number;
+  naissances_g2a?: number | null;
+  naissances_g2b?: number | null;
+  naissances_g3?: number | null;
+  naissances_autres?: number | null;
+  deces_g2a?: number | null;
+  deces_g2b?: number | null;
+  deces_g3?: number | null;
+  deces_autres?: number | null;
+  regime_naissances?: string | null;
 }
 
 export interface Evenement {
@@ -45,8 +59,49 @@ export interface DonneesPiscine {
   annees: AnneePiscine[];
 }
 
-/** Teinte : 0 = non-immigré, 1 = immigré. */
-export type Teinte = 0 | 1;
+/**
+ * Teinte = distance à la migration, du fond vers la surface de la piscine décantée :
+ * 0 autres, 1 G3, 2 G2 (un parent immigré), 3 G2 (deux parents), 4 G1 (immigrés).
+ */
+export type Teinte = 0 | 1 | 2 | 3 | 4;
+export const TEINTES: Teinte[] = [0, 1, 2, 3, 4];
+
+export const GENERATIONS: Record<Teinte, { cle: string; libelle: string; court: string }> = {
+  4: { cle: 'immigres', libelle: 'Immigrés (G1)', court: 'G1' },
+  3: { cle: 'g2a', libelle: 'Enfants de deux parents immigrés (G2)', court: 'G2 · 2 parents' },
+  2: { cle: 'g2b', libelle: 'Enfants d’un parent immigré (G2)', court: 'G2 · 1 parent' },
+  1: { cle: 'g3', libelle: 'Petits-enfants d’immigrés (G3)', court: 'G3' },
+  0: { cle: 'autres', libelle: 'Ni immigré, ni enfant ou petit-enfant d’immigré', court: 'autres' }
+};
+
+/** Effectif de chaque teinte au 1er janvier (sans générations : deux teintes, 0 et 4). */
+export function stocks(l: AnneePiscine): Record<Teinte, number> {
+  if (l.g2a === undefined) return { 0: l.non_immigres, 1: 0, 2: 0, 3: 0, 4: l.immigres };
+  return { 0: l.autres!, 1: l.g3!, 2: l.g2b!, 3: l.g2a!, 4: l.immigres };
+}
+
+/** Naissances et décès de l'année par teinte. */
+export function naissancesParTeinte(l: AnneePiscine): Record<Teinte, number> {
+  if (l.naissances_autres == null) return { 0: l.naissances ?? 0, 1: 0, 2: 0, 3: 0, 4: 0 };
+  return {
+    0: l.naissances_autres,
+    1: l.naissances_g3 ?? 0,
+    2: l.naissances_g2b ?? 0,
+    3: l.naissances_g2a ?? 0,
+    4: 0
+  };
+}
+
+export function decesParTeinte(l: AnneePiscine): Record<Teinte, number> {
+  if (l.deces_autres == null) return { 0: l.deces_ni ?? 0, 1: 0, 2: 0, 3: 0, 4: l.deces_imm ?? 0 };
+  return {
+    0: l.deces_autres,
+    1: l.deces_g3 ?? 0,
+    2: l.deces_g2b ?? 0,
+    3: l.deces_g2a ?? 0,
+    4: l.deces_imm ?? 0
+  };
+}
 
 /**
  * Par où passe une particule. `ajustement` : changement de champ ou de collecte (jamais un flux),
@@ -95,35 +150,51 @@ export function mouvements(ligne: AnneePiscine, suivante: AnneePiscine, echelle:
     else if (k < 0) pousser(-k, sortie, teinte, -1);
   };
 
-  pousser(n(ligne.naissances), 'naissances', 0, 1);
-  pousser(n(ligne.deces_imm), 'deces', 1, -1);
-  pousser(n(ligne.deces_ni), 'deces', 0, -1);
+  const nais = naissancesParTeinte(ligne);
+  const morts = decesParTeinte(ligne);
+  for (const t of TEINTES) {
+    pousser(n(nais[t]), 'naissances', t, 1);
+    pousser(n(morts[t]), 'deces', t, -1);
+  }
   if (ligne.statut_flux === 'reconstruit') {
-    flux(ligne.net_imm, 1, 'arrivees', 'departs');
+    flux(ligne.net_imm, 4, 'arrivees', 'departs');
     flux(ligne.net_ni, 0, 'arrivees', 'departs');
   } else {
-    pousser(n(ligne.entrees_imm), 'arrivees', 1, 1);
+    pousser(n(ligne.entrees_imm), 'arrivees', 4, 1);
     pousser(n(ligne.entrees_ni), 'arrivees', 0, 1);
-    pousser(n(ligne.sorties_imm), 'departs', 1, -1);
+    pousser(n(ligne.sorties_imm), 'departs', 4, -1);
     pousser(n(ligne.sorties_ni), 'departs', 0, -1);
     // Sorties pas encore publiées (U3) : le reste non ventilé sort par la vanne des départs.
-    flux(ligne.non_ventile_imm, 1, 'arrivees', 'departs');
+    flux(ligne.non_ventile_imm, 4, 'arrivees', 'departs');
     flux(ligne.non_ventile_ni, 0, 'arrivees', 'departs');
   }
-  flux(ligne.ajust_imm, 1, 'ajustement', 'ajustement');
+  flux(ligne.ajust_imm, 4, 'ajustement', 'ajustement');
   flux(ligne.ajust_ni, 0, 'ajustement', 'ajustement');
 
-  // Arrondis : on retombe sur le stock suivant.
-  for (const teinte of [0, 1] as Teinte[]) {
-    const depart = n(teinte ? ligne.immigres : ligne.non_immigres);
-    const cible = n(teinte ? suivante.immigres : suivante.non_immigres);
+  // Arrondis : on retombe sur le stock suivant, teinte par teinte.
+  const s0 = stocks(ligne);
+  const s1 = stocks(suivante);
+  for (const teinte of TEINTES) {
     const solde = brut.filter((m) => m.teinte === teinte).reduce((s, m) => s + m.sens, 0);
-    const reste = cible - depart - solde;
+    const reste = n(s1[teinte]) - n(s0[teinte]) - solde;
     if (reste !== 0) pousser(Math.abs(reste), 'arrondi', teinte, reste > 0 ? 1 : -1);
   }
 
   const r = alea(ligne.annee);
   return brut.map((m) => ({ ...m, t: r() })).sort((x, y) => x.t - y.t) as Mouvement[];
+}
+
+/** Bornes des couches de la piscine décantée (fractions de la hauteur d'eau, du fond). */
+export function couches(effectifs: Record<Teinte, number>): Record<Teinte, [number, number]> {
+  const total = TEINTES.reduce<number>((s, t) => s + effectifs[t], 0) || 1;
+  let bas = 0;
+  const out = {} as Record<Teinte, [number, number]>;
+  for (const t of TEINTES) {
+    const h = effectifs[t] / total;
+    out[t] = [bas, bas + h];
+    bas += h;
+  }
+  return out;
 }
 
 /** Libellés des régimes de données, affichés sur la piscine. */

@@ -1,0 +1,66 @@
+source:
+  chapitre: 9
+  objet: "Tableau 4"
+  titre: "Référents ethno-nationaux mentionnés par les descendant·es d’immigré·es selon l’origine et le lien à la migration (en %)"
+  auteurs: "Mathieu Ferry, Patrick Simon"
+  url: "https://books.openedition.org/ined/26373"
+  emplacement: "§32"
+  image: "data/raw/spike/teo2/ch09/TABLEAUX_CHAP_9_4.jpg.jpg"
+  champ: "Descendant·es d’immigré·es et d’originaires des Outre-mer âgé·es de 18 à 59 ans (les lignes G1 et Population majoritaire figurent dans le tableau à titre de comparaison)"
+  unite: "%"
+  note: "Source : enquête Trajectoires et Origines 2, Ined-Insee, 2019-2020. Champ : descendant·es d’immigré·es et d’originaires des Outre-mer âgé·es de 18 à 59 ans. Lecture : 46 % des G2 du Maghreb ont seulement cité la France comme origine, 14 % ont cité un autre pays, 32 % ont combiné la France et un autre pays et 8 % n’ont cité aucun des deux. Note : la liste complète des pays est donnée en annexe B de l’introduction de l’ouvrage. Les catégories de population (population majoritaire, G1, G2, etc.) sont définies dans l’annexe A. Saisie : aucune cellule vide. ANOMALIE : la ligne G1 somme à 123 (15 + 73 + 17 + 18), alors que les autres lignes somment à 99-101 ; relu deux fois sur un agrandissement, la valeur imprimée est bien celle-ci. Le texte (§32) dit seulement que « trois quarts des immigré·es » mentionnent un autre pays (73 %). Une coquille d’impression est probable sur la ligne G1 (colonnes « Combinaison » ou « Autre ») : ne pas l’utiliser comme répartition. Les « 39 % » du cadrage sont la ligne « G2 (2 parents immigrés) », colonne « France seule »."
+cellules:
+  - {ligne: "G2 Maghreb", colonne: "France seule", valeur: 46, approx: false}
+  - {ligne: "G2 Maghreb", colonne: "Autre pays seul", valeur: 14, approx: false}
+  - {ligne: "G2 Maghreb", colonne: "Combinaison France/autre pays", valeur: 32, approx: false}
+  - {ligne: "G2 Maghreb", colonne: "Autre", valeur: 8, approx: false}
+  - {ligne: "G2 Afrique subsaharienne", colonne: "France seule", valeur: 39, approx: false}
+  - {ligne: "G2 Afrique subsaharienne", colonne: "Autre pays seul", valeur: 23, approx: false}
+  - {ligne: "G2 Afrique subsaharienne", colonne: "Combinaison France/autre pays", valeur: 32, approx: false}
+  - {ligne: "G2 Afrique subsaharienne", colonne: "Autre", valeur: 6, approx: false}
+  - {ligne: "G2 Asie", colonne: "France seule", valeur: 46, approx: false}
+  - {ligne: "G2 Asie", colonne: "Autre pays seul", valeur: 18, approx: false}
+  - {ligne: "G2 Asie", colonne: "Combinaison France/autre pays", valeur: 30, approx: false}
+  - {ligne: "G2 Asie", colonne: "Autre", valeur: 7, approx: false}
+  - {ligne: "G2 Turquie, Moyen-Orient", colonne: "France seule", valeur: 28, approx: false}
+  - {ligne: "G2 Turquie, Moyen-Orient", colonne: "Autre pays seul", valeur: 26, approx: false}
+  - {ligne: "G2 Turquie, Moyen-Orient", colonne: "Combinaison France/autre pays", valeur: 38, approx: false}
+  - {ligne: "G2 Turquie, Moyen-Orient", colonne: "Autre", valeur: 8, approx: false}
+  - {ligne: "G2 Europe du Sud", colonne: "France seule", valeur: 52, approx: false}
+  - {ligne: "G2 Europe du Sud", colonne: "Autre pays seul", valeur: 14, approx: false}
+  - {ligne: "G2 Europe du Sud", colonne: "Combinaison France/autre pays", valeur: 25, approx: false}
+  - {ligne: "G2 Europe du Sud", colonne: "Autre", valeur: 8, approx: false}
+  - {ligne: "G2 Autres UE 27", colonne: "France seule", valeur: 64, approx: false}
+  - {ligne: "G2 Autres UE 27", colonne: "Autre pays seul", valeur: 8, approx: false}
+  - {ligne: "G2 Autres UE 27", colonne: "Combinaison France/autre pays", valeur: 14, approx: false}
+  - {ligne: "G2 Autres UE 27", colonne: "Autre", valeur: 14, approx: false}
+  - {ligne: "G2 Outre-mer", colonne: "France seule", valeur: 70, approx: false}
+  - {ligne: "G2 Outre-mer", colonne: "Autre pays seul", valeur: 1, approx: false}
+  - {ligne: "G2 Outre-mer", colonne: "Combinaison France/autre pays", valeur: 2, approx: false}
+  - {ligne: "G2 Outre-mer", colonne: "Autre", valeur: 27, approx: false}
+  - {ligne: "G2 Total (G2 + G2.5)", colonne: "France seule", valeur: 48, approx: false}
+  - {ligne: "G2 Total (G2 + G2.5)", colonne: "Autre pays seul", valeur: 15, approx: false}
+  - {ligne: "G2 Total (G2 + G2.5)", colonne: "Combinaison France/autre pays", valeur: 29, approx: false}
+  - {ligne: "G2 Total (G2 + G2.5)", colonne: "Autre", valeur: 8, approx: false}
+  - {ligne: "G2 (2 parents immigrés)", colonne: "France seule", valeur: 39, approx: false}
+  - {ligne: "G2 (2 parents immigrés)", colonne: "Autre pays seul", valeur: 21, approx: false}
+  - {ligne: "G2 (2 parents immigrés)", colonne: "Combinaison France/autre pays", valeur: 33, approx: false}
+  - {ligne: "G2 (2 parents immigrés)", colonne: "Autre", valeur: 7, approx: false}
+  - {ligne: "G2.5 (1 parent immigré)", colonne: "France seule", valeur: 58, approx: false}
+  - {ligne: "G2.5 (1 parent immigré)", colonne: "Autre pays seul", valeur: 8, approx: false}
+  - {ligne: "G2.5 (1 parent immigré)", colonne: "Combinaison France/autre pays", valeur: 23, approx: false}
+  - {ligne: "G2.5 (1 parent immigré)", colonne: "Autre", valeur: 10, approx: false}
+  - {ligne: "G1", colonne: "France seule", valeur: 15, approx: false}
+  - {ligne: "G1", colonne: "Autre pays seul", valeur: 73, approx: false}
+  - {ligne: "G1", colonne: "Combinaison France/autre pays", valeur: 17, approx: false}
+  - {ligne: "G1", colonne: "Autre", valeur: 18, approx: false}
+  - {ligne: "G3", colonne: "France seule", valeur: 75, approx: false}
+  - {ligne: "G3", colonne: "Autre pays seul", valeur: 5, approx: false}
+  - {ligne: "G3", colonne: "Combinaison France/autre pays", valeur: 9, approx: false}
+  - {ligne: "G3", colonne: "Autre", valeur: 12, approx: false}
+  - {ligne: "Population majoritaire", colonne: "France seule", valeur: 78, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Autre pays seul", valeur: 2, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Combinaison France/autre pays", valeur: 3, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Autre", valeur: 18, approx: false}
+controles:
+  - {"axe": "ligne", "pour": ["G2 Maghreb", "G2 Afrique subsaharienne", "G2 Asie", "G2 Turquie, Moyen-Orient", "G2 Europe du Sud", "G2 Autres UE 27", "G2 Outre-mer", "G2 Total (G2 + G2.5)", "G2 (2 parents immigrés)", "G2.5 (1 parent immigré)", "G1", "G3", "Population majoritaire"], "parmi": ["France seule", "Autre pays seul", "Combinaison France/autre pays", "Autre"], "attendu": 100, "tolerance": 1}

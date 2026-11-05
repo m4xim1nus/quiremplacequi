@@ -22,3 +22,13 @@ export interface Incertitude {
 export const incertitudes = () => json<Record<string, Incertitude>>('incertitudes.json');
 
 export const meta = () => json<{ genere_le: string }>('meta.json');
+
+import { csvParse } from 'd3-dsv';
+
+/** Une cellule saisie de TeO2 (pipeline/referentiels/teo2/, une référence par cellule). */
+export function teo2(fichier: string, ligne: string, colonne: string): number {
+  const rows = csvParse(readFileSync(resolve(EXPORT, 'teo2.csv'), 'utf8'));
+  const r = rows.find((x) => x.fichier === fichier && x.ligne === ligne && x.colonne === colonne);
+  if (!r) throw new Error(`TeO2 : cellule introuvable ${fichier} / ${ligne} / ${colonne}`);
+  return Number(r.valeur);
+}

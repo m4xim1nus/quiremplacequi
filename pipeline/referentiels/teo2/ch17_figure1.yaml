@@ -1,0 +1,45 @@
+source:
+  chapitre: 17
+  objet: "Figure 1"
+  titre: "Descendance finale des femmes selon le lien à la migration, la région d’origine et le niveau de diplôme"
+  auteurs: "Didier Reynaud"
+  url: "https://books.openedition.org/ined/26429"
+  emplacement: "§10 (2,32 ; 1,87) et §14 (G2 1,87 ; 1,92 deux parents ; 1,81 couple mixte)"
+  image: "data/raw/spike/teo2/ch17/Chap17_fig1.jpg.jpg"
+  champ: "Femmes nées entre 1960 et 1974 (France métropolitaine), en fin de vie féconde ; G1 : immigrées ou nées dans les Outre-mer ; naissances à l’étranger avant la migration comprises"
+  unite: "enfants par femme"
+  note: "Trois panneaux de barres horizontales (G1, G2, Population majoritaire) ; chaque barre porte son étiquette, donc valeurs lues et non estimées (approx: false). Pas de note dans l’image. Saisie : la ligne « Ensemble » correspond aux barres de tête étiquetées « G1 », « G2 » et « Pop. maj. » dans l’image ; les panneaux ont les groupes de lignes « Région d’origine » (Europe du Sud à Outre-mer) et « Niveau de diplôme » (Aucun, CEP, brevet à Bac + 3 et plus). Les barres G2 d’Afrique sub., Asie, Autres pays et Outre-mer sont en gris clair, sans légende dans l’image ni dans le texte (par analogie avec le tableau 1, probablement des effectifs faibles : valeurs à prendre avec prudence). Cellules vides : Turquie, MO en G2 (non représentée) et les lignes de région d’origine pour la population majoritaire. Autres valeurs du texte : G2 de deux parents immigrés 1,92 et de couple mixte 1,81 (§14), non présentes dans la figure."
+cellules:
+  - {ligne: "Ensemble", colonne: "G1", valeur: 2.32, approx: false}
+  - {ligne: "Ensemble", colonne: "G2", valeur: 1.87, approx: false}
+  - {ligne: "Ensemble", colonne: "Pop. maj.", valeur: 1.87, approx: false}
+  - {ligne: "Europe du Sud", colonne: "G1", valeur: 1.95, approx: false}
+  - {ligne: "Europe du Sud", colonne: "G2", valeur: 1.86, approx: false}
+  - {ligne: "Autres UE 27", colonne: "G1", valeur: 1.9, approx: false}
+  - {ligne: "Autres UE 27", colonne: "G2", valeur: 1.91, approx: false}
+  - {ligne: "Maghreb", colonne: "G1", valeur: 2.8, approx: false}
+  - {ligne: "Maghreb", colonne: "G2", valeur: 1.91, approx: false}
+  - {ligne: "Afrique sub.", colonne: "G1", valeur: 2.84, approx: false}
+  - {ligne: "Afrique sub.", colonne: "G2", valeur: 2.11, approx: false}
+  - {ligne: "Turquie, MO", colonne: "G1", valeur: 2.71, approx: false}
+  - {ligne: "Asie", colonne: "G1", valeur: 1.76, approx: false}
+  - {ligne: "Asie", colonne: "G2", valeur: 1.56, approx: false}
+  - {ligne: "Autres pays", colonne: "G1", valeur: 1.76, approx: false}
+  - {ligne: "Autres pays", colonne: "G2", valeur: 1.98, approx: false}
+  - {ligne: "Outre-mer", colonne: "G1", valeur: 2.01, approx: false}
+  - {ligne: "Outre-mer", colonne: "G2", valeur: 1.55, approx: false}
+  - {ligne: "Aucun, CEP, brevet", colonne: "G1", valeur: 2.87, approx: false}
+  - {ligne: "Aucun, CEP, brevet", colonne: "G2", valeur: 2.2, approx: false}
+  - {ligne: "Aucun, CEP, brevet", colonne: "Pop. maj.", valeur: 2.2, approx: false}
+  - {ligne: "CAP, BEP", colonne: "G1", valeur: 2.18, approx: false}
+  - {ligne: "CAP, BEP", colonne: "G2", valeur: 1.85, approx: false}
+  - {ligne: "CAP, BEP", colonne: "Pop. maj.", valeur: 2.0, approx: false}
+  - {ligne: "Bac", colonne: "G1", valeur: 2.12, approx: false}
+  - {ligne: "Bac", colonne: "G2", valeur: 1.9, approx: false}
+  - {ligne: "Bac", colonne: "Pop. maj.", valeur: 1.81, approx: false}
+  - {ligne: "Bac + 1 ou + 2", colonne: "G1", valeur: 1.94, approx: false}
+  - {ligne: "Bac + 1 ou + 2", colonne: "G2", valeur: 1.56, approx: false}
+  - {ligne: "Bac + 1 ou + 2", colonne: "Pop. maj.", valeur: 1.65, approx: false}
+  - {ligne: "Bac + 3 et plus", colonne: "G1", valeur: 1.69, approx: false}
+  - {ligne: "Bac + 3 et plus", colonne: "G2", valeur: 1.74, approx: false}
+  - {ligne: "Bac + 3 et plus", colonne: "Pop. maj.", valeur: 1.62, approx: false}

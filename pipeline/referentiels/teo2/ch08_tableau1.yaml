@@ -1,0 +1,45 @@
+source:
+  chapitre: 8
+  objet: "Tableau 1"
+  titre: "Lien à la migration de la population sur trois générations"
+  auteurs: "Mathieu Ferry, Pierre Tanneau, Patrick Simon"
+  url: "https://books.openedition.org/ined/26366"
+  emplacement: "§5 (tableau appelé aussi au §30)"
+  image: "data/raw/spike/teo2/ch08/TABLEAUX_CHAP_8_1.jpg.jpg"
+  champ: "France métropolitaine, personnes âgées de 18 à 59 ans"
+  unite: "%"
+  note: "Source : enquête Trajectoires et Origines 2, Ined-Insee, 2019-2020. Champ : France métropolitaine, personnes âgées de 18 à 59 ans. Lecture : 13 % de la population de 18 à 59 ans vivant en France métropolitaine sont immigré·es. Note : les Français·es venant de l’ancien empire colonial sont compris·es dans les « Français·es de l’étranger ». Saisie : l’unité de la colonne « Effectifs non pondérés » est « effectif » (surcharge par cellule). Les lignes en retrait détaillent la ligne qui les précède : les quatre lignes sous « Sans ascendance immigrée sur trois générations » (Outre-mer, Français de l’étranger : 1 + 1 + 1 + 4 = 7) sont incluses dans les 66 %, non additionnelles. G3 : 4 + 5 = 9 pour 10 affiché (arrondi). Aucune cellule vide."
+cellules:
+  - {ligne: "Immigré·e", colonne: "Effectifs non pondérés", valeur: 10396, approx: false, unite: "effectif"}
+  - {ligne: "Immigré·e", colonne: "Pourcentages pondérés", valeur: 13, approx: false}
+  - {ligne: "G2 Descendant·e", colonne: "Effectifs non pondérés", valeur: 8305, approx: false, unite: "effectif"}
+  - {ligne: "G2 Descendant·e", colonne: "Pourcentages pondérés", valeur: 11, approx: false}
+  - {ligne: "De deux parents immigrés", colonne: "Effectifs non pondérés", valeur: 4747, approx: false, unite: "effectif"}
+  - {ligne: "De deux parents immigrés", colonne: "Pourcentages pondérés", valeur: 6, approx: false}
+  - {ligne: "G2.5 D’un parent immigré", colonne: "Effectifs non pondérés", valeur: 3558, approx: false, unite: "effectif"}
+  - {ligne: "G2.5 D’un parent immigré", colonne: "Pourcentages pondérés", valeur: 5, approx: false}
+  - {ligne: "G3 Descendant·e", colonne: "Effectifs non pondérés", valeur: 776, approx: false, unite: "effectif"}
+  - {ligne: "G3 Descendant·e", colonne: "Pourcentages pondérés", valeur: 10, approx: false}
+  - {ligne: "De deux à quatre grands-parents immigrés", colonne: "Effectifs non pondérés", valeur: 337, approx: false, unite: "effectif"}
+  - {ligne: "De deux à quatre grands-parents immigrés", colonne: "Pourcentages pondérés", valeur: 4, approx: false}
+  - {ligne: "G3.5 D’un grand-parent immigré", colonne: "Effectifs non pondérés", valeur: 439, approx: false, unite: "effectif"}
+  - {ligne: "G3.5 D’un grand-parent immigré", colonne: "Pourcentages pondérés", valeur: 5, approx: false}
+  - {ligne: "Sans ascendance immigrée sur trois générations", colonne: "Effectifs non pondérés", valeur: 7704, approx: false, unite: "effectif"}
+  - {ligne: "Sans ascendance immigrée sur trois générations", colonne: "Pourcentages pondérés", valeur: 66, approx: false}
+  - {ligne: "Natifs et natives des Outre-mer", colonne: "Effectifs non pondérés", valeur: 849, approx: false, unite: "effectif"}
+  - {ligne: "Natifs et natives des Outre-mer", colonne: "Pourcentages pondérés", valeur: 1, approx: false}
+  - {ligne: "Descendant·e de natifs et natives des Outre-mer", colonne: "Effectifs non pondérés", valeur: 664, approx: false, unite: "effectif"}
+  - {ligne: "Descendant·e de natifs et natives des Outre-mer", colonne: "Pourcentages pondérés", valeur: 1, approx: false}
+  - {ligne: "Français·e de l’étranger", colonne: "Effectifs non pondérés", valeur: 269, approx: false, unite: "effectif"}
+  - {ligne: "Français·e de l’étranger", colonne: "Pourcentages pondérés", valeur: 1, approx: false}
+  - {ligne: "Descendant·e de Français de l’étranger", colonne: "Effectifs non pondérés", valeur: 2852, approx: false, unite: "effectif"}
+  - {ligne: "Descendant·e de Français de l’étranger", colonne: "Pourcentages pondérés", valeur: 4, approx: false}
+  - {ligne: "Ensemble", colonne: "Effectifs non pondérés", valeur: 27181, approx: false, unite: "effectif"}
+  - {ligne: "Ensemble", colonne: "Pourcentages pondérés", valeur: 100, approx: false}
+controles:
+  - {"axe": "colonne", "pour": ["Pourcentages pondérés"], "parmi": ["Immigré·e", "G2 Descendant·e", "G3 Descendant·e", "Sans ascendance immigrée sur trois générations"], "attendu": 100, "tolerance": 1}
+  - {"axe": "colonne", "pour": ["Effectifs non pondérés"], "parmi": ["Immigré·e", "G2 Descendant·e", "G3 Descendant·e", "Sans ascendance immigrée sur trois générations"], "attendu": 27181, "tolerance": 0}
+  - {"axe": "colonne", "pour": ["Pourcentages pondérés"], "parmi": ["De deux parents immigrés", "G2.5 D’un parent immigré"], "attendu_ligne": "G2 Descendant·e", "tolerance": 1}
+  - {"axe": "colonne", "pour": ["Effectifs non pondérés"], "parmi": ["De deux parents immigrés", "G2.5 D’un parent immigré"], "attendu_ligne": "G2 Descendant·e", "tolerance": 0}
+  - {"axe": "colonne", "pour": ["Pourcentages pondérés"], "parmi": ["De deux à quatre grands-parents immigrés", "G3.5 D’un grand-parent immigré"], "attendu_ligne": "G3 Descendant·e", "tolerance": 1}
+  - {"axe": "colonne", "pour": ["Effectifs non pondérés"], "parmi": ["De deux à quatre grands-parents immigrés", "G3.5 D’un grand-parent immigré"], "attendu_ligne": "G3 Descendant·e", "tolerance": 0}

@@ -120,5 +120,12 @@
   "traitement": "Mention « estimé »",
   "verifie": true,
   "reference": "Insee Première 2107, encadré Méthodes"
+ },
+ "U19": {
+  "titre": "Les enfants et petits-enfants d'immigrés sont modélisés",
+  "detail": "Le modèle de cohortes vieillit les générations avec la mortalité nationale, sans émigration des G2 et des G3 ; la composition des naissances vient de l'état civil (depuis 1998, corrigé de l'écart entre « né à l'étranger » et « immigré ») et de l'enquête Insee de 2019-2020 (avant 1998). Contrôles : descendants mesurés en 2025 (écart de +6 %), décès d'immigrés estimés par l'Insee (écart de −5 %).",
+  "traitement": "Badge « modèle », écarts aux cibles publiés (cohortes_calage.csv)",
+  "verifie": true,
+  "reference": "pipeline/qrq/cohortes.py ; pipeline/referentiels/cohortes.yaml"
  }
 }

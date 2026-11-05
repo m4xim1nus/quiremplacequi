@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-11-05T07:20:27+00:00",
+ "genere_le": "2026-11-05T07:52:56+00:00",
  "sources": {
   "stock": {
    "fichier": "insee/demo-etran-part-pop-etran-immig.xlsx",
@@ -54,6 +54,51 @@
    "telecharge_le": "2026-11-05T07:17:02+00:00",
    "titre": "Insee Première 1910 : diversité des origines et mixité des unions",
    "url": "https://www.insee.fr/fr/statistiques/fichier/6468640/ip1910.xlsx"
+  },
+  "ages": {
+   "fichier": "insee/3_Pop1janv_age.xlsx",
+   "octets": 786746,
+   "page": "https://www.insee.fr/fr/statistiques/8999013",
+   "sha256": "be4ab4dde6c2fba7763be12a19f8dd2277d92efca7895b6fd688767b4650d5d1",
+   "telecharge_le": "2026-11-05T07:41:17+00:00",
+   "titre": "Population au 1er janvier par sexe et âge (séries longues, depuis 1901)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/8999013/3_Pop1janv_age.xlsx"
+  },
+  "mortalite": {
+   "fichier": "insee/3_Quotients_mortalite.xlsx",
+   "octets": 206252,
+   "page": "https://www.insee.fr/fr/statistiques/8999019",
+   "sha256": "a4cc7474af3f536362370814be0195b3f470e1647199bb971c742d946773c041",
+   "telecharge_le": "2026-11-05T07:41:17+00:00",
+   "titre": "Quotients de mortalité par sexe et âge (séries longues, depuis 1901)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/8999019/3_Quotients_mortalite.xlsx"
+  },
+  "nes_etranger": {
+   "fichier": "insee/demo-etran-decompo-pop.xlsx",
+   "octets": 10781,
+   "page": "https://www.insee.fr/fr/statistiques/2865118",
+   "sha256": "4346901642e3eb065b9a9154a0fe7a1a8dd58b06345c2522058489d1dc702ee6",
+   "telecharge_le": "2026-11-05T07:41:17+00:00",
+   "titre": "Population selon le lieu de naissance et la nationalité (2006-2025)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/2865118/demo-etran-decompo-pop.xlsx"
+  },
+  "ages_immigres": {
+   "fichier": "insee/demo-etran-pop-sexe-age.xlsx",
+   "octets": 9882,
+   "page": "https://www.insee.fr/fr/statistiques/2381759",
+   "sha256": "f8b9c50f1ac9be27fb2dcb4e5f9f4af7122e9bc01a57329546f39170a111d6ec",
+   "telecharge_le": "2026-11-05T07:41:17+00:00",
+   "titre": "Population immigrée et étrangère par sexe et âge (1990-2025)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/2381759/demo-etran-pop-sexe-age.xlsx"
+  },
+  "descendants": {
+   "fichier": "insee/demo-etran-origine-desc-immig.xlsx",
+   "octets": 18825,
+   "page": "https://www.insee.fr/fr/statistiques/4186761",
+   "sha256": "eac4d083bade3919df5d3919cbde55041ebda9227563f4aa4b319977fd7ab66c",
+   "telecharge_le": "2026-11-05T07:41:18+00:00",
+   "titre": "Origine géographique des descendants d'immigrés (2025)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/4186761/demo-etran-origine-desc-immig.xlsx"
   },
   "pays": {
    "fichier": "insee/demo-etran-repart-immig-pays.xlsx",

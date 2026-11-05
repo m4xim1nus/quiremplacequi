@@ -74,6 +74,30 @@ def verifier(export: Path) -> tuple[bool, list[str]]:
     r = psc["ratio_deces"]
     controle("piscine : rapport des décès dans [0,9 ; 1,2]", 0.9 <= r["min"] and r["max"] <= 1.2, f"moyen {r['moyen']}, min {r['min']}, max {r['max']}")
 
+    # Piscine v1 : générations (modèle de cohortes).
+    gens = [x for x in ans if "g2a" in x]
+    ecart = max(abs(x["immigres"] + x["g2a"] + x["g2b"] + x["g3"] + x["autres"] - x["population"]) for x in gens)
+    controle("piscine : G1 + G2 + G3 + autres = population", ecart == 0, f"écart max {ecart}")
+    neg = [x["annee"] for x in gens if min(x["autres"], x.get("naissances_autres") or 0, x.get("deces_autres") or 0) < 0]
+    controle("piscine : aucun flux ni stock « autres » négatif", not neg, f"années {neg}" if neg else "")
+    cal = pl.read_csv(export / "cohortes_calage.csv")
+    ip = cal.filter((pl.col("temoin") == "ip1910_2020") & pl.col("cle").is_in(["0-17", "18-59", "60 ou plus"]))
+    pire = (ip["modele"] - ip["observe"]).abs().max()
+    controle("cohortes : parts par génération à ± 1,5 point d'IP 1910 (0-17, 18-59, 60+)", pire <= 1.5, f"écart max {pire:.2f} point")
+    d = cal.filter((pl.col("temoin") == "descendants_2025") & (pl.col("cle") == "effectif"))
+    ratio = d["modele"][0] / d["observe"][0]
+    controle("cohortes : descendants 2025 à ± 10 % de l'enquête Emploi (témoin indépendant)", 0.9 <= ratio <= 1.1, f"modèle / Insee = {ratio:.3f}")
+    dc = cal.filter(pl.col("temoin") == "deces_immigres_insee")
+    ratio = dc["modele"].sum() / dc["observe"].sum()
+    controle("cohortes : décès d'immigrés à ± 15 % des estimations Insee 2006-2022", 0.85 <= ratio <= 1.15, f"modèle / Insee = {ratio:.3f}")
+
+    # TeO2 : anomalies de saisie (les anomalies de la source sont signalées, pas bloquantes).
+    from .teo2 import lire_teo2, verifier_teo2
+
+    anomalies = verifier_teo2(lire_teo2())
+    lignes.append(f"info TeO2 : {len(lire_teo2())} cellules saisies, {len(anomalies)} anomalie(s) signalée(s)")
+    lignes.extend(f"     · {a}" for a in anomalies)
+
     # Témoins lus dans les sources (docs/spike/insee.md).
     temoins = {
         ("b1_stock", 2025, "immigres"): 7_970_000,

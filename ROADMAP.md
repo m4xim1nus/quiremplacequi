@@ -43,7 +43,13 @@ les questions de `docs/CADRAGE.md` §9 et `docs/PISCINE.md` §9.
 - [x] Site SvelteKit (copié de 2p2e) et prototype de la piscine v0 sur
   `/piscine` : 1968-2025, 4 vannes, 2 teintes, régimes mesuré / partiel /
   reconstruit affichés, ajustements de champ et de collecte visibles.
-- [ ] Revue de Max : la piscine v0 en local (`cd site && npm run dev`, puis
+- [x] Revue de Max de la v0 (2026-11-05) : liquides non miscibles, débits visibles, descendants.
+- [x] Piscine v1 : eau décantée (couches) ou mélangée, tuyaux d'épaisseur ∝ débit, cinq teintes
+  (G1, G2 deux parents, G2 un parent, G3, autres) par le modèle de cohortes
+  (`pipeline/qrq/cohortes.py`, 1911-2025, calé sur IP 1910 et les sorties Insee, contrôlé par les
+  descendants 2025 et les décès d'immigrés).
+- [x] Saisie référencée de TeO2 (506 cellules, `pipeline/referentiels/teo2/`).
+- [ ] Revue de Max : la piscine v1 en local (`cd site && npm run dev`, puis
   `/piscine`), les paramètres de `piscine.yaml`.
 - [ ] Graphiques bruts de relecture de B1 et B2 (`pipeline/explo/`).
 

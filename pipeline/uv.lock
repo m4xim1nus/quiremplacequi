@@ -725,6 +725,7 @@ version = "0.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "httpx" },
+    { name = "numpy" },
     { name = "openpyxl" },
     { name = "polars" },
     { name = "pyyaml" },
@@ -739,6 +740,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "httpx", specifier = ">=0.28" },
+    { name = "numpy", specifier = ">=2.0" },
     { name = "openpyxl", specifier = ">=3.1" },
     { name = "polars", specifier = ">=1.0" },
     { name = "pyyaml", specifier = ">=6.0" },

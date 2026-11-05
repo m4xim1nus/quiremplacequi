@@ -24,8 +24,10 @@
       robinets (les naissances, les arrivées), deux bondes (les décès, les départs).
     </p>
     <p class="brouillon">
-      Prototype v0, en construction : deux teintes seulement (immigrés, non-immigrés). Les
-      générations suivantes et leur mélange viendront ensuite. Textes en brouillon.
+      Prototype v1, en construction. Textes en brouillon. L’eau est d’abord montrée
+      <strong>décantée</strong> : chaque génération forme une couche, pour en lire le volume ; le bouton
+      « Mélangée » remet tout le monde dans la même eau. L’épaisseur des tuyaux suit le débit de chaque
+      vanne.
     </p>
   </header>
 
@@ -50,9 +52,24 @@
       à {milliers(c.immigres2025)} en 2025 ({pct(c.part2025)}).
     </p>
     <p>
-      <strong>Ce que la version 0 ne montre pas encore</strong> : de qui naissent les enfants (la part
-      des naissances selon l’origine des parents), les enfants et petits-enfants d’immigrés, et leur mélange
-      au fil des unions. C’est l’objet des versions suivantes (voir la conception).
+      <strong>De qui naissent les enfants ?</strong> C’est la vraie question : tout le monde meurt,
+      tout le monde est remplacé. En 2022, sur {milliers(c.naissances2022)} naissances, {milliers(
+        c.nais2022.g2a
+      )} enfants avaient deux parents immigrés, {milliers(c.nais2022.g2b)} un seul, et {milliers(
+        c.nais2022.g3
+      )} étaient des petits-enfants d’immigrés (modèle). Ces enfants naissent français. Leurs propres
+      enfants, s’ils ont des parents nés en France, seront des petits-enfants d’immigrés, puis ne seront
+      plus rien de particulier pour la statistique : la teinte se dilue de génération en génération.
+    </p>
+    <p>
+      <strong>Pas deux blocs, des couches qui se recouvrent.</strong> En 2025, la piscine compte
+      {pct((100 * c.immigres2025) / c.pop2025)} d’immigrés, {pct(
+        (100 * (c.g2a2025 + c.g2b2025)) / c.pop2025
+      )} d’enfants d’immigrés (dont environ la moitié n’ont qu’un parent immigré) et {pct(
+        (100 * c.g32025) / c.pop2025
+      )} de petits-enfants d’immigrés. Ces catégories ne s’additionnent pas en un « camp » :
+      {c.g3UnGrandParent} % des petits-enfants d’immigrés de 18 à 59 ans n’ont qu’un seul grand-parent
+      immigré sur quatre (TeO2, ch. 8, tableau 4).
     </p>
   </section>
 
@@ -65,7 +82,11 @@
       {/each}
     </dl>
     <p>
-      Paramètre du modèle (statut : <strong
+      Les enfants et petits-enfants d’immigrés viennent d’un modèle de cohortes : la statistique
+      publique les mesure par enquête (2019-2020, 2025), pas chaque année. Le modèle vieillit les
+      générations âge par âge, avec la mortalité nationale ; il est calé sur l’état civil et sur
+      l’enquête de 2019-2020, et contrôlé par le nombre de descendants mesuré en 2025 et par les
+      décès d’immigrés estimés par l’Insee. Paramètre de la vanne des décès (statut : <strong
         >{data.piscine.statut_parametres === 'valide' ? 'validé' : 'à valider'}</strong
       >) : avant 2006 et après 2022, les décès d’immigrés sont estimés en appliquant à leur part
       dans la population le rapport observé de {r.calage[0]} à {r.calage[1]} entre leur part dans les

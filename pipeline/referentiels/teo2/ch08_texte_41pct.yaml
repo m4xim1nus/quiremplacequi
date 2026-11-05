@@ -1,0 +1,13 @@
+source:
+  chapitre: 8
+  objet: "Texte (hors tableau)"
+  titre: "Part de la population ayant un lien à l’immigration par ascendance ou par alliance (41 %)"
+  auteurs: "Mathieu Ferry, Pierre Tanneau, Patrick Simon"
+  url: "https://books.openedition.org/ined/26366"
+  emplacement: "§19 et note 6"
+  image: "sans objet (valeur du texte)"
+  champ: "France métropolitaine, personnes âgées de 18 à 59 ans"
+  unite: "%"
+  note: "Valeur de texte, pas de tableau. §19 : « cette hybridation des ascendances et des alliances – fondée sur le lien à la migration et l’origine des parents, grands-parents et conjoint·es – implique 41 % de la population âgée de 18 à 59 ans ». Note 6 : sont regroupé·es tou·tes les immigré·es, natifs et natives des Outre-mer (G1), les descendant·es d’un ou de deux parents immigrés ou de natifs ou natives des Outre-mer (G2), les petits-enfants d’immigré·es ou de natifs ou natives des Outre-mer (G3), et les G4+ dont le ou la conjoint·e est immigré·e, natif ou native des Outre-mer, ou descendant·e d’immigré·e ou de natif et native des Outre-mer. Le « un tiers » du §5 (13 + 11 + 10 = 34, tableau 1) est une autre mesure. Le 41 % n’apparaît pas au §42 (qui ne reprend que « un tiers »), contrairement à ce qu’indique docs/spike/teo2.md ; il est repris dans la conclusion générale."
+cellules:
+  - {ligne: "Lien à l’immigration (personnel, par ascendance ou par alliance)", colonne: "Population de 18 à 59 ans", valeur: 41, approx: false}

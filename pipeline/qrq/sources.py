@@ -46,6 +46,31 @@ SOURCES: dict[str, dict] = {
         "url": f"{INSEE}/fichier/6468640/ip1910.xlsx",
         "titre": "Insee Première 1910 : diversité des origines et mixité des unions",
     },
+    "ages": {
+        "page": f"{INSEE}/8999013",
+        "url": f"{INSEE}/fichier/8999013/3_Pop1janv_age.xlsx",
+        "titre": "Population au 1er janvier par sexe et âge (séries longues, depuis 1901)",
+    },
+    "mortalite": {
+        "page": f"{INSEE}/8999019",
+        "url": f"{INSEE}/fichier/8999019/3_Quotients_mortalite.xlsx",
+        "titre": "Quotients de mortalité par sexe et âge (séries longues, depuis 1901)",
+    },
+    "nes_etranger": {
+        "page": f"{INSEE}/2865118",
+        "url": f"{INSEE}/fichier/2865118/demo-etran-decompo-pop.xlsx",
+        "titre": "Population selon le lieu de naissance et la nationalité (2006-2025)",
+    },
+    "ages_immigres": {
+        "page": f"{INSEE}/2381759",
+        "url": f"{INSEE}/fichier/2381759/demo-etran-pop-sexe-age.xlsx",
+        "titre": "Population immigrée et étrangère par sexe et âge (1990-2025)",
+    },
+    "descendants": {
+        "page": f"{INSEE}/4186761",
+        "url": f"{INSEE}/fichier/4186761/demo-etran-origine-desc-immig.xlsx",
+        "titre": "Origine géographique des descendants d'immigrés (2025)",
+    },
     "pays": {
         "page": f"{INSEE}/2381755",
         "url": f"{INSEE}/fichier/2381755/demo-etran-repart-immig-pays.xlsx",

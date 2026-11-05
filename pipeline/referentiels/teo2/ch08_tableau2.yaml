@@ -1,0 +1,78 @@
+source:
+  chapitre: 8
+  objet: "Tableau 2"
+  titre: "Liens à l’immigration de la population sur trois générations par classe d’âges"
+  auteurs: "Mathieu Ferry, Pierre Tanneau, Patrick Simon"
+  url: "https://books.openedition.org/ined/26366"
+  emplacement: "§8"
+  image: "data/raw/spike/teo2/ch08/TABLEAUX_CHAP_8_2.jpg.jpg"
+  champ: "France métropolitaine, personnes âgées de 18 à 59 ans vivant en logement ordinaire"
+  unite: "%"
+  note: "Source : enquête Trajectoires et Origines 2, Ined-Insee, 2019-2020. Champ : France métropolitaine, personnes âgées de 18 à 59 ans vivant en logement ordinaire. Lecture : 7 % des personnes âgées de 18 à 24 ans sont immigrées. Saisie : les colonnes 1 à 6 sont des pourcentages pondérés (une ligne somme à 99-101 selon les arrondis) ; la colonne « Effectif non pondéré » est en effectif (surcharge par cellule). Aucune cellule vide. Écart avec docs/spike/teo2.md : pour 35-39 ans, la colonne « Petits-enfants de deux à quatre grands-parents immigrés » vaut 4 (et non 5) ; relu sur un agrandissement."
+cellules:
+  - {ligne: "18-24 ans", colonne: "Immigré·e", valeur: 7, approx: false}
+  - {ligne: "18-24 ans", colonne: "Descendant·e de deux parents immigrés", valeur: 7, approx: false}
+  - {ligne: "18-24 ans", colonne: "Descendant·e d’un seul parent immigré (G2.5)", valeur: 8, approx: false}
+  - {ligne: "18-24 ans", colonne: "Petits-enfants de deux à quatre grands-parents immigrés", valeur: 4, approx: false}
+  - {ligne: "18-24 ans", colonne: "Petits-enfants d’un grand-parent immigré (G3.5)", valeur: 5, approx: false}
+  - {ligne: "18-24 ans", colonne: "Sans ascendance immigrée sur trois générations (G4+)", valeur: 68, approx: false}
+  - {ligne: "18-24 ans", colonne: "Effectif non pondéré", valeur: 3259, approx: false, unite: "effectif"}
+  - {ligne: "25-29 ans", colonne: "Immigré·e", valeur: 11, approx: false}
+  - {ligne: "25-29 ans", colonne: "Descendant·e de deux parents immigrés", valeur: 8, approx: false}
+  - {ligne: "25-29 ans", colonne: "Descendant·e d’un seul parent immigré (G2.5)", valeur: 6, approx: false}
+  - {ligne: "25-29 ans", colonne: "Petits-enfants de deux à quatre grands-parents immigrés", valeur: 4, approx: false}
+  - {ligne: "25-29 ans", colonne: "Petits-enfants d’un grand-parent immigré (G3.5)", valeur: 8, approx: false}
+  - {ligne: "25-29 ans", colonne: "Sans ascendance immigrée sur trois générations (G4+)", valeur: 63, approx: false}
+  - {ligne: "25-29 ans", colonne: "Effectif non pondéré", valeur: 2489, approx: false, unite: "effectif"}
+  - {ligne: "30-34 ans", colonne: "Immigré·e", valeur: 14, approx: false}
+  - {ligne: "30-34 ans", colonne: "Descendant·e de deux parents immigrés", valeur: 7, approx: false}
+  - {ligne: "30-34 ans", colonne: "Descendant·e d’un seul parent immigré (G2.5)", valeur: 5, approx: false}
+  - {ligne: "30-34 ans", colonne: "Petits-enfants de deux à quatre grands-parents immigrés", valeur: 5, approx: false}
+  - {ligne: "30-34 ans", colonne: "Petits-enfants d’un grand-parent immigré (G3.5)", valeur: 7, approx: false}
+  - {ligne: "30-34 ans", colonne: "Sans ascendance immigrée sur trois générations (G4+)", valeur: 63, approx: false}
+  - {ligne: "30-34 ans", colonne: "Effectif non pondéré", valeur: 3357, approx: false, unite: "effectif"}
+  - {ligne: "35-39 ans", colonne: "Immigré·e", valeur: 16, approx: false}
+  - {ligne: "35-39 ans", colonne: "Descendant·e de deux parents immigrés", valeur: 7, approx: false}
+  - {ligne: "35-39 ans", colonne: "Descendant·e d’un seul parent immigré (G2.5)", valeur: 5, approx: false}
+  - {ligne: "35-39 ans", colonne: "Petits-enfants de deux à quatre grands-parents immigrés", valeur: 4, approx: false}
+  - {ligne: "35-39 ans", colonne: "Petits-enfants d’un grand-parent immigré (G3.5)", valeur: 4, approx: false}
+  - {ligne: "35-39 ans", colonne: "Sans ascendance immigrée sur trois générations (G4+)", valeur: 65, approx: false}
+  - {ligne: "35-39 ans", colonne: "Effectif non pondéré", valeur: 4025, approx: false, unite: "effectif"}
+  - {ligne: "40-44 ans", colonne: "Immigré·e", valeur: 16, approx: false}
+  - {ligne: "40-44 ans", colonne: "Descendant·e de deux parents immigrés", valeur: 7, approx: false}
+  - {ligne: "40-44 ans", colonne: "Descendant·e d’un seul parent immigré (G2.5)", valeur: 5, approx: false}
+  - {ligne: "40-44 ans", colonne: "Petits-enfants de deux à quatre grands-parents immigrés", valeur: 3, approx: false}
+  - {ligne: "40-44 ans", colonne: "Petits-enfants d’un grand-parent immigré (G3.5)", valeur: 5, approx: false}
+  - {ligne: "40-44 ans", colonne: "Sans ascendance immigrée sur trois générations (G4+)", valeur: 64, approx: false}
+  - {ligne: "40-44 ans", colonne: "Effectif non pondéré", valeur: 3782, approx: false, unite: "effectif"}
+  - {ligne: "45-49 ans", colonne: "Immigré·e", valeur: 14, approx: false}
+  - {ligne: "45-49 ans", colonne: "Descendant·e de deux parents immigrés", valeur: 6, approx: false}
+  - {ligne: "45-49 ans", colonne: "Descendant·e d’un seul parent immigré (G2.5)", valeur: 4, approx: false}
+  - {ligne: "45-49 ans", colonne: "Petits-enfants de deux à quatre grands-parents immigrés", valeur: 4, approx: false}
+  - {ligne: "45-49 ans", colonne: "Petits-enfants d’un grand-parent immigré (G3.5)", valeur: 4, approx: false}
+  - {ligne: "45-49 ans", colonne: "Sans ascendance immigrée sur trois générations (G4+)", valeur: 69, approx: false}
+  - {ligne: "45-49 ans", colonne: "Effectif non pondéré", valeur: 3651, approx: false, unite: "effectif"}
+  - {ligne: "50-54 ans", colonne: "Immigré·e", valeur: 13, approx: false}
+  - {ligne: "50-54 ans", colonne: "Descendant·e de deux parents immigrés", valeur: 4, approx: false}
+  - {ligne: "50-54 ans", colonne: "Descendant·e d’un seul parent immigré (G2.5)", valeur: 4, approx: false}
+  - {ligne: "50-54 ans", colonne: "Petits-enfants de deux à quatre grands-parents immigrés", valeur: 5, approx: false}
+  - {ligne: "50-54 ans", colonne: "Petits-enfants d’un grand-parent immigré (G3.5)", valeur: 6, approx: false}
+  - {ligne: "50-54 ans", colonne: "Sans ascendance immigrée sur trois générations (G4+)", valeur: 69, approx: false}
+  - {ligne: "50-54 ans", colonne: "Effectif non pondéré", valeur: 3304, approx: false, unite: "effectif"}
+  - {ligne: "55-59 ans", colonne: "Immigré·e", valeur: 13, approx: false}
+  - {ligne: "55-59 ans", colonne: "Descendant·e de deux parents immigrés", valeur: 4, approx: false}
+  - {ligne: "55-59 ans", colonne: "Descendant·e d’un seul parent immigré (G2.5)", valeur: 5, approx: false}
+  - {ligne: "55-59 ans", colonne: "Petits-enfants de deux à quatre grands-parents immigrés", valeur: 5, approx: false}
+  - {ligne: "55-59 ans", colonne: "Petits-enfants d’un grand-parent immigré (G3.5)", valeur: 6, approx: false}
+  - {ligne: "55-59 ans", colonne: "Sans ascendance immigrée sur trois générations (G4+)", valeur: 67, approx: false}
+  - {ligne: "55-59 ans", colonne: "Effectif non pondéré", valeur: 3314, approx: false, unite: "effectif"}
+  - {ligne: "Ensemble", colonne: "Immigré·e", valeur: 13, approx: false}
+  - {ligne: "Ensemble", colonne: "Descendant·e de deux parents immigrés", valeur: 6, approx: false}
+  - {ligne: "Ensemble", colonne: "Descendant·e d’un seul parent immigré (G2.5)", valeur: 5, approx: false}
+  - {ligne: "Ensemble", colonne: "Petits-enfants de deux à quatre grands-parents immigrés", valeur: 4, approx: false}
+  - {ligne: "Ensemble", colonne: "Petits-enfants d’un grand-parent immigré (G3.5)", valeur: 5, approx: false}
+  - {ligne: "Ensemble", colonne: "Sans ascendance immigrée sur trois générations (G4+)", valeur: 66, approx: false}
+  - {ligne: "Ensemble", colonne: "Effectif non pondéré", valeur: 27181, approx: false, unite: "effectif"}
+controles:
+  - {"axe": "ligne", "pour": ["18-24 ans", "25-29 ans", "30-34 ans", "35-39 ans", "40-44 ans", "45-49 ans", "50-54 ans", "55-59 ans", "Ensemble"], "parmi": ["Immigré·e", "Descendant·e de deux parents immigrés", "Descendant·e d’un seul parent immigré (G2.5)", "Petits-enfants de deux à quatre grands-parents immigrés", "Petits-enfants d’un grand-parent immigré (G3.5)", "Sans ascendance immigrée sur trois générations (G4+)"], "attendu": 100, "tolerance": 1}
+  - {"axe": "colonne", "pour": ["Effectif non pondéré"], "parmi": ["18-24 ans", "25-29 ans", "30-34 ans", "35-39 ans", "40-44 ans", "45-49 ans", "50-54 ans", "55-59 ans"], "attendu_ligne": "Ensemble", "tolerance": 0}

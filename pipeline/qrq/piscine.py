@@ -165,3 +165,31 @@ def ecart_identite(ligne: dict, suivante: dict) -> int:
         ligne["immigres"] + net - ligne["deces_imm"] + ligne["ajust_imm"] + ligne["non_ventile_imm"]
     )
     return suivante["immigres"] - attendu
+
+
+GENERATIONS = ("G2a", "G2b", "G3")
+
+
+def ajouter_generations(psc: dict, sim: dict) -> None:
+    """Piscine v1 : les non-immigrés se décomposent en G2 (deux parents, un parent), G3 et autres.
+
+    Les G2 et les G3 viennent du modèle de cohortes (qrq/cohortes.py) : naissances et décès par
+    génération, sans migration. Les « autres » portent tout le reste des flux des non-immigrés
+    (naissances, décès, migrations, ajustements), si bien que les identités restent exactes.
+    """
+    par_annee = {a["annee"]: a for a in sim["annees"]}
+    for x in psc["annees"]:
+        m = par_annee[x["annee"]]
+        for g in GENERATIONS:
+            x[g.lower()] = round(m[g])
+        x["autres"] = x["non_immigres"] - sum(x[g.lower()] for g in GENERATIONS)
+        if x.get("naissances") is None:
+            continue
+        suiv = par_annee[x["annee"] + 1]
+        for g in GENERATIONS:
+            x[f"naissances_{g.lower()}"] = round(m[f"naissances_{g}"])
+            # Décès déduits de l'identité arrondie, pour que les stocks se suivent exactement.
+            x[f"deces_{g.lower()}"] = round(m[g]) + round(m[f"naissances_{g}"]) - round(suiv[g])
+        x["naissances_autres"] = x["naissances"] - sum(x[f"naissances_{g.lower()}"] for g in GENERATIONS)
+        x["deces_autres"] = x["deces_ni"] - sum(x[f"deces_{g.lower()}"] for g in GENERATIONS)
+        x["regime_naissances"] = m["regime_naissances"]

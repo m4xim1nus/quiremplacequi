@@ -1,0 +1,71 @@
+source:
+  chapitre: 8
+  objet: "Tableau 6"
+  titre: "Lignée de l’ascendance migratoire chez les enfants descendants G3 (%)"
+  auteurs: "Mathieu Ferry, Pierre Tanneau, Patrick Simon"
+  url: "https://books.openedition.org/ined/26366"
+  emplacement: "§37-38"
+  image: "data/raw/spike/teo2/ch08/TABLEAUX_CHAP_8_6.jpg.jpg"
+  champ: "Ensemble des enfants des enquêté·es qui sont descendant·es G3 (base enfants, TeO2)"
+  unite: "%"
+  note: "Source : enquête Trajectoires et Origines 2, Ined-Insee, 2019-2020. Champ : ensemble des enfants des enquêté·es qui sont descendant·es G3. Lecture : 24 % des descendant·es G3 originaires du Maghreb ont quatre grands-parents immigrés. Note : résultats pondérés avec la pondération des répondant·es de l’enquête. La liste complète des pays est donnée en annexe B de l’introduction de l’ouvrage. Les catégories de population (population majoritaire, G1, G2, etc.) sont définies dans l’annexe A. Saisie : colonnes sous l’en-tête « Origine géographique ». Les lignes « De la même lignée » et « De lignée différente » détaillent la ligne « 2 grands-parents immigrés ». Anomalie dans la source : l’effectif non pondéré « 2 532 » figure à la fois pour le Maghreb et pour l’Europe du Sud (coquille probable, l’un des deux est faux ; non corrigé). La ligne « Effectif non pondéré » est en effectif."
+cellules:
+  - {ligne: "4 grands-parents immigrés", colonne: "Maghreb", valeur: 24, approx: false}
+  - {ligne: "4 grands-parents immigrés", colonne: "Afrique subsaharienne", valeur: 33, approx: false}
+  - {ligne: "4 grands-parents immigrés", colonne: "Turquie, Moyen-Orient", valeur: 41, approx: false}
+  - {ligne: "4 grands-parents immigrés", colonne: "Asie", valeur: 16, approx: false}
+  - {ligne: "4 grands-parents immigrés", colonne: "Europe du Sud", valeur: 5, approx: false}
+  - {ligne: "4 grands-parents immigrés", colonne: "Autres UE 27", valeur: 1, approx: false}
+  - {ligne: "4 grands-parents immigrés", colonne: "Autres pays", valeur: 4, approx: false}
+  - {ligne: "4 grands-parents immigrés", colonne: "Ensemble", valeur: 12, approx: false}
+  - {ligne: "3 grands-parents immigrés", colonne: "Maghreb", valeur: 6, approx: false}
+  - {ligne: "3 grands-parents immigrés", colonne: "Afrique subsaharienne", valeur: 6, approx: false}
+  - {ligne: "3 grands-parents immigrés", colonne: "Turquie, Moyen-Orient", valeur: 3, approx: false}
+  - {ligne: "3 grands-parents immigrés", colonne: "Asie", valeur: 6, approx: false}
+  - {ligne: "3 grands-parents immigrés", colonne: "Europe du Sud", valeur: 4, approx: false}
+  - {ligne: "3 grands-parents immigrés", colonne: "Autres UE 27", valeur: 3, approx: false}
+  - {ligne: "3 grands-parents immigrés", colonne: "Autres pays", valeur: 3, approx: false}
+  - {ligne: "3 grands-parents immigrés", colonne: "Ensemble", valeur: 5, approx: false}
+  - {ligne: "2 grands-parents immigrés", colonne: "Maghreb", valeur: 43, approx: false}
+  - {ligne: "2 grands-parents immigrés", colonne: "Afrique subsaharienne", valeur: 40, approx: false}
+  - {ligne: "2 grands-parents immigrés", colonne: "Turquie, Moyen-Orient", valeur: 32, approx: false}
+  - {ligne: "2 grands-parents immigrés", colonne: "Asie", valeur: 38, approx: false}
+  - {ligne: "2 grands-parents immigrés", colonne: "Europe du Sud", valeur: 45, approx: false}
+  - {ligne: "2 grands-parents immigrés", colonne: "Autres UE 27", valeur: 15, approx: false}
+  - {ligne: "2 grands-parents immigrés", colonne: "Autres pays", valeur: 22, approx: false}
+  - {ligne: "2 grands-parents immigrés", colonne: "Ensemble", valeur: 40, approx: false}
+  - {ligne: "De la même lignée", colonne: "Maghreb", valeur: 40, approx: false}
+  - {ligne: "De la même lignée", colonne: "Afrique subsaharienne", valeur: 35, approx: false}
+  - {ligne: "De la même lignée", colonne: "Turquie, Moyen-Orient", valeur: 26, approx: false}
+  - {ligne: "De la même lignée", colonne: "Asie", valeur: 37, approx: false}
+  - {ligne: "De la même lignée", colonne: "Europe du Sud", valeur: 43, approx: false}
+  - {ligne: "De la même lignée", colonne: "Autres UE 27", valeur: 12, approx: false}
+  - {ligne: "De la même lignée", colonne: "Autres pays", valeur: 20, approx: false}
+  - {ligne: "De la même lignée", colonne: "Ensemble", valeur: 37, approx: false}
+  - {ligne: "De lignée différente", colonne: "Maghreb", valeur: 3, approx: false}
+  - {ligne: "De lignée différente", colonne: "Afrique subsaharienne", valeur: 5, approx: false}
+  - {ligne: "De lignée différente", colonne: "Turquie, Moyen-Orient", valeur: 6, approx: false}
+  - {ligne: "De lignée différente", colonne: "Asie", valeur: 1, approx: false}
+  - {ligne: "De lignée différente", colonne: "Europe du Sud", valeur: 3, approx: false}
+  - {ligne: "De lignée différente", colonne: "Autres UE 27", valeur: 4, approx: false}
+  - {ligne: "De lignée différente", colonne: "Autres pays", valeur: 2, approx: false}
+  - {ligne: "De lignée différente", colonne: "Ensemble", valeur: 3, approx: false}
+  - {ligne: "1 grand-parent immigré", colonne: "Maghreb", valeur: 27, approx: false}
+  - {ligne: "1 grand-parent immigré", colonne: "Afrique subsaharienne", valeur: 21, approx: false}
+  - {ligne: "1 grand-parent immigré", colonne: "Turquie, Moyen-Orient", valeur: 25, approx: false}
+  - {ligne: "1 grand-parent immigré", colonne: "Asie", valeur: 40, approx: false}
+  - {ligne: "1 grand-parent immigré", colonne: "Europe du Sud", valeur: 45, approx: false}
+  - {ligne: "1 grand-parent immigré", colonne: "Autres UE 27", valeur: 81, approx: false}
+  - {ligne: "1 grand-parent immigré", colonne: "Autres pays", valeur: 71, approx: false}
+  - {ligne: "1 grand-parent immigré", colonne: "Ensemble", valeur: 44, approx: false}
+  - {ligne: "Effectif non pondéré", colonne: "Maghreb", valeur: 2532, approx: false, unite: "effectif"}
+  - {ligne: "Effectif non pondéré", colonne: "Afrique subsaharienne", valeur: 600, approx: false, unite: "effectif"}
+  - {ligne: "Effectif non pondéré", colonne: "Turquie, Moyen-Orient", valeur: 336, approx: false, unite: "effectif"}
+  - {ligne: "Effectif non pondéré", colonne: "Asie", valeur: 534, approx: false, unite: "effectif"}
+  - {ligne: "Effectif non pondéré", colonne: "Europe du Sud", valeur: 2532, approx: false, unite: "effectif"}
+  - {ligne: "Effectif non pondéré", colonne: "Autres UE 27", valeur: 867, approx: false, unite: "effectif"}
+  - {ligne: "Effectif non pondéré", colonne: "Autres pays", valeur: 542, approx: false, unite: "effectif"}
+  - {ligne: "Effectif non pondéré", colonne: "Ensemble", valeur: 7943, approx: false, unite: "effectif"}
+controles:
+  - {"axe": "colonne", "pour": ["Maghreb", "Afrique subsaharienne", "Turquie, Moyen-Orient", "Asie", "Europe du Sud", "Autres UE 27", "Autres pays", "Ensemble"], "parmi": ["4 grands-parents immigrés", "3 grands-parents immigrés", "2 grands-parents immigrés", "1 grand-parent immigré"], "attendu": 100, "tolerance": 1}
+  - {"axe": "colonne", "pour": ["Maghreb", "Afrique subsaharienne", "Turquie, Moyen-Orient", "Asie", "Europe du Sud", "Autres UE 27", "Autres pays", "Ensemble"], "parmi": ["De la même lignée", "De lignée différente"], "attendu_ligne": "2 grands-parents immigrés", "tolerance": 1}

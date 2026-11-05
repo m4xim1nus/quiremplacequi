@@ -9,6 +9,7 @@ dependencies = [
     "polars>=1.0",
     "openpyxl>=3.1",
     "pyyaml>=6.0",
+    "numpy>=2.0",
 ]
 
 [project.scripts]

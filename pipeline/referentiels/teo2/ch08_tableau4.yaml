@@ -1,0 +1,26 @@
+source:
+  chapitre: 8
+  objet: "Tableau 4"
+  titre: "Nombre de grands-parents immigrés des répondant·es selon l’origine des grands-parents"
+  auteurs: "Mathieu Ferry, Pierre Tanneau, Patrick Simon"
+  url: "https://books.openedition.org/ined/26366"
+  emplacement: "§22"
+  image: "data/raw/spike/teo2/ch08/TABLEAUX_CHAP_8_4.jpg.jpg"
+  champ: "Petits-enfants d’immigré·es (G3) âgé·es de 18 à 59 ans"
+  unite: "%"
+  note: "Sources : enquête Trajectoires et Origines 2 et enquête complémentaire TeO2-G3, Ined-Insee, 2019-2020. Champ : petits-enfants d’immigré·es âgé·es de 18 à 59 ans. Lecture : 56 % des descendant·es d’immigré·es de troisième génération n’ont qu’un seul grand-parent immigré. Note : les pourcentages sont pondérés. Saisie : les lignes « 1 » à « 4 » sont le nombre de grands-parents immigrés (intitulé de colonne de lignes : « Nombre de grands-parents immigrés des G3 ») ; la ligne « Effectif non pondéré » est en effectif (surcharge par cellule). Aucune cellule vide."
+cellules:
+  - {ligne: "1", colonne: "Ensemble des G3 (enquête principale)", valeur: 56, approx: false}
+  - {ligne: "1", colonne: "G3 ayant au moins un grand-parent immigré non européen (enquêtes principale et complémentaire)", valeur: 49, approx: false}
+  - {ligne: "2", colonne: "Ensemble des G3 (enquête principale)", valeur: 37, approx: false}
+  - {ligne: "2", colonne: "G3 ayant au moins un grand-parent immigré non européen (enquêtes principale et complémentaire)", valeur: 37, approx: false}
+  - {ligne: "3", colonne: "Ensemble des G3 (enquête principale)", valeur: 3, approx: false}
+  - {ligne: "3", colonne: "G3 ayant au moins un grand-parent immigré non européen (enquêtes principale et complémentaire)", valeur: 5, approx: false}
+  - {ligne: "4", colonne: "Ensemble des G3 (enquête principale)", valeur: 4, approx: false}
+  - {ligne: "4", colonne: "G3 ayant au moins un grand-parent immigré non européen (enquêtes principale et complémentaire)", valeur: 9, approx: false}
+  - {ligne: "Ensemble", colonne: "Ensemble des G3 (enquête principale)", valeur: 100, approx: false}
+  - {ligne: "Ensemble", colonne: "G3 ayant au moins un grand-parent immigré non européen (enquêtes principale et complémentaire)", valeur: 100, approx: false}
+  - {ligne: "Effectif non pondéré", colonne: "Ensemble des G3 (enquête principale)", valeur: 778, approx: false, unite: "effectif"}
+  - {ligne: "Effectif non pondéré", colonne: "G3 ayant au moins un grand-parent immigré non européen (enquêtes principale et complémentaire)", valeur: 269, approx: false, unite: "effectif"}
+controles:
+  - {"axe": "colonne", "pour": ["Ensemble des G3 (enquête principale)", "G3 ayant au moins un grand-parent immigré non européen (enquêtes principale et complémentaire)"], "parmi": ["1", "2", "3", "4"], "attendu": 100, "tolerance": 1}

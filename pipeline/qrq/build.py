@@ -9,7 +9,7 @@ from pathlib import Path
 import polars as pl
 import yaml
 
-from . import bilan, flux, naissances, piscine, stock
+from . import bilan, cohortes, flux, naissances, piscine, stock, teo2
 from .sources import SOURCES
 
 REFERENTIELS = Path(__file__).resolve().parents[1] / "referentiels"
@@ -31,7 +31,23 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     psc = piscine.construire(
         tables["b1_stock"], tables["bilan"], tables["flux"], referentiel("piscine")
     )
+    # Modèle de cohortes (générations), calé sur IP 1910 et les sorties Insee.
+    pc = referentiel("cohortes")
+    entrees = cohortes.preparer(raw, tables["b1_stock"], tables["bilan"], tables["naissances_parents"], pc)
+    cibles = cohortes.lire_cibles_ip1910(raw)
+    sorties = {f["annee"]: f["sorties_imm"] for f in tables["flux"] if f["sorties_imm"] is not None}
+    sim, cal = cohortes.caler(entrees, pc, cibles, sorties)
+    piscine.ajouter_generations(psc, sim)
+    psc["cohortes"] = {"statut_parametres": pc["statut"], "calage": cal}
     tables["piscine"] = psc["annees"]
+    tables["cohortes"] = [
+        {"annee": a["annee"], "groupe": g, "tranche": f"{lo}-{hi}" if hi < 105 else f"{lo}+", "effectif": v}
+        for a in sim["annees"]
+        for g in cohortes.GROUPES
+        for (lo, hi), v in zip(cohortes.TRANCHES, cohortes.tranches(a["etat"][g]))
+    ]
+    tables["cohortes_calage"] = cohortes.ecarts_calage(sim, entrees, cibles, tables["flux"], raw)
+    tables["teo2"] = teo2.lire_teo2()
 
     if export.exists():
         shutil.rmtree(export)

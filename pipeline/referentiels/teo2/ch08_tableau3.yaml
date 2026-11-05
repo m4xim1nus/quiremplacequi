@@ -1,0 +1,38 @@
+source:
+  chapitre: 8
+  objet: "Tableau 3"
+  titre: "Type de mixité d’union des répondant·es selon le lien à la migration (%)"
+  auteurs: "Mathieu Ferry, Pierre Tanneau, Patrick Simon"
+  url: "https://books.openedition.org/ined/26366"
+  emplacement: "§17-18 (colonnes b et d et 29 % au §17 ; 12 % des majoritaires au §18)"
+  image: "data/raw/spike/teo2/ch08/TABLEAUX_CHAP_8_3.jpg.jpg"
+  champ: "Personnes vivant en couple, âgées de 18 à 59 ans (France métropolitaine)"
+  unite: "%"
+  note: "Source : enquête Trajectoires et Origines 2, Ined-Insee, 2019-2020. Champ : personnes vivant en couple, âgées de 18 à 59 ans. Lecture : 53 % des G1 sont en union avec un·e immigré·e de même origine, 8 % avec un·e descendant·e de même origine, 7 % avec un·e G1 d’une autre origine, 3 % avec un·e G2 d’une autre origine et 29 % avec une personne de la population sans ascendance migratoire. Note : (a) conjoint·e de même origine et de même lien à la migration (G1/G1 ; G2/G2 ou G2.5 ; G2,5/G2 ou G2.5) ; (b) conjoint·e de même origine et de lien à la migration différent (G1/G2 ; G2/G1 ; G2.5/G1). Les descendant·es G2.5 correspondent aux enfants de couples mixtes, les descendant·es G2 ont deux parents immigrés. Les pourcentages sont pondérés. Saisie : les cellules (a) et (b) de la ligne « Population majoritaire » sont des tirets (omises). Les sommes de ligne sont 100, 101, 100, 100, 99 (arrondis). Les « 39 / 59 / 90 % » ne sont pas dans le tableau : ce sont des sommes c + d + e."
+cellules:
+  - {ligne: "G1 Immigré·e", colonne: "(a) Homogamie lien et origine", valeur: 53, approx: false}
+  - {ligne: "G1 Immigré·e", colonne: "(b) Homogamie origine, mais lien différent", valeur: 8, approx: false}
+  - {ligne: "G1 Immigré·e", colonne: "(c) Conjoint G1 d’une autre origine", valeur: 7, approx: false}
+  - {ligne: "G1 Immigré·e", colonne: "(d) Conjoint G2 d’une autre origine", valeur: 3, approx: false}
+  - {ligne: "G1 Immigré·e", colonne: "(e) Population majoritaire", valeur: 29, approx: false}
+  - {ligne: "G2 Descendant·e (deux parents immigrés)", colonne: "(a) Homogamie lien et origine", valeur: 20, approx: false}
+  - {ligne: "G2 Descendant·e (deux parents immigrés)", colonne: "(b) Homogamie origine, mais lien différent", valeur: 22, approx: false}
+  - {ligne: "G2 Descendant·e (deux parents immigrés)", colonne: "(c) Conjoint G1 d’une autre origine", valeur: 9, approx: false}
+  - {ligne: "G2 Descendant·e (deux parents immigrés)", colonne: "(d) Conjoint G2 d’une autre origine", valeur: 5, approx: false}
+  - {ligne: "G2 Descendant·e (deux parents immigrés)", colonne: "(e) Population majoritaire", valeur: 45, approx: false}
+  - {ligne: "G2.5 Descendant·e (un parent immigré)", colonne: "(a) Homogamie lien et origine", valeur: 5, approx: false}
+  - {ligne: "G2.5 Descendant·e (un parent immigré)", colonne: "(b) Homogamie origine, mais lien différent", valeur: 5, approx: false}
+  - {ligne: "G2.5 Descendant·e (un parent immigré)", colonne: "(c) Conjoint G1 d’une autre origine", valeur: 11, approx: false}
+  - {ligne: "G2.5 Descendant·e (un parent immigré)", colonne: "(d) Conjoint G2 d’une autre origine", valeur: 5, approx: false}
+  - {ligne: "G2.5 Descendant·e (un parent immigré)", colonne: "(e) Population majoritaire", valeur: 74, approx: false}
+  - {ligne: "Population majoritaire", colonne: "(c) Conjoint G1 d’une autre origine", valeur: 5, approx: false}
+  - {ligne: "Population majoritaire", colonne: "(d) Conjoint G2 d’une autre origine", valeur: 7, approx: false}
+  - {ligne: "Population majoritaire", colonne: "(e) Population majoritaire", valeur: 88, approx: false}
+  - {ligne: "Ensemble", colonne: "(a) Homogamie lien et origine", valeur: 12, approx: false}
+  - {ligne: "Ensemble", colonne: "(b) Homogamie origine, mais lien différent", valeur: 7, approx: false}
+  - {ligne: "Ensemble", colonne: "(c) Conjoint G1 d’une autre origine", valeur: 2, approx: false}
+  - {ligne: "Ensemble", colonne: "(d) Conjoint G2 d’une autre origine", valeur: 2, approx: false}
+  - {ligne: "Ensemble", colonne: "(e) Population majoritaire", valeur: 76, approx: false}
+controles:
+  - {"axe": "ligne", "pour": ["G1 Immigré·e", "G2 Descendant·e (deux parents immigrés)", "G2.5 Descendant·e (un parent immigré)", "Ensemble"], "parmi": ["(a) Homogamie lien et origine", "(b) Homogamie origine, mais lien différent", "(c) Conjoint G1 d’une autre origine", "(d) Conjoint G2 d’une autre origine", "(e) Population majoritaire"], "attendu": 100, "tolerance": 1}
+  - {"axe": "ligne", "pour": ["Population majoritaire"], "parmi": ["(c) Conjoint G1 d’une autre origine", "(d) Conjoint G2 d’une autre origine", "(e) Population majoritaire"], "attendu": 100, "tolerance": 1}

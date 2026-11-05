@@ -1,0 +1,100 @@
+source:
+  chapitre: 5
+  objet: "Tableau 1"
+  titre: "Proportion d’individus habitant un quartier du quintile supérieur pour chaque indicateur (%)"
+  auteurs: "Giulia Ferrari, Haley McAvay, Sorana Toma"
+  url: "https://books.openedition.org/ined/26345"
+  emplacement: "§10-11 et §13 (tableau appelé au §10)"
+  image: "data/raw/spike/teo2/ch05/TABLEAUX_CHAP_5_1.jpg.jpg"
+  champ: "Répondants âgés de 18 à 49 ans (TeO1 2008 et TeO2 2019-2020), France métropolitaine"
+  unite: "%"
+  note: "Source : enquête Trajectoires et Origines 1, Ined-Insee, 2008 ; enquête Trajectoires et Origines 2, Ined-Insee, 2019-2020. Champ : répondants âgés de 18 à 49 ans. Lecture : en 2019, 47 % des immigrés subsahariens et de leurs descendants habitaient un quartier à forte proportion d’immigrés (classé dans le quintile supérieur). Note : les pourcentages sont pondérés. Saisie : le tableau est composé de deux blocs superposés (composition démographique, puis socioéconomique du quartier) ; les colonnes sont « <indicateur>, <année> ». Les lignes sont regroupées dans l’image sous les intertitres « Génération » (G1, G2, Population majoritaire), « Origine G1 et G2 » (Maghreb à Autres pays : G1 et G2 confondus) et « Sexe » (Hommes, Femmes, Total). Les libellés des colonnes sont la concaténation de l’en-tête de l’indicateur et de l’année. Aucune cellule vide. Le « 36 / 51 % contre 6 % » du cadrage est : non européens, 2019, Maghreb 36, Afrique subsaharienne 51, population majoritaire 6."
+cellules:
+  - {ligne: "G1 Immigrés", colonne: "Forte concentration d’immigrés (quintile supérieur), 2008", valeur: 27, approx: false}
+  - {ligne: "G1 Immigrés", colonne: "Forte concentration d’immigrés (quintile supérieur), 2019", valeur: 32, approx: false}
+  - {ligne: "G1 Immigrés", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2008", valeur: 26, approx: false}
+  - {ligne: "G1 Immigrés", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2019", valeur: 31, approx: false}
+  - {ligne: "G1 Immigrés", colonne: "Fort taux de chômage (quintile supérieur), 2008", valeur: 23, approx: false}
+  - {ligne: "G1 Immigrés", colonne: "Fort taux de chômage (quintile supérieur), 2019", valeur: 27, approx: false}
+  - {ligne: "G1 Immigrés", colonne: "Forte concentration de cadres (quintile supérieur), 2008", valeur: 23, approx: false}
+  - {ligne: "G1 Immigrés", colonne: "Forte concentration de cadres (quintile supérieur), 2019", valeur: 23, approx: false}
+  - {ligne: "G2 Descendants d’immigrés", colonne: "Forte concentration d’immigrés (quintile supérieur), 2008", valeur: 18, approx: false}
+  - {ligne: "G2 Descendants d’immigrés", colonne: "Forte concentration d’immigrés (quintile supérieur), 2019", valeur: 25, approx: false}
+  - {ligne: "G2 Descendants d’immigrés", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2008", valeur: 18, approx: false}
+  - {ligne: "G2 Descendants d’immigrés", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2019", valeur: 25, approx: false}
+  - {ligne: "G2 Descendants d’immigrés", colonne: "Fort taux de chômage (quintile supérieur), 2008", valeur: 18, approx: false}
+  - {ligne: "G2 Descendants d’immigrés", colonne: "Fort taux de chômage (quintile supérieur), 2019", valeur: 20, approx: false}
+  - {ligne: "G2 Descendants d’immigrés", colonne: "Forte concentration de cadres (quintile supérieur), 2008", valeur: 20, approx: false}
+  - {ligne: "G2 Descendants d’immigrés", colonne: "Forte concentration de cadres (quintile supérieur), 2019", valeur: 22, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Forte concentration d’immigrés (quintile supérieur), 2008", valeur: 4, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Forte concentration d’immigrés (quintile supérieur), 2019", valeur: 6, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2008", valeur: 4, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2019", valeur: 6, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Fort taux de chômage (quintile supérieur), 2008", valeur: 7, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Fort taux de chômage (quintile supérieur), 2019", valeur: 10, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Forte concentration de cadres (quintile supérieur), 2008", valeur: 18, approx: false}
+  - {ligne: "Population majoritaire", colonne: "Forte concentration de cadres (quintile supérieur), 2019", valeur: 19, approx: false}
+  - {ligne: "Maghreb", colonne: "Forte concentration d’immigrés (quintile supérieur), 2008", valeur: 29, approx: false}
+  - {ligne: "Maghreb", colonne: "Forte concentration d’immigrés (quintile supérieur), 2019", valeur: 33, approx: false}
+  - {ligne: "Maghreb", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2008", valeur: 32, approx: false}
+  - {ligne: "Maghreb", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2019", valeur: 36, approx: false}
+  - {ligne: "Maghreb", colonne: "Fort taux de chômage (quintile supérieur), 2008", valeur: 31, approx: false}
+  - {ligne: "Maghreb", colonne: "Fort taux de chômage (quintile supérieur), 2019", valeur: 31, approx: false}
+  - {ligne: "Maghreb", colonne: "Forte concentration de cadres (quintile supérieur), 2008", valeur: 17, approx: false}
+  - {ligne: "Maghreb", colonne: "Forte concentration de cadres (quintile supérieur), 2019", valeur: 19, approx: false}
+  - {ligne: "Afrique subsaharienne", colonne: "Forte concentration d’immigrés (quintile supérieur), 2008", valeur: 37, approx: false}
+  - {ligne: "Afrique subsaharienne", colonne: "Forte concentration d’immigrés (quintile supérieur), 2019", valeur: 47, approx: false}
+  - {ligne: "Afrique subsaharienne", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2008", valeur: 40, approx: false}
+  - {ligne: "Afrique subsaharienne", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2019", valeur: 51, approx: false}
+  - {ligne: "Afrique subsaharienne", colonne: "Fort taux de chômage (quintile supérieur), 2008", valeur: 29, approx: false}
+  - {ligne: "Afrique subsaharienne", colonne: "Fort taux de chômage (quintile supérieur), 2019", valeur: 33, approx: false}
+  - {ligne: "Afrique subsaharienne", colonne: "Forte concentration de cadres (quintile supérieur), 2008", valeur: 22, approx: false}
+  - {ligne: "Afrique subsaharienne", colonne: "Forte concentration de cadres (quintile supérieur), 2019", valeur: 18, approx: false}
+  - {ligne: "Europe du Sud", colonne: "Forte concentration d’immigrés (quintile supérieur), 2008", valeur: 9, approx: false}
+  - {ligne: "Europe du Sud", colonne: "Forte concentration d’immigrés (quintile supérieur), 2019", valeur: 11, approx: false}
+  - {ligne: "Europe du Sud", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2008", valeur: 7, approx: false}
+  - {ligne: "Europe du Sud", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2019", valeur: 9, approx: false}
+  - {ligne: "Europe du Sud", colonne: "Fort taux de chômage (quintile supérieur), 2008", valeur: 8, approx: false}
+  - {ligne: "Europe du Sud", colonne: "Fort taux de chômage (quintile supérieur), 2019", valeur: 10, approx: false}
+  - {ligne: "Europe du Sud", colonne: "Forte concentration de cadres (quintile supérieur), 2008", valeur: 18, approx: false}
+  - {ligne: "Europe du Sud", colonne: "Forte concentration de cadres (quintile supérieur), 2019", valeur: 24, approx: false}
+  - {ligne: "Autres UE 27", colonne: "Forte concentration d’immigrés (quintile supérieur), 2008", valeur: 9, approx: false}
+  - {ligne: "Autres UE 27", colonne: "Forte concentration d’immigrés (quintile supérieur), 2019", valeur: 12, approx: false}
+  - {ligne: "Autres UE 27", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2008", valeur: 7, approx: false}
+  - {ligne: "Autres UE 27", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2019", valeur: 12, approx: false}
+  - {ligne: "Autres UE 27", colonne: "Fort taux de chômage (quintile supérieur), 2008", valeur: 8, approx: false}
+  - {ligne: "Autres UE 27", colonne: "Fort taux de chômage (quintile supérieur), 2019", valeur: 14, approx: false}
+  - {ligne: "Autres UE 27", colonne: "Forte concentration de cadres (quintile supérieur), 2008", valeur: 30, approx: false}
+  - {ligne: "Autres UE 27", colonne: "Forte concentration de cadres (quintile supérieur), 2019", valeur: 29, approx: false}
+  - {ligne: "Autres pays", colonne: "Forte concentration d’immigrés (quintile supérieur), 2008", valeur: 27, approx: false}
+  - {ligne: "Autres pays", colonne: "Forte concentration d’immigrés (quintile supérieur), 2019", valeur: 30, approx: false}
+  - {ligne: "Autres pays", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2008", valeur: 24, approx: false}
+  - {ligne: "Autres pays", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2019", valeur: 26, approx: false}
+  - {ligne: "Autres pays", colonne: "Fort taux de chômage (quintile supérieur), 2008", valeur: 21, approx: false}
+  - {ligne: "Autres pays", colonne: "Fort taux de chômage (quintile supérieur), 2019", valeur: 20, approx: false}
+  - {ligne: "Autres pays", colonne: "Forte concentration de cadres (quintile supérieur), 2008", valeur: 27, approx: false}
+  - {ligne: "Autres pays", colonne: "Forte concentration de cadres (quintile supérieur), 2019", valeur: 26, approx: false}
+  - {ligne: "Hommes", colonne: "Forte concentration d’immigrés (quintile supérieur), 2008", valeur: 8, approx: false}
+  - {ligne: "Hommes", colonne: "Forte concentration d’immigrés (quintile supérieur), 2019", valeur: 11, approx: false}
+  - {ligne: "Hommes", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2008", valeur: 7, approx: false}
+  - {ligne: "Hommes", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2019", valeur: 11, approx: false}
+  - {ligne: "Hommes", colonne: "Fort taux de chômage (quintile supérieur), 2008", valeur: 11, approx: false}
+  - {ligne: "Hommes", colonne: "Fort taux de chômage (quintile supérieur), 2019", valeur: 12, approx: false}
+  - {ligne: "Hommes", colonne: "Forte concentration de cadres (quintile supérieur), 2008", valeur: 18, approx: false}
+  - {ligne: "Hommes", colonne: "Forte concentration de cadres (quintile supérieur), 2019", valeur: 21, approx: false}
+  - {ligne: "Femmes", colonne: "Forte concentration d’immigrés (quintile supérieur), 2008", valeur: 8, approx: false}
+  - {ligne: "Femmes", colonne: "Forte concentration d’immigrés (quintile supérieur), 2019", valeur: 12, approx: false}
+  - {ligne: "Femmes", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2008", valeur: 8, approx: false}
+  - {ligne: "Femmes", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2019", valeur: 13, approx: false}
+  - {ligne: "Femmes", colonne: "Fort taux de chômage (quintile supérieur), 2008", valeur: 10, approx: false}
+  - {ligne: "Femmes", colonne: "Fort taux de chômage (quintile supérieur), 2019", valeur: 14, approx: false}
+  - {ligne: "Femmes", colonne: "Forte concentration de cadres (quintile supérieur), 2008", valeur: 19, approx: false}
+  - {ligne: "Femmes", colonne: "Forte concentration de cadres (quintile supérieur), 2019", valeur: 18, approx: false}
+  - {ligne: "Total", colonne: "Forte concentration d’immigrés (quintile supérieur), 2008", valeur: 8, approx: false}
+  - {ligne: "Total", colonne: "Forte concentration d’immigrés (quintile supérieur), 2019", valeur: 12, approx: false}
+  - {ligne: "Total", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2008", valeur: 8, approx: false}
+  - {ligne: "Total", colonne: "Forte concentration d’immigrés non européens (quintile supérieur), 2019", valeur: 12, approx: false}
+  - {ligne: "Total", colonne: "Fort taux de chômage (quintile supérieur), 2008", valeur: 10, approx: false}
+  - {ligne: "Total", colonne: "Fort taux de chômage (quintile supérieur), 2019", valeur: 13, approx: false}
+  - {ligne: "Total", colonne: "Forte concentration de cadres (quintile supérieur), 2008", valeur: 18, approx: false}
+  - {ligne: "Total", colonne: "Forte concentration de cadres (quintile supérieur), 2019", valeur: 20, approx: false}
