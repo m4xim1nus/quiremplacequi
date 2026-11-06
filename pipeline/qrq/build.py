@@ -47,6 +47,12 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
         for (lo, hi), v in zip(cohortes.TRANCHES, cohortes.tranches(a["etat"][g]))
     ]
     tables["cohortes_calage"] = cohortes.ecarts_calage(sim, entrees, cibles, tables["flux"], raw)
+    # Pyramides des âges (Insee), pour « l'eau d'une année encore présente » dans la piscine.
+    tables["ages"] = [
+        {"annee": a, "age": i, "population": round(float(x))}
+        for a, v in sorted(entrees.ages.items())
+        for i, x in enumerate(v)
+    ]
     tables["teo2"] = teo2.lire_teo2()
     tables["ip1910"] = ip1910.lire_ip1910(raw)
 

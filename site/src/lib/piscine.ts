@@ -57,6 +57,19 @@ export interface DonneesPiscine {
   ratio_deces: { moyen: number; min: number; max: number; calage: number[] };
   evenements: Evenement[];
   annees: AnneePiscine[];
+  /**
+   * Pyramides des âges : `nes_avant[Y][k]` = part de la population de l'année Y née avant le
+   * 1er janvier Y − k (âgée d'au moins k ans). Ajouté au prérendu (server/donnees.ts).
+   */
+  nes_avant?: Record<number, number[]>;
+}
+
+/** Part de la population de l'année `y` née avant le 1er janvier de l'année `x` (x ≤ y). */
+export function partNesAvant(nes: Record<number, number[]>, x: number, y: number): number {
+  const v = nes[y];
+  if (!v) return NaN;
+  const k = y - x;
+  return k < v.length ? v[k] : v[v.length - 1];
 }
 
 /**

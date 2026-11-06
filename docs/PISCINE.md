@@ -224,7 +224,12 @@ Les générations viennent du modèle de cohortes (`docs/METHODO.md`).
 - la scène tient dans l'écran (≤ 70 % de la hauteur), vannes rapprochées sur mobile ;
 - **frise** : aire empilée des parts G1, G2, G3 de 1921 à 2025, régime des données, repères,
   cliquable ;
-- **compteur cumulé** : naissances, décès et solde migratoire depuis 1921.
+- **compteur cumulé** : naissances, décès et solde migratoire depuis l'année de départ ;
+- **« Suivre l'eau de {année} »** : les habitants présents à l'année de départ restent foncés, les
+  entrées suivantes pâlissent. Le nombre de points foncés suit la part observée des habitants nés
+  avant cette année (pyramides des âges Insee, `ages.csv`), et non le hasard des sorties : les
+  décès prennent surtout de l'eau ancienne. Limite affichée : cette part compte aussi les immigrés
+  nés avant l'année de départ et arrivés depuis.
 
 La v1 du site embarque au moins la piscine v2. La v3 dépend de ce que le
 spike historique trouve sous forme exploitable.

@@ -5,7 +5,7 @@
   // ou mélangée ; chaque colonne se vide par le fond vers deux bondes. Dessin Canvas 2D ; textes
   // et commandes en HTML par-dessus.
   import { onMount } from 'svelte';
-  import { Moteur, SCENE, geometrie, type Ruban, type Vannes } from '$lib/moteur';
+  import { Moteur, SCENE, geometrie, type Particule, type Ruban, type Vannes } from '$lib/moteur';
   import PiscineFrise from './PiscineFrise.svelte';
   import {
     STATUTS,
@@ -16,6 +16,7 @@
     debits,
     somme,
     cumuls,
+    partNesAvant,
     type DonneesPiscine,
     type Teinte
   } from '$lib/piscine';
@@ -37,6 +38,12 @@
   let vitesse = $state(1);
   let calme = $state(false);
   let decante = $state(true);
+  let suivre = $state(false);
+  // svelte-ignore state_referenced_locally
+  let origine = $state(donnees.annees[0].annee);
+  const nesAvant = $derived(
+    donnees.nes_avant ? partNesAvant(donnees.nes_avant, origine, annee) : null
+  );
   // svelte-ignore state_referenced_locally
   let echelle = $state(donnees.echelle);
   let hauteur = $state(0);
@@ -48,7 +55,7 @@
   const reconstruit = $derived(ligne.statut_flux === 'reconstruit');
   const st = $derived(stocks(ligne));
   const generations = $derived(ligne.g2a !== undefined);
-  const cumul = $derived(cumuls(annees, debut, annee));
+  const cumul = $derived(cumuls(annees, origine, annee));
 
   function couleurs() {
     const s = getComputedStyle(cadre);
@@ -194,22 +201,29 @@
       1,
       Math.min(2.8, 0.42 * Math.sqrt(((x1 - x0) * w * (bas - haut) * h * 0.8) / n))
     );
-    for (const teinte of TEINTES) {
-      ctx.fillStyle = k.teinte[teinte];
+    // Suivre l'eau d'une année : l'eau de départ en encre, les entrées depuis dans leur teinte, pâles.
+    const pale = suivre ? 0.35 : 1;
+    const lot = (couleur: string, alpha: number, garder: (p: Particule) => boolean) => {
+      ctx.fillStyle = couleur;
+      ctx.globalAlpha = alpha;
       ctx.beginPath();
-      for (const p of moteur.particules) {
-        if (p.teinte !== teinte || p.alpha < 1) continue;
-        const [x, y] = moteur.position(p, niveau);
+      for (const p of moteur!.particules) {
+        if (p.alpha < 1 || !garder(p)) continue;
+        const [x, y] = moteur!.position(p, niveau);
         ctx.moveTo(x * w + rayon, y * h);
         ctx.arc(x * w, y * h, rayon, 0, Math.PI * 2);
       }
       ctx.fill();
-    }
+    };
+    for (const teinte of TEINTES)
+      lot(k.teinte[teinte], pale, (p) => p.teinte === teinte && !(suivre && p.origine));
+    if (suivre) lot(k.encre, 0.8, (p) => p.origine);
+    ctx.globalAlpha = 1;
     for (const p of moteur.particules) {
       if (p.alpha >= 1) continue;
       const [x, y] = moteur.position(p, niveau);
-      ctx.globalAlpha = Math.max(0, p.alpha);
-      ctx.fillStyle = k.teinte[p.teinte];
+      ctx.globalAlpha = Math.max(0, p.alpha) * (suivre && !p.origine ? pale : 1);
+      ctx.fillStyle = suivre && p.origine ? k.encre : k.teinte[p.teinte];
       ctx.beginPath();
       ctx.arc(x * w, y * h, rayon, 0, Math.PI * 2);
       ctx.fill();
@@ -289,9 +303,10 @@
       if (!moteur || e !== echelle || etroit !== w < 600) {
         echelle = e;
         etroit = w < 600;
-        moteur = new Moteur(annees, e, etroit);
+        moteur = new Moteur(annees, e, etroit, donnees.nes_avant);
         moteur.decante = moteur.decanteCible = decante ? 1 : 0;
         moteur.aller(annee);
+        origine = annee;
       }
     };
     taille();
@@ -326,6 +341,7 @@
 
   function aller(a: number) {
     annee = a;
+    origine = a;
     moteur?.aller(a);
   }
 
@@ -351,6 +367,11 @@
   <div class="compteur" aria-live="polite">
     <span class="annee">{annee}</span>
     <span>{milliers(ligne.population)} habitants</span>
+    {#if suivre && nesAvant != null && annee > origine}
+      <span class="restant"
+        >nés avant {origine} : <strong>{pct(100 * nesAvant)}</strong> des habitants</span
+      >
+    {/if}
     {#if evenement}<span class="repere-court">{evenement.libelle.split(' :')[0]}</span>{/if}
   </div>
   <div class="scene" bind:this={cadre} style:--h="{hauteur}px">
@@ -445,6 +466,16 @@
       <span class="bornes"><span>{debut}</span><span>{fin}</span></span>
     </div>
     <div class="reglages">
+      {#if donnees.nes_avant}
+        <button
+          type="button"
+          class="suivre"
+          aria-pressed={suivre}
+          onclick={() => (suivre = !suivre)}
+          title="Les habitants présents en {origine} restent en couleur ; ceux arrivés ou nés depuis pâlissent."
+          >Suivre l’eau de {origine}</button
+        >
+      {/if}
       <div class="bascule" role="group" aria-label="État de l’eau">
         <button type="button" aria-pressed={decante} onclick={() => (decante = true)}
           >Décantée</button
@@ -466,13 +497,13 @@
 
   <figcaption>
     <p class="cumul">
-      {#if annee > debut}
-        De {debut} à {annee}, <strong>{millions(cumul.naissances)}</strong> de naissances et
+      {#if annee > origine}
+        De {origine} à {annee}, <strong>{millions(cumul.naissances)}</strong> de naissances et
         <strong>{millions(cumul.deces)}</strong> de décès sont passés par les vannes, pour un solde
         migratoire de <strong>{millions(cumul.migration, true)}</strong>.
       {:else}
         Lancez la lecture : les compteurs cumulent les naissances, les décès et le solde migratoire
-        depuis {debut}.
+        depuis {origine}.
       {/if}
     </p>
     <table class="composition">
@@ -515,6 +546,13 @@
       >
       <span><b class="pastille ajust"></b>ajustement (champ ou collecte, jamais une arrivée)</span>
       <span>1 point = {entier(echelle)} personnes</span>
+      {#if suivre}
+        <span
+          ><b class="pastille" style:background="var(--encre)"></b>les habitants de {origine} encore là.
+          Leur nombre suit la part des habitants nés avant {origine} (pyramides des âges, Insee), qui
+          compte aussi les immigrés nés avant {origine} et arrivés depuis.</span
+        >
+      {/if}
     </p>
     <p class="lecture">Lecture : {lectureTexte}</p>
   </figcaption>
@@ -607,6 +645,9 @@
     font-weight: 700;
     color: var(--encre);
     line-height: 1;
+  }
+  .restant strong {
+    color: var(--encre);
   }
   .repere-court {
     font-weight: 600;

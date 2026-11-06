@@ -12,6 +12,7 @@ import {
   couches,
   debits,
   mouvements,
+  partNesAvant,
   particules,
   somme,
   stocks,
@@ -104,6 +105,8 @@ export interface Particule {
   alpha: number;
   /** L'ajustement est montré (anneau gris) ou silencieux (arrondi). */
   marque: boolean;
+  /** Présente dans l'eau à l'année de départ (`Moteur.origine`), jamais sortie depuis. */
+  origine: boolean;
 }
 
 /** Durées (secondes réelles) des trajets : robinet → surface, eau → bouche, bouche → bonde. */
@@ -133,11 +136,20 @@ export class Moteur {
   fin: number;
 
   vannes: Vannes;
+  /** Année de départ : l'eau de cette année est suivie (particules `origine`). */
+  origine = 0;
+  /** Probabilité qu'une sortie de l'année prenne une particule d'origine. */
+  private pOrigine = 0;
 
+  /**
+   * `nesAvant` (pyramides des âges) : la part d'origine encore présente suit la part observée des
+   * habitants nés avant l'année de départ, au lieu de dépendre du hasard des sorties.
+   */
   constructor(
     donnees: AnneePiscine[],
     public echelle: number,
-    etroit = false
+    etroit = false,
+    private nesAvant?: Record<number, number[]>
   ) {
     this.vannes = geometrie(etroit);
     this.annees = new Map(donnees.map((a) => [a.annee, a]));
@@ -238,9 +250,12 @@ export class Moteur {
     for (const t of TEINTES) {
       for (let i = 0, k = particules(st[t], this.echelle); i < k; i++) {
         const v = this.r();
-        this.particules.push(this.nouvelle(this.r(), v, t, ETATS.eau, null));
+        const p = this.nouvelle(this.r(), v, t, ETATS.eau, null);
+        p.origine = true;
+        this.particules.push(p);
       }
     }
+    this.origine = a;
     this.bornes = couches(this.compter());
     // Ordre de dessin mélangé : aucune teinte ne recouvre les autres.
     for (let i = this.particules.length - 1; i > 0; i--) {
@@ -266,7 +281,8 @@ export class Moteur {
       etat,
       vanne,
       alpha: 1,
-      marque: false
+      marque: false,
+      origine: false
     } satisfies Particule as Particule;
   }
 
@@ -276,6 +292,26 @@ export class Moteur {
     this.file = l && s ? mouvements(l, s, this.echelle) : [];
     this.curseur = 0;
     this.anneeFile = a;
+    this.pOrigine = 0;
+    if (this.nesAvant && l && s) {
+      const st = stocks(s);
+      const total = TEINTES.reduce<number>((n, t) => n + particules(st[t], this.echelle), 0);
+      const cible = Math.round(total * partNesAvant(this.nesAvant, this.origine, a + 1));
+      const reste = this.particules.filter(
+        (p) => p.origine && (p.etat === ETATS.eau || p.etat === ETATS.apparait)
+      ).length;
+      const sorties = this.file.filter((m) => m.sens === -1).length;
+      if (Number.isFinite(cible) && sorties > 0)
+        this.pOrigine = Math.max(0, Math.min(1, (reste - cible) / sorties));
+    }
+  }
+
+  /** Particules d'origine encore dans l'eau. */
+  restantes(): number {
+    let n = 0;
+    for (const p of this.particules)
+      if (p.origine && p.etat !== ETATS.sort && p.etat !== ETATS.disparait) n++;
+    return n;
   }
 
   /**
@@ -342,6 +378,12 @@ export class Moteur {
 
   private choisir(teinte: Teinte): number {
     const n = this.particules.length;
+    const origine = this.r() < this.pOrigine;
+    for (let essai = 0; essai < 400; essai++) {
+      const i = Math.floor(this.r() * n);
+      const p = this.particules[i];
+      if (p.teinte === teinte && p.etat === ETATS.eau && p.origine === origine) return i;
+    }
     for (let essai = 0; essai < 200; essai++) {
       const i = Math.floor(this.r() * n);
       const p = this.particules[i];

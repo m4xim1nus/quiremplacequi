@@ -7,6 +7,7 @@ import {
   debits,
   mouvements,
   particules,
+  partNesAvant,
   solde,
   somme,
   stocks,
@@ -125,5 +126,20 @@ describe('vannes et cumuls', () => {
     const f = (g1.xb - 0.05) / 0.9;
     expect(f).toBeGreaterThan(lo);
     expect(f).toBeLessThan(hi);
+  });
+});
+
+describe("l'eau d'une année", () => {
+  it('la part d’origine restante suit la part des habitants nés avant l’année de départ', async () => {
+    const { nesAvant } = await import('./server/donnees');
+    const nes = nesAvant(donnees.annees[0].annee);
+    const m = new Moteur(donnees.annees, E, false, nes);
+    m.aller(1950);
+    m.avancer(50, true);
+    const total = m.comptes().reduce((a, b) => a + b, 0);
+    const attendu = partNesAvant(nes, 1950, 2000);
+    expect(attendu).toBeGreaterThan(0.3);
+    expect(attendu).toBeLessThan(0.6);
+    expect(Math.abs(m.restantes() / total - attendu)).toBeLessThan(0.02);
   });
 });

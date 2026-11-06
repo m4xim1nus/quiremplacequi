@@ -1,9 +1,10 @@
-import { descendants2025, incertitudes, piscine, teo2 } from '$lib/server/donnees';
+import { descendants2025, incertitudes, nesAvant, piscine, teo2 } from '$lib/server/donnees';
 
 const CODES = ['U17', 'U19', 'U18', 'U1', 'U2', 'U3', 'U5', 'U6'];
 
 export const load = () => {
   const p = piscine();
+  p.nes_avant = nesAvant(p.annees[0].annee);
   const an = (a: number) => p.annees.find((x) => x.annee === a)!;
   const u = incertitudes();
   const a22 = an(2022);

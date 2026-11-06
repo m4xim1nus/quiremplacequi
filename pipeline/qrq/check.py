@@ -98,6 +98,18 @@ def verifier(export: Path) -> tuple[bool, list[str]]:
     lignes.append(f"info TeO2 : {len(lire_teo2())} cellules saisies, {len(anomalies)} anomalie(s) signalée(s)")
     lignes.extend(f"     · {a}" for a in anomalies)
 
+    # Pyramides des âges : leur total retombe sur la population de la piscine. Le site n'en utilise
+    # que des parts (« nés avant telle année »). En 1990, l'onglet ne donne que la métropole.
+    ages = pl.read_csv(export / "ages.csv").group_by("annee").agg(pl.col("population").sum())
+    tot = dict(ages.rows())
+    ecarts = {a["annee"]: tot[a["annee"]] / a["population"] - 1 for a in ans if a["annee"] in tot and a["annee"] != 1990}
+    pire = max(ecarts, key=lambda a: abs(ecarts[a]))
+    controle(
+        "ages : total = population de la piscine (± 0,5 %, hors 1990)",
+        len(ecarts) == len(ans) - 1 and abs(ecarts[pire]) <= 0.005,
+        f"pire {pire} : {100 * ecarts[pire]:+.2f} %",
+    )
+
     # Témoins lus dans les sources (docs/spike/insee.md).
     temoins = {
         ("b1_stock", 2025, "immigres"): 7_970_000,

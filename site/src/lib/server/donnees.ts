@@ -40,3 +40,31 @@ export function descendants2025(): { effectif: number; part_un_parent: number } 
     Number(rows.find((r) => r.temoin === 'descendants_2025' && r.cle === cle)!.observe);
   return { effectif: f('effectif'), part_un_parent: f('part_un_parent') };
 }
+
+/**
+ * Pyramides des âges (Insee) réduites à ce qu'en lit la piscine : pour chaque année Y, la part de
+ * la population âgée d'au moins k ans au 1er janvier, c'est-à-dire née avant le 1er janvier Y − k,
+ * pour k de 0 à Y − `debut` (au plus 105, dernier âge de la pyramide).
+ */
+export function nesAvant(debut: number): Record<number, number[]> {
+  const rows = csvParse(readFileSync(resolve(EXPORT, 'ages.csv'), 'utf8'));
+  const par = new Map<number, number[]>();
+  for (const r of rows) {
+    const a = Number(r.annee);
+    if (a < debut) continue;
+    if (!par.has(a)) par.set(a, []);
+    par.get(a)![Number(r.age)] = Number(r.population);
+  }
+  const out: Record<number, number[]> = {};
+  for (const [a, v] of par) {
+    const total = v.reduce((s, x) => s + x, 0);
+    const parts: number[] = [];
+    let cumul = total;
+    for (let k = 0; k <= Math.min(a - debut, v.length - 1); k++) {
+      parts.push(Math.round((cumul / total) * 1e5) / 1e5);
+      cumul -= v[k];
+    }
+    out[a] = parts;
+  }
+  return out;
+}
