@@ -67,6 +67,31 @@
     color: var(--encre);
     font-size: 0.9rem;
   }
+  /* Petit écran : une ligne par réponse (question et chiffre), la phrase en dessous, sans cadre. */
+  @media (max-width: 599px) {
+    ol {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    a {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: 0.75rem;
+      padding: 0.6rem 0;
+      border: 0;
+      border-bottom: 1px solid var(--reglure);
+      border-radius: 0;
+    }
+    .chiffre {
+      grid-column: 2;
+      grid-row: 1;
+      font-size: var(--t-2);
+      margin-top: 0;
+    }
+    .reponse-courte {
+      grid-column: 1 / -1;
+    }
+  }
   .chiffre {
     font-size: var(--t-3);
     white-space: nowrap;

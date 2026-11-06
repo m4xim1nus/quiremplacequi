@@ -5,7 +5,15 @@
   // ou mélangée ; chaque colonne se vide par le fond vers deux bondes. Dessin Canvas 2D ; textes
   // et commandes en HTML par-dessus.
   import { onMount } from 'svelte';
-  import { Moteur, SCENE, geometrie, type Particule, type Ruban, type Vannes } from '$lib/moteur';
+  import {
+    Moteur,
+    SCENE,
+    geometrie,
+    surRuban,
+    type Particule,
+    type Ruban,
+    type Vannes
+  } from '$lib/moteur';
   import PiscineFrise from './PiscineFrise.svelte';
   import {
     STATUTS,
@@ -360,6 +368,74 @@
       ` Dans l’année : ${milliers(somme(d.naissances))} naissances, ${milliers(somme(d.deces))} décès.`
   );
   const LIGNES: Teinte[] = [4, 3, 2, 1, 0];
+
+  // Survol : une colonne (effectif, part) ou un ruban (débit de l'année).
+  const NOMS_VANNES = {
+    naissances: 'Naissances',
+    arrivees: 'Arrivées',
+    deces: 'Décès',
+    departs: 'Départs'
+  } as const;
+  let bulle = $state<{
+    x: number;
+    y: number;
+    gauche?: boolean;
+    titre: string;
+    texte: string;
+  } | null>(null);
+  function survoler(e: PointerEvent) {
+    if (!moteur) return;
+    const r = cadre.getBoundingClientRect();
+    const px = e.clientX - r.left;
+    const py = e.clientY - r.top;
+    const u = px / r.width;
+    const v = py / r.height;
+    const w = r.width;
+    const h = r.height;
+    // Rubans : distance à la ligne médiane, échantillonnée.
+    for (const rb of moteur.rubans) {
+      for (let i = 0; i <= 24; i++) {
+        const [x, y] = surRuban(rb, i / 24);
+        if (Math.abs(y * h - py) < 6 && Math.abs(x * w - px) < (rb.largeur * w) / 2 + 3) {
+          const net = reconstruit && (rb.vanne === 'arrivees' || rb.vanne === 'departs');
+          bulle = {
+            x: px,
+            gauche: px > w * 0.6,
+            y: py,
+            titre: `${NOMS_VANNES[rb.vanne]}${net ? ' (solde net)' : ''} · ${GENERATIONS[rb.teinte].court}`,
+            texte: `${milliers(d[rb.vanne][rb.teinte])} en ${annee}`
+          };
+          return;
+        }
+      }
+    }
+    const { x0, x1, bas } = SCENE.bassin;
+    if (u >= x0 && u <= x1 && v <= bas && v >= moteur.surface()) {
+      const f = (u - x0) / (x1 - x0);
+      const t = decante
+        ? TEINTES.find((t) => f >= moteur!.bornes[t][0] && f < moteur!.bornes[t][1])
+        : undefined;
+      bulle =
+        t === undefined
+          ? {
+              x: px,
+              gauche: px > w * 0.6,
+              y: py,
+              titre: `${milliers(ligne.population)} habitants`,
+              texte: `au 1er janvier ${annee}`
+            }
+          : {
+              x: px,
+              gauche: px > w * 0.6,
+              y: py,
+              titre: GENERATIONS[t].libelle,
+              texte: `${milliers(st[t])} au 1er janvier ${annee}, soit ${pct((100 * st[t]) / ligne.population)}${t > 0 && t < 4 ? ' (modèle)' : ''}`
+            };
+      return;
+    }
+    bulle = null;
+  }
+
   const pos = (v: keyof Vannes) => geometrie(etroit)[v].x * 100;
 </script>
 
@@ -374,7 +450,26 @@
     {/if}
     {#if evenement}<span class="repere-court">{evenement.libelle.split(' :')[0]}</span>{/if}
   </div>
-  <div class="scene" bind:this={cadre} style:--h="{hauteur}px">
+  <div
+    class="scene"
+    role="presentation"
+    bind:this={cadre}
+    style:--h="{hauteur}px"
+    onpointermove={survoler}
+    onpointerleave={() => (bulle = null)}
+  >
+    {#if bulle}
+      <div
+        class="bulle"
+        class:gauche={bulle.gauche}
+        style:left="{bulle.x}px"
+        style:top="{bulle.y}px"
+        aria-hidden="true"
+      >
+        <strong>{bulle.titre}</strong>
+        <span>{bulle.texte}</span>
+      </div>
+    {/if}
     <div role="img" aria-label={lectureTexte}>
       <canvas bind:this={canvas} aria-hidden="true"></canvas>
     </div>
@@ -615,6 +710,29 @@
   .etiquette.droite {
     transform: translateX(3rem);
     align-items: flex-start;
+  }
+  .bulle {
+    position: absolute;
+    z-index: 2;
+    transform: translate(12px, -50%);
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    max-width: 16rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: 0.4rem;
+    background: var(--papier);
+    border: 1px solid var(--bord);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+    font-size: var(--t-0);
+    color: var(--ardoise);
+    pointer-events: none;
+  }
+  .bulle.gauche {
+    transform: translate(calc(-100% - 12px), -50%);
+  }
+  .bulle strong {
+    color: var(--encre);
   }
   .flou {
     opacity: 0.65;

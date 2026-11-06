@@ -53,5 +53,5 @@ réfléchir avant d'arbitrer, `[refusé]` tranché négatif (trace gardée).
 - [→site] Pages trop denses, « trop article » (Générations notamment) : sommaire en réponses, réponse sous chaque question, « Le détail » replié ; fait (user:max, 2026-11-06)
 - [ ] Phrases « réponse » et cartes de sommaire nouvelles (Générations, Le temps long, La piscine) : à valider par Max (claude, 2026-11-06)
 - [→A] Piscine : « part de l'eau de 1921 encore présente », pour rendre visible le renouvellement complet ; fait (« Suivre l'eau de… », pyramides des âges) (claude, 2026-11-06)
-- [→A] Piscine : survol d'un ruban ou d'une colonne → valeur exacte et définition (claude, 2026-11-06)
-- [ ] Sommaire « La page en cinq réponses » : ≈ deux écrans sur mobile, à compacter (claude, 2026-11-06)
+- [→A] Piscine : survol d'un ruban ou d'une colonne → valeur exacte et définition ; fait (claude, 2026-11-06)
+- [→site] Sommaire « La page en cinq réponses » : ≈ deux écrans sur mobile ; compacté en liste (claude, 2026-11-06)
