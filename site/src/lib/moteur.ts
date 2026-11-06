@@ -1,15 +1,23 @@
 // Moteur de particules de la piscine : l'état de l'eau et son évolution dans le temps.
 // Sans DOM (le dessin est dans components/Piscine.svelte) ; coordonnées normalisées (0-1) de la
 // scène, converties en pixels au dessin.
+//
+// La scène se lit de haut en bas : deux robinets (naissances, arrivées) versent par des rubans
+// d'épaisseur proportionnelle au débit dans les colonnes du bassin (une par génération, de largeur
+// proportionnelle à l'effectif quand l'eau est décantée) ; chaque colonne se vide par le fond vers
+// deux bondes (décès, départs).
 
 import {
   alea,
   couches,
+  debits,
   mouvements,
   particules,
+  somme,
   stocks,
   TEINTES,
   type AnneePiscine,
+  type Debits,
   type Mouvement,
   type Teinte,
   type Vanne
@@ -17,63 +25,128 @@ import {
 
 /** Géométrie normalisée de la scène (fractions de la largeur et de la hauteur). */
 export const SCENE = {
-  bassin: { x0: 0.1, x1: 0.9, haut: 0.2, bas: 0.93 },
+  bassin: { x0: 0.05, x1: 0.95, haut: 0.21, bas: 0.79 },
+  /** Robinets (en haut) et bondes (en bas) : abscisse, et ordonnées du tuyau droit. */
   vannes: {
-    naissances: { x: 0.26, y: 0.1 },
-    arrivees: { x: 0.74, y: 0.1 },
-    deces: { x: 0.17, y: 1.0 },
-    departs: { x: 0.83, y: 1.0 }
-  }
+    naissances: { x: 0.3, y0: 0, y1: 0.06 },
+    arrivees: { x: 0.8, y0: 0, y1: 0.06 },
+    deces: { x: 0.3, y0: 0.94, y1: 1 },
+    departs: { x: 0.8, y0: 0.94, y1: 1 }
+  },
+  /** Largeur du plus gros débit de la période (fraction de la largeur de la scène). */
+  largeurMax: 0.075
 } as const;
+
+export type Vannes = { [K in keyof typeof SCENE.vannes]: { x: number; y0: number; y1: number } };
+
+/** Sur écran étroit, les vannes se rapprochent du centre pour laisser la place aux étiquettes. */
+export function geometrie(etroit: boolean): Vannes {
+  if (!etroit) return SCENE.vannes;
+  const v = SCENE.vannes;
+  return {
+    naissances: { ...v.naissances, x: 0.4 },
+    arrivees: { ...v.arrivees, x: 0.66 },
+    deces: { ...v.deces, x: 0.4 },
+    departs: { ...v.departs, x: 0.66 }
+  };
+}
 
 export const ETATS = { eau: 0, entre: 1, sort: 2, apparait: 3, disparait: 4 } as const;
 
+type Flux = 'naissances' | 'arrivees' | 'deces' | 'departs';
+const ENTREES: Flux[] = ['naissances', 'arrivees'];
+const SORTIES: Flux[] = ['deces', 'departs'];
+
+/**
+ * Un ruban : le trajet d'un débit (une vanne, une teinte) entre un robinet et le haut d'une
+ * colonne, ou entre le fond d'une colonne et une bonde. `xa, ya` : départ ; `xb, yb` : arrivée.
+ */
+export interface Ruban {
+  vanne: Flux;
+  teinte: Teinte;
+  largeur: number;
+  xa: number;
+  ya: number;
+  xb: number;
+  yb: number;
+}
+
+/** Point d'un ruban à l'abscisse curviligne `s` (0-1) et au décalage latéral `lat` (−0,5 à 0,5). */
+export function surRuban(r: Ruban, s: number, lat = 0): [number, number] {
+  const k = 1 - s;
+  const b0 = k * k * k;
+  const b1 = 3 * k * k * s;
+  const b2 = 3 * k * s * s;
+  const b3 = s * s * s;
+  const ym = (r.ya + r.yb) / 2;
+  const d = lat * r.largeur;
+  return [(b0 + b1) * (r.xa + d) + (b2 + b3) * (r.xb + d), b0 * r.ya + (b1 + b2) * ym + b3 * r.yb];
+}
+
 export interface Particule {
-  /** Position dans l'eau (0-1 en largeur, 0-1 en hauteur depuis le fond). */
+  /** Position dans l'eau mélangée (0-1 en largeur, 0-1 en hauteur depuis le fond). */
   u: number;
   v: number;
-  /** Profondeur visée (les arrivées descendent doucement). */
+  /** Profondeur visée (les entrées descendent doucement depuis la surface). */
   vCible: number;
-  /** Position libre (chute ou sortie), en coordonnées de scène. */
+  /** Position dans sa colonne quand l'eau est décantée (0-1 en largeur). */
+  rang: number;
+  /** Sur un ruban : abscisse curviligne (négative pendant la descente vers la bonde). */
+  s: number;
+  lat: number;
+  /** Position libre (départ d'une sortie), en coordonnées de scène. */
   x: number;
   y: number;
-  vx: number;
-  vy: number;
   teinte: Teinte;
   etat: number;
-  /** Vanne de sortie ou d'entrée (dessin), et 0-1 d'opacité. */
   vanne: Vanne | null;
+  /** Opacité (0-1). */
   alpha: number;
   /** L'ajustement est montré (anneau gris) ou silencieux (arrondi). */
   marque: boolean;
-  /** Position relative dans sa couche quand l'eau est décantée (0-1). */
-  rang: number;
 }
+
+/** Durées (secondes réelles) des trajets : robinet → surface, eau → bouche, bouche → bonde. */
+const TRAJET = 1.1;
+const DESCENTE = 0.45;
+/** Marge de chaque côté d'une colonne décantée (fraction de la largeur du bassin). */
+const MARGE = 0.006;
+/** Marge relative d'une colonne de largeur `l` (fraction du bassin). */
+const marge = (l: number) => Math.min(0.3, (2 * MARGE) / Math.max(l, 1e-6));
 
 export class Moteur {
   particules: Particule[] = [];
   temps = 0; // années (float)
   private annees: Map<number, AnneePiscine>;
   private capacite: number;
+  private debitMax: number;
   private file: Mouvement[] = [];
   private curseur = 0;
   private anneeFile = -1;
   private r = alea(1);
-  /** 0 = eau mélangée, 1 = décantée en couches (non miscible) ; `decanteCible` est animé. */
+  /** 0 = eau mélangée, 1 = décantée en colonnes (non miscible) ; `decanteCible` est animé. */
   decante = 1;
   decanteCible = 1;
   bornes: Record<Teinte, [number, number]> = couches({ 0: 1, 1: 0, 2: 0, 3: 0, 4: 0 });
+  rubans: Ruban[] = [];
   debut: number;
   fin: number;
 
+  vannes: Vannes;
+
   constructor(
     donnees: AnneePiscine[],
-    public echelle: number
+    public echelle: number,
+    etroit = false
   ) {
+    this.vannes = geometrie(etroit);
     this.annees = new Map(donnees.map((a) => [a.annee, a]));
     this.debut = donnees[0].annee;
     this.fin = donnees[donnees.length - 1].annee;
-    this.capacite = Math.max(...donnees.map((a) => a.population)) * 1.12;
+    this.capacite = Math.max(...donnees.map((a) => a.population)) * 1.04;
+    this.debitMax = Math.max(
+      ...donnees.flatMap((l) => Object.values(debits(l)).map((r) => somme(r)))
+    );
     this.aller(this.debut);
   }
 
@@ -85,8 +158,74 @@ export class Moteur {
     return (p0 + (p1 - p0) * (t - a)) / this.capacite;
   }
 
+  /** Ordonnée (scène) de la surface. */
+  surface(niveau = this.niveau()): number {
+    const { haut, bas } = SCENE.bassin;
+    return bas - (bas - haut) * niveau;
+  }
+
   ligne(a: number): AnneePiscine | undefined {
     return this.annees.get(a);
+  }
+
+  /** Abscisse (scène) du centre de la colonne d'une teinte, eau décantée ou mélangée. */
+  centre(t: Teinte): number {
+    const { x0, x1 } = SCENE.bassin;
+    const [lo, hi] = this.bornes[t];
+    const dec = x0 + ((lo + hi) / 2) * (x1 - x0);
+    // Eau mélangée : les rubans versent à intervalles réguliers sur toute la largeur.
+    const mel = x0 + ((t + 0.5) / TEINTES.length) * (x1 - x0);
+    return mel + (dec - mel) * this.decante;
+  }
+
+  /** Les rubans de l'année en cours, à la géométrie du moment (niveau, colonnes). */
+  calculerRubans(d: Debits = debits(this.ligne(Math.min(this.fin, Math.floor(this.temps)))!)) {
+    const { bassin, largeurMax } = SCENE;
+    const vannes = this.vannes;
+    const surface = this.surface();
+    const larg = (x: number) => (x / this.debitMax) * largeurMax;
+    const out: Ruban[] = [];
+    // Départ de chaque ruban : empilés au robinet ou à la bonde, dans l'ordre des colonnes.
+    const depart: Record<string, number> = {};
+    for (const v of [...ENTREES, ...SORTIES]) {
+      const total = larg(somme(d[v]));
+      let x = vannes[v].x - total / 2;
+      for (const t of TEINTES) {
+        const l = larg(d[v][t]);
+        depart[`${v}-${t}`] = x + l / 2;
+        x += l;
+      }
+    }
+    // Arrivée : empilés en haut (entrées) ou au fond (sorties) de chaque colonne.
+    for (const [groupe, y, yVanne] of [
+      [ENTREES, surface, vannes.naissances.y1],
+      [SORTIES, bassin.bas, vannes.deces.y0]
+    ] as const) {
+      for (const t of TEINTES) {
+        const largeurs = groupe.map((v) => larg(d[v][t]));
+        const total = largeurs.reduce((a, b) => a + b, 0);
+        let x = this.centre(t) - total / 2;
+        groupe.forEach((v, i) => {
+          const l = largeurs[i];
+          if (l > 0) {
+            const xc = x + l / 2;
+            const xv = depart[`${v}-${t}`];
+            out.push(
+              groupe === ENTREES
+                ? { vanne: v, teinte: t, largeur: l, xa: xv, ya: yVanne, xb: xc, yb: y }
+                : { vanne: v, teinte: t, largeur: l, xa: xc, ya: y, xb: xv, yb: yVanne }
+            );
+          }
+          x += l;
+        });
+      }
+    }
+    this.rubans = out;
+    return out;
+  }
+
+  private ruban(vanne: Vanne | null, teinte: Teinte): Ruban | undefined {
+    return this.rubans.find((r) => r.vanne === vanne && r.teinte === teinte);
   }
 
   /** Saut direct à une année : l'eau est reconstruite au stock exact de cette année. */
@@ -95,14 +234,13 @@ export class Moteur {
     const l = this.annees.get(a)!;
     this.r = alea(a * 7919);
     this.particules = [];
-    const ajouter = (k: number, teinte: Teinte) => {
-      for (let i = 0; i < k; i++) {
-        const v = this.r();
-        this.particules.push(this.nouvelle(this.r(), v, v, teinte, ETATS.eau, null));
-      }
-    };
     const st = stocks(l);
-    for (const t of TEINTES) ajouter(particules(st[t], this.echelle), t);
+    for (const t of TEINTES) {
+      for (let i = 0, k = particules(st[t], this.echelle); i < k; i++) {
+        const v = this.r();
+        this.particules.push(this.nouvelle(this.r(), v, t, ETATS.eau, null));
+      }
+    }
     this.bornes = couches(this.compter());
     // Ordre de dessin mélangé : aucune teinte ne recouvre les autres.
     for (let i = this.particules.length - 1; i > 0; i--) {
@@ -111,31 +249,25 @@ export class Moteur {
     }
     this.temps = a;
     this.preparer(a);
+    this.calculerRubans();
   }
 
-  private nouvelle(
-    u: number,
-    v: number,
-    vCible: number,
-    teinte: Teinte,
-    etat: number,
-    vanne: Vanne | null
-  ): Particule {
+  private nouvelle(u: number, v: number, teinte: Teinte, etat: number, vanne: Vanne | null) {
     return {
       u,
       v,
-      vCible,
+      vCible: v,
+      rang: this.r(),
+      s: 0,
+      lat: 0,
       x: 0,
       y: 0,
-      vx: 0,
-      vy: 0,
       teinte,
       etat,
       vanne,
       alpha: 1,
-      marque: false,
-      rang: this.r()
-    };
+      marque: false
+    } satisfies Particule as Particule;
   }
 
   private preparer(a: number) {
@@ -167,38 +299,20 @@ export class Moteur {
   }
 
   private appliquer(m: Mouvement, instantane: boolean) {
-    const { vannes } = SCENE;
+    const lat = (this.r() - 0.5) * 0.8;
     if (m.sens === 1) {
-      if (m.vanne === 'naissances' || m.vanne === 'arrivees') {
-        const o = vannes[m.vanne];
-        const p = this.nouvelle(
-          0,
-          1,
-          this.r(),
-          m.teinte,
-          instantane ? ETATS.eau : ETATS.entre,
-          m.vanne
-        );
-        p.x = o.x + (this.r() - 0.5) * 0.012;
-        p.y = o.y + 0.03;
-        p.vx = (m.vanne === 'naissances' ? 1 : -1) * (0.02 + this.r() * 0.05);
-        p.vy = 0.05;
-        if (instantane) {
-          p.u = this.r();
-          p.v = p.vCible;
-        }
+      const v = this.r();
+      const p = this.nouvelle(this.r(), v, m.teinte, ETATS.eau, m.vanne);
+      if (instantane) {
+        this.particules.push(p);
+      } else if (m.vanne === 'naissances' || m.vanne === 'arrivees') {
+        p.etat = ETATS.entre;
+        p.s = 0;
+        p.lat = lat;
         this.particules.push(p);
       } else {
-        const v = this.r();
-        const p = this.nouvelle(
-          this.r(),
-          v,
-          v,
-          m.teinte,
-          instantane ? ETATS.eau : ETATS.apparait,
-          m.vanne
-        );
-        p.alpha = instantane ? 1 : 0;
+        p.etat = ETATS.apparait;
+        p.alpha = 0;
         p.marque = m.vanne === 'ajustement';
         this.particules.push(p);
       }
@@ -217,12 +331,12 @@ export class Moteur {
       p.etat = ETATS.disparait;
       p.marque = m.vanne === 'ajustement';
     } else {
-      p.etat = ETATS.sort;
       const [x, y] = this.position(p);
+      p.etat = ETATS.sort;
       p.x = x;
       p.y = y;
-      p.vx = 0;
-      p.vy = 0;
+      p.s = -1;
+      p.lat = lat;
     }
   }
 
@@ -241,33 +355,48 @@ export class Moteur {
     if (i < this.particules.length) this.particules[i] = dernier;
   }
 
-  /** Position (scène) d'une particule dans l'eau. */
+  /** Position (scène) d'une particule, où qu'elle soit. */
   position(p: Particule, niveau = this.niveau()): [number, number] {
+    if (p.etat === ETATS.entre) {
+      const r = this.ruban(p.vanne, p.teinte);
+      if (r) return surRuban(r, p.s, p.lat);
+    } else if (p.etat === ETATS.sort) {
+      const r = this.ruban(p.vanne, p.teinte);
+      if (r) {
+        if (p.s >= 0) return surRuban(r, p.s, p.lat);
+        // Descente vers la bouche de la colonne.
+        const [bx, by] = surRuban(r, 0, p.lat);
+        const k = 1 + p.s;
+        const e = k * k * (3 - 2 * k);
+        return [p.x + (bx - p.x) * e, p.y + (by - p.y) * e];
+      }
+      return [p.x, p.y];
+    }
     const { x0, x1, haut, bas } = SCENE.bassin;
-    const marge = 0.012;
+    const bord = 0.01;
     const hauteur = (bas - haut) * niveau;
-    let v = p.v;
+    let u = p.u;
     if (this.decante > 0) {
       const [lo, hi] = this.bornes[p.teinte];
-      const vd = lo + (hi - lo) * (0.08 + 0.84 * p.rang);
-      v = v + (vd - v) * this.decante;
+      const m = marge(hi - lo);
+      const ud = lo + (hi - lo) * (m / 2 + (1 - m) * p.rang);
+      u = u + (ud - u) * this.decante;
     }
     return [
-      x0 + marge + p.u * (x1 - x0 - 2 * marge),
-      bas - marge - v * Math.max(0, hauteur - 2 * marge)
+      x0 + bord + u * (x1 - x0 - 2 * bord),
+      bas - bord - p.v * Math.max(0, hauteur - 2 * bord)
     ];
   }
 
   /** Animation des particules (indépendante du temps des données) : `dt` en secondes réelles. */
   animer(dt: number, horloge: number, calme = false) {
-    const { bassin, vannes } = SCENE;
-    const niveau = this.niveau();
-    const surface = bassin.bas - (bassin.bas - bassin.haut) * niveau;
     const agitation = calme ? 0 : 0.004;
     const pas = calme ? 1 : Math.min(1, dt * 2.5);
     this.decante += (this.decanteCible - this.decante) * pas;
     if (Math.abs(this.decanteCible - this.decante) < 0.002) this.decante = this.decanteCible;
     this.bornes = couches(this.compter());
+    this.calculerRubans();
+    const { x0, x1 } = SCENE.bassin;
     for (let i = this.particules.length - 1; i >= 0; i--) {
       const p = this.particules[i];
       if (p.etat === ETATS.eau || p.etat === ETATS.apparait || p.etat === ETATS.disparait) {
@@ -277,9 +406,11 @@ export class Moteur {
           dt *
           60 *
           0.1;
+        p.rang += (this.r() - 0.5) * agitation * dt * 6;
         p.v += (p.vCible - p.v) * Math.min(1, dt * 0.8) + (this.r() - 0.5) * agitation * dt * 6;
         if (p.u < 0) p.u = -p.u;
         if (p.u > 1) p.u = 2 - p.u;
+        p.rang = Math.max(0, Math.min(1, p.rang));
         p.v = Math.max(0, Math.min(1, p.v));
         if (p.etat === ETATS.apparait) {
           p.alpha = Math.min(1, p.alpha + dt * 1.5);
@@ -292,30 +423,29 @@ export class Moteur {
           if (p.alpha <= 0) this.retirer(i);
         }
       } else if (p.etat === ETATS.entre) {
-        p.vy += 0.9 * dt;
-        p.x += p.vx * dt;
-        p.y += p.vy * dt;
-        if (p.y >= surface) {
-          const { x0, x1 } = bassin;
-          p.u = Math.max(0, Math.min(1, (p.x - x0) / (x1 - x0)));
+        p.s += dt / TRAJET;
+        if (p.s >= 1) {
+          // Arrivée à la surface, dans sa colonne, puis lente descente.
+          const r = this.ruban(p.vanne, p.teinte);
+          const x = r ? surRuban(r, 1, p.lat)[0] : (x0 + x1) / 2;
+          const f = Math.max(0, Math.min(1, (x - x0) / (x1 - x0)));
+          const [lo, hi] = this.bornes[p.teinte];
+          p.u = f;
+          const m = marge(hi - lo);
+          p.rang =
+            hi > lo ? Math.max(0, Math.min(1, ((f - lo) / (hi - lo) - m / 2) / (1 - m))) : 0.5;
           p.v = 1;
           p.etat = ETATS.eau;
         }
       } else if (p.etat === ETATS.sort) {
-        const o = vannes[p.vanne as 'deces' | 'departs'];
-        const dx = o.x - p.x;
-        const dy = o.y - p.y;
-        const d = Math.hypot(dx, dy);
-        const vitesse = 0.35 + (1 - Math.min(1, d)) * 0.4;
-        p.x += (dx / (d || 1)) * vitesse * dt;
-        p.y += (dy / (d || 1)) * vitesse * dt;
-        p.alpha = Math.min(1, d * 6);
-        if (d < 0.02) this.retirer(i);
+        p.s += dt / (p.s < 0 ? DESCENTE : TRAJET);
+        p.alpha = p.s > 0.8 ? Math.max(0, (1 - p.s) * 5) : 1;
+        if (p.s >= 1 || !this.ruban(p.vanne, p.teinte)) this.retirer(i);
       }
     }
   }
 
-  /** Particules par teinte dans l'eau (hors chutes et sorties en cours). */
+  /** Particules par teinte dans l'eau (hors entrées et sorties en cours). */
   compter(): Record<Teinte, number> {
     const c: Record<Teinte, number> = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
     for (const p of this.particules)
@@ -323,7 +453,7 @@ export class Moteur {
     return c;
   }
 
-  /** Comptes par teinte, chutes comprises, sorties exclues (tests). */
+  /** Comptes par teinte, entrées comprises, sorties exclues (tests). */
   comptes(): number[] {
     const c = [0, 0, 0, 0, 0];
     for (const p of this.particules)

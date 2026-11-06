@@ -119,3 +119,16 @@ p {
   padding-left: 1rem;
   color: var(--ardoise);
 }
+
+/* Réponse d'une section : la question est le h2, la réponse vient juste dessous, avant la figure ;
+   le reste du texte est replié dans « Le détail » (components/Detail.svelte). */
+.reponse {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--encre);
+}
+
+section[id],
+[id].ancre {
+  scroll-margin-top: 1rem;
+}

@@ -11,3 +11,12 @@ export const milliers = (x: number) => nf.format(Math.round(x / 1000) * 1000).re
 
 /** 11.58 → « 11,6 % ». */
 export const pct = (x: number) => `${nf1.format(x)} %`;
+
+const nf1m = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+
+/** 61234567 → « 61,2 millions » ; avec `signe`, « +6,4 millions » ou « −0,3 million ». */
+export const millions = (x: number, signe = false) => {
+  const m = Math.round(x / 1e5) / 10;
+  const s = signe && m > 0 ? '+' : '';
+  return `${s}${nf1m.format(m).replace('-', '−')} ${Math.abs(m) < 2 ? 'million' : 'millions'}`;
+};

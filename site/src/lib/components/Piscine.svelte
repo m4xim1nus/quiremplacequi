@@ -1,23 +1,25 @@
 <script lang="ts">
-  // La piscine (docs/PISCINE.md) : cinq teintes (G1, G2 deux parents, G2 un parent, G3, autres),
-  // quatre vannes dont l'épaisseur suit le débit de l'année, et deux états de l'eau : décantée
-  // (les teintes en couches, non miscibles, pour lire les volumes) ou mélangée. Dessin Canvas 2D ;
-  // textes et commandes en HTML par-dessus.
+  // La piscine (docs/PISCINE.md) : cinq teintes (G1, G2 deux parents, G2 un parent, G3, autres).
+  // De haut en bas : deux robinets versent par des rubans d'épaisseur proportionnelle au débit de
+  // l'année ; l'eau est décantée (une colonne par teinte, de largeur proportionnelle à l'effectif)
+  // ou mélangée ; chaque colonne se vide par le fond vers deux bondes. Dessin Canvas 2D ; textes
+  // et commandes en HTML par-dessus.
   import { onMount } from 'svelte';
-  import { Moteur, SCENE, ETATS } from '$lib/moteur';
+  import { Moteur, SCENE, geometrie, type Ruban, type Vannes } from '$lib/moteur';
+  import PiscineFrise from './PiscineFrise.svelte';
   import {
     STATUTS,
     CHAMPS,
     GENERATIONS,
     TEINTES,
     stocks,
-    naissancesParTeinte,
-    decesParTeinte,
+    debits,
+    somme,
+    cumuls,
     type DonneesPiscine,
-    type AnneePiscine,
     type Teinte
   } from '$lib/piscine';
-  import { entier, milliers, pct } from '$lib/format';
+  import { entier, milliers, millions, pct } from '$lib/format';
 
   let { donnees }: { donnees: DonneesPiscine } = $props();
 
@@ -37,6 +39,8 @@
   let decante = $state(true);
   // svelte-ignore state_referenced_locally
   let echelle = $state(donnees.echelle);
+  let hauteur = $state(0);
+  let etroit = $state(false);
 
   const ligne = $derived(annees.find((a) => a.annee === annee)!);
   const statut = $derived(ligne.statut_flux ? STATUTS[ligne.statut_flux] : null);
@@ -44,41 +48,7 @@
   const reconstruit = $derived(ligne.statut_flux === 'reconstruit');
   const st = $derived(stocks(ligne));
   const generations = $derived(ligne.g2a !== undefined);
-
-  /** Débits de l'année, par vanne et par teinte (pour l'épaisseur des tuyaux). */
-  function debits(l: AnneePiscine) {
-    const vide = (): Record<Teinte, number> => ({ 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 });
-    const arr = vide();
-    const dep = vide();
-    const pos = (x: number | null | undefined) => Math.max(0, x ?? 0);
-    const neg = (x: number | null | undefined) => Math.max(0, -(x ?? 0));
-    if (l.statut_flux === 'reconstruit') {
-      arr[4] = pos(l.net_imm);
-      arr[0] = pos(l.net_ni);
-      dep[4] = neg(l.net_imm);
-      dep[0] = neg(l.net_ni);
-    } else {
-      arr[4] = pos(l.entrees_imm);
-      arr[0] = pos(l.entrees_ni);
-      dep[4] = pos(l.sorties_imm);
-      dep[0] = pos(l.sorties_ni);
-    }
-    return {
-      naissances: naissancesParTeinte(l),
-      arrivees: arr,
-      deces: decesParTeinte(l),
-      departs: dep
-    };
-  }
-  const somme = (r: Record<Teinte, number>) => TEINTES.reduce<number>((s, t) => s + r[t], 0);
-  const debitMax = $derived(
-    Math.max(
-      ...annees.flatMap((l) => {
-        const d = debits(l);
-        return [somme(d.naissances), somme(d.arrivees), somme(d.deces), somme(d.departs)];
-      })
-    )
-  );
+  const cumul = $derived(cumuls(annees, debut, annee));
 
   function couleurs() {
     const s = getComputedStyle(cadre);
@@ -87,44 +57,56 @@
       eau: c('--eau'),
       bord: c('--bord'),
       encre: c('--encre'),
+      papier: c('--papier'),
       ajust: c('--ajustement'),
       teinte: [c('--t0'), c('--t1'), c('--t2'), c('--t3'), c('--t4')]
     };
   }
 
-  /** Tuyau d'épaisseur proportionnelle au débit, en bandes par teinte. */
+  /** Un ruban : une bande courbe, de largeur constante, entre une vanne et une colonne. */
+  function ruban(ctx: CanvasRenderingContext2D, r: Ruban, w: number, h: number) {
+    const ym = ((r.ya + r.yb) / 2) * h;
+    const g = (x: number) => (x - r.largeur / 2) * w;
+    const d = (x: number) => (x + r.largeur / 2) * w;
+    ctx.beginPath();
+    ctx.moveTo(g(r.xa), r.ya * h);
+    ctx.bezierCurveTo(g(r.xa), ym, g(r.xb), ym, g(r.xb), r.yb * h);
+    ctx.lineTo(d(r.xb), r.yb * h);
+    ctx.bezierCurveTo(d(r.xb), ym, d(r.xa), ym, d(r.xa), r.ya * h);
+    ctx.closePath();
+  }
+
+  /** Tuyau droit d'un robinet ou d'une bonde, en bandes par teinte. */
   function tuyau(
     ctx: CanvasRenderingContext2D,
     k: ReturnType<typeof couleurs>,
-    r: Record<Teinte, number>,
-    x: number,
-    y0: number,
-    y1: number,
-    largeurMax: number,
-    inconnu = false
+    rubans: Ruban[],
+    vanne: keyof Vannes,
+    w: number,
+    h: number,
+    pointille: boolean
   ) {
-    const total = somme(r);
-    const w = (total / debitMax) * largeurMax;
-    if (inconnu) {
+    const { x, y0, y1 } = moteur!.vannes[vanne];
+    const rs = rubans.filter((r) => r.vanne === vanne);
+    const total = rs.reduce((s, r) => s + r.largeur, 0);
+    if (total * w < 0.5) {
       ctx.setLineDash([3, 4]);
       ctx.strokeStyle = k.bord;
-      ctx.lineWidth = 1.5;
-      ctx.strokeRect(x - 6, y0, 12, y1 - y0);
+      ctx.lineWidth = 1.2;
+      ctx.strokeRect(x * w - 5, y0 * h, 10, (y1 - y0) * h);
       ctx.setLineDash([]);
       return;
     }
-    if (w < 0.5) return;
-    let gauche = x - w / 2;
-    for (const t of [4, 3, 2, 1, 0] as Teinte[]) {
-      const lw = (r[t] / total) * w;
-      if (lw <= 0) continue;
-      ctx.fillStyle = k.teinte[t];
-      ctx.fillRect(gauche, y0, lw, y1 - y0);
-      gauche += lw;
+    for (const r of rs) {
+      const xr = vanne === 'naissances' || vanne === 'arrivees' ? r.xa : r.xb;
+      ctx.fillStyle = k.teinte[r.teinte];
+      ctx.fillRect((xr - r.largeur / 2) * w, y0 * h, r.largeur * w, (y1 - y0) * h);
     }
     ctx.strokeStyle = k.bord;
     ctx.lineWidth = 1;
-    ctx.strokeRect(x - w / 2, y0, w, y1 - y0);
+    if (pointille) ctx.setLineDash([3, 3]);
+    ctx.strokeRect((x - total / 2) * w, y0 * h, total * w, (y1 - y0) * h);
+    ctx.setLineDash([]);
   }
 
   function dessiner(ctx: CanvasRenderingContext2D, w: number, h: number, horloge: number) {
@@ -132,14 +114,39 @@
     const k = couleurs();
     const { x0, x1, haut, bas } = SCENE.bassin;
     const niveau = moteur.niveau();
-    const surface = bas - (bas - haut) * niveau;
+    const surface = moteur.surface(niveau);
     const l = moteur.ligne(Math.min(fin, Math.floor(moteur.temps)))!;
-    const d = debits(l);
+    const net = l.statut_flux === 'reconstruit';
+    const partiel = l.statut_flux === 'partiel';
+    const rubans = moteur.rubans;
     ctx.clearRect(0, 0, w, h);
 
+    // Rubans : pâles, avec un contour ; pointillés quand le débit n'est pas un flux brut mesuré
+    // (solde net avant 2006, sorties pas encore publiées).
+    for (const r of rubans) {
+      const douteux =
+        (net && (r.vanne === 'arrivees' || r.vanne === 'departs')) ||
+        (partiel && r.vanne === 'departs');
+      ruban(ctx, r, w, h);
+      ctx.globalAlpha = douteux ? 0.3 : 0.6;
+      ctx.fillStyle = k.teinte[r.teinte];
+      ctx.fill();
+      ctx.globalAlpha = douteux ? 0.9 : 0.35;
+      if (douteux) ctx.setLineDash([3, 3]);
+      ctx.strokeStyle = k.bord;
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.globalAlpha = 1;
+    }
+    tuyau(ctx, k, rubans, 'naissances', w, h, false);
+    tuyau(ctx, k, rubans, 'arrivees', w, h, net);
+    tuyau(ctx, k, rubans, 'deces', w, h, false);
+    tuyau(ctx, k, rubans, 'departs', w, h, net || partiel);
+
     // Eau.
-    const agite = calme ? 0 : 1 - moteur.decante;
-    const vague = (x: number) => surface * h + Math.sin(horloge * 1.2 + x * 18) * 1.4 * agite;
+    const agite = calme ? 0 : 1;
+    const vague = (x: number) => surface * h + Math.sin(horloge * 1.2 + x * 18) * 1.2 * agite;
     ctx.beginPath();
     ctx.moveTo(x0 * w, bas * h);
     for (let x = x0; x <= x1 + 1e-9; x += 0.01) ctx.lineTo(x * w, vague(x));
@@ -148,38 +155,30 @@
     ctx.fillStyle = k.eau;
     ctx.fill();
 
-    // Couches de l'eau décantée : une bande pâle par teinte.
+    // Colonnes de l'eau décantée : un fond pâle par teinte, séparées par un trait fin.
     const dec = moteur.decante;
-    const hauteur = (bas - surface) * h;
+    const larg = (x1 - x0) * w;
     if (dec > 0.01) {
-      ctx.globalAlpha = 0.35 * dec;
       for (const t of TEINTES) {
         const [lo, hi] = moteur.bornes[t];
         if (hi - lo <= 0) continue;
+        ctx.globalAlpha = 0.3 * dec;
         ctx.fillStyle = k.teinte[t];
-        ctx.fillRect(x0 * w, bas * h - hi * hauteur, (x1 - x0) * w, (hi - lo) * hauteur);
+        ctx.fillRect(x0 * w + lo * larg, surface * h, (hi - lo) * larg, (bas - surface) * h);
+        ctx.globalAlpha = dec;
+        if (lo > 0) {
+          ctx.strokeStyle = k.papier;
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(x0 * w + lo * larg, surface * h + 2);
+          ctx.lineTo(x0 * w + lo * larg, bas * h);
+          ctx.stroke();
+        }
       }
       ctx.globalAlpha = 1;
     }
 
-    // Tuyaux : épaisseur ∝ débit de l'année, même échelle pour les quatre vannes.
-    const lmax = 0.085 * w;
-    const yRobinet = SCENE.vannes.naissances.y * h;
-    tuyau(ctx, k, d.naissances, SCENE.vannes.naissances.x * w, yRobinet, surface * h, lmax);
-    tuyau(ctx, k, d.arrivees, SCENE.vannes.arrivees.x * w, yRobinet, surface * h, lmax);
-    tuyau(ctx, k, d.deces, SCENE.vannes.deces.x * w, bas * h, h, lmax);
-    tuyau(
-      ctx,
-      k,
-      d.departs,
-      SCENE.vannes.departs.x * w,
-      bas * h,
-      h,
-      lmax,
-      l.statut_flux === 'partiel'
-    );
-
-    // Bassin.
+    // Bassin, ouvert au fond sous chaque bouche de sortie.
     ctx.strokeStyle = k.bord;
     ctx.lineWidth = 3;
     ctx.beginPath();
@@ -190,61 +189,74 @@
     ctx.stroke();
 
     // Particules, par lots de couleur.
-    const r = Math.max(
+    const n = moteur.particules.length;
+    const rayon = Math.max(
       1,
-      Math.min(
-        3.2,
-        0.42 * Math.sqrt(((x1 - x0) * w * (bas - haut) * h * 0.85) / moteur.particules.length)
-      )
+      Math.min(2.8, 0.42 * Math.sqrt(((x1 - x0) * w * (bas - haut) * h * 0.8) / n))
     );
     for (const teinte of TEINTES) {
       ctx.fillStyle = k.teinte[teinte];
       ctx.beginPath();
       for (const p of moteur.particules) {
         if (p.teinte !== teinte || p.alpha < 1) continue;
-        const [x, y] = p.etat === ETATS.eau ? moteur.position(p, niveau) : [p.x, p.y];
-        ctx.moveTo(x * w + r, y * h);
-        ctx.arc(x * w, y * h, r, 0, Math.PI * 2);
+        const [x, y] = moteur.position(p, niveau);
+        ctx.moveTo(x * w + rayon, y * h);
+        ctx.arc(x * w, y * h, rayon, 0, Math.PI * 2);
       }
       ctx.fill();
     }
     for (const p of moteur.particules) {
       if (p.alpha >= 1) continue;
-      const [x, y] = p.etat === ETATS.sort ? [p.x, p.y] : moteur.position(p, niveau);
+      const [x, y] = moteur.position(p, niveau);
       ctx.globalAlpha = Math.max(0, p.alpha);
       ctx.fillStyle = k.teinte[p.teinte];
       ctx.beginPath();
-      ctx.arc(x * w, y * h, r, 0, Math.PI * 2);
+      ctx.arc(x * w, y * h, rayon, 0, Math.PI * 2);
       ctx.fill();
       ctx.globalAlpha = 1;
       if (p.marque) {
         ctx.strokeStyle = k.ajust;
         ctx.lineWidth = 1.2;
         ctx.beginPath();
-        ctx.arc(x * w, y * h, r + 2.5, 0, Math.PI * 2);
+        ctx.arc(x * w, y * h, rayon + 2.5, 0, Math.PI * 2);
         ctx.stroke();
       }
     }
 
-    // Étiquettes des couches (eau décantée), dans le bassin à droite.
+    // Étiquettes des colonnes (eau décantée) : couchées dans les colonnes étroites.
     if (dec > 0.5) {
-      ctx.font = `600 ${w < 600 ? 10 : 12}px Lexend, system-ui, sans-serif`;
-      ctx.textAlign = 'right';
+      const taille = w < 600 ? 10 : 12;
+      ctx.font = `600 ${taille}px Lexend, system-ui, sans-serif`;
       ctx.textBaseline = 'middle';
       ctx.globalAlpha = (dec - 0.5) * 2;
       for (const t of TEINTES) {
         const [lo, hi] = moteur.bornes[t];
-        if ((hi - lo) * hauteur < 15) continue;
-        const y = bas * h - ((lo + hi) / 2) * hauteur;
+        const cw = (hi - lo) * larg;
+        if (cw < taille + 4) continue;
         const texte = `${GENERATIONS[t].court} · ${pct(100 * (hi - lo))}`;
-        const lx = (x1 - 0.012) * w;
         const tw = ctx.measureText(texte).width;
+        const cx = x0 * w + ((lo + hi) / 2) * larg;
+        const fond = bas * h - 8;
+        ctx.save();
+        if (cw > tw + 16) {
+          ctx.translate(cx, fond - 8);
+          ctx.textAlign = 'center';
+        } else if ((bas - surface) * h > tw + 24) {
+          ctx.translate(cx, fond);
+          ctx.rotate(-Math.PI / 2);
+          ctx.textAlign = 'left';
+        } else {
+          ctx.restore();
+          continue;
+        }
+        const bx = ctx.textAlign === 'center' ? -tw / 2 - 6 : -6;
         ctx.fillStyle = k.eau;
         ctx.beginPath();
-        ctx.roundRect(lx - tw - 6, y - 8, tw + 12, 16, 8);
+        ctx.roundRect(bx, -8, tw + 12, 16, 8);
         ctx.fill();
         ctx.fillStyle = k.encre;
-        ctx.fillText(texte, lx, y);
+        ctx.fillText(texte, 0, 0);
+        ctx.restore();
       }
       ctx.globalAlpha = 1;
     }
@@ -265,22 +277,27 @@
     const taille = () => {
       const dpr = window.devicePixelRatio || 1;
       w = cadre.clientWidth;
-      h = Math.round(w * (w < 600 ? 0.95 : 0.6));
+      // Toute la scène (robinets, bassin, bondes) tient dans l'écran.
+      const ideal = w * (w < 600 ? 1.3 : 0.6);
+      h = Math.round(Math.max(340, Math.min(ideal, window.innerHeight * 0.7)));
+      hauteur = h;
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const e = w < 600 ? donnees.echelle * 2 : donnees.echelle;
-      if (!moteur || e !== echelle) {
+      if (!moteur || e !== echelle || etroit !== w < 600) {
         echelle = e;
-        moteur = new Moteur(annees, e);
-        moteur.aller(annee);
+        etroit = w < 600;
+        moteur = new Moteur(annees, e, etroit);
         moteur.decante = moteur.decanteCible = decante ? 1 : 0;
+        moteur.aller(annee);
       }
     };
     taille();
     const obs = new ResizeObserver(taille);
     obs.observe(cadre);
+    window.addEventListener('resize', taille);
 
     let avant = performance.now();
     let image = 0;
@@ -303,6 +320,7 @@
     return () => {
       cancelAnimationFrame(image);
       obs.disconnect();
+      window.removeEventListener('resize', taille);
     };
   });
 
@@ -317,31 +335,36 @@
   }
 
   const valeur = (x: number | null | undefined) => (x == null ? '—' : milliers(x));
+  const d = $derived(debits(ligne));
   const lectureTexte = $derived(
     `En ${annee}, ${entier(ligne.population)} habitants (${CHAMPS[ligne.champ]}), dont ${entier(ligne.immigres)} immigrés, soit ${pct(ligne.part_immigres)}` +
       (generations
         ? `, environ ${milliers(st[3] + st[2])} enfants d’immigrés et ${milliers(st[1])} petits-enfants d’immigrés (modèle).`
-        : '.')
+        : '.') +
+      ` Dans l’année : ${milliers(somme(d.naissances))} naissances, ${milliers(somme(d.deces))} décès.`
   );
   const LIGNES: Teinte[] = [4, 3, 2, 1, 0];
+  const pos = (v: keyof Vannes) => geometrie(etroit)[v].x * 100;
 </script>
 
 <figure class="piscine">
   <div class="compteur" aria-live="polite">
     <span class="annee">{annee}</span>
     <span>{milliers(ligne.population)} habitants</span>
+    {#if evenement}<span class="repere-court">{evenement.libelle.split(' :')[0]}</span>{/if}
   </div>
-  <div class="scene" bind:this={cadre}>
+  <div class="scene" bind:this={cadre} style:--h="{hauteur}px">
     <div role="img" aria-label={lectureTexte}>
       <canvas bind:this={canvas} aria-hidden="true"></canvas>
     </div>
 
-    <div class="etiquette naissances" style:left="{SCENE.vannes.naissances.x * 100}%">
+    <div class="etiquette haut gauche" style:left="{pos('naissances')}%">
       <span class="nom">Naissances</span>
       <span class="val">{valeur(ligne.naissances)}</span>
     </div>
-    <div class="etiquette arrivees" style:left="{SCENE.vannes.arrivees.x * 100}%">
-      <span class="nom">{reconstruit ? 'Solde net (reconstruit)' : 'Arrivées'}</span>
+    <div class="etiquette haut droite" style:left="{pos('arrivees')}%">
+      <span class="nom">{reconstruit ? 'Solde migratoire' : 'Arrivées'}</span>
+      {#if reconstruit}<span class="val note">net, reconstruit</span>{/if}
       <span class="val"
         ><span class="long">immigrés</span><span class="court">imm.</span>
         {valeur(reconstruit ? ligne.net_imm : ligne.entrees_imm)}</span
@@ -351,7 +374,7 @@
         {valeur(reconstruit ? ligne.net_ni : ligne.entrees_ni)}</span
       >
     </div>
-    <div class="etiquette bas deces">
+    <div class="etiquette bas gauche" style:left="{pos('deces')}%">
       <span class="nom">Décès</span>
       <span class="val"
         ><span class="long">immigrés</span><span class="court">imm.</span>
@@ -364,10 +387,14 @@
         {valeur(ligne.deces_ni)}</span
       >
     </div>
-    <div class="etiquette bas departs" class:flou={ligne.statut_flux !== 'mesure'}>
+    <div
+      class="etiquette bas droite"
+      class:flou={ligne.statut_flux !== 'mesure'}
+      style:left="{pos('departs')}%"
+    >
       <span class="nom">Départs</span>
       {#if reconstruit}
-        <span class="val">compris dans le solde net</span>
+        <span class="val">compris dans le solde</span>
       {:else if ligne.statut_flux === 'partiel'}
         <span class="val">pas encore mesurés</span>
       {:else}
@@ -387,43 +414,67 @@
     <button type="button" class="principal" onclick={basculer} aria-pressed={lecture}>
       {lecture ? 'Pause' : annee >= fin ? 'Revoir' : 'Lecture'}
     </button>
-    <label class="frise">
-      <span class="visually-hidden">Année</span>
-      <input
-        type="range"
-        min={debut}
-        max={fin}
-        step="1"
-        value={annee}
-        oninput={(e) => {
+    <div class="frise">
+      <PiscineFrise
+        {annees}
+        evenements={donnees.evenements}
+        {annee}
+        onchoisir={(a) => {
           lecture = false;
-          aller(Number((e.target as HTMLInputElement).value));
+          aller(a);
         }}
-        list="reperes"
       />
+      <label>
+        <span class="visually-hidden">Année</span>
+        <input
+          type="range"
+          min={debut}
+          max={fin}
+          step="1"
+          value={annee}
+          oninput={(e) => {
+            lecture = false;
+            aller(Number((e.target as HTMLInputElement).value));
+          }}
+          list="reperes"
+        />
+      </label>
       <datalist id="reperes">
         {#each donnees.evenements as e (e.annee)}<option value={e.annee}></option>{/each}
       </datalist>
-      <span class="bornes"><span>{debut}</span><span>2006</span><span>{fin}</span></span>
-    </label>
-    <div class="bascule" role="group" aria-label="État de l’eau">
-      <button type="button" aria-pressed={decante} onclick={() => (decante = true)}>Décantée</button
-      >
-      <button type="button" aria-pressed={!decante} onclick={() => (decante = false)}
-        >Mélangée</button
-      >
+      <span class="bornes"><span>{debut}</span><span>{fin}</span></span>
     </div>
-    <label class="vitesse">
-      Vitesse
-      <select bind:value={vitesse}>
-        <option value={0.5}>lente</option>
-        <option value={1}>normale</option>
-        <option value={2}>rapide</option>
-      </select>
-    </label>
+    <div class="reglages">
+      <div class="bascule" role="group" aria-label="État de l’eau">
+        <button type="button" aria-pressed={decante} onclick={() => (decante = true)}
+          >Décantée</button
+        >
+        <button type="button" aria-pressed={!decante} onclick={() => (decante = false)}
+          >Mélangée</button
+        >
+      </div>
+      <label class="vitesse">
+        Vitesse
+        <select bind:value={vitesse}>
+          <option value={0.5}>lente</option>
+          <option value={1}>normale</option>
+          <option value={2}>rapide</option>
+        </select>
+      </label>
+    </div>
   </div>
 
   <figcaption>
+    <p class="cumul">
+      {#if annee > debut}
+        De {debut} à {annee}, <strong>{millions(cumul.naissances)}</strong> de naissances et
+        <strong>{millions(cumul.deces)}</strong> de décès sont passés par les vannes, pour un solde
+        migratoire de <strong>{millions(cumul.migration, true)}</strong>.
+      {:else}
+        Lancez la lecture : les compteurs cumulent les naissances, les décès et le solde migratoire
+        depuis {debut}.
+      {/if}
+    </p>
     <table class="composition">
       <caption class="visually-hidden">Composition de la population en {annee}</caption>
       <tbody>
@@ -456,7 +507,11 @@
         >{/if}
     </p>
     <p class="legende">
-      <span>Épaisseur des tuyaux : débit de l’année, à la même échelle pour les quatre vannes.</span
+      <span
+        >Largeur des colonnes : effectif. Épaisseur des rubans : débit de l’année, à la même échelle
+        pour les quatre vannes.</span
+      >
+      <span><b class="pastille pointille"></b>pointillés : solde net ou flux pas encore mesuré</span
       >
       <span><b class="pastille ajust"></b>ajustement (champ ou collecte, jamais une arrivée)</span>
       <span>1 point = {entier(echelle)} personnes</span>
@@ -500,7 +555,6 @@
   }
   .etiquette {
     position: absolute;
-    top: 0;
     display: flex;
     flex-direction: column;
     font-size: var(--t-0);
@@ -509,29 +563,23 @@
     pointer-events: none;
     white-space: nowrap;
   }
-  .etiquette.naissances {
-    transform: translateX(calc(-100% - 3.2rem));
+  .etiquette.haut {
+    top: 0;
+  }
+  .etiquette.bas {
+    bottom: 0;
+  }
+  .etiquette.gauche {
+    transform: translateX(calc(-100% - 3rem));
     align-items: flex-end;
     text-align: right;
   }
-  .etiquette.arrivees {
-    transform: translateX(3.2rem);
+  .etiquette.droite {
+    transform: translateX(3rem);
     align-items: flex-start;
-  }
-  .etiquette.bas {
-    top: auto;
-    bottom: -2.6rem;
-  }
-  .deces {
-    left: 0;
-    align-items: flex-start;
-  }
-  .departs {
-    right: 0;
-    align-items: flex-end;
   }
   .flou {
-    opacity: 0.6;
+    opacity: 0.65;
     font-style: italic;
   }
   .nom {
@@ -541,25 +589,28 @@
   .val {
     font-variant-numeric: tabular-nums;
   }
+  .note {
+    font-style: italic;
+  }
   .compteur {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-    z-index: 1;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.9rem;
+    margin-bottom: 0.5rem;
     font-size: var(--t-0);
     color: var(--ardoise);
     font-variant-numeric: tabular-nums;
-    pointer-events: none;
   }
   .compteur .annee {
     font-size: var(--t-4);
     font-weight: 700;
     color: var(--encre);
     line-height: 1;
+  }
+  .repere-court {
+    font-weight: 600;
+    color: var(--encre);
   }
   .pastille {
     display: inline-block;
@@ -573,12 +624,17 @@
     background: transparent;
     border: 1.5px solid var(--ajustement);
   }
+  .pastille.pointille {
+    background: transparent;
+    border-radius: 2px;
+    border: 1.5px dashed var(--bord);
+  }
   .commandes {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem 1rem;
-    margin-top: 3.4rem;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 0.5rem 1rem;
+    margin-top: 0.75rem;
   }
   .commandes button {
     font: inherit;
@@ -599,18 +655,27 @@
     font-size: var(--t-1);
     font-weight: 600;
     min-width: 6.5rem;
+    margin-top: 1.4rem;
+  }
+  .reglages {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
   }
   .bascule {
     display: flex;
     gap: 0.3rem;
   }
   .frise {
-    flex: 1 1 14rem;
     display: flex;
     flex-direction: column;
+    min-width: 0;
   }
   .frise input {
     width: 100%;
+    margin: 0;
     accent-color: var(--t3);
   }
   .bornes {
@@ -633,6 +698,11 @@
   }
   figcaption p {
     margin: 0.4rem 0;
+  }
+  .cumul {
+    font-size: var(--t-1);
+    color: var(--encre);
+    min-height: 3em;
   }
   .composition {
     border-collapse: collapse;
@@ -688,34 +758,34 @@
     white-space: nowrap;
   }
   @media (max-width: 599px) {
-    .compteur {
-      position: static;
-      transform: none;
-      flex-direction: row;
-      align-items: baseline;
-      gap: 0.8rem;
-      margin-bottom: 0.4rem;
-    }
-    .scene {
-      padding-top: 2.6rem;
-    }
-    .etiquette.naissances {
+    .etiquette.gauche {
       left: 0 !important;
       transform: none;
       align-items: flex-start;
       text-align: left;
     }
-    .etiquette.arrivees {
+    .etiquette.droite {
       left: auto !important;
       right: 0;
       transform: none;
       align-items: flex-end;
+      text-align: right;
     }
     .long {
       display: none;
     }
     .court {
       display: inline;
+    }
+    .commandes {
+      grid-template-columns: 1fr;
+    }
+    .commandes button.principal {
+      margin-top: 0;
+      justify-self: start;
+    }
+    .reglages {
+      grid-column: 1;
     }
   }
 </style>

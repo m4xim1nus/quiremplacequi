@@ -184,7 +184,10 @@ export function mouvements(ligne: AnneePiscine, suivante: AnneePiscine, echelle:
   return brut.map((m) => ({ ...m, t: r() })).sort((x, y) => x.t - y.t) as Mouvement[];
 }
 
-/** Bornes des couches de la piscine décantée (fractions de la hauteur d'eau, du fond). */
+/**
+ * Bornes des colonnes de la piscine décantée (fractions de la largeur du bassin, de gauche à
+ * droite : autres, G3, G2 un parent, G2 deux parents, G1).
+ */
 export function couches(effectifs: Record<Teinte, number>): Record<Teinte, [number, number]> {
   const total = TEINTES.reduce<number>((s, t) => s + effectifs[t], 0) || 1;
   let bas = 0;
@@ -195,6 +198,74 @@ export function couches(effectifs: Record<Teinte, number>): Record<Teinte, [numb
     bas += h;
   }
   return out;
+}
+
+export type Debits = Record<
+  'naissances' | 'arrivees' | 'deces' | 'departs',
+  Record<Teinte, number>
+>;
+
+/**
+ * Débits de l'année par vanne et par teinte (épaisseur des rubans). Avant 2006 (reconstruit),
+ * seul le solde net passe : positif par les arrivées, négatif par les départs. Les flux non
+ * ventilés des années partielles (sorties pas encore publiées) passent par leur solde.
+ */
+export function debits(l: AnneePiscine): Debits {
+  const vide = (): Record<Teinte, number> => ({ 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 });
+  const arr = vide();
+  const dep = vide();
+  const pos = (x: number | null | undefined) => Math.max(0, x ?? 0);
+  const neg = (x: number | null | undefined) => Math.max(0, -(x ?? 0));
+  if (l.statut_flux === 'reconstruit') {
+    arr[4] = pos(l.net_imm);
+    arr[0] = pos(l.net_ni);
+    dep[4] = neg(l.net_imm);
+    dep[0] = neg(l.net_ni);
+  } else {
+    arr[4] = pos(l.entrees_imm) + pos(l.non_ventile_imm);
+    arr[0] = pos(l.entrees_ni) + pos(l.non_ventile_ni);
+    dep[4] = pos(l.sorties_imm) + neg(l.non_ventile_imm);
+    dep[0] = pos(l.sorties_ni) + neg(l.non_ventile_ni);
+  }
+  return {
+    naissances: naissancesParTeinte(l),
+    arrivees: arr,
+    deces: decesParTeinte(l),
+    departs: dep
+  };
+}
+
+export const somme = (r: Record<Teinte, number>) => TEINTES.reduce<number>((s, t) => s + r[t], 0);
+
+/** Solde migratoire de l'année (immigrés et non-immigrés), hors ajustements de champ ou de collecte. */
+export function solde(l: AnneePiscine): number {
+  if (l.statut_flux === 'reconstruit') return (l.net_imm ?? 0) + (l.net_ni ?? 0);
+  const v = (x: number | null | undefined) => x ?? 0;
+  return (
+    v(l.entrees_imm) -
+    v(l.sorties_imm) +
+    v(l.non_ventile_imm) +
+    v(l.entrees_ni) -
+    v(l.sorties_ni) +
+    v(l.non_ventile_ni)
+  );
+}
+
+/**
+ * Cumul des flux de l'année `de` (incluse) jusqu'au 1er janvier de `a` : naissances, décès et
+ * solde migratoire passés par les vannes entre les deux dates.
+ */
+export function cumuls(annees: AnneePiscine[], de: number, a: number) {
+  let naissances = 0;
+  let deces = 0;
+  let migration = 0;
+  for (const l of annees) {
+    if (l.annee < de || l.annee >= a) continue;
+    naissances += l.naissances ?? 0;
+    deces += l.deces ?? 0;
+    migration += solde(l);
+  }
+  return { naissances, deces, migration };
 }
 
 /** Libellés des régimes de données, affichés sur la piscine. */

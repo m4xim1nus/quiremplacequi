@@ -213,6 +213,19 @@ tuyaux, intégrer les descendants et les mixtes. **v1 faite le 2026-11-05** :
   de champ sont des ajustements, jamais des flux.
 Les générations viennent du modèle de cohortes (`docs/METHODO.md`).
 
+**v1.1 (2026-11-06)**, après la revue de Max (« séparation verticale et pas horizontale ?
+écoulement haut/bas plus visible ? ») :
+- l'eau décantée se range en **colonnes verticales** (autres, G3, G2 un parent, G2 deux parents,
+  G1, de gauche à droite), de largeur proportionnelle à l'effectif, toutes au même niveau ;
+- la scène se lit **de haut en bas** : les robinets versent par des **rubans** (épaisseur ∝ débit
+  de l'année) dans la colonne de chaque teinte, et chaque colonne se vide par le fond vers les
+  bondes ; les particules circulent le long des rubans ;
+- solde net (avant 2006) et sorties pas encore mesurées : rubans en pointillés ;
+- la scène tient dans l'écran (≤ 70 % de la hauteur), vannes rapprochées sur mobile ;
+- **frise** : aire empilée des parts G1, G2, G3 de 1921 à 2025, régime des données, repères,
+  cliquable ;
+- **compteur cumulé** : naissances, décès et solde migratoire depuis 1921.
+
 La v1 du site embarque au moins la piscine v2. La v3 dépend de ce que le
 spike historique trouve sous forme exploitable.
 

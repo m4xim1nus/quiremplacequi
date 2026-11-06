@@ -54,8 +54,12 @@ les questions de `docs/CADRAGE.md` §9 et `docs/PISCINE.md` §9.
 - [x] Relecture factuelle indépendante de tous les textes (2026-11-05) : 4 bloquants, 13 points à
   corriger, tous traités (cadrage de la vitesse des vagues, nationalité des enfants, encadré OID
   réduit à ce qui est établi, populations explicitées, paradoxe transversal…).
-- [ ] Revue de Max : la piscine v1 et les pages en local (`cd site && npm run dev`, puis
-  `/piscine`), les paramètres de `piscine.yaml`.
+- [x] Revue de Max (2026-11-06) : pages trop « article », piscine à clarifier.
+- [x] Piscine v1.1 : colonnes verticales, rubans haut → bas, frise des parts, compteur cumulé ;
+  pages Générations, Le temps long et La piscine allégées (sommaire en réponses, « Le détail »
+  replié).
+- [ ] Revue de Max : la piscine v1.1 et les nouvelles phrases « réponse » des pages, en local
+  (`cd site && npm run dev`, puis `/piscine`), puis les paramètres de `piscine.yaml`.
 - [ ] Graphiques bruts de relecture de B1 et B2 (`pipeline/explo/`).
 
 **Livrable** : piscine v0 relue par Max, paramètres validés.

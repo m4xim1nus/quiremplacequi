@@ -2,7 +2,17 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { Moteur } from './moteur';
-import { mouvements, particules, stocks, TEINTES, type DonneesPiscine } from './piscine';
+import {
+  cumuls,
+  debits,
+  mouvements,
+  particules,
+  solde,
+  somme,
+  stocks,
+  TEINTES,
+  type DonneesPiscine
+} from './piscine';
 
 const donnees = JSON.parse(
   readFileSync(resolve(process.cwd(), '../data/export/piscine.json'), 'utf8')
@@ -72,5 +82,48 @@ describe('générations', () => {
       );
       expect(autres.every((x) => x.vanne === 'naissances')).toBe(true);
     }
+  });
+});
+
+describe('vannes et cumuls', () => {
+  it('le solde de chaque année boucle sur la variation de population, aux ajustements près', () => {
+    for (const l of donnees.annees.slice(0, -1)) {
+      const s = an(l.annee + 1);
+      if (l.naissances == null || l.deces == null) continue;
+      const ecart =
+        s.population -
+        l.population -
+        (l.naissances - l.deces + solde(l) + (l.ajust_imm ?? 0) + (l.ajust_ni ?? 0));
+      expect(Math.abs(ecart), `${l.annee}`).toBeLessThan(0.002 * l.population);
+    }
+  });
+
+  it('les débits des quatre vannes reprennent les mouvements de particules', () => {
+    for (const a of [1930, 1990, 2010, 2023]) {
+      const d = debits(an(a));
+      const m = mouvements(an(a), an(a + 1), E);
+      for (const v of ['naissances', 'arrivees', 'deces', 'departs'] as const) {
+        const n = m.filter((x) => x.vanne === v).length;
+        expect(Math.abs(n - somme(d[v]) / E), `${a} ${v}`).toBeLessThanOrEqual(3);
+      }
+    }
+  });
+
+  it('cumule les flux entre deux dates', () => {
+    const c = cumuls(donnees.annees, 2010, 2012);
+    expect(c.naissances).toBe(an(2010).naissances! + an(2011).naissances!);
+    expect(cumuls(donnees.annees, 2010, 2010).naissances).toBe(0);
+  });
+
+  it('chaque ruban relie sa vanne à la colonne de sa teinte', () => {
+    const m = new Moteur(donnees.annees, E);
+    m.aller(2010);
+    const rubans = m.calculerRubans();
+    expect(rubans.some((r) => r.vanne === 'naissances' && r.teinte === 4)).toBe(false);
+    const g1 = rubans.find((r) => r.vanne === 'arrivees' && r.teinte === 4)!;
+    const [lo, hi] = m.bornes[4];
+    const f = (g1.xb - 0.05) / 0.9;
+    expect(f).toBeGreaterThan(lo);
+    expect(f).toBeLessThan(hi);
   });
 });
