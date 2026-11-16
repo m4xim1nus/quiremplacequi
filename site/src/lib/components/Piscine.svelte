@@ -479,7 +479,7 @@
 </script>
 
 <figure class="piscine">
-  <div class="compteur" aria-live="polite">
+  <div class="compteur" aria-live={lecture ? 'off' : 'polite'}>
     <span class="annee">{annee}</span>
     <span>{milliers(ligne.population)} habitants</span>
     {#if suivre && nesAvant != null && annee > origine}

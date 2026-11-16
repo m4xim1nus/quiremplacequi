@@ -126,9 +126,9 @@
   --plaque: #ffffff; /* surfaces posées sur le papier (plaques, bulles) */
   --encre: #15212b;
   --ardoise: #4c5a65;
-  --gris: #6e7b86;
+  --gris: #637079;
   --reglure: #ccd4d8;
-  --repere: #c08a12; /* ocre : marques, niveaux, focus (pas de texte) */
+  --repere: #b07d0c; /* ocre : marques, niveaux, focus (pas de texte ; 3:1 sur le papier) */
   --repere-texte: #865f05; /* l'ocre quand il porte du texte */
   --lien: var(--encre);
 
@@ -289,4 +289,17 @@ section[id],
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
+}
+
+/* Texte réservé aux lecteurs d'écran. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

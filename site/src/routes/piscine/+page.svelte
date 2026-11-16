@@ -2,11 +2,22 @@
   import Piscine from '$lib/components/Piscine.svelte';
   import Detail from '$lib/components/Detail.svelte';
   import { entier, milliers, pct } from '$lib/format';
+  import { STATUTS, type AnneePiscine } from '$lib/piscine';
 
   let { data } = $props();
   const c = $derived(data.chiffres);
   const r = $derived(data.piscine.ratio_deces);
   const virgule = (x: number, n = 2) => x.toFixed(n).replace('.', ',');
+  /** Solde migratoire des immigrés de l'année : publié (entrées − sorties) ou reconstruit (net). */
+  const soldeImm = (a: AnneePiscine) => {
+    const v =
+      a.statut_flux === 'reconstruit'
+        ? a.net_imm
+        : a.entrees_imm != null && a.sorties_imm != null
+          ? a.entrees_imm - a.sorties_imm
+          : null;
+    return v == null ? '—' : (v < 0 ? '−' : '+') + entier(Math.abs(v));
+  };
 </script>
 
 <svelte:head>
@@ -32,6 +43,53 @@
   </header>
 
   <Piscine donnees={data.piscine} />
+
+  <div class="colonne">
+    <Detail titre="Les chiffres, année par année">
+      <p>
+        Ce que dessine la piscine, en tableau. Avant 2006, seul le solde net des immigrés est connu
+        ; en 2023 et 2024, les sorties ne sont pas encore publiées. Fichier complet :
+        <a href="/donnees/piscine.csv">piscine.csv</a>.
+      </p>
+      <div class="defile">
+        <table class="annees">
+          <caption class="visually-hidden"
+            >La population et ses flux, de {data.piscine.annees[0].annee} à {data.piscine.annees[
+              data.piscine.annees.length - 1
+            ].annee}</caption
+          >
+          <thead>
+            <tr>
+              <th scope="col">Année</th>
+              <th scope="col">Population</th>
+              <th scope="col">Immigrés</th>
+              <th scope="col">Part</th>
+              <th scope="col">Naissances</th>
+              <th scope="col">Décès</th>
+              <th scope="col">Solde des immigrés</th>
+              <th scope="col">Régime</th>
+            </tr>
+          </thead>
+          <tbody>
+            {#each data.piscine.annees as a (a.annee)}
+              <tr>
+                <th scope="row">{a.annee}</th>
+                <td>{entier(a.population)}</td>
+                <td>{entier(a.immigres)}</td>
+                <td>{pct(a.part_immigres)}</td>
+                <td>{a.naissances == null ? '—' : entier(a.naissances)}</td>
+                <td>{a.deces == null ? '—' : entier(a.deces)}</td>
+                <td>{soldeImm(a)}</td>
+                <td class="regime"
+                  >{a.statut_flux ? STATUTS[a.statut_flux].libelle.toLowerCase() : ''}</td
+                >
+              </tr>
+            {/each}
+          </tbody>
+        </table>
+      </div>
+    </Detail>
+  </div>
 
   <section class="colonne">
     <h2>Ce qu’il faut regarder</h2>
@@ -150,6 +208,32 @@
 </article>
 
 <style>
+  .defile {
+    overflow-x: auto;
+    max-height: 32rem;
+    overflow-y: auto;
+  }
+  .annees {
+    border-collapse: collapse;
+    font-size: var(--t-0);
+    font-variant-numeric: tabular-nums;
+  }
+  .annees th,
+  .annees td {
+    padding: 0.15rem 0.6rem;
+    border-bottom: 1px solid var(--reglure);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .annees thead th {
+    position: sticky;
+    top: 0;
+    background: var(--papier);
+  }
+  .annees .regime {
+    text-align: left;
+    color: var(--ardoise);
+  }
   section {
     margin-top: 2rem;
   }
