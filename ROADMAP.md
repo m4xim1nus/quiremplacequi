@@ -113,7 +113,7 @@ l'étape 2. L'étape 3 traite ce qui reste de leurs limites connues.
 
 **Livrable** : piscine v2 et pages E, F2 relues par Max.
 
-## Étape 4 : site v1
+## Étape 4 : site v1 ✅ (2026-11-16)
 
 Le contenu de la v1 existe (piscine, temps long, générations, méthode,
 limites, données). L'étape 4 lui donne une forme propre, le rend publiable et
@@ -136,17 +136,19 @@ le met en ligne.
   CC BY 4.0), vie privée.
 - [x] Image de partage (Open Graph), générée depuis les données
   (`site/scripts/partage.py`) ; en-têtes de sécurité en place (`_headers`).
-- [ ] Vérification visuelle dans un navigateur, page par page (par Max, ou
-  par capture si l'outil est autorisé).
-- [ ] Relecture finale de bout en bout (faits et lisibilité pour un
-  non-spécialiste).
-- [ ] Mise en ligne (`docs/DEPLOIEMENT.md`) : identité des commits, dépôt
-  public, projet Cloudflare Pages, domaine `quiremplacequi.technoperchoir.fr` ;
-  tag `v1.0.0` et `CHANGELOG.md`.
+- [x] Vérification visuelle par Max (piscine : couleurs, « Suivre l'eau »).
+- [x] Relecture finale (2026-11-16) : aucune erreur de chiffre ni de citation ;
+  encadré OID complété, licence des contenus, régime « partiel » documenté.
+- [x] Mise en ligne (`docs/DEPLOIEMENT.md`) : identité des commits réécrite,
+  dépôt public, Cloudflare Pages sur `quiremplacequi.technoperchoir.fr`,
+  vérifications en ligne passées ; `CHANGELOG.md` et tag `v1.0.0`.
 
-**Livrable** : site v1 en ligne, relu par Max.
+**Livrable** : site v1 en ligne (2026-11-16).
 
 ## Ensuite : cycles
+
+La v1 est close. Le prochain cycle se détaille ici quand Max le lance ; les
+candidats sont dans `BACKLOG.md`.
 
 L'international (C), la nature des migrations (D), les projections et les
 contrefactuels de la piscine (F1, F3), la rhétorique (G), la frise des

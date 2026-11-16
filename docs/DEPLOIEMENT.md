@@ -13,7 +13,7 @@ donnée : il part de l'instantané versionné `data/export/`.
   avant le passage en public.
 - [x] Le dossier privé `source/` n'a jamais été commité (`git log --all -- source` est vide) ;
   aucun secret dans l'historique (vérifié le 2026-11-16).
-- [ ] Passer le dépôt en public **avant** de relier le domaine (la page « À propos » et le pied
+- [x] Passer le dépôt en public **avant** de relier le domaine (la page « À propos » et le pied
   de page renvoient au dépôt et à ses tickets) : GitHub, Settings, General, Danger Zone, Change visibility (ou
   `gh repo edit m4xim1nus/quiremplacequi --visibility public --accept-visibility-change-consequences`).
 
@@ -34,6 +34,14 @@ Dans le tableau de bord Cloudflare (compte qui porte la zone `technoperchoir.fr`
    automatiquement si la zone est sur le même compte).
 
 ## 3. Vérifications après le premier déploiement
+
+Faites le 2026-11-16, toutes passées : les 8 pages, `partage.png`, les données et la page 404
+répondent ; en-têtes de `_headers` servis (CSP, `nosniff`, referrer) ; polices en cache immuable ;
+aucune ressource externe ni balise de mesure sur les 8 pages ; dépôt public.
+Réserve : l'obfuscation des adresses de Cloudflare (Scrape Shield) remplace l'adresse de contact
+et injecte un script servi par le site lui-même (`/cdn-cgi/…/email-decode.min.js`). Ni tiers ni
+traceur, mais sans JavaScript l'adresse ne s'affiche pas : la désactiver pour ce sous-domaine si on
+veut une page sans script injecté.
 
 ```bash
 curl -sI https://quiremplacequi.technoperchoir.fr/ | grep -i -E "content-security|referrer|x-content"
