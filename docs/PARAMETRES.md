@@ -87,3 +87,13 @@ Questions ouvertes :
 2. Si la fourchette de 1968 est retenue : un code `U20` dans `incertitudes.yaml`,
    affiché sur la piscine pour les années de 1921 à 1990 environ.
 3. Cocher l'étape 2 dans `ROADMAP.md`.
+
+## 6. Proposition du 2026-11-16 : le flux net avant 2006 (à valider)
+
+| Paramètre | Valeur | D'où elle vient | Effet | Recommandation | Décision |
+|---|---|---|---|---|---|
+| `repartition_flux` (`piscine.yaml`) | `solde_bilan` dès 1968 | Solde migratoire annuel du bilan Insee, lui-même estimé « à partir d'informations fragmentaires provenant de sources diverses » et recalé sur chaque recensement. Aucune série publique d'entrées exploitable trouvée avant 2006 (ONI et OMI : rapports annuels non numérisés en série ; Ined : à partir de 1994 environ, non vérifié) | Le flux net des immigrés suit le solde du bilan à une constante près : 1973 : 123 000, 1974 : 47 000, 1975 : 39 000 (avant : ≈ 134 000, 135 000, 65 000, lissés). Le solde des non-immigrés devient constant entre deux recensements ; auparavant, il absorbait la cassure (−104 000 en 1974, un artefact). Parts des générations inchangées (au centième près) | Retenir `solde_bilan` dès 1968. Avant 1968 : garder le lissage (en 1962, le solde du bilan est dominé par les rapatriés, non immigrés pour la plupart) | ☐ |
+
+Variante écartée : flux net des immigrés proportionnel au solde du bilan.
+Résultats proches, mais le solde des non-immigrés varie alors sans raison
+documentée (`pipeline/explo/flux_avant_2006.py`).

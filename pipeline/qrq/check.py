@@ -97,6 +97,16 @@ def verifier(export: Path) -> tuple[bool, list[str]]:
     r = psc["ratio_deces"]
     controle("piscine : rapport des décès dans [0,9 ; 1,2]", 0.9 <= r["min"] and r["max"] <= 1.2, f"moyen {r['moyen']}, min {r['min']}, max {r['max']}")
 
+    # Avant 2006 (répartition « solde_bilan ») : solde des non-immigrés constant entre deux
+    # recensements, à l'arrondi près ; la rupture de 1974 apparaît dans le flux des immigrés.
+    rep = psc.get("repartition_flux", {})
+    if rep.get("methode") == "solde_bilan":
+        recs = [r for r in (1968, 1975, 1982, 1990, 1999, 2006) if r >= rep["de"]]
+        par = {a["annee"]: a for a in ans}
+        ecart = max(max(par[a]["net_ni"] for a in range(r0, r1)) - min(par[a]["net_ni"] for a in range(r0, r1)) for r0, r1 in zip(recs, recs[1:]))
+        controle("piscine : solde des non-immigrés constant entre deux recensements (1968-2005)", ecart <= 5, f"écart max {ecart}")
+        controle("piscine : flux net des immigrés de 1974 < moitié de 1973", par[1974]["net_imm"] < par[1973]["net_imm"] / 2, f"{par[1973]['net_imm']} → {par[1974]['net_imm']}")
+
     # Piscine v1 : générations (modèle de cohortes).
     gens = [x for x in ans if "g2a" in x]
     ecart = max(abs(x["immigres"] + x["g2a"] + x["g2b"] + x["g3"] + x["autres"] - x["population"]) for x in gens)

@@ -34,6 +34,8 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     # Avant 1946, le bilan n'a pas de population : on la lit dans les pyramides (métropole).
     bilan.completer_avant_1946(tables["bilan"], {a: float(v.sum()) for a, v in entrees.ages.items() if a < 1946})
     psc = piscine.construire(tables["b1_stock"], tables["bilan"], tables["flux"], referentiel("piscine"))
+    # Le modèle de cohortes suit la même trajectoire d'immigrés que la piscine avant 2006.
+    entrees.stock_g1.update({x["annee"]: float(x["immigres"]) for x in psc["annees"] if x["annee"] < 2006})
     cibles = cohortes.lire_cibles_ip1910(raw)
     sorties = {f["annee"]: f["sorties_imm"] for f in tables["flux"] if f["sorties_imm"] is not None}
     sim, cal = cohortes.caler(entrees, pc, cibles, sorties)

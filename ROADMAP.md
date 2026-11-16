@@ -79,8 +79,11 @@ l'étape 2. L'étape 3 traite ce qui reste de leurs limites connues.
 - [x] Âge des immigrés : nouveau témoin, les recensements de 2007 à 2025 (tous
   logements, Insee 2381759), contrôlé à ± 5 points. Les jeunes adultes restent
   surestimés (≈ +2 points) ; la cause est le profil d'âge à l'arrivée, unique.
-- [ ] Série annuelle des entrées avant 2006 (ONI, OMI, Ined), pour que la
-  piscine montre 1974 au lieu d'un flux lissé ; à défaut, le dire (déjà fait).
+- [x] Flux avant 2006 : aucune série publique exploitable des entrées
+  trouvée avant 2006. De 1968
+  à 2005, le flux net des immigrés suit le solde migratoire annuel du bilan
+  Insee (1974 se voit) ; le solde des non-immigrés n'absorbe plus la cassure.
+  Paramètre à valider (`docs/PARAMETRES.md` §6).
 - [ ] Profil d'âge à l'arrivée par époque, si une source publique agrégée le
   donne (corrige l'âge des G1).
 - [ ] TeO2 : chapitre 7, figures 3 et 4 (≈ 168 cellules) ; chapitre 11,

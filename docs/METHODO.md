@@ -8,8 +8,20 @@ Version du 2026-11-05. Base de la page `/methode` du site. Paramètres :
 
 Une ligne par année : stocks au 1er janvier, flux de l'année. Trois régimes :
 `mesure` (2006-2022, IP 2107), `partiel` (2023-2024 : entrées seules),
-`reconstruit` (1921-2005 : stocks des recensements interpolés, décès d'immigrés
-estimés, flux net par différence). Population : bilan démographique, onglet FM
+`reconstruit` (1921-2005 : stocks des recensements, décès d'immigrés estimés,
+flux net par différence). Entre deux recensements, de 1968 à 2005, le flux net
+des immigrés suit année par année le solde migratoire du bilan, à une constante
+près calée pour retomber sur le recensement suivant (`repartition_flux`) : le
+solde des non-immigrés est supposé constant sur la période, et toute la
+variation annuelle du solde estimé par l'Insee va aux immigrés. Ce solde annuel
+est lui-même une estimation de l'Insee « à partir d'informations fragmentaires
+provenant de sources diverses », recalée sur chaque recensement (Insee,
+*Méthodes de calcul des populations antérieures à 1990*). Aucune série publique
+des entrées exploitable (tableur, texte) n'a été trouvée avant 2006 : les
+sources ONI et OMI sont des rapports annuels ou des publications non
+numérisées en série. Avant 1968, le stock est interpolé
+linéairement (1962 : l'arrivée des rapatriés domine le solde du bilan). Le
+modèle de cohortes suit la même trajectoire. Population : bilan démographique, onglet FM
 (métropole) jusqu'en 1989, FR ensuite ; avant 1946, population lue dans les
 pyramides des âges et solde migratoire par différence ; de 1938 à 1945 l'écart
 est un ajustement (prisonniers hors du territoire), pas une migration.

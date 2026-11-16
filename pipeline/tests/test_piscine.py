@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from qrq.piscine import construire, ecart_identite, interpoler, ratio_deces
+from qrq.piscine import construire, ecart_identite, interpoler, ratio_deces, suivre_solde
 
 
 def test_interpolation_entre_recensements():
@@ -10,6 +10,19 @@ def test_interpolation_entre_recensements():
     assert interpoler(pts, 1968) == 3_238_000
     assert interpoler(pts, 1975) == 3_887_000
     assert interpoler(pts, 1971) == pytest.approx(3_238_000 + 3 / 7 * 649_000)
+
+
+def test_suivre_solde():
+    # Solde du bilan 30 puis 10 ; décès nuls (r = 0) : flux net = solde + c, stock final atteint.
+    bilans = [{"annee": 2000, "population": 1000, "deces": 10, "solde_migratoire": 30},
+              {"annee": 2001, "population": 1000, "deces": 10, "solde_migratoire": 10}]
+    s = suivre_solde(100, 160, bilans, r=0)
+    assert s == {2000: 100, 2001: 100 + 30 + 10}  # c = (60 − 40) / 2 = 10
+    # Avec décès : le dernier pas retombe exactement sur le recensement suivant.
+    s = suivre_solde(100, 160, bilans, r=1.0)
+    d = [1.0 * s[a] / 1000 * 10 for a in (2000, 2001)]
+    c = s[2001] - s[2000] - 30 + d[0]
+    assert s[2001] + 10 + c - d[1] == pytest.approx(160, abs=0.5)
 
 
 def test_ratio_deces():

@@ -110,7 +110,7 @@
  },
  "U17": {
   "titre": "La piscine est un modèle avant 2006",
-  "detail": "Avant 2006, les arrivées et les départs d'immigrés ne sont pas séparables : seul le flux net est reconstruit, à partir des stocks des recensements et de décès estimés.",
+  "detail": "Avant 2006, les arrivées et les départs d'immigrés ne sont pas séparables : seul le flux net est reconstruit, à partir des stocks des recensements et de décès estimés. De 1968 à 2005, ses variations d'une année à l'autre suivent le solde migratoire estimé par l'Insee ; avant 1968, il est lissé entre deux recensements.",
   "traitement": "Vanne nette, badge « reconstruit », fourchette sur les décès",
   "verifie": true,
   "reference": "docs/SOURCES.md §3 ; pipeline/referentiels/piscine.yaml"

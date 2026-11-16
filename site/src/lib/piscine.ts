@@ -315,7 +315,7 @@ export const STATUTS: Record<Statut, { libelle: string; detail: string }> = {
   reconstruit: {
     libelle: 'Reconstruit',
     detail:
-      'Avant 2006, seul le flux net des immigrés se reconstruit (recensements et décès estimés) : arrivées et départs ne sont pas séparables, et le flux est lissé entre deux recensements, si bien qu’une rupture comme celle de 1974 n’apparaît pas.'
+      'Avant 2006, seul le flux net des immigrés se reconstruit (recensements et décès estimés) : arrivées et départs ne sont pas séparables. De 1968 à 2005, ses variations annuelles suivent le solde migratoire estimé par l’Insee (la rupture de 1974 se voit) ; avant 1968, il est lissé entre deux recensements.'
   }
 };
 

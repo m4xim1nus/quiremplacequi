@@ -8,6 +8,15 @@ fin: 2025                  # dernier stock au 1er janvier
 # Avant 2006 : stocks d'immigrés des recensements (série 2381757), interpolés linéairement entre deux
 # recensements. Les dates de collecte (mars ou février de l'année) sont assimilées au 1er janvier :
 # approximation documentée. Pas de recensement de 1937 à 1945 (guerre) : interpolation 1936-1946.
+# Avant 2006, entre deux recensements à partir de `de` : le flux net des immigrés suit le solde
+# migratoire annuel du bilan Insee, à une constante près (solde des non-immigrés constant sur la
+# période). Ce solde annuel est lui-même une estimation de l'Insee « à partir d'informations
+# fragmentaires provenant de sources diverses », recalée sur chaque recensement (Insee, Méthodes de
+# calcul des populations antérieures à 1990). Avant `de` : interpolation linéaire (1962 : rapatriés).
+# Proposé le 2026-11-16, à valider (docs/PARAMETRES.md §6). `methode: lineaire` rétablit l'ancien calcul.
+repartition_flux:
+  methode: solde_bilan
+  de: 1968
 recensements: [1921, 1926, 1931, 1936, 1946, 1954, 1962, 1968, 1975, 1982, 1990, 1999, 2006]
 
 # Bilan démographique : onglet FM (métropole) jusqu'à cette année incluse, FR ensuite, pour suivre le

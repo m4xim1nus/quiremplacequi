@@ -6,8 +6,10 @@ les stocks au 1er janvier de `a`, et les flux de l'année `a` (du 1er janvier `a
 
 - `mesure` (2006-2022) : entrées, sorties et décès d'immigrés publiés par l'Insee (IP 2107) ;
 - `partiel` (2023-2024) : entrées publiées, sorties pas encore (U3) ; décès d'immigrés estimés ;
-- `reconstruit` (avant 2006) : stocks des recensements interpolés, décès estimés, **flux net**
-  par différence ; arrivées et départs ne sont pas séparables (U17).
+- `reconstruit` (avant 2006) : stocks des recensements, décès estimés, **flux net** par
+  différence ; arrivées et départs ne sont pas séparables (U17). Entre deux recensements, le flux
+  net suit le solde migratoire annuel du bilan à une constante près (`repartition_flux`), ou, avant
+  la date fixée, le stock est interpolé linéairement.
 
 Identité tenue à chaque année, par construction (et testée) :
 
@@ -31,6 +33,24 @@ def interpoler(points: dict[int, int], a: int) -> float:
     return points[avant] + t * (points[apres] - points[avant])
 
 
+def suivre_solde(s0: float, s1: float, bilans: list[dict], r: float, tours: int = 4) -> dict[int, float]:
+    """Stocks d'immigrés entre deux recensements (s0, puis s1 l'année qui suit le dernier bilan) :
+    flux net de l'année = solde migratoire du bilan + c, c constant sur la période et tel que le
+    stock retombe exactement sur s1. Le solde des non-immigrés est donc constant entre deux
+    recensements ; toute la variation annuelle du solde estimé par l'Insee va aux immigrés. Les
+    décès d'immigrés (r × part × décès) dépendent du chemin : quelques tours suffisent."""
+    n = len(bilans)
+    s = [s0 + (s1 - s0) * i / n for i in range(n)]
+    for _ in range(tours):
+        d = [r * s[i] / x["population"] * x["deces"] for i, x in enumerate(bilans)]
+        sm = [x["solde_migratoire"] for x in bilans]
+        c = (s1 - s0 + sum(d) - sum(sm)) / n
+        s = [s0]
+        for i in range(n - 1):
+            s.append(s[-1] + sm[i] + c - d[i])
+    return {x["annee"]: v for x, v in zip(bilans, s)}
+
+
 def ratio_deces(deces_imm: float, deces: float, immigres: float, population: float) -> float:
     """Rapport entre la part des immigrés dans les décès et leur part dans la population."""
     return (deces_imm / deces) / (immigres / population)
@@ -50,11 +70,12 @@ def construire(stock: list[dict], bilan: list[dict], flux: list[dict], params: d
         return bil[(a, "FM" if a <= bascule else "FR")]
 
     points = {a: st[a]["immigres"] for a in recensements}
+    chemin: dict[int, float] = {}
 
     def immigres(a: int) -> int:
         if a >= 2006:
             return st[a]["immigres"]
-        return round(interpoler(points, a))
+        return round(chemin.get(a, interpoler(points, a)))
 
     def statut_stock(a: int) -> str:
         if a < 2006:
@@ -68,6 +89,12 @@ def construire(stock: list[dict], bilan: list[dict], flux: list[dict], params: d
         for a in calage
     }
     r_moy, r_min, r_max = mean(ratios.values()), min(ratios.values()), max(ratios.values())
+
+    rep = params.get("repartition_flux") or {"methode": "lineaire"}
+    if rep["methode"] == "solde_bilan":
+        for r0, r1 in zip(recensements, recensements[1:]):
+            if r0 >= rep["de"] and r1 <= 2006:
+                chemin |= suivre_solde(points[r0], points[r1], [b(a) for a in range(r0, r1)], r_moy)
 
     annees = []
     for a in range(debut, fin + 1):
@@ -96,6 +123,7 @@ def construire(stock: list[dict], bilan: list[dict], flux: list[dict], params: d
             "calage": list(params["deces_immigres"]["calage"]),
             "par_annee": {str(a): round(r, 4) for a, r in ratios.items()},
         },
+        "repartition_flux": rep,
         "evenements": params["evenements"],
         "annees": annees,
     }
