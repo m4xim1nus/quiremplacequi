@@ -221,6 +221,49 @@ def verifier(export: Path) -> tuple[bool, list[str]]:
     fr_onu = op.filter(pl.col("code") == 250)
     controle("témoin onu France 2024 : 9 186 757 migrants (définition large)", fr_onu["immigres"][0] == 9_186_757, f"{fr_onu['immigres'][0]}")
 
+    # Naissances : les sous-catégories de la figure 2 refont leurs totaux, chaque année.
+    det = pl.read_csv(export / "naissances_detail.csv")
+    un = ["mere_france_second_ue", "mere_france_second_hors_ue", "mere_ue_second_france", "mere_hors_ue_second_france"]
+    deux = ["deux_ue", "deux_hors_ue", "mere_ue_second_hors_ue", "mere_hors_ue_second_ue"]
+    ecarts = []
+    for (a,), g in det.group_by("annee"):
+        d = dict(g.select("categorie", "naissances").rows())
+        n = dict(nais.filter(pl.col("annee") == a).select("categorie", "naissances").rows())
+        if sum(d[c] for c in un) != n["un_parent_ne_a_l_etranger"] or sum(d[c] for c in deux) != n["deux_parents_nes_a_l_etranger"]:
+            ecarts.append(a)
+    controle("naissances : sous-catégories = « un parent » et « deux parents » nés à l'étranger", not ecarts, f"années {sorted(ecarts)}")
+
+    # Fécondité : l'ICF d'ensemble est entre ceux des femmes nées en France et à l'étranger ;
+    # descendance finale témoin ; calendrier des naissances autour de l'arrivée ≈ 100 %.
+    icf = pl.read_csv(export / "fecondite_icf.csv").pivot(on="groupe", index="annee", values="icf")
+    hors = icf.filter((pl.col("ensemble") < pl.col("nees_en_france")) | (pl.col("ensemble") > pl.col("nees_a_l_etranger")))
+    controle("fécondité : ICF ensemble entre nées en France et nées à l'étranger (2006-2021)", hors.is_empty(), f"{hors['annee'].to_list()}")
+    v = icf.filter(pl.col("annee") == 2021)["nees_a_l_etranger"][0]
+    controle("témoin IP 1939 : ICF ajusté des femmes nées à l'étranger 2021 = 2,33", v == 2.33, f"{v}")
+    dfe = pl.read_csv(export / "fecondite_descendance.csv").filter(pl.col("dimension") == "lien")
+    dl = dict(dfe.select("categorie", "valeur").rows())
+    controle("témoin IP 1939 : descendance finale 2,35 (immigrées), 1,90 (descendantes), 1,86 (ni l'un ni l'autre)",
+             (dl["immigrees"], dl["descendantes"], dl["ni_immigrees_ni_descendantes"]) == (2.35, 1.9, 1.86))
+    cal = pl.read_csv(export / "fecondite_arrivee.csv")
+    tot_cal = cal["en_france"].sum() + cal["a_l_etranger"].sum()
+    controle("fécondité : calendrier des naissances autour de l'arrivée, Σ ≈ 100 % (± 1,5)", abs(tot_cal - 100) <= 1.5, f"{tot_cal:.1f}")
+    # Seuil de remplacement = ICF pour 100 femmes / taux net de reproduction (filles qui atteignent
+    # l'âge de leur mère) : autour de 2,05 en France aujourd'hui.
+    fn = pl.read_csv(export / "fecondite_nationale.csv")
+    der = fn.filter(pl.col("champ") == "france").sort("annee").tail(1)
+    seuil = 100 * der["icf"][0] / der["taux_reproduction_net"][0]
+    controle(f"fécondité : seuil de remplacement {der['annee'][0]} entre 2,0 et 2,1", 2.0 <= seuil <= 2.1, f"{seuil:.3f}")
+    controle("témoin bilan 2025 : ICF France 2025 = 1,56", der["icf"][0] == 1.56 and der["annee"][0] == 2025, f"{der['icf'][0]}")
+    dg = dict(pl.read_csv(export / "descendance_generations.csv").rows())
+    controle("témoin descendance : génération 1950 (métropole) 2,117", dg[1950] == 2.117, f"{dg[1950]}")
+
+    # ONU 2000 : moyenne annuelle × 50 ≈ total (arrondis des milliers) ; pas de migration au scénario II.
+    o2 = pl.read_csv(export / "onu2000.csv")
+    tot2 = dict(o2.filter(pl.col("indicateur") == "migrants_2000_2050").select("scenario", "valeur").rows())
+    an2 = dict(o2.filter(pl.col("indicateur") == "migrants_par_an").select("scenario", "valeur").rows())
+    ecart = max(abs(50 * an2[s] - tot2[s]) for s in tot2)
+    controle("onu 2000 : 50 × moyenne annuelle = total 2000-2050 (± 25 000)", ecart <= 25 and tot2["II"] == 0, f"écart max {ecart:.0f} milliers")
+
     # Témoins lus dans les sources (docs/spike/insee.md).
     temoins = {
         ("b1_stock", 2025, "immigres"): 7_970_000,

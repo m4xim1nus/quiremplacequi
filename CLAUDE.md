@@ -119,7 +119,9 @@ bash build.sh                        # build complet, celui de Cloudflare Pages
 
 Toute nouvelle source se déclare dans `pipeline/qrq/sources.py`, sa lecture
 dans un module par famille (`stock.py`, `flux.py`, `bilan.py`,
-`naissances.py`, `ip1910.py`, `teo2.py`), l'assemblage dans `build.py`, et ses
+`naissances.py`, `ip1910.py`, `teo2.py`, `fecondite.py`…). Les chiffres saisis depuis un
+PDF (`referentiels/onu2000.yaml`, `fecondite.yaml`) portent leur extrait exact, vérifié
+contre le PDF au build (`pdftotext`), l'assemblage dans `build.py`, et ses
 contrôles dans `check.py`. Le modèle de cohortes des générations est dans
 `cohortes.py` (paramètres `referentiels/cohortes.yaml`) ; méthode écrite dans
 `docs/METHODO.md`, à tenir à jour avec la page `/methode`. Les paramètres du modèle de la piscine sont dans

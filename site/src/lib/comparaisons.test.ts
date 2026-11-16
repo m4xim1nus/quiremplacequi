@@ -58,6 +58,25 @@ describe('comparaisons', () => {
     ]);
   });
 
+  it('naissances : mère née à l’étranger et seuil de remplacement', () => {
+    const det = csv('naissances_detail.csv').filter((r) => r.annee === '2025');
+    const np = csv('naissances_parents.csv').filter((r) => r.annee === '2025');
+    const n = (rows: typeof det, c: string) =>
+      Number(rows.find((r) => r.categorie === c)!.naissances);
+    const mere =
+      n(det, 'mere_ue_second_france') +
+      n(det, 'mere_hors_ue_second_france') +
+      n(np, 'deux_parents_nes_a_l_etranger');
+    expect(mere).toBe(169_748);
+    expect(csv('naissances_parents.csv').some((r) => r.annee === '2023')).toBe(true);
+    const fr = csv('fecondite_nationale.csv').find(
+      (r) => r.annee === '2025' && r.champ === 'france'
+    )!;
+    const seuil = (100 * Number(fr.icf)) / Number(fr.taux_reproduction_net);
+    expect(seuil).toBeGreaterThan(2);
+    expect(seuil).toBeLessThan(2.1);
+  });
+
   it('titres de séjour : témoin 2024 et somme des motifs', () => {
     const t = csv('titres.csv').filter((r) => r.annee === '2024');
     expect(t.reduce((s, r) => s + Number(r.titres), 0)).toBe(345_587);

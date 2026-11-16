@@ -120,7 +120,13 @@
         enfants sur {milliers(c.naissances2022)} avaient deux parents immigrés, et {milliers(
           c.nais2022.g2b
         )}
-        un seul.
+        un seul. L’état civil, qui connaît le pays de naissance des parents et non leur qualité d’immigré,
+        donne trois autres chiffres : {pct(c.etatCivil2022.mere)} des enfants avaient une mère née à l’étranger,
+        {pct(c.etatCivil2022.auMoinsUn)} au moins un parent né à l’étranger, {pct(
+          c.etatCivil2022.deux
+        )}
+        deux parents nés à l’étranger. Trois définitions, trois questions :
+        <a href="/naissances#parents">les naissances</a>.
       </li>
       <li>
         <strong>Pas deux blocs, des colonnes qui se recouvrent.</strong>

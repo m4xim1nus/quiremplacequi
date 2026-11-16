@@ -1,0 +1,36 @@
+indicateur,scenario,valeur,unite,libelle,tableau,page
+migrants_2000_2050,I,325.0,milliers,Solde migratoire cumulé de 2000 à 2050,"Tableau 1, A (Total number)",2
+migrants_2000_2050,II,0.0,milliers,Solde migratoire cumulé de 2000 à 2050,"Tableau 1, A (Total number)",2
+migrants_2000_2050,III,1473.0,milliers,Solde migratoire cumulé de 2000 à 2050,"Tableau 1, A (Total number)",2
+migrants_2000_2050,IV,5459.0,milliers,Solde migratoire cumulé de 2000 à 2050,"Tableau 1, A (Total number)",2
+migrants_2000_2050,V,89584.0,milliers,Solde migratoire cumulé de 2000 à 2050,"Tableau 1, A (Total number)",2
+migrants_par_an,I,7.0,milliers,"Solde migratoire moyen par an, 2000-2050","Tableau 1, B (Average annual number)",2
+migrants_par_an,II,0.0,milliers,"Solde migratoire moyen par an, 2000-2050","Tableau 1, B (Average annual number)",2
+migrants_par_an,III,29.0,milliers,"Solde migratoire moyen par an, 2000-2050","Tableau 1, B (Average annual number)",2
+migrants_par_an,IV,109.0,milliers,"Solde migratoire moyen par an, 2000-2050","Tableau 1, B (Average annual number)",2
+migrants_par_an,V,1792.0,milliers,"Solde migratoire moyen par an, 2000-2050","Tableau 1, B (Average annual number)",2
+migrants_1995_2050,I,525.0,milliers,"Solde migratoire cumulé de 1995 à 2050 (au scénario I : 1995-2020, aucun ensuite)",Tableau IV.4,24
+migrants_1995_2050,II,0.0,milliers,"Solde migratoire cumulé de 1995 à 2050 (au scénario I : 1995-2020, aucun ensuite)",Tableau IV.4,24
+migrants_1995_2050,III,1473.0,milliers,"Solde migratoire cumulé de 1995 à 2050 (au scénario I : 1995-2020, aucun ensuite)",Tableau IV.4,24
+migrants_1995_2050,IV,5459.0,milliers,"Solde migratoire cumulé de 1995 à 2050 (au scénario I : 1995-2020, aucun ensuite)",Tableau IV.4,24
+migrants_1995_2050,V,93794.0,milliers,"Solde migratoire cumulé de 1995 à 2050 (au scénario I : 1995-2020, aucun ensuite)",Tableau IV.4,24
+rapport_soutien_2050,I,2.26,ratio,Rapport de soutien potentiel en 2050 (15-64 ans pour un 65 ans ou plus),Tableau IV.5 (colonnes 2050 ; la première valeur est celle de 1995),24
+rapport_soutien_2050,II,2.26,ratio,Rapport de soutien potentiel en 2050 (15-64 ans pour un 65 ans ou plus),Tableau IV.5 (colonnes 2050 ; la première valeur est celle de 1995),24
+rapport_soutien_2050,III,2.33,ratio,Rapport de soutien potentiel en 2050 (15-64 ans pour un 65 ans ou plus),Tableau IV.5 (colonnes 2050 ; la première valeur est celle de 1995),24
+rapport_soutien_2050,IV,2.49,ratio,Rapport de soutien potentiel en 2050 (15-64 ans pour un 65 ans ou plus),Tableau IV.5 (colonnes 2050 ; la première valeur est celle de 1995),24
+rapport_soutien_2050,V,4.36,ratio,Rapport de soutien potentiel en 2050 (15-64 ans pour un 65 ans ou plus),Tableau IV.5 (colonnes 2050 ; la première valeur est celle de 1995),24
+rapport_soutien_1995,I,4.36,ratio,Rapport de soutien potentiel en 1995,Tableau IV.5 (colonne 1995),24
+part_post1995_2050,I,0.9,pourcent,Part des migrants arrivés après 1995 et de leurs descendants dans la population de 2050,Tableau IV.7,25
+part_post1995_2050,II,0.0,pourcent,Part des migrants arrivés après 1995 et de leurs descendants dans la population de 2050,Tableau IV.7,25
+part_post1995_2050,III,2.9,pourcent,Part des migrants arrivés après 1995 et de leurs descendants dans la population de 2050,Tableau IV.7,25
+part_post1995_2050,IV,11.6,pourcent,Part des migrants arrivés après 1995 et de leurs descendants dans la population de 2050,Tableau IV.7,25
+part_post1995_2050,V,68.3,pourcent,Part des migrants arrivés après 1995 et de leurs descendants dans la population de 2050,Tableau IV.7,25
+population_2050,I,59883.0,milliers,Population totale en 2050,"Tableau IV.11, A (la première valeur est celle de 1995)",27
+population_2050,II,59357.0,milliers,Population totale en 2050,"Tableau IV.11, A (la première valeur est celle de 1995)",27
+population_2050,III,61121.0,milliers,Population totale en 2050,"Tableau IV.11, A (la première valeur est celle de 1995)",27
+population_2050,IV,67130.0,milliers,Population totale en 2050,"Tableau IV.11, A (la première valeur est celle de 1995)",27
+population_2050,V,187193.0,milliers,Population totale en 2050,"Tableau IV.11, A (la première valeur est celle de 1995)",27
+population_1995,I,58020.0,milliers,Population totale en 1995,"Tableau IV.11, A (colonne 1995)",27
+age_limite_actif,II,73.9,ans,"Âge auquel il faudrait porter la fin de la vie active pour retrouver en 2050, sans migration, le rapport de soutien de 1995",Tableau IV.10 (scénario II),27
+solde_officiel_1990_1994,I,76000.0,personnes,"Solde migratoire officiel de la France, moyenne annuelle 1990-1994 (rappel du rapport)","Texte, France, Discussion",32
+solde_officiel_1995_1998,I,39000.0,personnes,"Solde migratoire officiel de la France, moyenne annuelle 1995-1998 (rappel du rapport)","Texte, France, Discussion",32

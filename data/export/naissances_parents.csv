@@ -24,6 +24,7 @@ annee,statut,categorie,naissances
 2020,definitif,deux_parents_nes_en_france,498518
 2021,definitif,deux_parents_nes_en_france,508913
 2022,definitif,deux_parents_nes_en_france,490973
+2023,definitif,deux_parents_nes_en_france,450077
 2024,definitif,deux_parents_nes_en_france,435196
 2025,definitif,deux_parents_nes_en_france,421871
 1998,definitif,un_parent_ne_a_l_etranger,105740
@@ -51,6 +52,7 @@ annee,statut,categorie,naissances
 2020,definitif,un_parent_ne_a_l_etranger,111971
 2021,definitif,un_parent_ne_a_l_etranger,112587
 2022,definitif,un_parent_ne_a_l_etranger,109024
+2023,definitif,un_parent_ne_a_l_etranger,102033
 2024,definitif,un_parent_ne_a_l_etranger,100151
 2025,definitif,un_parent_ne_a_l_etranger,97358
 1998,definitif,deux_parents_nes_a_l_etranger,72006
@@ -78,6 +80,7 @@ annee,statut,categorie,naissances
 2020,definitif,deux_parents_nes_a_l_etranger,124707
 2021,definitif,deux_parents_nes_a_l_etranger,120552
 2022,definitif,deux_parents_nes_a_l_etranger,126000
+2023,definitif,deux_parents_nes_a_l_etranger,125693
 2024,definitif,deux_parents_nes_a_l_etranger,125440
 2025,definitif,deux_parents_nes_a_l_etranger,124676
 1998,definitif,ensemble,767906
@@ -105,5 +108,6 @@ annee,statut,categorie,naissances
 2020,definitif,ensemble,735196
 2021,definitif,ensemble,742052
 2022,definitif,ensemble,725997
+2023,definitif,ensemble,677803
 2024,definitif,ensemble,660787
 2025,definitif,ensemble,643905

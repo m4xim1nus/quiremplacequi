@@ -1,6 +1,6 @@
 <script lang="ts">
   import Echelle from '$lib/components/Echelle.svelte';
-  import { milliers, pct } from '$lib/format';
+  import { milliers, pct, virgule } from '$lib/format';
   import { rangTexte } from '$lib/comparaisons';
   let { data } = $props();
   const signe = (x: number) => (x < 0 ? '−' : '+') + milliers(Math.abs(x));
@@ -85,6 +85,17 @@
           >Qui arrive, pour quel motif : {milliers(data.titres.total)} premiers titres de séjour en
           {data.titres.annee}, d’abord pour motif « {data.titres.premierMotif} ». Pourquoi l’Insee et
           le ministère ne donnent pas le même chiffre.</span
+        >
+      </a>
+    </li>
+    <li>
+      <a href="/naissances">
+        <span class="titre">Les naissances</span>
+        <span
+          >{pct(data.naissances.partMere)} des enfants nés en {data.naissances.annee} ont une mère née
+          à l’étranger. Les filles d’immigrés ont {virgule(data.naissances.descendantes, 2)} enfants en
+          moyenne, les autres femmes {virgule(data.naissances.ni, 2)}. Et ce que disait vraiment le
+          rapport de l’ONU sur les « migrations de remplacement ».</span
         >
       </a>
     </li>

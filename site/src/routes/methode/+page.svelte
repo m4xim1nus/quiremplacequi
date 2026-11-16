@@ -49,6 +49,32 @@
     </li>
   </ul>
 
+  <h2 id="categories">Pourquoi ces catégories</h2>
+  <p>
+    Le site ne compte que selon des catégories que la statistique publique mesure : le pays de
+    naissance, la nationalité (actuelle, et de naissance pour les Français par acquisition), et,
+    pour les enfants et petits-enfants d’immigrés, le pays de naissance et la nationalité de leurs
+    parents ou grands-parents. Il n’y a pas de catégorie « ethnique » ou « raciale » dans ses
+    chiffres, et il n’en fabrique pas (aucun classement par les prénoms, par exemple).
+  </p>
+  <p>
+    Ce n’est pas un choix du site. La loi Informatique et libertés du 6 janvier 1978 interdit, en
+    principe, de traiter des données qui révèlent « la prétendue origine raciale ou l’origine
+    ethnique » d’une personne (article 6) ; elle prévoit des exceptions, notamment pour des
+    traitements d’intérêt public autorisés après avis de la Cnil. En 2007, le Conseil
+    constitutionnel a précisé que les études sur « la mesure de la diversité des origines des
+    personnes, de la discrimination et de l’intégration » peuvent porter sur des données objectives,
+    mais ne sauraient « reposer sur l’origine ethnique ou la race » (décision n° 2007-557 DC du 15
+    novembre 2007, considérant 29). Les enquêtes comme Trajectoires et Origines interrogent donc sur
+    les parcours, les ascendances et les discriminations vécues, pas sur une appartenance.
+  </p>
+  <p>
+    Ces catégories reposent sur des déclarations : le pays de naissance et la nationalité de
+    naissance sont ceux que les personnes déclarent au recensement ou à l’enquête. Si des immigrés
+    installés de longue date se déclarent « Français de naissance », ils sortent du compte des
+    immigrés : l’erreur, si elle existe, va dans le sens d’un nombre d’immigrés sous-estimé (U27).
+  </p>
+
   <h2>Les identités comptables, vérifiées à chaque calcul</h2>
   <p>
     Population de l’année suivante = population + naissances − décès + entrées − sorties (+
@@ -168,10 +194,27 @@
     sources (U24).
   </p>
 
+  <h2>Les naissances et la fécondité</h2>
+  <p>
+    Les naissances selon le pays de naissance des parents viennent de l’état civil (Insee) : elles
+    ne disent pas si les parents sont immigrés (U26). La fécondité des femmes nées à l’étranger est
+    l’indicateur ajusté de l’Insee (Insee Première 1939, 2023) : le calcul classique la surestime,
+    parce que beaucoup de naissances suivent de près l’arrivée en France (U25). La descendance
+    finale selon le lien à la migration vient des enquêtes Trajectoires et Origines. Le seuil de
+    remplacement est calculé pour chaque année : indicateur conjoncturel de fécondité divisé par le
+    taux net de reproduction (Insee), multiplié par 100.
+  </p>
+  <p>
+    Deux documents n’existent qu’en PDF : le rapport de l’ONU sur les « migrations de remplacement »
+    (2000) et le texte de l’Insee Première 1939. Leurs chiffres sont saisis à la main, avec la page
+    et l’extrait d’où vient chaque valeur ; à chaque calcul, le programme retrouve chaque extrait
+    dans le PDF et chaque valeur dans son extrait, et s’arrête à la moindre différence.
+  </p>
+
   <h2>Reproduire</h2>
   <p>
-    Le programme télécharge les fichiers de l’Insee, du ministère de l’Intérieur, d’Eurostat et de
-    l’OCDE, en note l’empreinte, calcule et contrôle tout :
+    Le programme télécharge les fichiers de l’Insee, du ministère de l’Intérieur, d’Eurostat, de
+    l’OCDE et de l’ONU, en note l’empreinte, calcule et contrôle tout :
     <code>qrq download</code>, <code>qrq build</code>, <code>qrq check</code>. Les fichiers produits
     sont sur la page <a href="/donnees">Données</a>.
   </p>

@@ -202,7 +202,35 @@ onze dernières années ; OCDE : dix ans). **Reste à Max** : la Drees comme
 source de la fourchette des irréguliers (hors liste des sources admises) ;
 une saisie manuelle de l'ONU pour C7 (faite : fichier déposé par Max).
 
-## Cycle 3 : les naissances et le mot « remplacement » (pressenti)
+## Cycle 3 : les naissances et le mot « remplacement »
+
+Lancé par Max le 2026-11-16 (« go cycle 3 »).
+
+- [x] **Spike sources** (`docs/SOURCES.md` §7) : Insee Première 1939 (tableur
+  et PDF), tableaux rétrospectifs du bilan 2025, rapport de l'ONU de 2000 par
+  la bibliothèque numérique de l'ONU. Seuil de remplacement calculé.
+- [x] **Pipeline** : `fecondite.py` ; détail des naissances par parent
+  (`naissances.py`) ; référentiels `onu2000.yaml` et `fecondite.yaml`
+  vérifiés contre leurs PDF au build ; 10 contrôles nouveaux ; U25, U26, U27.
+  Défaut corrigé : 2023 manquait dans les naissances (piscine 2023-2025
+  recalculée).
+- [x] **Page « Les naissances » (`/naissances`)** : trois définitions des
+  naissances « d'origine étrangère » ; ICF selon le lieu de naissance et par
+  région ; effet sur l'indicateur national (+0,17, soit 10 %) ; pourquoi deux
+  ICF (naissances autour de l'arrivée, Toulemon) ; descendance finale et
+  convergence ; seuil de remplacement depuis 1901 ; les cinq scénarios de
+  l'ONU (2000), ses conclusions et ce qui a été observé depuis.
+- [x] **Retouches** : légende du robinet des naissances (piscine) ; Méthode
+  « Pourquoi ces catégories » (loi de 1978, décision 2007-557 DC) et « Les
+  naissances et la fécondité » ; U27 sur la piscine et le temps long ;
+  navigation, accueil, données, `build.sh` ; pourcentages insécables.
+- [ ] Relecture factuelle indépendante.
+- [ ] Revue de Max.
+
+**Tranché en autonomie, à relire par Max** : voir `docs/SOURCES.md` §7.
+
+Cadrage d'origine :
+
 
 Une nouvelle page « Les naissances », et quelques retouches ailleurs.
 

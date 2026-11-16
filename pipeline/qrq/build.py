@@ -9,7 +9,7 @@ from pathlib import Path
 import polars as pl
 import yaml
 
-from . import bilan, cohortes, europe, flux, ip1910, naissances, onu, piscine, stock, teo2, titres
+from . import bilan, cohortes, europe, fecondite, flux, ip1910, naissances, onu, piscine, stock, teo2, titres
 from .sources import SOURCES, licence
 
 REFERENTIELS = Path(__file__).resolve().parents[1] / "referentiels"
@@ -70,6 +70,15 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     tables["ocde"] = europe.lire_ocde(raw)
     tables["entrees_origine"] = flux.lire_entrees_origine(raw)
     tables["onu_pays"], tables["onu_regions"] = onu.lire_onu(raw)
+    # Naissances et fécondité (F3, E7) ; migrations de remplacement (F4).
+    tables["naissances_detail"] = naissances.lire_naissances_detail(raw)
+    tables["fecondite_icf"] = fecondite.lire_icf_origine(raw)
+    tables["fecondite_descendance"] = fecondite.lire_descendance_teo(raw)
+    tables["fecondite_arrivee"] = fecondite.lire_calendrier_arrivee(raw)
+    tables["fecondite_nationale"] = fecondite.lire_nationale(raw)
+    tables["descendance_generations"] = fecondite.lire_descendance_nationale(raw)
+    tables["fecondite_textes"] = fecondite.lire_textes_ip1939(raw)
+    tables["onu2000"] = fecondite.lire_onu2000(raw)
 
     if export.exists():
         shutil.rmtree(export)
@@ -89,6 +98,10 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     (export / "piscine.json").write_text(json.dumps(psc, ensure_ascii=False, indent=1))
     (export / "contradicteurs.json").write_text(
         json.dumps(referentiel("contradicteurs"), ensure_ascii=False, indent=1)
+    )
+    onu2000 = referentiel("onu2000")
+    (export / "onu2000.json").write_text(
+        json.dumps({k: onu2000[k] for k in ("source", "scenarios", "citations")}, ensure_ascii=False, indent=1)
     )
     (export / "incertitudes.json").write_text(
         json.dumps(referentiel("incertitudes"), ensure_ascii=False, indent=1)

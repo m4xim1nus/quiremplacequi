@@ -18,6 +18,24 @@ const FICHIERS: Record<string, string> = {
   'bilan.csv': 'Bilan démographique : population, naissances, décès, soldes, 1901-2026',
   'flux.csv': 'Entrées, sorties et décès des immigrés et des non-immigrés, 2006-2024',
   'naissances_parents.csv': 'Naissances selon le pays de naissance des parents, 1998-2025',
+  'naissances_detail.csv':
+    'Naissances selon le pays de naissance de la mère et du second parent (UE, hors UE), 1998-2025',
+  'fecondite_icf.csv':
+    'Indicateur conjoncturel de fécondité ajusté, selon le pays de naissance des femmes, 2006-2021 (Insee Première 1939)',
+  'fecondite_descendance.csv':
+    'Descendance finale des femmes selon le lien à la migration, la génération, le pays de naissance et le diplôme (TeO1, TeO2)',
+  'fecondite_arrivee.csv':
+    'Naissances des immigrées selon les années écoulées depuis leur arrivée, en France ou à l’étranger (TeO2)',
+  'fecondite_nationale.csv':
+    'Indicateur conjoncturel de fécondité, âge moyen à l’accouchement, taux de reproduction, 1901-2025',
+  'descendance_generations.csv':
+    'Descendance finale des générations de femmes, France métropolitaine, 1885-1975',
+  'fecondite_textes.csv':
+    'Chiffres du texte de l’Insee Première 1939 (ajustement de l’indicateur), une référence par valeur',
+  'onu2000.csv':
+    'ONU, « Replacement Migration » (2000) : les cinq scénarios pour la France, une référence par ligne',
+  'onu2000.json':
+    'ONU, « Replacement Migration » (2000) : scénarios et citations du résumé en français',
   'ip1910.csv': 'Insee Première 1910 : toutes les figures, en format long',
   'teo2.csv': 'TeO2 : cellules ressaisies des tableaux et figures (une référence par cellule)',
   'incertitudes.json': 'Registre des incertitudes (codes U1…)',

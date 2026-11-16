@@ -4,6 +4,7 @@ import { csvParse } from 'd3-dsv';
 import { EXPORT, piscine, soldes } from '$lib/server/donnees';
 import { arrivees } from '$lib/server/arrivees';
 import { ailleurs } from '$lib/server/ailleurs';
+import { naissances } from '$lib/server/naissances';
 import { classement, LIBELLES_MOTIFS, MOTIFS } from '$lib/comparaisons';
 
 /** Échelle de l'accueil : part des immigrés aux recensements (série B1), plaques choisies par règle :
@@ -46,7 +47,18 @@ export const load = () => {
   const ai = ailleurs();
   const cPart = classement(ai.nesEtranger.map((x) => ({ libelle: x.pays, valeur: x.part })));
   const cAsile = classement(ai.asile.map((x) => ({ libelle: x.pays, valeur: x.demandes10k })));
+  // Porte « Les naissances ».
+  const na = naissances();
+  const nd = na.annees.at(-1)!;
+  const lien = (c: string) =>
+    na.df.find((x) => x.dimension === 'lien' && x.categorie === c)!.valeur;
   return {
+    naissances: {
+      annee: nd.annee,
+      partMere: (100 * nd.mereEtranger) / nd.ensemble,
+      descendantes: lien('descendantes'),
+      ni: lien('ni_immigrees_ni_descendantes')
+    },
     titres: {
       annee: ti.annee,
       total: ti.total,

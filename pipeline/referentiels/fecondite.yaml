@@ -1,0 +1,32 @@
+# Chiffres de l'Insee Première 1939 qui ne figurent que dans son texte (encadré « Une nouvelle
+# approche pour mesurer l'indicateur conjoncturel de fécondité des femmes nées à l'étranger »), pas
+# dans son tableur. Une référence par valeur ; au build, chaque extrait est cherché dans le texte de
+# sa page du PDF (espaces ignorés), et la valeur dans son extrait.
+source:
+  cle: fecondite_ip1939_pdf
+  document: "Didier Reynaud, « Combien les femmes immigrées ont-elles d'enfants ? », Insee Première n° 1939, février 2023"
+valeurs:
+  - cle: icf_etranger_ajuste_2017_2021
+    libelle: "ICF des femmes nées à l'étranger, ajusté, moyenne 2017-2021"
+    valeur: 2.37
+    unite: enfants par femme
+    page: 3
+    extrait: "En moyenne entre 2017 et 2021, l’ICF des femmes nées à l’étranger après ajustement s’établit à 2,37 enfants par femme, contre 2,98 sans ajustement."
+  - cle: icf_etranger_brut_2017_2021
+    libelle: "ICF des femmes nées à l'étranger, calcul classique (sans ajustement), moyenne 2017-2021"
+    valeur: 2.98
+    unite: enfants par femme
+    page: 3
+    extrait: "En moyenne entre 2017 et 2021, l’ICF des femmes nées à l’étranger après ajustement s’établit à 2,37 enfants par femme, contre 2,98 sans ajustement."
+  - cle: icf_ensemble_ajuste
+    libelle: "ICF de l'ensemble des femmes avec l'ajustement"
+    valeur: 1.81
+    unite: enfants par femme
+    page: 3
+    extrait: "Avec l’ajustement, l’ICF global serait de 1,81 pour l’ensemble des femmes, soit très proche de l’ICF global sans ajustement (1,84)"
+  - cle: icf_ensemble_brut
+    libelle: "ICF de l'ensemble des femmes sans ajustement"
+    valeur: 1.84
+    unite: enfants par femme
+    page: 3
+    extrait: "Avec l’ajustement, l’ICF global serait de 1,81 pour l’ensemble des femmes, soit très proche de l’ICF global sans ajustement (1,84)"

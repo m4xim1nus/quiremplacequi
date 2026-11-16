@@ -207,6 +207,48 @@ SOURCES["onu_m49"] = {
 }
 
 
+# Fécondité (page « Les naissances ») : Insee Première 1939 (fécondité des femmes nées à
+# l'étranger, descendance finale selon le lien à la migration, TeO1 et TeO2) et tableaux
+# rétrospectifs du bilan démographique (indicateur conjoncturel, taux de reproduction, descendance
+# par génération). Le PDF de l'Insee Première sert à vérifier les chiffres de son encadré, saisis
+# dans referentiels/fecondite.yaml.
+SOURCES["fecondite_ip1939"] = {
+    "page": f"{INSEE}/6801884",
+    "url": f"{INSEE}/fichier/6801884/donnees_insee_premiere_n1939.xlsx",
+    "titre": "Insee Première 1939 : combien les femmes immigrées ont-elles d'enfants ? (données, 2023)",
+}
+SOURCES["fecondite_ip1939_pdf"] = {
+    "page": f"{INSEE}/6801884",
+    "url": f"{INSEE}/fichier/version-html/6801884/ip1939.pdf",
+    "titre": "Insee Première 1939 : combien les femmes immigrées ont-elles d'enfants ? (texte, 2023)",
+}
+SOURCES["icf"] = {
+    "page": f"{INSEE}/8721207",
+    "url": f"{INSEE}/fichier/8721207/3_ICF_age_moyen_femmes.xlsx",
+    "titre": "Bilan démographique 2025 : indicateur conjoncturel de fécondité des femmes (1901-2025)",
+}
+SOURCES["reproduction"] = {
+    "page": f"{INSEE}/8721207",
+    "url": f"{INSEE}/fichier/8721207/5_Taux_reproduction.xlsx",
+    "titre": "Bilan démographique 2025 : taux de reproduction brut et net des femmes (1901-2025)",
+}
+SOURCES["descendance"] = {
+    "page": f"{INSEE}/8721207",
+    "url": f"{INSEE}/fichier/8721207/4_Descendance_femmes.xlsx",
+    "titre": "Bilan démographique 2025 : descendance des femmes par âge et par génération",
+}
+# Le rapport de 2000 sur les « migrations de remplacement » : la bibliothèque numérique de l'ONU
+# accepte les scripts (un.org les refuse). Chiffres saisis dans referentiels/onu2000.yaml, page par
+# page, et vérifiés contre ce PDF au build.
+SOURCES["onu_2000"] = {
+    "famille": "onu",
+    "page": "https://digitallibrary.un.org/record/412547",
+    "url": "https://digitallibrary.un.org/record/412547/files/unpd-egm_200010_un_2001_replacementmigration.pdf",
+    "nom": "replacement_migration_2000.pdf",
+    "titre": "ONU, Division de la population : Replacement Migration (ESA/P/WP.160, 2000)",
+}
+
+
 def famille(cle: str) -> str:
     return SOURCES[cle].get("famille", "insee")
 

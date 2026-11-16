@@ -1,0 +1,5 @@
+cle,libelle,valeur,unite,page
+icf_etranger_ajuste_2017_2021,"ICF des femmes nées à l'étranger, ajusté, moyenne 2017-2021",2.37,enfants par femme,3
+icf_etranger_brut_2017_2021,"ICF des femmes nées à l'étranger, calcul classique (sans ajustement), moyenne 2017-2021",2.98,enfants par femme,3
+icf_ensemble_ajuste,ICF de l'ensemble des femmes avec l'ajustement,1.81,enfants par femme,3
+icf_ensemble_brut,ICF de l'ensemble des femmes sans ajustement,1.84,enfants par femme,3

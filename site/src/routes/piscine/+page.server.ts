@@ -6,8 +6,9 @@ import {
   soldes,
   teo2
 } from '$lib/server/donnees';
+import { naissances } from '$lib/server/naissances';
 
-const CODES = ['U17', 'U19', 'U20', 'U21', 'U18', 'U1', 'U2', 'U3', 'U5', 'U6'];
+const CODES = ['U17', 'U19', 'U20', 'U21', 'U18', 'U1', 'U2', 'U3', 'U5', 'U6', 'U27'];
 
 export const load = () => {
   const p = piscine();
@@ -16,6 +17,9 @@ export const load = () => {
   const u = incertitudes();
   const a22 = an(2022);
   const a25 = an(2025);
+  // État civil de 2022 : trois définitions des naissances « d'origine étrangère » (pays de
+  // naissance des parents, pas leur qualité d'immigré).
+  const ec = naissances().annees.find((x) => x.annee === 2022)!;
   return {
     piscine: p,
     chiffres: {
@@ -33,6 +37,11 @@ export const load = () => {
         g2b: a22.naissances_g2b!,
         g3: a22.naissances_g3!,
         autres: a22.naissances_autres!
+      },
+      etatCivil2022: {
+        mere: (100 * ec.mereEtranger) / ec.ensemble,
+        auMoinsUn: (100 * (ec.unParent + ec.deuxParents)) / ec.ensemble,
+        deux: (100 * ec.deuxParents) / ec.ensemble
       },
       g2a2025: a25.g2a!,
       g2b2025: a25.g2b!,

@@ -134,3 +134,44 @@ de même ordre que ceux du site (15e sur 2015-2025), sans être comparables
 (accord de retrait retiré des motifs, total « hors Britanniques » tracé) ;
 période de l'asile = onze dernières années publiées ; entrées OCDE en moyenne
 sur dix ans, catégories secondaires absentes comptées zéro.
+
+## 7. Cycle 3 : les naissances et le mot « remplacement » (2026-11-16)
+
+Spike court, fait en même temps que le pipeline (`pipeline/qrq/fecondite.py`).
+
+| Source | Accès | Ce qui est pris | Limites |
+|---|---|---|---|
+| Insee, état civil (2381382, figure 2) | ✅ déjà lu | Sous-lignes : mère ou second parent né dans l'UE, hors UE ; d'où « mère née à l'étranger » | Pays de naissance, pas qualité d'immigré ; rupture 2011 ; Mayotte en 2014 (U26) |
+| Insee Première 1939 (2023), tableur | ✅ xlsx | ICF ajusté selon le pays de naissance 2006-2021 (fig. 6) ; descendance finale TeO2 par lien, pays, diplôme (fig. 1, 3, 4), par génération TeO1-TeO2 (fig. 2a) ; naissances autour de l'arrivée (fig. 5) | ICF sur les femmes nées à l'étranger ; ajustement = estimation (U25) |
+| Insee Première 1939, PDF | ✅ | Chiffres de l'encadré (2,98 brut, 2,37 ajusté en moyenne 2017-2021 ; 1,81 et 1,84 pour l'ensemble), saisis dans `referentiels/fecondite.yaml` | Vérifiés contre le PDF au build |
+| Bilan démographique 2025, tableaux rétrospectifs (8721207) | ✅ xlsx | ICF et âge moyen (1901-2025), taux de reproduction brut et net, descendance par génération (métropole) | 2023-2025 provisoires |
+| ONU, *Replacement Migration* (2000) | ✅ par la bibliothèque numérique (`digitallibrary.un.org`) ; un.org refuse les scripts | Tableaux 1, IV.4, IV.5, IV.7, IV.10, IV.11 et texte France ; résumé officiel en français (citations) ; saisis dans `referentiels/onu2000.yaml` | Vérifiés contre le PDF au build |
+| Insee, fiche « Nationalités – Immigration » du recensement (juin 2026) | ✅ PDF | Déclarations et redressements (U27) | Insee-Méthodes n° 66 (1997) introuvable en ligne : U27 non vérifiée |
+
+**Pourquoi pas les chiffres du livre** (2017 : 19 % des naissances de mère
+immigrée, 2,6 contre 1,8) : *Population et Sociétés* n° 568 calcule un ICF
+non ajusté pour les immigrées ; l'Insee publie depuis 2023 un ICF ajusté pour
+les femmes nées à l'étranger, plus récent et lisible par script. L'état civil
+donne 23,4 % de naissances de mère née à l'étranger en 2017 (née à
+l'étranger ≠ immigrée).
+
+**Seuil de remplacement** : calculé, pas recopié : ICF ÷ taux net de
+reproduction × 100 ; 2,06 en 2025 (France), 2,88 en 1901 (métropole).
+
+**Vérification des saisies** : `pdftotext` (poppler) au build, avec et sans
+mise en page ; ajouter `pypdf` au projet a été refusé par la politique
+d'autorisations de la session, d'où l'outil système.
+
+**Défaut corrigé** : l'en-tête « 20231 » du tableur des naissances (2023 suivi
+de l'appel de note 1) n'était pas lu ; 2023 manquait dans
+`naissances_parents.csv`, et le modèle de cohortes extrapolait les naissances
+de cette année. Il lit maintenant l'état civil : la piscine de 2023-2025
+change (naissances G2a 2023 : 30 910 → 109 313 ; descendants 2025 du modèle :
+8,53 → 8,64 millions, témoin Insee 8,03).
+
+**Décisions prises en autonomie** (à relire par Max) : nom de la page (« Les
+naissances ») ; pas de décomposition « poids × taux » chiffrée (la part des
+femmes nées à l'étranger parmi les 15-49 ans n'est pas publiée sous une forme
+lisible ; l'effet est donné par l'écart d'ICF, avec et sans elles) ; encadré
+ONU traité en section-question ; formulation du « détournement » (le titre
+« parfois cité comme la preuve d'un projet », sans nommer d'auteur).

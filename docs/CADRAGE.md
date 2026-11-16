@@ -82,13 +82,13 @@ Codes stables : ils servent dans la méthode, le pipeline et le site.
 | **E1** | Trois générations | Part des immigrés, des descendants et des petits-enfants d'immigrés, avec les conjoints. | **v1** |
 | **E2** | Mixité conjugale | Les couples mixtes par génération. | **v1** |
 | **E3** | Généalogies | Combien de grands-parents immigrés ont les petits-enfants d'immigrés ? | **v1** |
-| E4-E8 | Langue, identification, entre-soi, fécondité, diplômes | La convergence au fil des générations. | plus tard ; E7 au cycle 3 (il alimente la piscine dès la v1) |
+| E4-E8 | Langue, identification, entre-soi, fécondité, diplômes | La convergence au fil des générations. | plus tard ; E7 en ligne (cycle 3, page « Les naissances ») |
 | **E9** | Inégalités | Sur-chômage à profil égal, ségrégation résidentielle, discriminations déclarées. | **v1** |
 | **E10** | Le paradoxe | Plus intégrés et plus exposés aux discriminations que leurs parents. | **v1** |
 | F1 | Projections Insee | Les scénarios officiels à l'horizon 2070. | plus tard (mode projection de la piscine, contrefactuels) |
 | **F2** | Le curseur de définition | « Combien sont-ils ? » selon qui l'on compte : du simple au quadruple. | **v1** |
-| F3 | Le piège de la projection naïve | Projeter les écarts de fécondité sans la convergence observée. | cycle 3 |
-| F4 | « Migrations de remplacement » | Ce que le mot voulait dire chez les démographes (ONU 2000, Sauvy), et son détournement. | cycle 3 (encadré ; contrefactuel avec F1) |
+| F3 | Le piège de la projection naïve | Projeter les écarts de fécondité sans la convergence observée. | en ligne (cycle 3) ; la projection elle-même avec F1 |
+| F4 | « Migrations de remplacement » | Ce que le mot voulait dire chez les démographes (ONU 2000, Sauvy), et son détournement. | en ligne (cycle 3, section de « Les naissances ») ; contrefactuel avec F1 |
 | G1-G3 | Rhétorique et perceptions | La galerie des sophismes, chacun démonté par un mini-graphique ; perceptions contre réalité. | plus tard |
 
 ## 5. La grammaire Héran

@@ -185,6 +185,6 @@ export function tempsLong() {
       fig2c: champIp('Figure 2c'),
       encadre: champIp('Encadré Figure a')
     },
-    incertitudes: ['U9', 'U5', 'U6', 'U10', 'U8'].map((code) => ({ code, ...u[code] }))
+    incertitudes: ['U9', 'U5', 'U6', 'U27', 'U10', 'U8'].map((code) => ({ code, ...u[code] }))
   };
 }

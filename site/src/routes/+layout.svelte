@@ -10,6 +10,7 @@
     { href: '/temps-long', libelle: 'Le temps long' },
     { href: '/generations', libelle: 'Générations' },
     { href: '/arrivees', libelle: 'Les arrivées' },
+    { href: '/naissances', libelle: 'Les naissances' },
     { href: '/ailleurs', libelle: 'Ailleurs' },
     { href: '/limites', libelle: 'Ce qu’on ne sait pas' },
     { href: '/methode', libelle: 'Méthode' },

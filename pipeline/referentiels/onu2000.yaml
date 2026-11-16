@@ -1,0 +1,124 @@
+# Rapport de la Division de la population de l'ONU sur les « migrations de remplacement » (2000).
+# Saisie manuelle (le rapport n'existe qu'en PDF), une référence par ligne : tableau, page imprimée,
+# page du fichier PDF et extrait exact. Au build, chaque extrait est cherché (espaces ignorés) dans
+# le texte de sa page, et chaque valeur dans son extrait : une faute de frappe arrête le build.
+# France seulement. Milliers de personnes sauf mention contraire.
+source:
+  cle: onu_2000
+  document: "United Nations Population Division, Replacement Migration: Is It a Solution to Declining and Ageing Populations?"
+  cote: "ESA/P/WP.160"
+  date: "2000-03-21"
+  note: "Projections de la révision 1998 des World Population Prospects. Le résumé analytique existe en français dans le même fichier (pages 1 à 6 de sa numérotation propre)."
+scenarios:
+  I: "Variante moyenne des projections de l'ONU (révision 1998)"
+  II: "Variante moyenne, sans aucune migration après 1995"
+  III: "Population totale maintenue à son maximum"
+  IV: "Population de 15 à 64 ans maintenue à son maximum"
+  V: "Rapport des 15-64 ans aux 65 ans ou plus maintenu à son niveau de 1995"
+lignes:
+  - indicateur: migrants_2000_2050
+    libelle: "Solde migratoire cumulé de 2000 à 2050"
+    unite: milliers
+    tableau: "Tableau 1, A (Total number)"
+    page: 2
+    page_pdf: 20
+    extrait: "France 325 0 1 473 5 459 89 584"
+    valeurs: {I: 325, II: 0, III: 1473, IV: 5459, V: 89584}
+  - indicateur: migrants_par_an
+    libelle: "Solde migratoire moyen par an, 2000-2050"
+    unite: milliers
+    tableau: "Tableau 1, B (Average annual number)"
+    page: 2
+    page_pdf: 20
+    extrait: "France 7 0 29 109 1 792"
+    valeurs: {I: 7, II: 0, III: 29, IV: 109, V: 1792}
+  - indicateur: migrants_1995_2050
+    libelle: "Solde migratoire cumulé de 1995 à 2050 (au scénario I : 1995-2020, aucun ensuite)"
+    unite: milliers
+    tableau: "Tableau IV.4"
+    page: 24
+    page_pdf: 58
+    extrait: "France 525 0 1 473 5 459 93 794"
+    valeurs: {I: 525, II: 0, III: 1473, IV: 5459, V: 93794}
+  - indicateur: rapport_soutien_2050
+    libelle: "Rapport de soutien potentiel en 2050 (15-64 ans pour un 65 ans ou plus)"
+    unite: ratio
+    tableau: "Tableau IV.5 (colonnes 2050 ; la première valeur est celle de 1995)"
+    page: 24
+    page_pdf: 58
+    extrait: "France 4.36 2.26 2.26 2.33 2.49 4.36"
+    valeurs: {I: 2.26, II: 2.26, III: 2.33, IV: 2.49, V: 4.36}
+  - indicateur: rapport_soutien_1995
+    libelle: "Rapport de soutien potentiel en 1995"
+    unite: ratio
+    tableau: "Tableau IV.5 (colonne 1995)"
+    page: 24
+    page_pdf: 58
+    extrait: "France 4.36 2.26"
+    valeurs: {I: 4.36}
+  - indicateur: part_post1995_2050
+    libelle: "Part des migrants arrivés après 1995 et de leurs descendants dans la population de 2050"
+    unite: pourcent
+    tableau: "Tableau IV.7"
+    page: 25
+    page_pdf: 59
+    extrait: "France 0.9 0.0 2.9 11.6 68.3"
+    valeurs: {I: 0.9, II: 0.0, III: 2.9, IV: 11.6, V: 68.3}
+  - indicateur: population_2050
+    libelle: "Population totale en 2050"
+    unite: milliers
+    tableau: "Tableau IV.11, A (la première valeur est celle de 1995)"
+    page: 27
+    page_pdf: 61
+    extrait: "France 58 020 59 883 59 357 61 121 67 130 187 193"
+    valeurs: {I: 59883, II: 59357, III: 61121, IV: 67130, V: 187193}
+  - indicateur: population_1995
+    libelle: "Population totale en 1995"
+    unite: milliers
+    tableau: "Tableau IV.11, A (colonne 1995)"
+    page: 27
+    page_pdf: 61
+    extrait: "France 58 020 59 883"
+    valeurs: {I: 58020}
+  - indicateur: age_limite_actif
+    libelle: "Âge auquel il faudrait porter la fin de la vie active pour retrouver en 2050, sans migration, le rapport de soutien de 1995"
+    unite: ans
+    tableau: "Tableau IV.10 (scénario II)"
+    page: 27
+    page_pdf: 61
+    extrait: "France 73.9"
+    valeurs: {II: 73.9}
+  - indicateur: solde_officiel_1990_1994
+    libelle: "Solde migratoire officiel de la France, moyenne annuelle 1990-1994 (rappel du rapport)"
+    unite: personnes
+    tableau: "Texte, France, Discussion"
+    page: 32
+    page_pdf: 64
+    extrait: "an average of 76,000 per year for 1990-1994"
+    valeurs: {I: 76000}
+  - indicateur: solde_officiel_1995_1998
+    libelle: "Solde migratoire officiel de la France, moyenne annuelle 1995-1998 (rappel du rapport)"
+    unite: personnes
+    tableau: "Texte, France, Discussion"
+    page: 32
+    page_pdf: 64
+    extrait: "an average of 39,000 per year for 1995-1998"
+    valeurs: {I: 39000}
+citations:
+  # Résumé analytique, version française du rapport (numérotation propre, pages 1 à 6).
+  - cle: definition
+    page: 1
+    page_pdf: 23
+    texte: "Ce type de migrations se rapporte aux migrations internationales qui s'avéreraient nécessaires pour compenser le déclin des populations, la baisse des populations d'âge actif et pour neutraliser le vieillissement de l'ensemble des populations."
+  - cle: france
+    page: 5
+    page_pdf: 27
+    texte: "S'agissant de la France, des États-Unis, du Royaume-Uni et de l'Union européenne, le nombre des migrants nécessaires pour compenser le déclin des populations est soit inférieur soit comparable aux récentes expériences."
+  - cle: vieillissement
+    page: 6
+    page_pdf: 28
+    texte: "Le maintien des rapports de soutien potentiels à leurs niveaux actuels uniquement en ayant recours à une migration de remplacement semble inaccessible en raison du nombre extraordinairement important des migrants qui s'avéreraient nécessaires"
+  - cle: age_actif
+    page: 6
+    page_pdf: 28
+    texte: "Dans la plupart des cas, les rapports de soutien potentiels pourront être maintenus à leurs niveaux actuels en augmentant la limite supérieure de la population d'âge actif à environ 75 ans"

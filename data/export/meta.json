@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-11-16T18:08:50+00:00",
+ "genere_le": "2026-11-16T19:24:36+00:00",
  "sources": {
   "stock": {
    "fichier": "insee/demo-etran-part-pop-etran-immig.xlsx",
@@ -441,6 +441,66 @@
    "telecharge_le": "2026-11-16T18:06:26+00:00",
    "titre": "ONU, Division de statistique : nomenclature M49 des pays et régions (noms français)",
    "url": "https://unstats.un.org/unsd/methodology/m49/overview/"
+  },
+  "fecondite_ip1939": {
+   "fichier": "insee/donnees_insee_premiere_n1939.xlsx",
+   "licence": "Licence Ouverte 2.0 (Etalab)",
+   "octets": 44129,
+   "page": "https://www.insee.fr/fr/statistiques/6801884",
+   "sha256": "229a268c69117e8dfbf883c070a7956514312b7fd10cb02e54b2cff7df01d9f6",
+   "telecharge_le": "2026-11-16T19:12:02+00:00",
+   "titre": "Insee Première 1939 : combien les femmes immigrées ont-elles d'enfants ? (données, 2023)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/6801884/donnees_insee_premiere_n1939.xlsx"
+  },
+  "fecondite_ip1939_pdf": {
+   "fichier": "insee/ip1939.pdf",
+   "licence": "Licence Ouverte 2.0 (Etalab)",
+   "octets": 892628,
+   "page": "https://www.insee.fr/fr/statistiques/6801884",
+   "sha256": "b0095d73f33c2038feaef09659f0d06cc6c34e23d0327b86f0e063805f5d47cc",
+   "telecharge_le": "2026-11-16T19:12:02+00:00",
+   "titre": "Insee Première 1939 : combien les femmes immigrées ont-elles d'enfants ? (texte, 2023)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/version-html/6801884/ip1939.pdf"
+  },
+  "icf": {
+   "fichier": "insee/3_ICF_age_moyen_femmes.xlsx",
+   "licence": "Licence Ouverte 2.0 (Etalab)",
+   "octets": 16772,
+   "page": "https://www.insee.fr/fr/statistiques/8721207",
+   "sha256": "afce068d0ed83d4023961ba42ff5518d7bd8491a11b980ad3e7161f93bc579e0",
+   "telecharge_le": "2026-11-16T19:12:03+00:00",
+   "titre": "Bilan démographique 2025 : indicateur conjoncturel de fécondité des femmes (1901-2025)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/8721207/3_ICF_age_moyen_femmes.xlsx"
+  },
+  "reproduction": {
+   "fichier": "insee/5_Taux_reproduction.xlsx",
+   "licence": "Licence Ouverte 2.0 (Etalab)",
+   "octets": 17155,
+   "page": "https://www.insee.fr/fr/statistiques/8721207",
+   "sha256": "59b701b028a230b02980c3de9e1554744b88abc562e810f63c4f0747f74c737b",
+   "telecharge_le": "2026-11-16T19:12:03+00:00",
+   "titre": "Bilan démographique 2025 : taux de reproduction brut et net des femmes (1901-2025)",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/8721207/5_Taux_reproduction.xlsx"
+  },
+  "descendance": {
+   "fichier": "insee/4_Descendance_femmes.xlsx",
+   "licence": "Licence Ouverte 2.0 (Etalab)",
+   "octets": 48012,
+   "page": "https://www.insee.fr/fr/statistiques/8721207",
+   "sha256": "0ceb1e3e264e548225b3d4625dce22e8cd181097f3985910c79ccbe091b61ca5",
+   "telecharge_le": "2026-11-16T19:12:03+00:00",
+   "titre": "Bilan démographique 2025 : descendance des femmes par âge et par génération",
+   "url": "https://www.insee.fr/fr/statistiques/fichier/8721207/4_Descendance_femmes.xlsx"
+  },
+  "onu_2000": {
+   "fichier": "onu/replacement_migration_2000.pdf",
+   "licence": "CC BY 3.0 IGO (ONU, Division de la population)",
+   "octets": 2530615,
+   "page": "https://digitallibrary.un.org/record/412547",
+   "sha256": "4986d0f33dae120313d72bace9e1942c1d4a2e1fe1c0fbcaa0e8b463d8f12ff3",
+   "telecharge_le": "2026-11-16T19:12:04+00:00",
+   "titre": "ONU, Division de la population : Replacement Migration (ESA/P/WP.160, 2000)",
+   "url": "https://digitallibrary.un.org/record/412547/files/unpd-egm_200010_un_2001_replacementmigration.pdf"
   }
  },
  "licence_sources": "Licence Ouverte 2.0 (Insee, ministère de l'Intérieur) ; CC BY 4.0 (Eurostat, OCDE) ; CC BY 3.0 IGO (ONU)"

@@ -105,3 +105,30 @@ d'arrivée : il n'est donc qu'à moitié indépendant). Écarts publiés dans `d
 (chapitre, tableau ou figure, champ, image), relues deux fois ; valeurs lues sur
 graphique marquées `approx` avec leur précision. `qrq check` signale les
 anomalies de la source (ch. 9, tableau 4 : la ligne G1 somme à 123).
+
+## 4. Naissances et fécondité (`pipeline/qrq/fecondite.py`, `naissances.py`)
+
+- **Naissances** : état civil (Insee 2381382, figure 2), selon le pays de naissance
+  des parents. « Mère née à l'étranger » = mère née dans l'UE ou hors UE avec un
+  second parent né en France, plus les deux parents nés à l'étranger. Pays de
+  naissance, pas qualité d'immigré (U26) ; rupture de méthode en 2011, Mayotte
+  dans le champ à partir de 2014. L'en-tête « 20231 » du tableur (2023 et
+  l'appel de note 1) est lu comme 2023.
+- **Indicateur conjoncturel selon le lieu de naissance** : indicateur ajusté de
+  l'Insee (IP 1939, figure 6), seul publié pour les femmes nées à l'étranger ;
+  le calcul classique les surestime (U25). L'effet sur l'indicateur national
+  est l'écart entre l'ensemble des femmes et les femmes nées en France, rapporté
+  à ce dernier.
+- **Descendance finale** : TeO1 (générations 1950-1959) et TeO2 (1960-1974), via
+  l'IP 1939 ; immigrées au sens strict.
+- **Seuil de remplacement** : pour chaque année, indicateur conjoncturel (pour
+  100 femmes) ÷ taux net de reproduction × 100 (bilan démographique 2025,
+  tableaux rétrospectifs). Contrôle : entre 2,0 et 2,1 pour la dernière année.
+- **Référentiels saisis** (`referentiels/onu2000.yaml`, `fecondite.yaml`) : une
+  ligne = un extrait exact du PDF, sa page imprimée, sa page dans le fichier.
+  Au build, `pdftotext` (poppler) extrait la page avec et sans mise en page ;
+  l'extrait doit s'y trouver (espaces ignorés), puis chaque valeur dans
+  l'extrait, dans l'ordre. Le build s'arrête sinon.
+- **ONU 2000 et observation** : le solde migratoire observé (bilan, champ
+  France) et le rapport 15-64 ans / 65 ans ou plus (pyramide au 1er janvier)
+  sont mis à côté des scénarios, jamais mêlés à eux.
