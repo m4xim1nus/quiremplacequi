@@ -232,8 +232,13 @@
           .citations.extra_europeenne} ». Un seul grand-parent immigré sur quatre suffit donc à sortir
         de la première catégorie. Les unions suivent une « préférence endogame » pour {d.oid
           .endogame} % des individus ; les autres choisissent leur conjoint « au hasard ». Enfin, « {d
-          .oid.citations.emigration} » : ni départs d’immigrés, ni départs de natifs. L’étude présente
-        ces choix comme prudents, et l’absence de départs de natifs joue en effet contre sa conclusion.
+          .oid.citations.emigration} » : les immigrés qui repartiront sont exclus des entrées dès le départ,
+        et ni les natifs ni les descendants d’immigrés ne quittent la France. L’étude présente ses choix
+        comme prudents. L’absence de départs de natifs joue en effet contre sa conclusion. Pour la fécondité
+        (« {d.oid.citations.fecondite} »), TeO2 mesure la même descendance finale chez les filles d’immigrés
+        et dans la population majoritaire : {d.oid.fecondite.g2.toFixed(2).replace('.', ',')} et {d.oid.fecondite.maj
+          .toFixed(2)
+          .replace('.', ',')} enfant par femme (femmes nées de 1960 à 1974, ch. 17).
       </p>
       <p>
         <strong>Ce que mesure l’Insee.</strong> L’étude ne retient que les immigrés « {d.oid
@@ -242,15 +247,20 @@
           d.oid.insee.netMoyen
         )} par an en moyenne, et de {milliers(d.oid.insee.netMax)} au plus : aucune de ces années n’atteint
         les {milliers(d.oid.intermediaire.entrees)} du scénario intermédiaire. En 2022, année aux sorties
-        atypiques (U2), l’écart atteint {milliers(d.oid.insee.net2022)}. De {d.oid.insee.debut} à {d
-          .oid.insee.fin}, le solde des non-immigrés est négatif chaque année, sauf en {d.oid.insee.niPositifs.join(
+        atypiques (U2), le solde atteint {milliers(d.oid.insee.net2022)}. Pour {d.oid.insee.recentes
+          .map((r) => r.annee)
+          .join(' et ')}, l’Insee publie les entrées ({d.oid.insee.recentes
+          .map((r) => milliers(r.entrees))
+          .join(' et ')}) mais pas encore les sorties : le solde n’est pas connu. Le scénario haut
+        de l’étude part, lui, des {milliers(d.oid.ministere)} entrées qu’annonce le ministère de l’Intérieur
+        pour 2024, dont « les deux tiers » seraient permanentes. De {d.oid.insee.debut} à {d.oid
+          .insee.fin}, le solde des non-immigrés est négatif chaque année, sauf en {d.oid.insee.niPositifs.join(
           ', '
         )}.
       </p>
       <p>
-        <strong>L’argument du site</strong>, qui répond à une projection par une photo de 2019-2020
-        : la catégorie « sans ascendance » rétrécit mécaniquement quand on compte plus de
-        générations.
+        <strong>Ce que montre la photo de 2019-2020</strong>, qui ne remplace pas une projection :
+        la catégorie « sans ascendance » rétrécit mécaniquement quand on compte plus de générations.
         {pc(e1.sansAscendance.deuxGenerations)} des 18-59 ans ne sont ni immigrés ni enfants d’immigrés,
         mais
         {pc(e1.sansAscendance.troisGenerations)} seulement n’ont aucun parent ni grand-parent immigré

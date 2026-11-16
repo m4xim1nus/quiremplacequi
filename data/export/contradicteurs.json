@@ -37,6 +37,11 @@
     "unite": "%",
     "page": 8,
     "citation": "On suppose qu'environ 30 % des individus présentent une préférence endogame"
+   },
+   "entrees_ministere": {
+    "valeur": 500000,
+    "page": 10,
+    "citation": "le chiffre de 500 000 entrées sur le territoire national est une estimation très proche de la réalité"
    }
   },
   "citations": {
@@ -63,6 +68,14 @@
    "perennes": {
     "page": 8,
     "texte": "destinés à devenir des résidents pérennes"
+   },
+   "deux_tiers": {
+    "page": 10,
+    "texte": "Le postulat selon lequel les deux tiers d'entre eux constituent des arrivées permanentes apparaît raisonnable"
+   },
+   "fecondite": {
+    "page": 9,
+    "texte": "L'indice conjoncturel de fécondité supposé identique pour l'ensemble des femmes nées en France"
    }
   }
  }

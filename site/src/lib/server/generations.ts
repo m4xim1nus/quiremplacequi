@@ -14,6 +14,11 @@ function oid() {
   const fx = csvParse(readFileSync(resolve(EXPORT, 'flux.csv'), 'utf8')).filter(
     (r) => Number(r.annee) >= 2006 && Number(r.annee) <= 2021 && r.sorties_imm !== ''
   );
+  const tous = csvParse(readFileSync(resolve(EXPORT, 'flux.csv'), 'utf8'));
+  // Années dont l'Insee publie les entrées mais pas encore les sorties (U3).
+  const recentes = tous
+    .filter((r) => r.entrees_imm !== '' && r.sorties_imm === '')
+    .map((r) => ({ annee: Number(r.annee), entrees: Number(r.entrees_imm) }));
   const r22 = csvParse(readFileSync(resolve(EXPORT, 'flux.csv'), 'utf8')).find(
     (r) => r.annee === '2022'
   )!;
@@ -30,6 +35,7 @@ function oid() {
     haut: { entrees: v('entrees_haut'), bascule: v('bascule_haut') },
     intermediaire: { entrees: v('entrees_intermediaire'), bascule: v('bascule_intermediaire') },
     endogame: v('preference_endogame'),
+    ministere: v('entrees_ministere'),
     citations: Object.fromEntries(
       Object.entries(c.citations as Record<string, { texte: string }>).map(([k, x]) => [k, x.texte])
     ) as Record<string, string>,
@@ -39,7 +45,8 @@ function oid() {
       netMoyen: Math.round(nets.reduce((s, x) => s + x, 0) / nets.length / 1000) * 1000,
       netMax: Math.max(...nets),
       niPositifs: netsNi.filter((x) => x.net > 0).map((x) => x.annee),
-      net2022: Number(r22.entrees_imm) - Number(r22.sorties_imm)
+      net2022: Number(r22.entrees_imm) - Number(r22.sorties_imm),
+      recentes
     }
   };
 }
@@ -355,7 +362,14 @@ export function donneesGenerations() {
       ip1910_18_59,
       lignages
     },
-    oid: oid(),
+    oid: {
+      ...oid(),
+      // Descendance finale des femmes nées en 1960-1974 (TeO2, ch. 17, figure 1).
+      fecondite: {
+        g2: v('ch17_figure1.yaml', 'Ensemble', 'G2'),
+        maj: v('ch17_figure1.yaml', 'Ensemble', 'Pop. maj.')
+      }
+    },
     e2: { colonnes: COLS, lignes: e2 },
     e2origine: { colonnes: COLS7, lignes: e2origine },
     e3: { ensemble: e3Ensemble, origines: e3Origines, ip3a },

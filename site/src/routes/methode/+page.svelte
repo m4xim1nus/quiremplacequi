@@ -26,7 +26,7 @@
     comme tel.
   </p>
 
-  <h2>Trois régimes de données</h2>
+  <h2>Quatre régimes de données</h2>
   <ul>
     <li>
       <strong>Publié par l’Insee</strong> : stocks d’immigrés, naissances, décès, entrées des immigrés
@@ -34,6 +34,10 @@
       solde migratoire et les entrées (U2) ; les décès d’immigrés sont estimés par l’Insee, l’état civil
       ne les identifiant pas (U18). Dans la piscine, ce régime s’appelle « publié » : ces chiffres viennent
       de l’Insee, mais tous ne sont pas des comptages.
+    </li>
+    <li>
+      <strong>Partiel</strong> : les années dont l’Insee publie les entrées mais pas encore les sorties
+      (2023 et 2024) ; les décès d’immigrés y sont estimés (U3).
     </li>
     <li>
       <strong>Reconstruit</strong> : ce qui se déduit de mesures sans être publié tel quel (le flux net
@@ -109,19 +113,22 @@
 
   <p>
     Limites connues : le modèle surestime les immigrés d’environ un point de pourcentage par rapport
-    à l’enquête de 2019-2020, et jusqu’à {v(data.ecartMaxG1, 1)} points pour certaines classes d’âge,
-    surtout chez les jeunes adultes et les plus de 75 ans. Une partie de l’écart tient au champ (l’enquête
-    ne couvre que les logements ordinaires, sans foyers ni résidences), mais le recensement, qui couvre
-    tous les logements, montrait aussi trop de jeunes adultes tant que le modèle faisait arriver les immigrés
-    de toutes les époques avec l’âge des arrivants de 2024. Avant 1990, ce profil est désormais rajeuni
-    à l’âge médian à l’arrivée des immigrés présents en 1999 (22 ans, contre 26 pour les arrivants de
-    2024). Contrepartie : des immigrés plus jeunes meurent moins, et le modèle s’écarte davantage des
-    décès estimés par l’Insee. La répartition des enfants d’immigrés entre un et deux parents immigrés
-    suit la convention de l’enquête de 2019-2020 ; l’Insee l’a modifiée en 2021, et les deux mesures ne
-    sont pas comparables (U21) ; la troisième génération au-delà de 60 ans n’a aucune cible ; dans les
-    années anciennes, les générations dépendent d’une hypothèse sur les enfants d’immigrés vivants en
-    1911 : le modèle est recalé avec la moitié et une fois et demie cette hypothèse, et la fourchette
-    obtenue s’affiche au survol de la piscine (U20).
+    à l’enquête de 2019-2020, et jusqu’à {v(data.ecartMaxG1, 1)} points pour certaines classes d’âge (détail
+    dans
+    <a href="/donnees/cohortes_calage.csv">cohortes_calage.csv</a>), surtout chez les jeunes adultes
+    et les plus de 75 ans. Une partie de l’écart tient au champ (l’enquête ne couvre que les
+    logements ordinaires, sans foyers ni résidences), mais le recensement, qui couvre tous les
+    logements, montrait aussi trop de jeunes adultes tant que le modèle faisait arriver les immigrés
+    de toutes les époques avec l’âge des arrivants de 2024. Pour les arrivées d’avant 1990, ce
+    profil est désormais rajeuni à l’âge médian à l’arrivée des immigrés présents en 1999 (22 ans,
+    contre 26 pour les arrivants de 2024 ; cette médiane ne compte que ceux qui sont restés, ce qui
+    la rajeunit un peu). Contrepartie : des immigrés plus jeunes meurent moins, et le modèle
+    s’écarte davantage des décès estimés par l’Insee. La répartition des enfants d’immigrés entre un
+    et deux parents immigrés suit la convention de l’enquête de 2019-2020 ; l’Insee l’a modifiée en
+    2021, et les deux mesures ne sont pas comparables (U21) ; la troisième génération au-delà de 60
+    ans n’a aucune cible ; dans les années anciennes, les générations dépendent d’une hypothèse sur
+    les enfants d’immigrés vivants en 1911 : le modèle est recalé avec la moitié et une fois et
+    demie cette hypothèse, et la fourchette obtenue s’affiche au survol de la piscine (U20).
   </p>
 
   <h2>Les décès d’immigrés dans la piscine</h2>

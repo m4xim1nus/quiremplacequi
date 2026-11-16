@@ -67,8 +67,8 @@
     des <a href="/donnees">fichiers publiés</a> et du <a href={SITE.depot}>code</a>.
   </p>
   <p>
-    Aucun cookie, aucun traceur, aucune ressource tierce. <a href="/a-propos">À propos</a> : auteur, contact,
-    licences.
+    Aucun cookie, aucun traceur, aucune ressource tierce. <a href="/a-propos">À propos</a> : contact,
+    code, licences.
   </p>
 </footer>
 

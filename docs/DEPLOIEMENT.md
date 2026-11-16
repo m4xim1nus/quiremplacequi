@@ -13,7 +13,8 @@ donnée : il part de l'instantané versionné `data/export/`.
   avant le passage en public.
 - [x] Le dossier privé `source/` n'a jamais été commité (`git log --all -- source` est vide) ;
   aucun secret dans l'historique (vérifié le 2026-11-16).
-- [ ] Passer le dépôt en public : GitHub, Settings, General, Danger Zone, Change visibility (ou
+- [ ] Passer le dépôt en public **avant** de relier le domaine (la page « À propos » et le pied
+  de page renvoient au dépôt et à ses tickets) : GitHub, Settings, General, Danger Zone, Change visibility (ou
   `gh repo edit m4xim1nus/quiremplacequi --visibility public --accept-visibility-change-consequences`).
 
 ## 2. Projet Cloudflare Pages
@@ -43,6 +44,8 @@ curl -s https://quiremplacequi.technoperchoir.fr/piscine | grep -c 'og:image'
 - Les en-têtes de `site/static/_headers` sont servis (CSP sans ressource tierce, cache des
   polices).
 - Aucune requête vers un autre domaine (onglet Réseau du navigateur, sur chaque page).
+- Cloudflare Web Analytics **désactivé** pour le projet (Pages, projet, Metrics) : sinon Cloudflare
+  injecte un script de mesure, et la phrase « aucune mesure d'audience » deviendrait fausse.
 - L'image de partage s'affiche (outil de prévisualisation d'un réseau social, ou
   `https://quiremplacequi.technoperchoir.fr/partage.png`).
 - Puis : tag `v1.0.0` et `CHANGELOG.md`.

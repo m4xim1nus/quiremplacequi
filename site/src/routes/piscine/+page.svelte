@@ -48,7 +48,8 @@
     <Detail titre="Les chiffres, année par année">
       <p>
         Ce que dessine la piscine, en tableau. Avant 2006, seul le solde net des immigrés est connu
-        ; en 2023 et 2024, les sorties ne sont pas encore publiées. Fichier complet :
+        ; en 2023 et 2024, les sorties ne sont pas encore publiées ; pour 2025, la piscine ne montre
+        que la population au 1er janvier. Fichier complet :
         <a href="/donnees/piscine.csv">piscine.csv</a>.
       </p>
       <div class="defile">

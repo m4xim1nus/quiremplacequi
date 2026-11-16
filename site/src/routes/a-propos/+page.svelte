@@ -44,9 +44,9 @@
     </li>
     <li>Code : licence <a href={SITE.licenceCode.url}>{SITE.licenceCode.nom}</a>.</li>
     <li>
-      Données sources : celles de l’Insee et de l’Ined, réutilisées selon leurs conditions ; les
-      chiffres de l’enquête TeO2 sont ressaisis à partir du texte publié, sans reproduire ses
-      illustrations.
+      Données sources : celles de l’Insee, sous Licence Ouverte 2.0 ; les chiffres de l’enquête TeO2
+      (Ined-Insee) sont ressaisis à partir des tableaux et figures du livre, avec une référence par
+      cellule, sans reproduire ses illustrations : à citer comme tels.
     </li>
     <li>Polices : Atkinson Hyperlegible Next et Barlow Semi Condensed, licence SIL Open Font.</li>
   </ul>

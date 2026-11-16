@@ -45,7 +45,7 @@ evenements:
   # papers, and forced to leave the country, repatriated, or expelled » ; « 1932 – The law of
   # 10 August limits the number of foreigners authorised to work in France ». Les Polonais n'y sont
   # pas nommés : mention retirée (relecture du 2026-11-16, décision de Max : sourcer ou adoucir).
-  - {annee: 1931, code: null, libelle: "Crise des années 1930 : chômage, départs forcés, rapatriements et expulsions d'étrangers ; la loi du 10 août 1932 limite leur accès au travail", source: "Musée national de l'histoire de l'immigration, parcours permanent (1931-1944)"}
+  - {annee: 1931, code: null, libelle: "Crise des années 1930 : à partir de 1931, chômage, départs forcés, rapatriements et expulsions d'étrangers ; la loi du 10 août 1932 limite leur accès au travail", source: "Musée national de l'histoire de l'immigration, parcours permanent (1931-1944)"}
   - {annee: 1939, code: U6, libelle: "Seconde Guerre mondiale : pas de recensement jusqu'en 1946 ; les pyramides ne comptent pas les prisonniers hors du territoire (ajustement, pas migration)"}
   - {annee: 1945, code: U1, libelle: "Avant 1946, population lue dans les pyramides des âges ; solde migratoire par différence"}
   - {annee: 1962, code: null, libelle: "Indépendance de l'Algérie : arrivée des rapatriés, pour la plupart non immigrés"}

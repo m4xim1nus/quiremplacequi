@@ -15,6 +15,7 @@ oid_2026_09:
     entrees_intermediaire: {valeur: 250000, page: 13, citation: "250 000 entrées permanentes par an"}
     bascule_intermediaire: {valeur: 2060, page: 13, citation: "Les personnes sans ascendance migratoire deviennent minoritaires vers 2060"}
     preference_endogame: {valeur: 30, unite: "%", page: 8, citation: "On suppose qu'environ 30 % des individus présentent une préférence endogame"}
+    entrees_ministere: {valeur: 500000, page: 10, citation: "le chiffre de 500 000 entrées sur le territoire national est une estimation très proche de la réalité"}
   citations:
     sans_ascendance: {page: 7, texte: "aucun des deux parents ou des quatre grands-parents n'est immigré"}
     extra_europeenne: {page: 7, texte: "immigré extra-européen, ou personne ayant au moins un parent ou grand-parent immigré extra-européen"}
@@ -22,3 +23,5 @@ oid_2026_09:
     hasard: {page: 8, texte: "Les autres individus sont réputés choisir un partenaire « au hasard »"}
     natifs: {page: 8, texte: "les natifs sont réputés rester sur le territoire"}
     perennes: {page: 8, texte: "destinés à devenir des résidents pérennes"}
+    deux_tiers: {page: 10, texte: "Le postulat selon lequel les deux tiers d'entre eux constituent des arrivées permanentes apparaît raisonnable"}
+    fecondite: {page: 9, texte: "L'indice conjoncturel de fécondité supposé identique pour l'ensemble des femmes nées en France"}

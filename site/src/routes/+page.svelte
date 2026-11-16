@@ -27,11 +27,11 @@
         {milliers(data.immigres2025)} en 2025 (chiffre provisoire, dont environ {milliers(
           data.collecte2024
         )} dus à l’amélioration de la collecte du recensement en 2024), soit {pct(data.part2025)} de la
-        population, contre {pct(data.part1931)} au sommet de 1931 et {pct(data.partDebut)} en
+        population, contre {pct(data.part1931)} en 1931 (premier sommet) et {pct(data.partDebut)} en
         {data.debut} (France métropolitaine avant 1990). Et le solde migratoire est devenu le premier
         moteur de la croissance de la population : il dépasse le solde naturel chaque année depuis
         {data.soldes.depuis}, et en {data.soldes.dernier}{data.soldes.provisoire
-          ? ' (provisoire)'
+          ? ' (estimations provisoires de l’Insee)'
           : ''}, les naissances ne compensent plus les décès ({signe(data.soldes.naturel)}, contre {signe(
           data.soldes.migratoire
         )} pour le solde migratoire). Puis il regarde ce que les chiffres bruts cachent : les départs,

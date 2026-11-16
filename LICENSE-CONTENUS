@@ -1,0 +1,17 @@
+Textes, figures et données calculées de « Qui remplace qui ? »
+(tout ce qui est publié sur le site et dans data/export/, hors données sources)
+
+Licence Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/deed.fr
+Texte juridique : https://creativecommons.org/licenses/by/4.0/legalcode.fr
+
+Vous pouvez les partager et les adapter, y compris à des fins commerciales, à condition de citer
+« Qui remplace qui ? » et l'adresse de la page ou du fichier repris, et d'indiquer si des
+modifications ont été faites.
+
+Ne relèvent pas de cette licence :
+- les données sources de l'Insee (Licence Ouverte 2.0) ;
+- les chiffres de l'enquête Trajectoires et Origines 2 (Ined-Insee), ressaisis avec une référence
+  par cellule : à citer comme tels ;
+- les polices (SIL Open Font License, fichiers dans site/static/fonts/) ;
+- le code, sous licence MIT (fichier LICENSE).
