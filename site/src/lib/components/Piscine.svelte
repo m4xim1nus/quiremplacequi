@@ -48,6 +48,15 @@
   let calme = $state(false);
   let decante = $state(true);
   let suivre = $state(false);
+  // Eau mélangée : une génération ressort dans sa teinte, les autres passent au gris de « autres ».
+  type Groupe = 'g1' | 'g2' | 'g3';
+  let ressortir = $state<Groupe | null>(null);
+  const GROUPE: Record<Teinte, Groupe | null> = { 4: 'g1', 3: 'g2', 2: 'g2', 1: 'g3', 0: null };
+  const RESSORTIR: { cle: Groupe; libelle: string }[] = [
+    { cle: 'g1', libelle: 'immigrés' },
+    { cle: 'g2', libelle: 'enfants d’immigrés' },
+    { cle: 'g3', libelle: 'petits-enfants' }
+  ];
   // svelte-ignore state_referenced_locally
   let origine = $state(donnees.annees[0].annee);
   const nesAvant = $derived(
@@ -210,8 +219,13 @@
       1,
       Math.min(2.8, 0.42 * Math.sqrt(((x1 - x0) * w * (bas - haut) * h * 0.8) / n))
     );
-    // Suivre l'eau d'une année : l'eau de départ en encre, les entrées depuis dans leur teinte, pâles.
-    const pale = suivre ? 0.35 : 1;
+    // Suivre l'eau d'une année : l'eau de départ garde sa teinte, ce qui est entré depuis pâlit.
+    // Eau mélangée avec une génération à faire ressortir : les autres passent au gris de « autres ».
+    const pale = 0.28;
+    const eteinte = (t: Teinte) => !decante && ressortir !== null && GROUPE[t] !== ressortir;
+    const couleur = (t: Teinte) => (eteinte(t) ? k.teinte[0] : k.teinte[t]);
+    const alphaDe = (t: Teinte, origine: boolean) =>
+      (suivre && !origine ? pale : 1) * (eteinte(t) ? 0.55 : 1);
     const lot = (couleur: string, alpha: number, garder: (p: Particule) => boolean) => {
       ctx.fillStyle = couleur;
       ctx.globalAlpha = alpha;
@@ -224,15 +238,21 @@
       }
       ctx.fill();
     };
-    for (const teinte of TEINTES)
-      lot(k.teinte[teinte], pale, (p) => p.teinte === teinte && !(suivre && p.origine));
-    if (suivre) lot(k.encre, 0.8, (p) => p.origine);
+    // Les teintes éteintes d'abord, celle qui ressort par-dessus.
+    const ordre = [...TEINTES].sort((a, b) => Number(!eteinte(a)) - Number(!eteinte(b)));
+    for (const teinte of ordre)
+      for (const origine of [false, true])
+        lot(
+          couleur(teinte),
+          alphaDe(teinte, origine),
+          (p) => p.teinte === teinte && (!suivre || p.origine === origine)
+        );
     ctx.globalAlpha = 1;
     for (const p of moteur.particules) {
       if (p.alpha >= 1) continue;
       const [x, y] = moteur.position(p, niveau);
-      ctx.globalAlpha = Math.max(0, p.alpha) * (suivre && !p.origine ? pale : 1);
-      ctx.fillStyle = suivre && p.origine ? k.encre : k.teinte[p.teinte];
+      ctx.globalAlpha = Math.max(0, p.alpha) * alphaDe(p.teinte, p.origine);
+      ctx.fillStyle = couleur(p.teinte);
       ctx.beginPath();
       ctx.arc(x * w, y * h, rayon, 0, Math.PI * 2);
       ctx.fill();
@@ -249,7 +269,7 @@
     // Étiquettes des colonnes (eau décantée) : couchées dans les colonnes étroites.
     if (dec > 0.5) {
       const taille = w < 600 ? 10 : 12;
-      ctx.font = `600 ${taille}px Lexend, system-ui, sans-serif`;
+      ctx.font = `600 ${taille}px 'Barlow Semi Condensed', 'Arial Narrow', system-ui, sans-serif`;
       ctx.textBaseline = 'middle';
       ctx.globalAlpha = (dec - 0.5) * 2;
       for (const t of TEINTES) {
@@ -352,6 +372,17 @@
     annee = a;
     origine = a;
     moteur?.aller(a);
+  }
+
+  /** Lance la lecture depuis l'année affichée en suivant son eau ; un second clic arrête le suivi. */
+  function suivreEau() {
+    if (suivre) {
+      suivre = false;
+      return;
+    }
+    if (annee >= fin) aller(debut);
+    suivre = true;
+    lecture = true;
   }
 
   function basculer() {
@@ -577,9 +608,11 @@
           type="button"
           class="suivre"
           aria-pressed={suivre}
-          onclick={() => (suivre = !suivre)}
-          title="Les habitants présents en {origine} restent en couleur ; ceux arrivés ou nés depuis pâlissent."
-          >Suivre l’eau de {origine}</button
+          onclick={suivreEau}
+          title="Lance la lecture : les habitants de {origine} gardent leur couleur, ceux nés ou arrivés depuis sont pâles."
+          >{suivre
+            ? `Ne plus suivre l’eau de ${origine}`
+            : `Voir l’eau de ${origine} se renouveler`}</button
         >
       {/if}
       <div class="bascule" role="group" aria-label="État de l’eau">
@@ -590,6 +623,18 @@
           >Mélangée</button
         >
       </div>
+      {#if !decante && generations}
+        <div class="bascule ressortir" role="group" aria-label="Faire ressortir une génération">
+          <span class="intitule">Faire ressortir</span>
+          {#each RESSORTIR as r (r.cle)}
+            <button
+              type="button"
+              aria-pressed={ressortir === r.cle}
+              onclick={() => (ressortir = ressortir === r.cle ? null : r.cle)}>{r.libelle}</button
+            >
+          {/each}
+        </div>
+      {/if}
       <label class="vitesse">
         Vitesse
         <select bind:value={vitesse}>
@@ -655,7 +700,7 @@
       <span>1 point = {entier(echelle)} personnes</span>
       {#if suivre}
         <span
-          ><b class="pastille" style:background="var(--encre)"></b>les habitants de {origine} encore là.
+          >En couleur vive, les habitants de {origine} encore là ; en pâle, ceux nés ou arrivés depuis.
           Leur nombre suit la part des habitants nés avant {origine} (pyramides des âges, Insee), qui
           compte aussi les immigrés nés avant {origine} et arrivés depuis.</span
         >
@@ -765,6 +810,8 @@
     font-variant-numeric: tabular-nums;
   }
   .compteur .annee {
+    font-family: var(--titre);
+    font-variant-numeric: tabular-nums;
     font-size: var(--t-4);
     font-weight: 700;
     color: var(--encre);
@@ -832,6 +879,15 @@
   .bascule {
     display: flex;
     gap: 0.3rem;
+  }
+  .ressortir {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .intitule {
+    font-size: var(--t-0);
+    color: var(--ardoise);
+    margin-right: 0.2rem;
   }
   .frise {
     display: flex;
