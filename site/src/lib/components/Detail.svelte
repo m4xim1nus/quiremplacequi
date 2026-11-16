@@ -39,14 +39,22 @@
   }
   .encadre {
     border: 1px solid var(--reglure);
-    border-radius: 6px;
-    padding: 0.6rem 1rem;
+    border-top: 2px solid var(--encre);
+    border-radius: 2px;
+    background: var(--plaque);
+    padding: 0.7rem 1rem;
     margin: 2rem 0;
   }
   summary {
     cursor: pointer;
     list-style-position: outside;
-    color: var(--lien);
+    color: var(--encre);
+  }
+  summary:hover .titre {
+    text-decoration: underline;
+    text-decoration-color: var(--repere);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
   }
   .encadre summary {
     margin-left: 1rem;
@@ -59,7 +67,9 @@
   }
   .encadre .titre {
     color: var(--encre);
-    font-size: var(--t-2);
+    font-family: var(--titre);
+    font-weight: 700;
+    font-size: var(--t-3);
   }
   .resume {
     display: block;

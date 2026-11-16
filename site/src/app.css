@@ -1,22 +1,119 @@
-/* Jetons et base typographique. Direction visuelle provisoire (prototype) : l'eau, bleu-gris,
-   aucune couleur « menaçante » ; la teinte des immigrés est une eau plus profonde, pas une alarme. */
+/* Jetons et base typographique (docs/CONCEPTION.md, validée par Max le 2026-11-16). L'idée
+   directrice : l'échelle limnimétrique, la règle graduée qui mesure le niveau de l'eau. Le bleu
+   appartient aux données ; le site lui-même est à l'encre, avec un seul repère ocre (niveaux,
+   focus, codes U). Aucun rouge. Polices libres (OFL) hébergées par le site. */
 
 @font-face {
-  font-family: 'Lexend';
+  font-family: 'Atkinson Hyperlegible Next';
   font-style: normal;
   font-display: swap;
-  font-weight: 100 900;
-  src: url('/fonts/lexend-latin-wght-normal.woff2') format('woff2-variations');
+  font-weight: 200 800;
+  src: url('/fonts/atkinson-hyperlegible-next-latin-wght-normal.woff2') format('woff2-variations');
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
 @font-face {
-  font-family: 'Lexend';
+  font-family: 'Atkinson Hyperlegible Next';
   font-style: normal;
   font-display: swap;
-  font-weight: 100 900;
-  src: url('/fonts/lexend-latin-ext-wght-normal.woff2') format('woff2-variations');
+  font-weight: 200 800;
+  src: url('/fonts/atkinson-hyperlegible-next-latin-ext-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible Next';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url('/fonts/atkinson-hyperlegible-next-latin-wght-italic.woff2') format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible Next';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url('/fonts/atkinson-hyperlegible-next-latin-ext-wght-italic.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url('/fonts/barlow-semi-condensed-latin-500-normal.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url('/fonts/barlow-semi-condensed-latin-ext-500-normal.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url('/fonts/barlow-semi-condensed-latin-600-normal.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url('/fonts/barlow-semi-condensed-latin-ext-600-normal.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url('/fonts/barlow-semi-condensed-latin-700-normal.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url('/fonts/barlow-semi-condensed-latin-ext-700-normal.woff2') format('woff2');
   unicode-range:
     U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
     U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
@@ -25,12 +122,15 @@
 
 :root {
   color-scheme: light;
-  --papier: #fbfcfd;
-  --encre: #17263a;
-  --ardoise: #4b5a6e;
-  --gris: #7b8798;
-  --reglure: #d5dfe9;
-  --lien: #1d5a96;
+  --papier: #f6f7f5; /* émail, blanc cassé froid */
+  --plaque: #ffffff; /* surfaces posées sur le papier (plaques, bulles) */
+  --encre: #15212b;
+  --ardoise: #4c5a65;
+  --gris: #6e7b86;
+  --reglure: #ccd4d8;
+  --repere: #c08a12; /* ocre : marques, niveaux, focus (pas de texte) */
+  --repere-texte: #865f05; /* l'ocre quand il porte du texte */
+  --lien: var(--encre);
 
   /* Générations (piscine, page Générations) : une seule rampe, de « autres » (gris-bleu, ni blanc
      ni presque blanc) vers G1. G3 et les G2 restent proches de « autres » (nés en France) ; G1 se
@@ -41,28 +141,31 @@
   --t3: #5582b7; /* G2, deux parents immigrés */
   --t4: #004cbb; /* G1, immigrés */
 
-  --texte: 'Lexend', system-ui, sans-serif;
+  --texte: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --titre: 'Barlow Semi Condensed', 'Arial Narrow', system-ui, sans-serif;
 
-  --t-0: 0.8rem;
-  --t-1: 1rem;
-  --t-2: 1.25rem;
-  --t-3: 1.5625rem;
-  --t-4: 1.953rem;
-  --t-5: 2.441rem;
+  --t-0: 0.8125rem;
+  --t-1: 1.0625rem;
+  --t-2: 1.3125rem;
+  --t-3: 1.75rem;
+  --t-4: 2.5rem;
+  --t-5: 3.75rem;
 
-  --colonne: 40rem;
-  --large: 62rem;
+  --colonne: 38rem;
+  --large: 64rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --papier: #10161e;
-    --encre: #e4eaf2;
-    --ardoise: #a9b5c6;
-    --gris: #85919f;
-    --reglure: #26323f;
-    --lien: #8cb8e6;
+    --papier: #10171c;
+    --plaque: #18222a;
+    --encre: #e7ecee;
+    --ardoise: #a6b3bb;
+    --gris: #8996a0;
+    --reglure: #2b363d;
+    --repere: #e3ad3a;
+    --repere-texte: #e8b84f;
     --t0: #5d646c;
     --t1: #5e748d;
     --t2: #5f7fa3;
@@ -78,7 +181,7 @@
 html {
   font-family: var(--texte);
   font-size: 100%;
-  line-height: 1.55;
+  line-height: 1.6;
   background: var(--papier);
   color: var(--encre);
   -webkit-text-size-adjust: 100%;
@@ -90,24 +193,44 @@ body {
 }
 
 a {
-  color: var(--lien);
+  color: var(--encre);
+  text-decoration-color: var(--repere);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+a:hover {
+  text-decoration-color: currentColor;
+}
+:focus-visible {
+  outline: 3px solid var(--repere);
+  outline-offset: 2px;
 }
 
 h1,
 h2,
 h3 {
-  line-height: 1.2;
+  font-family: var(--titre);
+  font-weight: 700;
+  line-height: 1.1;
   text-wrap: balance;
 }
 
 h1 {
-  font-size: var(--t-5);
-  margin: 1.5rem 0 1rem;
+  font-size: clamp(2.5rem, 7vw, var(--t-5));
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  margin: 2rem 0 1.25rem;
 }
 
 h2 {
-  font-size: var(--t-3);
-  margin: 2.5rem 0 0.75rem;
+  font-size: clamp(1.9rem, 4.5vw, var(--t-4));
+  line-height: 1.05;
+  margin: 2.75rem 0 0.75rem;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: var(--t-2);
 }
 
 p {
@@ -128,21 +251,40 @@ p {
   color: var(--ardoise);
 }
 
-.brouillon {
-  border-left: 3px solid var(--reglure);
-  padding-left: 1rem;
+.sources-page {
+  font-size: var(--t-0);
   color: var(--ardoise);
 }
 
 /* Réponse d'une section : la question est le h2, la réponse vient juste dessous, avant la figure ;
    le reste du texte est replié dans « Le détail » (components/Detail.svelte). */
 .reponse {
-  font-size: 1.125rem;
-  line-height: 1.5;
+  font-size: var(--t-2);
+  line-height: 1.45;
   color: var(--encre);
 }
 
 section[id],
 [id].ancre {
   scroll-margin-top: 1rem;
+}
+
+/* Chiffres mis en avant : Barlow, chiffres tabulaires. */
+.chiffre,
+.reponse strong {
+  font-family: var(--titre);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.reponse strong {
+  font-size: 1.12em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

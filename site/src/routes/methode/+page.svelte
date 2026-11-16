@@ -25,7 +25,6 @@
     calcul ; un modèle là où la statistique ne mesure pas, calé sur ce qu’elle mesure et affiché
     comme tel.
   </p>
-  <p class="brouillon">Textes en brouillon.</p>
 
   <h2>Trois régimes de données</h2>
   <ul>

@@ -116,7 +116,6 @@
       ont suscité des discours d’hostilité, parfois d’« invasion ». Comment ces vagues sont-elles
       montées, comment se sont-elles taries, et que sont devenus leurs descendants ?
     </p>
-    <p class="brouillon">Page en construction. Textes en brouillon, à valider.</p>
   </header>
 
   <Sommaire items={SOMMAIRE} />
@@ -588,8 +587,8 @@
   .tl {
     --serie-1: #2a78d6;
     --cat-1: #2a78d6;
-    --cat-2: #eb6834;
-    --cat-3: #1baf7a;
+    --cat-2: #7a5fb8; /* violet : aucune couleur d'alerte codée par origine */
+    --cat-3: #1f8a7a;
     --r1: #86b6ef;
     --r2: #3987e5;
     --r3: #1c5cab;
@@ -599,8 +598,8 @@
     .tl {
       --serie-1: #3987e5;
       --cat-1: #3987e5;
-      --cat-2: #d95926;
-      --cat-3: #199e70;
+      --cat-2: #a48bdb;
+      --cat-3: #3fb3a1;
       --r1: #9ec5f4;
       --r2: #5598e7;
       --r3: #2a78d6;

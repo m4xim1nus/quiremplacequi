@@ -25,9 +25,9 @@
       robinets en haut (les naissances, les arrivées), deux bondes en bas (les décès, les départs).
     </p>
     <p class="mode-emploi">
-      <strong>Comment lire.</strong> Une colonne par génération, de largeur proportionnelle à son
-      effectif ; l’épaisseur des rubans suit le débit de l’année. « Mélangée » remet tout le monde
-      dans la même eau. <span class="etat">Prototype, textes en brouillon.</span>
+      <strong>Comment lire.</strong> Une colonne par génération, de largeur proportionnelle à son effectif
+      ; l’épaisseur des rubans suit le débit de l’année. « Mélangée » remet tout le monde dans la même
+      eau.
     </p>
   </header>
 
@@ -155,10 +155,6 @@
   }
   .mode-emploi {
     color: var(--ardoise);
-  }
-  .etat {
-    color: var(--gris);
-    font-style: italic;
   }
   .points {
     padding-left: 1.4rem;

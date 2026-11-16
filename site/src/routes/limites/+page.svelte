@@ -17,7 +17,6 @@
     par différence, des séries qui changent de définition, des générations qu’on ne suit que par
     enquête. Chaque incertitude a un code, et chaque graphique du site qui en dépend la montre.
   </p>
-  <p class="brouillon">Textes en brouillon.</p>
 
   <dl class="registre">
     {#each data.incertitudes as u (u.code)}

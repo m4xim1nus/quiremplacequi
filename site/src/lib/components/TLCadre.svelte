@@ -48,11 +48,16 @@
 
 <style>
   .cadre {
-    margin: 1.5rem 0 2rem;
+    margin: 1.75rem 0 2.5rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--encre);
   }
   h3 {
-    font-size: var(--t-1);
-    margin: 0 0 0.75rem;
+    font-family: var(--titre);
+    font-weight: 600;
+    font-size: var(--t-2);
+    line-height: 1.2;
+    margin: 0 0 0.9rem;
   }
   figcaption {
     font-size: var(--t-0);
@@ -70,7 +75,10 @@
   }
   summary {
     cursor: pointer;
-    color: var(--lien);
+    color: var(--encre);
+    text-decoration: underline;
+    text-decoration-color: var(--repere);
+    text-underline-offset: 3px;
   }
   details :global(table) {
     border-collapse: collapse;

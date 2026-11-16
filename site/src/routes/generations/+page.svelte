@@ -117,10 +117,10 @@
       un bloc à part, ou une population qui se mêle aux autres ? Avec, en regard, les inégalités et
       les discriminations déclarées, y compris par les enfants nés en France.
     </p>
-    <p class="brouillon">
-      Page en construction. Textes en brouillon. Les chiffres viennent de l’enquête Trajectoires et
-      Origines 2 (Ined-Insee, collecte 2019-2020, livre paru en 2026), ressaisis à la main avec une
-      référence par cellule, et de l’Insee (IP 1910).
+    <p class="sources-page">
+      Les chiffres viennent de l’enquête Trajectoires et Origines 2 (Ined-Insee, collecte 2019-2020,
+      livre paru en 2026), ressaisis à la main avec une référence par cellule, et de l’Insee (IP
+      1910).
     </p>
   </header>
 
@@ -653,7 +653,7 @@
     --o4: #0d366b;
     --s1: #2a78d6;
     --c1: #2a78d6;
-    --c2: #eb6834;
+    --c2: #7a5fb8;
     --neutre-1: #7d879b;
     --neutre-2: #a7b0bf;
   }
@@ -666,7 +666,7 @@
       --o4: #b7d3f6;
       --s1: #3987e5;
       --c1: #3987e5;
-      --c2: #d95926;
+      --c2: #a48bdb;
       --neutre-1: #8691a6;
       --neutre-2: #5b667a;
     }

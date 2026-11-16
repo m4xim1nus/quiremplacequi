@@ -119,16 +119,21 @@ Le contenu de la v1 existe (piscine, temps long, générations, méthode,
 limites, données). L'étape 4 lui donne une forme propre, le rend publiable et
 le met en ligne.
 
-- [ ] Conception (`docs/CONCEPTION.md`) : direction visuelle propre au projet
-  (typographie, palette hors rampe des générations, style des figures), plan
-  et navigation, gabarits de page. Proposition, puis validation de Max.
-- [ ] Application de la direction visuelle à toutes les pages ; retrait des
-  mentions « brouillon » et « prototype ».
+- [x] Conception (`docs/CONCEPTION.md`) : échelle limnimétrique, bleu réservé
+  aux données, ocre pour les repères, Barlow Semi Condensed et Atkinson
+  Hyperlegible Next ; validée par Max (2026-11-16).
+- [x] Application, premier passage : jetons et polices auto-hébergées, en-tête
+  et pied, accueil avec l'échelle lue dans les données, cadres de figures,
+  sommaires, encadrés ; mentions « brouillon » retirées ; plus d'orange codant
+  une origine (temps long) ni de rouge.
+- [ ] Application, second passage après revue visuelle (composants de
+  graphiques, piscine, arrondis restants).
 - [ ] Accessibilité : contrastes, clavier, alternative textuelle et tableau
   de données pour la piscine (Canvas) ; mobile ; poids des pages.
-- [ ] Pages et éléments manquants : « À propos » (auteur, contact, licence,
-  sources, absence de traceur), image de partage (Open Graph), en-têtes de
-  sécurité (`_headers` : CSP sans CDN tiers).
+- [x] Page « À propos » : dépôt GitHub, contact (alias dédié), licences (MIT,
+  CC BY 4.0), vie privée.
+- [ ] Image de partage (Open Graph) ; en-têtes de sécurité à revoir
+  (`_headers` : CSP sans CDN tiers, déjà en place).
 - [ ] Vérification visuelle dans un navigateur, page par page (par Max, ou
   par capture si l'outil est autorisé).
 - [ ] Relecture finale de bout en bout (faits et lisibilité pour un

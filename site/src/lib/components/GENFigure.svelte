@@ -46,42 +46,53 @@
 </figure>
 
 <style>
+  /* Cadre commun (docs/CONCEPTION.md §4) : filet épais à l'encre, titre en Barlow, puis lecture,
+     source, champ et codes U en plaques ocre. */
   .gen-figure {
-    margin: 1.5rem 0 2.5rem;
+    margin: 1.75rem 0 2.75rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--encre);
   }
   .titre {
+    font-family: var(--titre);
     font-weight: 600;
+    font-size: var(--t-2);
+    line-height: 1.2;
     color: var(--encre);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.9rem;
   }
   .lecture,
   .meta {
     font-size: var(--t-0);
     color: var(--ardoise);
-    margin: 0.5rem 0 0;
+    margin: 0.6rem 0 0;
   }
   .meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.2rem 0.8rem;
-    color: var(--gris);
+    align-items: baseline;
+    gap: 0.3rem 0.9rem;
   }
   .badge {
-    font-weight: 700;
-    font-size: 0.72rem;
-    letter-spacing: 0.04em;
+    font-family: var(--titre);
+    font-weight: 600;
+    font-size: 0.8rem;
     padding: 0 0.4rem;
-    border: 1px dashed currentColor;
-    border-radius: 0.25rem;
-    color: var(--ardoise);
+    border: 1.5px solid var(--repere);
+    border-radius: 2px;
+    color: var(--repere-texte);
+    background: var(--plaque);
   }
   details {
-    margin-top: 0.5rem;
+    margin-top: 0.6rem;
     font-size: var(--t-0);
   }
   summary {
     cursor: pointer;
-    color: var(--lien);
+    color: var(--encre);
+    text-decoration: underline;
+    text-decoration-color: var(--repere);
+    text-underline-offset: 3px;
   }
   .defile {
     overflow-x: auto;

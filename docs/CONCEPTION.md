@@ -1,6 +1,6 @@
 # Conception du site v1
 
-**Statut : proposition du 2026-11-16, à valider par Max.** Échantillon visuel :
+**Statut : validée par Max le 2026-11-16.** Échantillon visuel :
 page privée publiée pour la revue (les chiffres y sont ceux de l'export du
 2026-11-16, recopiés pour l'échantillon ; sur le site, ils sont lus par script).
 

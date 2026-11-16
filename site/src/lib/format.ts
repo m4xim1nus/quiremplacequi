@@ -20,3 +20,6 @@ export const millions = (x: number, signe = false) => {
   const s = signe && m > 0 ? '+' : '';
   return `${s}${nf1m.format(m).replace('-', '−')} ${Math.abs(m) < 2 ? 'million' : 'millions'}`;
 };
+
+/** Nombre à virgule décimale, `n` décimales (sans séparateur de milliers). */
+export const virgule = (x: number, n = 1) => x.toFixed(n).replace('.', ',').replace('-', '−');

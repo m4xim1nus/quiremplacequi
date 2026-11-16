@@ -1,6 +1,7 @@
 <script lang="ts">
   import '../app.css';
   import { page } from '$app/state';
+  import { SITE } from '$lib/site';
 
   let { data, children } = $props();
 
@@ -42,10 +43,13 @@
 
 <footer class="pied page">
   <p>
-    Site en construction. Données publiques uniquement (Insee, Ined). Calculs arrêtés au {date},
-    reproductibles à partir des <a href="/donnees">fichiers publiés</a>.
+    Données publiques uniquement (Insee, Ined). Calculs arrêtés au {date}, reproductibles à partir
+    des <a href="/donnees">fichiers publiés</a> et du <a href={SITE.depot}>code</a>.
   </p>
-  <p>Aucun cookie, aucun traceur, aucune ressource tierce.</p>
+  <p>
+    Aucun cookie, aucun traceur, aucune ressource tierce. <a href="/a-propos">À propos</a> : auteur, contact,
+    licences.
+  </p>
 </footer>
 
 <style>
@@ -54,35 +58,44 @@
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
-    gap: 0.5rem 1.5rem;
+    gap: 0.4rem 2rem;
     padding-top: 1.25rem;
-    padding-bottom: 1rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--reglure);
   }
   .marque {
+    font-family: var(--titre);
     font-weight: 700;
     font-size: var(--t-2);
+    letter-spacing: 0.01em;
     color: var(--encre);
     text-decoration: none;
   }
   nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.3rem 1.1rem;
+    gap: 0.25rem 1.25rem;
     font-size: var(--t-0);
   }
   nav a {
     color: var(--ardoise);
     text-decoration: none;
+    padding-block: 0.2rem;
+  }
+  nav a:hover {
+    color: var(--encre);
   }
   nav a[aria-current='page'] {
     color: var(--encre);
-    font-weight: 600;
+    box-shadow: inset 0 -2px 0 var(--repere);
   }
   .pied {
     margin-top: 4rem;
-    padding-bottom: 2rem;
+    padding-top: 1.25rem;
+    padding-bottom: 2.5rem;
+    border-top: 1px solid var(--reglure);
     font-size: var(--t-0);
-    color: var(--gris);
+    color: var(--ardoise);
   }
   .pied p {
     margin: 0.25rem 0;
@@ -94,5 +107,7 @@
   .evitement:focus {
     left: 1rem;
     top: 1rem;
+    background: var(--plaque);
+    padding: 0.4rem 0.6rem;
   }
 </style>
