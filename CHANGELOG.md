@@ -1,5 +1,13 @@
 # Journal des versions
 
+## v1.2.0 (2026-11-16)
+
+- **Ailleurs**, C7 : la bosse migratoire (part d'émigrés de 158 pays selon leur PIB par habitant,
+  médianes par cinquième) et l'émigration d'Afrique subsaharienne (part de ses natifs vivant
+  hors de leur pays, et où ils vivent).
+- Nouvelle source : ONU (International Migrant Stock 2024, déposé à la main car le site refuse les
+  programmes ; World Population Prospects 2024 ; PIB par habitant ; noms M49) ; incertitude U24.
+
 ## v1.1.0 (2026-11-16)
 
 Cycle 2 : l'espace et la nature des migrations, ajusté par la lecture de *Parlons immigration en

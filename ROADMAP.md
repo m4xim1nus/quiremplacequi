@@ -192,7 +192,7 @@ chiffre est retrouvé à la source primaire.
   main par Max (le site refuse les scripts), population, PIB par habitant et noms
   M49 par script ; bosse migratoire (158 pays, médianes par cinquième de PIB
   par habitant) et émigration d'Afrique subsaharienne ; U24 ajoutée.
-- [ ] Revue de Max de C7, puis tag `v1.2.0`.
+- [x] Revue de Max de C7 (2026-11-16) : validé ; tag `v1.2.0`.
 
 **Livrable** : les pages C et D en ligne (v1.1.0, 2026-11-16).
 
