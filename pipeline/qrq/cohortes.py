@@ -14,8 +14,10 @@ Le reste de la population (« autres ») est le complément de la population tot
 Dynamique (année t → t+1) :
 1. Mortalité : quotients nationaux par âge (moyenne hommes-femmes), sans hypothèse de
    surmortalité par origine.
-2. G1 : le stock est forcé sur la série des recensements (interpolée) ; le flux net d'une année
-   s'en déduit, réparti par âge selon le profil d'âge à l'arrivée (IP 2107, entrées 2024). Un flux
+2. G1 : le stock est forcé sur la trajectoire de la piscine ; le flux net d'une année s'en déduit,
+   réparti par âge selon le profil d'âge à l'arrivée (IP 2107, entrées 2024 ; avant 1990, le même
+   profil rajeuni à la médiane d'âge à l'arrivée des immigrés présents en 1999 :
+   referentiels/cohortes.yaml, `arrivees`). Un flux
    net négatif retire des immigrés au prorata du stock des 15-79 ans.
 3. Naissances : part des naissances de deux parents immigrés (G2a) et d'un seul (G2b) observée de
    1998 à 2025 (pays de naissance des parents, corrigé de la part des immigrés parmi les personnes
@@ -121,6 +123,18 @@ def profil_par_age(points: list[tuple[float, float]]) -> np.ndarray:
     return d / d.sum()
 
 
+def profil_ancien(p: dict, points: list[tuple[float, float]]) -> dict:
+    """Profil d'arrivée des années antérieures à `arrivees.bascule` : le profil de 2024 (points de
+    la fonction de répartition), âges multipliés pour amener la médiane à `mediane_ancienne`."""
+    a = p.get("arrivees")
+    if not a:
+        return {}
+    mediane = next(age for age, c in points if c == 0.5)
+    k = a["mediane_ancienne"] / mediane
+    pts = [(0, 0.0)] + [(age * k, c) for age, c in points if 0 < age < 75] + [(75, 1.0)]
+    return {"profil_ancien": profil_par_age(pts), "profil_bascule": a["bascule"]}
+
+
 def lire_cibles_ip1910(raw: Path) -> list[dict]:
     """Parts de G1, G2 (deux parents, un parent), G3 par classe d'âge en 2019-2020 (IP 1910, fig. 1)."""
     out = []
@@ -186,6 +200,8 @@ class Entrees:
     parts_naissances: dict[int, tuple[float, float]]  # (deux parents nés à l'étranger, un seul)
     part_imm_nes_etranger: dict[int, float]
     profil: np.ndarray
+    profil_ancien: np.ndarray | None = None  # profil d'arrivée des années < profil_bascule (optionnel)
+    profil_bascule: int = 0
 
 
 def _vecteur(d: dict[int, np.ndarray], a: int) -> np.ndarray:
@@ -302,7 +318,8 @@ def simuler(e: Entrees, p: dict, cohortes: dict[int, dict[str, float]], seul_g1:
         cible = interp_annees(e.stock_g1, t + 1)
         arrivees = cible - n["G1"].sum()
         if arrivees >= 0:
-            n["G1"] += arrivees * e.profil
+            prof = e.profil_ancien if (e.profil_ancien is not None and t < e.profil_bascule) else e.profil
+            n["G1"] += arrivees * prof
         else:
             poids = n["G1"] * ((np.arange(AGES) >= 15) & (np.arange(AGES) < 80))
             n["G1"] += arrivees * poids / poids.sum()
@@ -412,6 +429,7 @@ def preparer(raw: Path, stock: list[dict], bilan: list[dict], naissances: list[d
         parts_naissances=parts,
         part_imm_nes_etranger=lire_part_immigres_nes_etranger(raw),
         profil=profil_par_age(lire_profil_arrivee(raw)),
+        **profil_ancien(p, lire_profil_arrivee(raw)),
     )
 
 

@@ -63,7 +63,7 @@ réfléchir avant d'arbitrer, `[refusé]` tranché négatif (trace gardée).
 - [creuser] Événement 1962 : chiffrer les rapatriés seulement si une source agrégée publique le donne (user:max, 2026-11-16)
 - [→A] Écart des G2 à un parent expliqué : rupture de l'enquête Emploi en 2021 (Insee Références 2023, fiche 1.4), U21 ; le modèle garde la convention d'IP 1910 (claude, 2026-11-16)
 - [→A] G1 de 15-24 ans surestimés aussi face au recensement (tous logements) : profil d'âge à l'arrivée unique (entrées 2024) ; aucune forme de départs ne corrige (grille de 160 formes) (claude, 2026-11-16)
-- [ ] U19 cite en dur « +6 % » et « −5 % » dans `incertitudes.yaml` : à lire depuis `cohortes_calage.csv` (claude, 2026-11-16)
+- [x] U19 citait en dur « +6 % » et « −5 % » : chiffres retirés du texte, écarts sur la page Méthode (claude, 2026-11-16)
 - [→A] Flux avant 2006 : le lissage linéaire attribuait la cassure de 1974 aux non-immigrés (−104 000) ; remplacé de 1968 à 2005 par le profil du solde migratoire annuel du bilan (`repartition_flux`, validé par Max le 2026-11-16) (claude, 2026-11-16)
 - [creuser] Séries ONI/OMI des entrées (travailleurs permanents, familles) 1946-1993 : cahier Ined « L'immigration étrangère en France, 1946-1973 », Dares « L'immigration en France en 1988 » ; non accessibles aux scripts. Comptent les entrées régulières seulement (82 % de régularisations a posteriori en 1968, CERC) (claude, 2026-11-16)
 - [→site] Avant publication : l'encadré sur la note OID du 21/9/2026 critique une note non lue (relecture du 2026-11-16, A10) ; la lire ou retirer l'encadré (claude, 2026-11-16)

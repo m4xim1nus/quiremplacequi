@@ -126,12 +126,12 @@ def verifier(export: Path) -> tuple[bool, list[str]]:
     d = cal.filter((pl.col("temoin") == "descendants_2025") & (pl.col("cle") == "effectif"))
     ratio = d["modele"][0] / d["observe"][0]
     controle("cohortes : descendants 2025 à ± 10 % de l'enquête Emploi (témoin indépendant)", 0.9 <= ratio <= 1.1, f"modèle / Insee = {ratio:.3f}")
-    # Âges des immigrés au recensement (tous logements) depuis 2006 : la forme par âge des G1 vient
-    # d'un profil d'arrivée unique (entrées 2024) ; les jeunes adultes sont surestimés (≈ +2 points).
-    rp = cal.filter(pl.col("temoin") == "rp_ages_g1").with_columns(an=pl.col("cle").str.slice(0, 4).cast(int)).filter(pl.col("an") >= 2006)
+    # Âges des immigrés au recensement (tous logements, 1990-2025) : la bascule du profil d'arrivée est
+    # choisie sur ces années (explo/profil_arrivee.py) ; IP 1910 reste le témoin indépendant.
+    rp = cal.filter(pl.col("temoin") == "rp_ages_g1")
     ec = (rp["modele"] - rp["observe"]).abs()
     pire = rp["cle"][ec.arg_max()]
-    controle("cohortes : âges des immigrés à ± 5 points du recensement (4 classes, 2007-2025)", ec.max() <= 5, f"pire {pire} : {ec.max():.1f} point")
+    controle("cohortes : âges des immigrés à ± 3 points du recensement (4 classes, 1990-2025)", ec.max() <= 3, f"pire {pire} : {ec.max():.1f} point")
     dc = cal.filter(pl.col("temoin") == "deces_immigres_insee")
     ratio = dc["modele"].sum() / dc["observe"].sum()
     controle("cohortes : décès d'immigrés à ± 15 % des estimations Insee 2006-2022", 0.85 <= ratio <= 1.15, f"modèle / Insee = {ratio:.3f}")

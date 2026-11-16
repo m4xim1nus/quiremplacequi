@@ -42,6 +42,22 @@ departs:
     - {de: 55, a: 69, poids: 3.0}
     - {de: 70, a: 105, poids: 1.0}
 
+arrivees:
+  # Profil d'âge à l'arrivée des immigrés. Depuis `bascule` : entrées de 2024 (IP 2107, figure 3 et
+  # tableau complémentaire 2, lus par script ; médiane 26 ans). Avant : le même profil, rajeuni pour
+  # que sa médiane soit `mediane_ancienne`, l'âge médian à l'arrivée des immigrés présents en 1999
+  # (saisie : Insee, « Les immigrés en France », édition 2005, fiche 1.7, figure 2, enquête Étude de
+  # l'histoire familiale 1999 : « 25 % avaient moins de 12 ans à leur arrivée, 50 % moins de 22 ans
+  # et 75 % moins de 28 ans » ; la moitié était arrivée avant 1973, les trois quarts avant 1984).
+  # Biais connu : ce stock a survécu et n'est pas reparti, ce qui rajeunit un peu le profil.
+  # Bascule : le recensement de la grille {1982, 1990, 1999} le plus proche des âges des immigrés aux
+  # recensements de 1990 à 2025 (explo/profil_arrivee.py). Effet : âges au recensement à 2,6 points au
+  # plus (5,5 avant), IP 1910 à 4,3 points (4,7) ; décès d'immigrés à −13 % des estimations Insee
+  # (−5 %). Proposé le 2026-11-16 (docs/PARAMETRES.md §7).
+  mediane_ancienne: 22
+  source_ancien: "https://www.insee.fr/fr/statistiques/fichier/1371777/IMMFRA05.PDF"
+  bascule: 1990
+
 calage:
   annee_ip1910: 2020   # 1er janvier 2020, milieu de la collecte 2019-2020
   sorties: [2006, 2022]  # années [début, fin[ des sorties Insee utilisées pour caler le taux

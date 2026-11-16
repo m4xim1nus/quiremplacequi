@@ -67,8 +67,9 @@ libres : `pipeline/explo/sensibilite_cohortes.py`, synthèse dans
 **Témoins indépendants** (non utilisés pour caler, contrôlés par `qrq check`) :
 descendants mesurés en 2025 (enquête Emploi) à ± 10 % ; décès d'immigrés
 estimés par l'Insee 2006-2022 à ± 15 % ; répartition des immigrés en quatre
-classes d'âge aux recensements de 2007 à 2025 (Insee 2381759, tous logements)
-à ± 5 points. Écarts publiés dans `data/export/cohortes_calage.csv`.
+classes d'âge aux recensements de 1990 à 2025 (Insee 2381759, tous logements)
+à ± 3 points (ce témoin a aussi servi à choisir l'année de bascule du profil
+d'arrivée : il n'est donc qu'à moitié indépendant). Écarts publiés dans `data/export/cohortes_calage.csv`.
 
 **Limites connues** :
 
@@ -82,15 +83,20 @@ classes d'âge aux recensements de 2007 à 2025 (Insee 2381759, tous logements)
   réduit le nombre de descendants d'environ 3 %, ce qui explique une partie de
   l'écart au témoin des effectifs (le reste : Mayotte et les logements
   collectifs, inclus dans le modèle, exclus de l'enquête).
-- *Âge des immigrés.* Les jeunes adultes sont surestimés par rapport à IP 1910
-  (18-29 ans) mais aussi par rapport au recensement, qui couvre tous les
-  logements (15-24 ans : ≈ +2 points depuis 2007). Le champ n'explique donc
-  qu'une partie de l'écart. La cause principale est le profil d'âge à
-  l'arrivée, unique (entrées 2024) et appliqué à toutes les époques. Aucune
-  forme des départs ne corrige l'écart (grille de 160 formes testée contre le
-  recensement le 2026-11-16). Effet sur la piscine : les totaux des G1 sont
-  imposés par les recensements, et l'âge des G1 ne pèse que sur leurs décès
-  (témoin à −5 %).
+- *Âge des immigrés.* Avec un profil d'arrivée unique (entrées 2024), les
+  jeunes adultes étaient surestimés par rapport à IP 1910 et au recensement
+  (tous logements), jusqu'à 5,5 points ; aucune forme des départs ne corrigeait
+  l'écart (grille de 160 formes). Le profil d'arrivée dépend désormais de
+  l'époque (`arrivees` dans `cohortes.yaml`) : avant 1990, le profil de 2024
+  rajeuni à l'âge médian à l'arrivée des immigrés présents en 1999 (22 ans ;
+  Insee, *Les immigrés en France*, 2005, fiche 1.7). Écart au recensement : 2,6
+  points au plus de 1990 à 2025 (contrôlé à ± 3) ; à IP 1910 : 4,3 points au
+  plus par classe fine (logement ordinaire). Contrepartie : le témoin des décès
+  d'immigrés passe de −5 % à −13 % (le modèle applique la mortalité nationale
+  par âge ; l'Insee estime ces décès avec sa propre méthode). Aucune source
+  publique ne donne l'âge à l'arrivée par période d'arrivée
+  (`explo/profil_arrivee.py`). Effet sur la piscine : les totaux des G1 sont
+  imposés, et les parts des générations bougent de moins de 0,1 point.
 - La G3 au-delà de 60 ans n'a aucune cible.
 
 ## 3. TeO2 (`pipeline/referentiels/teo2/`)

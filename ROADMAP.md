@@ -84,8 +84,11 @@ l'étape 2. L'étape 3 traite ce qui reste de leurs limites connues.
   à 2005, le flux net des immigrés suit le solde migratoire annuel du bilan
   Insee (1974 se voit) ; le solde des non-immigrés n'absorbe plus la cassure.
   Paramètre validé par Max (`docs/PARAMETRES.md` §6).
-- [ ] Profil d'âge à l'arrivée par époque, si une source publique agrégée le
-  donne (corrige l'âge des G1).
+- [x] Profil d'âge à l'arrivée par époque : aucune série publique par période
+  d'arrivée ; avant 1990, profil de 2024 rajeuni à l'âge médian à l'arrivée des
+  immigrés présents en 1999 (22 ans, Insee 2005). Âges au recensement à 2,6
+  points au plus (5,5 avant) ; témoin des décès à −13 % (−5 % avant). Proposé,
+  à valider (`docs/PARAMETRES.md` §7).
 - [x] TeO2 : chapitre 7, figures 3 et 4 (160 cellules, seconde lecture
   indépendante identique), figure 4 affichée dans le détail de « Avec qui
   vivent-ils ? » ; chapitre 11 : la contradiction entre le §35 et la figure 1
