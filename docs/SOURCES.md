@@ -173,5 +173,7 @@ change (naissances G2a 2023 : 30 910 → 109 313 ; descendants 2025 du modèle :
 naissances ») ; pas de décomposition « poids × taux » chiffrée (la part des
 femmes nées à l'étranger parmi les 15-49 ans n'est pas publiée sous une forme
 lisible ; l'effet est donné par l'écart d'ICF, avec et sans elles) ; encadré
-ONU traité en section-question ; formulation du « détournement » (le titre
-« parfois cité comme la preuve d'un projet », sans nommer d'auteur).
+ONU traité en section-question ; formulation du « détournement » (« on lit parfois que le titre
+prouverait un projet », sans nommer d'auteur). Après relecture : comparaison
+au rapport à champ égal (le rapport porte sur la métropole, 58,0 millions en
+1995).

@@ -58,15 +58,16 @@
     chiffres, et il n’en fabrique pas (aucun classement par les prénoms, par exemple).
   </p>
   <p>
-    Ce n’est pas un choix du site. La loi Informatique et libertés du 6 janvier 1978 interdit, en
+    Ce choix suit le cadre légal. La loi Informatique et libertés du 6 janvier 1978 interdit, en
     principe, de traiter des données qui révèlent « la prétendue origine raciale ou l’origine
-    ethnique » d’une personne (article 6) ; elle prévoit des exceptions, notamment pour des
-    traitements d’intérêt public autorisés après avis de la Cnil. En 2007, le Conseil
-    constitutionnel a précisé que les études sur « la mesure de la diversité des origines des
-    personnes, de la discrimination et de l’intégration » peuvent porter sur des données objectives,
-    mais ne sauraient « reposer sur l’origine ethnique ou la race » (décision n° 2007-557 DC du 15
-    novembre 2007, considérant 29). Les enquêtes comme Trajectoires et Origines interrogent donc sur
-    les parcours, les ascendances et les discriminations vécues, pas sur une appartenance.
+    ethnique » d’une personne (article 6, article 8 avant la réécriture de la loi en 2018) ; elle
+    prévoit des exceptions, notamment pour des traitements d’intérêt public autorisés après avis de
+    la Cnil. En 2007, le Conseil constitutionnel a précisé que les études sur « la mesure de la
+    diversité des origines des personnes, de la discrimination et de l’intégration » peuvent porter
+    sur des données objectives, mais ne sauraient « reposer sur l’origine ethnique ou la race »
+    (décision n° 2007-557 DC du 15 novembre 2007, considérant 29). Les enquêtes comme Trajectoires
+    et Origines interrogent donc sur les parcours, les ascendances et les discriminations vécues,
+    pas sur une appartenance.
   </p>
   <p>
     Ces catégories reposent sur des déclarations : le pays de naissance et la nationalité de

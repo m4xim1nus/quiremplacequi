@@ -93,9 +93,13 @@
         <span class="titre">Les naissances</span>
         <span
           >{pct(data.naissances.partMere)} des enfants nés en {data.naissances.annee} ont une mère née
-          à l’étranger. Les filles d’immigrés ont {virgule(data.naissances.descendantes, 2)} enfants en
-          moyenne, les autres femmes {virgule(data.naissances.ni, 2)}. Et ce que disait vraiment le
-          rapport de l’ONU sur les « migrations de remplacement ».</span
+          à l’étranger. Les femmes nées en France d’un parent immigré ont eu {virgule(
+            data.naissances.descendantes,
+            2
+          )}
+          {data.naissances.descendantes < 2 ? 'enfant' : 'enfants'} en moyenne, les femmes sans ascendance
+          migratoire {virgule(data.naissances.ni, 2)} (générations 1960-1974). Et ce que disait vraiment
+          le rapport de l’ONU sur les « migrations de remplacement ».</span
         >
       </a>
     </li>

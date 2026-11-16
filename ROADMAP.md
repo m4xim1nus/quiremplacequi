@@ -224,7 +224,13 @@ Lancé par Max le 2026-11-16 (« go cycle 3 »).
   « Pourquoi ces catégories » (loi de 1978, décision 2007-557 DC) et « Les
   naissances et la fécondité » ; U27 sur la piscine et le temps long ;
   navigation, accueil, données, `build.sh` ; pourcentages insécables.
-- [ ] Relecture factuelle indépendante.
+- [x] Relecture factuelle indépendante (2026-11-16), points acceptés par Max :
+  rapport de l'ONU comparé à champ égal (métropole) ; « descendantes
+  d'immigrés » au lieu de « filles » ; comparaisons des naissances depuis 2014
+  (rupture de 2011, Mayotte) ; effet sur l'ICF national en fourchette (+0,14 à
+  +0,17 selon l'ajustement) ; « semble inaccessible » cité tel quel ;
+  mécanisme des naissances retardées attribué à l'Insee ; Méthode (« ce choix
+  suit le cadre légal », numérotation de l'article de la loi de 1978).
 - [ ] Revue de Max.
 
 **Tranché en autonomie, à relire par Max** : voir `docs/SOURCES.md` §7.

@@ -101,6 +101,8 @@ export function naissances() {
     scenarios: Record<string, string>;
     citations: { cle: string; page: number; texte: string }[];
   }>('onu2000.json');
+  // Apostrophes typographiques à l'affichage (les extraits saisis gardent celles du PDF).
+  onuMeta.citations = onuMeta.citations.map((x) => ({ ...x, texte: x.texte.replace(/'/g, '’') }));
   const scenarios: ScenarioOnu[] = Object.entries(onuMeta.scenarios).map(([code, libelle]) => ({
     code,
     libelle,
@@ -108,8 +110,10 @@ export function naissances() {
       o2.filter((r) => r.scenario === code).map((r) => [r.indicateur!, num(r.valeur)!])
     )
   }));
+  // Le rapport de l'ONU de 2000 porte sur la France métropolitaine (58,0 millions en 1995) : on
+  // le compare au bilan de la métropole (onglet FM), à champ égal.
   const bilan = csv('bilan.csv')
-    .filter((r) => r.onglet === 'FR' && r.solde_migratoire !== '')
+    .filter((r) => r.onglet === 'FM' && r.solde_migratoire !== '')
     .map((r) => ({
       annee: num(r.annee)!,
       soldeMigratoire: num(r.solde_migratoire)!,

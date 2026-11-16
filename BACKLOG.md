@@ -107,3 +107,4 @@ réfléchir avant d'arbitrer, `[refusé]` tranché négatif (trace gardée).
 - [creuser] En-têtes d'année avec appel de note (« 20231 ») : vérifier les autres lecteurs de tableurs Insee (le défaut a été trouvé dans les naissances) (claude, 2026-11-16)
 - [creuser] U27 (sous-déclaration de l'immigration au recensement) : retrouver Insee-Méthodes n° 66 (1997) ou les travaux de M. Safi pour la vérifier (claude, 2026-11-16)
 - [creuser] Fécondité : part des femmes nées à l'étranger parmi les 15-49 ans, pour une vraie décomposition poids × taux (claude, 2026-11-16)
+- [creuser] Typographie : espace insécable avant « : ; ? ! » sur tout le site (relecture du cycle 3) (claude, 2026-11-16)

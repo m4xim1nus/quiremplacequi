@@ -171,7 +171,7 @@
   "detail": "L'indicateur conjoncturel rapporte les naissances survenues en France aux femmes qui y résident. Pour des femmes arrivées en cours de vie féconde, il surestime leur fécondité : elles repoussent souvent leurs maternités jusqu'après la migration, et leurs naissances se concentrent dans les années qui suivent l'arrivée. Depuis 2023, l'Insee publie un indicateur ajusté qui tient compte de leur fécondité plus faible avant l'arrivée ; il repose sur une projection des arrivées et sur l'enquête TeO2 : c'est une estimation.",
   "traitement": "Indicateur ajusté seulement, écart avec le calcul classique donné ; la descendance finale, qui compte tous les enfants, nés en France ou avant la migration, est montrée à côté",
   "verifie": true,
-  "reference": "Insee Première 1939 (2023), encadré et figure 5 ; Insee, Documents de travail n° 2023-05 ; L. Toulemon, « La fécondité des immigrées : nouvelles données, nouvelle approche », Population et Sociétés n° 400, Ined, 2004"
+  "reference": "Insee Première 1939 (2023), encadré et figure 5 ; Insee, Documents de travail n° 2023-05"
  },
  "U26": {
   "titre": "L'état civil connaît le pays de naissance, pas la qualité d'immigré",

@@ -5,7 +5,7 @@ const REGIONS: [string, string][] = [
   ['europe_du_sud', 'Italie, Espagne, Portugal'],
   ['autres_europe', 'Autres pays d’Europe'],
   ['maghreb', 'Algérie, Maroc, Tunisie'],
-  ['autres_afrique', 'Autres pays d’Afrique'],
+  ['autres_afrique', 'Afrique hors Maghreb'],
   ['turquie_moyen_orient', 'Turquie, Moyen-Orient'],
   ['autres_asie', 'Autres pays d’Asie'],
   ['amerique_oceanie', 'Amérique, Océanie']
@@ -16,7 +16,9 @@ export const load = () => {
   const ans = d.annees;
   const dernier = ans.at(-1)!;
   const premier = ans[0];
-  const pic = ans.reduce((a, b) => (b.ensemble > a.ensemble ? b : a));
+  // Comparaisons dans le temps à méthode et champ constants : après la rupture de 2011 et
+  // l'entrée de Mayotte en 2014 (U26).
+  const base = ans.find((a) => a.annee === 2014) ?? premier;
   const parts = (a: AnneeNaissances) => ({
     auMoinsUn: (100 * (a.unParent + a.deuxParents)) / a.ensemble,
     mere: (100 * a.mereEtranger) / a.ensemble,
@@ -35,7 +37,10 @@ export const load = () => {
     etrangerDebut: d.icf.nees_a_l_etranger[0].icf,
     franceDebut: d.icf.nees_en_france[0].icf
   };
+  // Écart à l'indicateur des femmes nées en France : calcul classique (1,84 en 2021, figure 6) et
+  // avec l'ajustement de l'Insee (texte de l'encadré).
   const contribution = icf.ensemble - icf.france;
+  const contributionAjustee = d.textes.icf_ensemble_ajuste - icf.france;
   const naisIcf = ans.find((a) => a.annee === anIcf)!;
   const regions = REGIONS.map(([g, libelle]) => ({ libelle, icf: fin(g).icf })).sort(
     (a, b) => b.icf - a.icf
@@ -71,6 +76,7 @@ export const load = () => {
   const calendrier = {
     avant: somme((x) => (x.duree < 0 ? x.enFrance + x.aLEtranger : 0)),
     etranger: somme((x) => x.aLEtranger),
+    etrangerAvant: somme((x) => (x.duree < 0 ? x.aLEtranger : 0)),
     cinqAns: somme((x) => (x.duree >= 0 && x.duree <= 4 ? x.enFrance : 0)),
     annee1: d.arrivee.find((x) => x.duree === 1)!.enFrance
   };
@@ -81,6 +87,9 @@ export const load = () => {
     d.bilan.filter((b) => b.annee >= de && b.annee <= a).map((b) => b.soldeMigratoire);
   const derBilan = d.bilan.at(-1)!;
   const soldesDepuis2000 = entre(2000, derBilan.annee);
+  const provisoires = d.bilan.filter((b) => b.annee >= 2000 && b.provisoire).map((b) => b.annee);
+  const derDefinitif = d.bilan.filter((b) => !b.provisoire).at(-1)!.annee;
+  const soldesDefinitifs = entre(2000, derDefinitif);
   const soutien = (a: number) => d.rapportSoutien.find((x) => x.annee === a)!.rapport;
   const derSoutien = d.rapportSoutien.at(-1)!;
   const pop2050 = d.onu.scenarios.map((s) => s.valeurs.population_2050 * 1000);
@@ -93,19 +102,21 @@ export const load = () => {
     chiffres: {
       premier,
       dernier,
-      pic,
+      base,
       partsDernier: parts(dernier),
       partsPremier: parts(premier),
       partsIcf: parts(naisIcf),
       variation: {
-        ensemble: dernier.ensemble - pic.ensemble,
-        deuxNesFrance: dernier.deuxNesFrance - pic.deuxNesFrance,
-        unParent: dernier.unParent - pic.unParent,
-        deuxParents: dernier.deuxParents - pic.deuxParents
+        ensemble: dernier.ensemble - base.ensemble,
+        deuxNesFrance: dernier.deuxNesFrance - base.deuxNesFrance,
+        unParent: dernier.unParent - base.unParent,
+        deuxParents: dernier.deuxParents - base.deuxParents
       },
       icf,
       contribution,
       contributionRel: (100 * contribution) / icf.france,
+      contributionAjustee,
+      contributionAjusteeRel: (100 * contributionAjustee) / icf.france,
       textes: d.textes,
       frDer,
       seuilDer: frDer.seuil,
@@ -133,6 +144,9 @@ export const load = () => {
         IV: sc('IV'),
         V: sc('V'),
         soldeMoyen: soldesDepuis2000.reduce((s, x) => s + x, 0) / soldesDepuis2000.length,
+        soldeMoyenDefinitif: soldesDefinitifs.reduce((s, x) => s + x, 0) / soldesDefinitifs.length,
+        derDefinitif,
+        provisoires,
         soldeDe: 2000,
         soldeA: derBilan.annee,
         cumul1995_2020: entre(1995, 2020).reduce((s, x) => s + x, 0),

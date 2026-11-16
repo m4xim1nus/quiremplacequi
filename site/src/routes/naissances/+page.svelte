@@ -17,6 +17,8 @@
   // 1. Naissances selon le pays de naissance des parents : trois catégories qui font le total.
   let mesure: 'nombre' | 'part' = $state('nombre');
   const RUPTURE = 2011;
+  const avantRupture = $derived(ans.find((a) => a.annee === RUPTURE - 1)!);
+  const apresRupture = $derived(ans.find((a) => a.annee === RUPTURE)!);
   const segments = (f: (a: (typeof ans)[number]) => number) => {
     const pts = ans.map((a) => ({
       x: a.annee,
@@ -49,11 +51,11 @@
     const p = (n: number) => pct((100 * n) / a.ensemble);
     return `${entier(a.ensemble)} naissances : deux parents nés en France ${p(a.deuxNesFrance)}, un parent né à l’étranger ${p(a.unParent)}, deux parents nés à l’étranger ${p(a.deuxParents)} · mère née à l’étranger ${p(a.mereEtranger)}`;
   };
-  // Part de deux parents nés à l'étranger si leur nombre n'avait pas changé depuis le pic.
+  // Part de deux parents nés à l'étranger si leur nombre n'avait pas changé depuis 2014.
   const partSansHausse = $derived(
-    (100 * c.pic.deuxParents) / (c.dernier.ensemble - c.variation.deuxParents)
+    (100 * c.base.deuxParents) / (c.dernier.ensemble - c.variation.deuxParents)
   );
-  const partDeuxPic = $derived((100 * c.pic.deuxParents) / c.pic.ensemble);
+  const partDeuxBase = $derived((100 * c.base.deuxParents) / c.base.ensemble);
 
   // 2. ICF ajusté selon le lieu de naissance.
   const serieIcf = $derived(
@@ -129,6 +131,8 @@
   ]);
   const genPremiere = $derived(c.genImmigrees[0]);
   const genDerniere = $derived(c.genImmigrees.at(-1)!);
+  const genNonPremiere = $derived(c.genNonImmigrees[0]);
+  const genNonDerniere = $derived(c.genNonImmigrees.at(-1)!);
   const diplome = (cat: string, groupe: string) =>
     data.df.find((x) => x.dimension === 'diplome' && x.categorie === cat && x.groupe === groupe)!
       .valeur;
@@ -147,6 +151,14 @@
   // 6. ONU 2000.
   const o = $derived(c.onu);
   const parAn = (s: Record<string, number>) => s.migrants_par_an * 1000;
+  // Solde observé (métropole) rapporté au scénario IV : même ordre de grandeur à ± 15 %.
+  const comparaisonIV = $derived.by(() => {
+    const r = c.onu.soldeMoyen / parAn(c.onu.IV);
+    const iv = `${milliers(parAn(c.onu.IV))} par an en moyenne`;
+    if (r > 1.15) return `plus que le scénario IV (${iv})`;
+    if (r < 0.85) return `moins que le scénario IV (${iv})`;
+    return `du même ordre que le scénario IV (${iv})`;
+  });
   const citation = (cle: string) => data.onu.citations.find((x) => x.cle === cle)!;
 
   const SOMMAIRE = $derived([
@@ -165,8 +177,8 @@
     {
       ancre: 'poids',
       question: 'Que changent-elles à la fécondité de la France ?',
-      chiffre: `+${v2(c.contribution)}`,
-      reponse: `enfant par femme : ${v2(c.icf.ensemble)} avec elles, ${v2(c.icf.france)} sans elles en ${c.icf.annee}, soit ${virgule(c.contributionRel, 0)} % de plus.`
+      chiffre: `+${v2(c.contributionAjustee)} à +${v2(c.contribution)}`,
+      reponse: `enfant par femme selon le calcul (${v2(c.icf.france)} sans elles en ${c.icf.annee}), soit ${virgule(c.contributionAjusteeRel, 0)} à ${virgule(c.contributionRel, 0)} % de plus.`
     },
     {
       ancre: 'arrivee',
@@ -176,13 +188,13 @@
     },
     {
       ancre: 'generations',
-      question: 'Et la génération suivante ?',
+      question: 'Et les descendantes d’immigrés ?',
       chiffre: v2(c.lien.descendantes),
-      reponse: `enfant en moyenne pour les filles d’immigrés nées de 1960 à 1974, ${v2(c.lien.ni)} pour les femmes sans ascendance migratoire, ${v2(c.lien.immigrees)} pour les immigrées.`
+      reponse: `enfant en moyenne pour les femmes nées en France d’au moins un parent immigré, de 1960 à 1974 ; ${v2(c.lien.ni)} pour les femmes sans ascendance migratoire, ${v2(c.lien.immigrees)} pour les immigrées des mêmes générations.`
     },
     {
       ancre: 'seuil',
-      question: 'La France fait-elle assez d’enfants pour se renouveler ?',
+      question: 'Les naissances suffisent-elles à renouveler les générations ?',
       chiffre: v2(c.frDer.icf),
       reponse: `${enfants(c.frDer.icf)} par femme en ${c.frDer.annee}, sous le seuil de remplacement (${v2(c.seuilDer)})${c.sousSeuilDepuis ? ` depuis ${c.sousSeuilDepuis} en métropole` : ''}.`
     },
@@ -190,7 +202,7 @@
       ancre: 'onu',
       question: 'Que disait l’ONU des « migrations de remplacement » ?',
       chiffre: millions(parAn(o.V)),
-      reponse: `de migrants par an pour garder en France le rapport de 1995 entre actifs et âgés : l’ONU jugeait ce maintien « inaccessible » par la seule immigration.`
+      reponse: `de migrants par an pour garder en France le rapport de 1995 entre actifs et âgés : selon l’ONU, ce maintien « semble inaccessible » par la seule immigration.`
     }
   ]);
 </script>
@@ -207,8 +219,9 @@
   <header class="colonne">
     <h1>Les naissances</h1>
     <p class="chapeau">
-      De quels parents naissent les enfants, combien en ont les femmes venues d’ailleurs, et leurs
-      filles ? Et d’où vient l’expression « migrations de remplacement » ?
+      De quels parents naissent les enfants, combien en ont les femmes venues d’ailleurs, et les
+      femmes nées en France d’un parent immigré ? Et d’où vient l’expression « migrations de
+      remplacement » ?
     </p>
     <p class="mode-emploi">
       <strong>Trois mesures à ne pas mêler.</strong> Les <em>naissances</em> d’une année comptent
@@ -230,13 +243,13 @@
           c.partsDernier.auMoinsUn
         )} au moins un parent né à l’étranger, {pct(c.partsDernier.deux)} deux parents nés à l’étranger
         : trois chiffres pour trois questions différentes.
-        {#if c.pic.annee < c.dernier.annee && c.variation.ensemble < 0}
-          Depuis {c.pic.annee}, année où les naissances ont été les plus nombreuses de la série,
-          elles ont baissé de {milliers(-c.variation.ensemble)}, et celles de deux parents nés en
-          France de {milliers(-c.variation.deuxNesFrance)}{#if c.variation.deuxParents > 0}, tandis
-            que celles de deux parents nés à l’étranger ont augmenté de {milliers(
-              c.variation.deuxParents
-            )}{/if}.
+        {#if c.base.annee < c.dernier.annee && c.variation.ensemble < 0}
+          Depuis {c.base.annee}, à méthode et champ constants, les naissances ont baissé de {milliers(
+            -c.variation.ensemble
+          )}, et celles de deux parents nés en France de {milliers(
+            -c.variation.deuxNesFrance
+          )}{#if c.variation.deuxParents > 0}, tandis que celles de deux parents nés à l’étranger
+            ont augmenté de {milliers(c.variation.deuxParents)}{/if}.
         {/if}
       </p>
     </div>
@@ -329,15 +342,25 @@
     </TLCadre>
     <div class="colonne">
       <Detail>
-        {#if c.variation.deuxParents > 0 && c.pic.annee < c.dernier.annee}
+        {#if c.variation.deuxParents > 0 && c.base.annee < c.dernier.annee}
           <p>
-            La part des naissances de deux parents nés à l’étranger passe de {pct(partDeuxPic)} en {c
-              .pic.annee} à {pct(c.partsDernier.deux)} en {c.dernier.annee}. Si leur nombre était
-            resté celui de {c.pic.annee}, la seule baisse des autres naissances l’aurait portée à {pct(
+            La part des naissances de deux parents nés à l’étranger passe de {pct(partDeuxBase)} en {c
+              .base.annee} à {pct(c.partsDernier.deux)} en {c.dernier.annee}. Si leur nombre était
+            resté celui de {c.base.annee}, la seule baisse des autres naissances l’aurait portée à {pct(
               partSansHausse
             )} : une part monte aussi quand le reste baisse.
           </p>
         {/if}
+        <p>
+          Les comparaisons partent de {c.base.annee} : en 2011, un changement de méthode de l’Insee déplace
+          des naissances de la catégorie « un parent né à l’étranger » vers « deux parents nés à l’étranger
+          » (de {RUPTURE - 1} à {RUPTURE}, les premières baissent de {milliers(
+            avantRupture.unParent - apresRupture.unParent
+          )}, la part des secondes passe de {pct(
+            (100 * avantRupture.deuxParents) / avantRupture.ensemble
+          )} à {pct((100 * apresRupture.deuxParents) / apresRupture.ensemble)}), et Mayotte entre
+          dans le champ en 2014.
+        </p>
         <p>
           « Né à l’étranger » n’est pas « immigré ». L’état civil connaît le pays de naissance des
           parents, pas leur nationalité de naissance : un Français né à l’étranger y est « né à
@@ -378,10 +401,10 @@
         c.icf.france
       )} pour les femmes nées en France et {v2(
         c.icf.ensemble
-      )} pour l’ensemble. L’axe part de zéro."
+      )} pour l’ensemble. L’axe part de zéro. Mayotte entre dans le champ en 2014."
       source="Insee, Insee Première 1939 (2023), figure 6 ; état civil, estimations de population, enquête TeO2 pour l’ajustement"
       champ="France hors Mayotte jusqu’en 2013, France ensuite ; femmes nées à l’étranger, Françaises de naissance comprises (U26)"
-      statut="indicateur ajusté, estimé (U25)"
+      statut="nées à l’étranger : indicateur ajusté, estimé (U25) ; ensemble et nées en France : calcul classique"
       fichiers={['fecondite_icf.csv']}
     >
       <p class="legende-lignes">
@@ -402,7 +425,9 @@
       lecture="en {c.icf.annee}, l’indicateur va de {v2(
         data.regions.at(-1)!.icf
       )} ({data.regions.at(-1)!.libelle}) à {v2(data.regions[0].icf)} ({data.regions[0]
-        .libelle}) enfants par femme ; il est de {v2(c.icf.france)} pour les femmes nées en France."
+        .libelle}) enfants par femme ; il est de {v2(
+        c.icf.france
+      )} pour les femmes nées en France. Ce sont des estimations, qui varient d’une année à l’autre pour les groupes où les arrivées sont récentes."
       source="Insee, Insee Première 1939 (2023), figure 6"
       champ="France ; femmes nées à l’étranger, par pays de naissance"
       statut="indicateur ajusté, estimé (U25)"
@@ -426,12 +451,13 @@
       <h2>Que changent-elles à la fécondité de la France ?</h2>
       <p class="reponse">
         En {c.icf.annee}, l’indicateur de la France est de {v2(c.icf.ensemble)} enfant par femme avec
-        les femmes nées à l’étranger et de {v2(c.icf.france)} sans elles :
-        <strong>+{v2(c.contribution)}</strong>
-        enfant par femme, soit une hausse de {virgule(c.contributionRel, 0)} % de l’indicateur, pas
-        de
-        {v2(c.contribution)} %. Un indicateur national est une moyenne : les femmes nées à
-        l’étranger y pèsent pour leur part (leurs enfants font {pct(c.partsIcf.mere)} des naissances de
+        les femmes nées à l’étranger ({v2(c.textes.icf_ensemble_ajuste)} avec l’ajustement de l’Insee)
+        et de {v2(c.icf.france)} sans elles :
+        <strong>+{v2(c.contributionAjustee)} à +{v2(c.contribution)}</strong>
+        enfant par femme selon le calcul, soit une hausse de {virgule(c.contributionAjusteeRel, 0)} à
+        {virgule(c.contributionRel, 0)} % de l’indicateur, pas de {v2(c.contribution)} %. Un
+        indicateur national est une moyenne : les femmes nées à l’étranger y pèsent pour leur part
+        (leurs enfants font {pct(c.partsIcf.mere)} des naissances de
         {c.icf.annee}), et c’est cette part qui limite leur effet.
       </p>
     </div>
@@ -440,23 +466,26 @@
         .icf.annee}"
       lecture="en {c.icf.annee}, l’indicateur de l’ensemble des femmes est de {v2(
         c.icf.ensemble
-      )} ; celui des femmes nées en France, c’est-à-dire de la France sans les femmes nées à l’étranger, de {v2(
+      )} par le calcul classique, {v2(
+        c.textes.icf_ensemble_ajuste
+      )} avec l’ajustement ; celui des femmes nées en France, c’est-à-dire de la France sans les femmes nées à l’étranger, de {v2(
         c.icf.france
       )}."
-      source="Insee, Insee Première 1939 (2023), figure 6"
+      source="Insee, Insee Première 1939 (2023), figure 6 et encadré"
       champ="France"
-      statut="indicateur ajusté, estimé (U25)"
+      statut="nées à l’étranger et ensemble ajusté : estimations (U25)"
       fichiers={['fecondite_icf.csv']}
     >
       <TLBarres
         lignes={[
           { libelle: 'Femmes nées à l’étranger', valeurs: [c.icf.etranger] },
-          { libelle: 'Ensemble des femmes', valeurs: [c.icf.ensemble] },
+          { libelle: 'Ensemble, calcul classique', valeurs: [c.icf.ensemble] },
+          { libelle: 'Ensemble, avec l’ajustement', valeurs: [c.textes.icf_ensemble_ajuste] },
           { libelle: 'Femmes nées en France', valeurs: [c.icf.france] }
         ]}
         cles={[{ libelle: 'Enfants par femme', couleur: 'var(--serie-1)' }]}
         format={(v) => v2(v)}
-        accent={(l) => l === 'Ensemble des femmes'}
+        accent={(l) => l.startsWith('Ensemble')}
         titre="Indicateur conjoncturel de fécondité en {c.icf
           .annee}, avec et sans les femmes nées à l’étranger"
       />
@@ -478,11 +507,14 @@
     </div>
     <TLCadre
       titre="Naissances des immigrées selon les années écoulées depuis leur arrivée en France"
-      lecture="un an après leur première entrée en France, les immigrées nées de 1960 à 1974 ont eu {pct(
+      lecture="un an après leur première entrée en France, les immigrées nées de 1960 à 1974 ont eu en France {pct(
         c.calendrier.annee1
       )} de tous leurs enfants. Les naissances à l’étranger en font {pct(
         c.calendrier.etranger
-      )}, presque toutes avant l’arrivée. Le calcul classique ne voit que la partie en France, au moment où elle est la plus haute."
+      )}, dont {virgule(
+        c.calendrier.etrangerAvant,
+        1
+      )} points avant l’arrivée. Le calcul classique ne voit que la partie en France, au moment où elle est la plus haute."
       source="Ined-Insee, enquête Trajectoires et Origines 2 (2019-2020), dans Insee Première 1939, figure 5"
       champ="Femmes immigrées nées de 1960 à 1974, logements ordinaires, France métropolitaine ; en % de toutes leurs naissances"
       statut="enquête"
@@ -508,18 +540,19 @@
     <div class="colonne">
       <Detail>
         <p>
-          Des naissances retardées par la migration, puis rattrapées, font monter l’indicateur du
-          moment sans changer le nombre d’enfants d’une vie : c’est ce qu’avait montré Laurent
-          Toulemon (Ined, <em>Population et Sociétés</em> n° 400, 2004), et ce que corrige
-          l’ajustement de l’Insee (U25). L’âge à l’arrivée compte : les immigrées arrivées avant 15
+          Selon l’Insee, les femmes nées à l’étranger « ont tendance à repousser leurs maternités
+          après la migration » : ces naissances retardées puis rattrapées font monter l’indicateur
+          du moment, et c’est ce que corrige l’ajustement (U25). La migration est aussi souvent
+          associée à une mise en couple (Laurent Toulemon, Ined, <em>Population et Sociétés</em>
+          n° 400, 2004, cité par l’Insee). L’âge à l’arrivée compte : les immigrées arrivées avant 15
           ans ont eu {v2(c.lien.avant15)} enfants en moyenne, celles arrivées à 15 ans ou plus {v2(
             c.lien.apres15
           )}.
         </p>
         <p>
           Pour l’ensemble des femmes, l’ajustement change peu : {v2(c.textes.icf_ensemble_ajuste)} au
-          lieu de {v2(c.textes.icf_ensemble_brut)}, selon l’Insee, qui ne l’applique donc pas à
-          l’indicateur national.
+          lieu de {v2(c.textes.icf_ensemble_brut)}, selon l’Insee, qui ne préconise donc pas de
+          l’appliquer à l’indicateur national.
         </p>
       </Detail>
     </div>
@@ -527,16 +560,19 @@
 
   <section id="generations">
     <div class="colonne">
-      <h2>Et la génération suivante ?</h2>
+      <h2>Et les descendantes d’immigrés ?</h2>
       <p class="reponse">
-        {#if procheDes}Sa fécondité rejoint celle des autres femmes.{/if} Les immigrées nées de 1960 à
-        1974 ont eu {v2(c.lien.immigrees)} enfants en moyenne ; les filles d’immigrés nées les mêmes années,
+        {#if procheDes}Leur fécondité rejoint celle des autres femmes.{/if} Les immigrées nées de 1960
+        à 1974 ont eu {v2(c.lien.immigrees)} enfants en moyenne ; les femmes des mêmes générations nées
+        en France d’au moins un parent immigré,
         <strong>{v2(c.lien.descendantes)}</strong>{commeNi} les femmes sans ascendance migratoire ({v2(
           c.lien.ni
-        )}). D’une génération d’immigrées à l’autre, l’écart se réduit aussi : {v2(
+        )}). Au fil des générations, la descendance baisse pour toutes : pour les immigrées, de {v2(
           genPremiere.valeur
-        )} enfants pour les immigrées nées de {periode(genPremiere.debut)}, {v2(genDerniere.valeur)} pour
-        celles nées de {periode(genDerniere.debut)}.
+        )} enfants (nées de {periode(genPremiere.debut)}) à {v2(genDerniere.valeur)} (nées de {periode(
+          genDerniere.debut
+        )}) ; de {v2(genNonPremiere.valeur)} à {v2(genNonDerniere.valeur)} pour les non-immigrées (les
+        générations les plus jeunes n’avaient pas tout à fait fini d’avoir des enfants).
       </p>
     </div>
     <TLCadre
@@ -619,7 +655,7 @@
 
   <section id="seuil">
     <div class="colonne">
-      <h2>La France fait-elle assez d’enfants pour se renouveler ?</h2>
+      <h2>Les naissances suffisent-elles à renouveler les générations ?</h2>
       <p class="reponse">
         {#if c.frDer.icf < c.seuilDer}<strong>Non</strong>{#if c.sousSeuilDepuis}, et ce n’est pas
             nouveau{/if} :{/if}
@@ -706,8 +742,8 @@
         o.V.part_post1995_2050,
         0
       )} % de migrants arrivés après 1995 et de leurs descendants. Ce sont des calculs, pas des prévisions ni des recommandations."
-      source="ONU, Division de la population, Replacement Migration (ESA/P/WP.160, 2000), tableaux 1, IV.5, IV.7 et IV.11 ; révision 1998 des projections de l’ONU"
-      champ="France ; solde migratoire moyen de 2000 à 2050 ; population au 1er juillet 2050"
+      source="ONU, Division de la population, Replacement Migration (ESA/P/WP.160, 2000), tableaux 1, IV.4, IV.5, IV.7, IV.10 et IV.11 ; révision 1998 des projections de l’ONU"
+      champ="France métropolitaine (58,0 millions d’habitants en 1995 selon le rapport) ; solde migratoire moyen de 2000 à 2050 ; population au 1er juillet 2050"
       statut="projection de 2000"
       fichiers={['onu2000.csv']}
     >
@@ -742,7 +778,7 @@
       </p>
     </TLCadre>
     <div class="colonne">
-      <Detail titre="Ce que dit le rapport, et ce qu’on lui fait dire">
+      <Detail titre="Ce que dit le rapport, et ce qu’il ne dit pas">
         <p>
           Le rapport les définit ainsi : « {citation('definition').texte} » (résumé en français, p. {citation(
             'definition'
@@ -759,27 +795,29 @@
           )} ans.
         </p>
         <p>
-          Le titre du rapport est parfois cité comme la preuve d’un projet de substitution de
-          population. Le rapport ne recommande aucun des scénarios : il calcule, et conclut que
-          l’immigration ne peut pas arrêter le vieillissement. Le scénario V, le seul qui
-          l’arrêterait, n’est pas un objectif : c’est la démonstration qu’il est hors de portée.
+          On lit parfois que le titre du rapport prouverait un projet de substitution de population.
+          Le rapport calcule des scénarios sans en recommander aucun. Il écrit que, {'«'}{' '}{minuscule(
+            citation('court_terme').texte
+          )}{' '}{'»'} (p. {citation('court_terme').page}).
         </p>
         <p>
-          Depuis, de {o.soldeDe} à {o.soldeA}, le solde migratoire de la France a été de {milliers(
+          Depuis, en France métropolitaine (le champ du rapport), le solde migratoire a été de {milliers(
             o.soldeMoyen
-          )} personnes par an en moyenne (Insee){#if o.soldeMoyen > parAn(o.III)}, plus que le
-            scénario III{/if}{#if o.soldeMoyen < parAn(o.IV)}, moins que le scénario IV{/if}, très
-          loin du scénario V. Le rapport entre les 15-64 ans et les 65 ans ou plus est passé de {v2(
-            o.soutien1995
-          )} au 1er janvier 1995 à {v2(o.soutienDer)} au 1er janvier {o.anSoutien} (Insee) : le vieillissement
-          a continué, comme le rapport l’annonçait. La variante moyenne de 1998 supposait {milliers(
-            o.I.migrants_1995_2050 * 1000
-          )}
-          migrants de 1995 à 2020 ; l’Insee a mesuré un solde migratoire de {milliers(
-            o.cumul1995_2020
-          )}{#if o.depasseSaufV}, et la France a déjà {millions(o.popDer)} d’habitants en {o.anPop},
-            plus que la population projetée pour 2050 dans tous les scénarios sauf le cinquième{/if}.
-          Une projection n’est pas une prévision.
+          )} personnes par an en moyenne de {o.soldeDe} à {o.soldeA} (Insee{o.provisoires.length
+            ? ` ; ${o.provisoires.slice(0, -1).join(', ')}${o.provisoires.length > 1 ? ' et ' : ''}${o.provisoires.at(-1)} provisoires`
+            : ''}){#if o.provisoires.length}, {milliers(o.soldeMoyenDefinitif)} de {o.soldeDe} à {o.derDefinitif}{/if}
+          :
+          {comparaisonIV}, très loin du scénario V. Ce n’est qu’un ordre de grandeur : les moyennes
+          du rapport portent sur 2000-2050, alors que dans les scénarios III et IV les migrations ne
+          commencent qu’au moment où la population, ou les 15-64 ans, auraient commencé à baisser.
+          Le rapport entre les 15-64 ans et les 65 ans ou plus est passé de {v2(o.soutien1995)} au 1er
+          janvier 1995 à {v2(o.soutienDer)} au 1er janvier {o.anSoutien} (Insee, France entière) : le
+          vieillissement a continué, comme le rapport l’annonçait. La variante moyenne de 1998 supposait
+          {milliers(o.I.migrants_1995_2050 * 1000)} migrants de 1995 à 2020 ; l’Insee a mesuré en métropole
+          un solde migratoire de {milliers(o.cumul1995_2020)}{#if o.depasseSaufV}, et la métropole a
+            déjà {millions(o.popDer)} d’habitants en {o.anPop}, plus que la population projetée pour
+            2050 dans tous les scénarios sauf le cinquième{/if}. Une projection n’est pas une
+          prévision.
         </p>
       </Detail>
     </div>
