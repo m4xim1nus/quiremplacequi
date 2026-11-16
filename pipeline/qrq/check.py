@@ -58,6 +58,29 @@ def verifier(export: Path) -> tuple[bool, list[str]]:
     ecart = (piv["deux_parents_nes_en_france"] + piv["un_parent_ne_a_l_etranger"] + piv["deux_parents_nes_a_l_etranger"] - piv["ensemble"]).abs().max()
     controle("naissances : catégories = ensemble", ecart == 0, f"écart max {ecart}")
 
+    # Pays de naissance (B2) : chaque agrégat = somme de ses parties (milliers arrondis). Avant 2006,
+    # les Afriques sahélienne et guinéenne ne sont pas publiées : elles sont dans « Autres pays
+    # d'Afrique ». Asie 1999 : +5 000 dans le tableur Insee lui-même (6793226, figure 2).
+    pays = pl.read_csv(export / "b2_pays.csv").pivot(on="pays", index="annee", values="immigres")
+    emboitements = {
+        "Maghreb": ["Algérie", "Maroc, Tunisie"],
+        "Afrique": ["Maghreb", "Afrique sahélienne", "Afrique guinéenne ou centrale", "Autres pays d'Afrique"],
+        "Asie": ["Turquie", "Chine", "Asie du Sud-Est", "Autres pays d'Asie"],
+        "Europe du Sud": ["Espagne, Italie", "Portugal"],
+        "Europe": ["Europe du Sud", "Autres pays d'Europe"],
+        "Ensemble": ["Afrique", "Asie", "Europe", "Amérique, Océanie"],
+    }
+    ecarts = {
+        (tot, a): e
+        for tot, parts in emboitements.items()
+        for a, e in zip(pays["annee"], pays[tot] - pays.select(pl.sum_horizontal(parts)).to_series())
+        if (tot, a) != ("Asie", 1999)
+    }
+    pire = max(ecarts, key=lambda k: abs(ecarts[k]))
+    asie99 = pays.filter(pl.col("annee") == 1999).select(pl.col("Asie") - pl.sum_horizontal(emboitements["Asie"])).item()
+    controle("pays : agrégats = Σ parties (± 2 000)", abs(ecarts[pire]) <= 2000, f"pire {pire[0]} {pire[1]} : {ecarts[pire]:+}")
+    controle("pays : écart de la source Asie 1999 inchangé (+5 000)", asie99 == 5000, f"{asie99:+}")
+
     # Piscine : identité des immigrés tenue chaque année (par construction).
     ans = psc["annees"]
     ecarts = [ecart_identite(x, y) for x, y in zip(ans, ans[1:])]

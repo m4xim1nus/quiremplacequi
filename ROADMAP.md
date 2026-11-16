@@ -60,7 +60,8 @@ les questions de `docs/CADRAGE.md` §9 et `docs/PISCINE.md` §9.
   replié).
 - [ ] Revue de Max : la piscine v1.1 et les nouvelles phrases « réponse » des pages, en local
   (`cd site && npm run dev`, puis `/piscine`), puis les paramètres de `piscine.yaml`.
-- [ ] Graphiques bruts de relecture de B1 et B2 (`pipeline/explo/`).
+- [x] Graphiques bruts de relecture de B1 et B2 (`pipeline/explo/relecture_b1_b2.py`, 7 figures) :
+  rien à corriger ; l'emboîtement des pays de naissance entre dans `qrq check`.
 
 **Livrable** : piscine v0 relue par Max, paramètres validés.
 

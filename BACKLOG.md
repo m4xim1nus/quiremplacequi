@@ -55,3 +55,6 @@ réfléchir avant d'arbitrer, `[refusé]` tranché négatif (trace gardée).
 - [→A] Piscine : « part de l'eau de 1921 encore présente », pour rendre visible le renouvellement complet ; fait (« Suivre l'eau de… », pyramides des âges) (claude, 2026-11-06)
 - [→A] Piscine : survol d'un ruban ou d'une colonne → valeur exacte et définition ; fait (claude, 2026-11-06)
 - [→site] Sommaire « La page en cinq réponses » : ≈ deux écrans sur mobile ; compacté en liste (claude, 2026-11-06)
+- [ ] Relecture B1/B2 : Asie 1999 = Σ parties + 5 000 dans le tableur Insee 6793226 lui-même (contrôlé par `qrq check`) ; à signaler à l'Insee ? (claude, 2026-11-16)
+- [ ] Relecture B1/B2 : « Autres pays d'Afrique » chute de 1999 à 2006 parce que les Afriques sahélienne et guinéenne en sortent ; ne jamais l'afficher seul en série (claude, 2026-11-16)
+- [ ] Relecture B1 : en 1921 et 1926, plus d'étrangers que d'immigrés (étrangers nés en France) ; une phrase sur le site si la série des étrangers y est montrée (claude, 2026-11-16)
