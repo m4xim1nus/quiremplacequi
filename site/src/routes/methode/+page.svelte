@@ -145,18 +145,20 @@
   <p>
     Les titres de séjour viennent du ministère de l’Intérieur (département des statistiques, des
     études et de la documentation), par les fichiers qu’il publie sur data.gouv.fr : la série
-    publiée en juin 2024 pour 2011-2014, les fichiers annuels définitifs pour 2015-2024. Les deux se
-    raccordent exactement, ce que le programme vérifie. Le ministère publie ses chiffres en deux
-    temps, provisoires en janvier, consolidés en juin : le statut de chaque série est indiqué sous
-    son graphique.
+    publiée en juin 2024 pour 2011-2014, les fichiers annuels définitifs pour 2015-2024. De 2015 à
+    2022, années définitives dans les deux, ils se raccordent exactement, ce que le programme
+    vérifie. Le ministère publie d’abord des chiffres provisoires, puis définitifs : le statut de
+    chaque série est indiqué sous son graphique.
   </p>
   <p>
     Les comparaisons internationales viennent d’Eurostat (pays européens) et de l’OCDE (entrées à
     titre permanent). Chaque nombre est rapporté à la population publiée par la même source, et un
-    pays n’est classé que s’il publie toutes les années de la période. Trois règles : les titres,
-    les demandes d’asile et les entrées de l’Insee ne s’additionnent jamais (ce sont des mesures
-    différentes, souvent des mêmes personnes) ; la définition de l’immigré est précisée sur chaque
-    graphique (U12) ; le solde migratoire d’Eurostat contient un ajustement statistique (U22).
+    pays n’est classé que s’il publie toutes les années de la période (pour l’OCDE : le travail, la
+    famille, l’humanitaire et la population ; une catégorie absente de ses statistiques compte pour
+    zéro). Trois règles : les titres, les demandes d’asile et les entrées de l’Insee ne
+    s’additionnent jamais (ce sont des mesures différentes, souvent des mêmes personnes) ; la
+    définition de l’immigré est précisée sur chaque graphique (U12) ; le solde migratoire d’Eurostat
+    contient un ajustement statistique (U22).
   </p>
 
   <h2>Reproduire</h2>

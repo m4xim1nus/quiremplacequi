@@ -35,6 +35,9 @@ def verifier(export: Path) -> tuple[bool, list[str]]:
     f = flux.drop_nulls(["sorties_imm", "evolution_imm"])
     ecart = (f["entrees_imm"] - f["sorties_imm"] - f["deces_imm"] - f["evolution_imm"]).abs().max()
     controle("flux : Δimmigrés = E − S − D", ecart <= 2000, f"écart max {ecart}")
+    f = flux.drop_nulls(["solde_imm", "solde_ni", "sorties_ni"])
+    ecart = max((f["entrees_imm"] - f["sorties_imm"] - f["solde_imm"]).abs().max(), (f["entrees_ni"] - f["sorties_ni"] - f["solde_ni"]).abs().max())
+    controle("flux : solde publié = E − S (± 1 000, arrondis)", ecart <= 1000, f"écart max {ecart}")
 
     # Bilan : population(a+1) = population(a) + solde naturel + solde migratoire + ajustement.
     for onglet in ("FM", "FR"):

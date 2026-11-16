@@ -6,7 +6,8 @@
   }: { items: { ancre: string; question: string; chiffre: string; reponse: string }[] } = $props();
   const NOMBRES = ['', 'une', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit'];
   // Pas de coupure de ligne entre un nombre et son unité.
-  const insecables = (t: string) => t.replace(/ (%|points?\b|pt\b)/g, '\u00a0$1');
+  const insecables = (t: string) =>
+    t.replace(/ (%|points?\b|pt\b)/g, '\u00a0$1').replace(/(\d) (\d{3})/g, '$1\u00a0$2');
   const n = $derived(NOMBRES[items.length] ?? String(items.length));
 </script>
 

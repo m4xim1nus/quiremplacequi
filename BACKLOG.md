@@ -102,3 +102,5 @@ réfléchir avant d'arbitrer, `[refusé]` tranché négatif (trace gardée).
 - [ ] Titres de séjour 2007-2010 : seule la publication de juin 2019 les donne, en métropole et en `.xls` ; non retenus (rupture de champ) (claude, 2026-11-16)
 - [ ] Titres de séjour 2025 (provisoires, publication de janvier 2026) : absents de data.gouv.fr au 2026-11-16 ; à ajouter quand ils y paraissent (claude, 2026-11-16)
 - [creuser] Asile : décisions définitives (recours CNDA, Eurostat `migr_asydcfina`) à côté de la première instance (claude, 2026-11-16)
+- [ ] Regroupement familial au sens strict : l'Ined (Population & Sociétés, 50 ans du regroupement familial, 2026) en donne le nombre de titres ; à saisir avec référence pour situer « membre de famille » (D2) (claude, 2026-11-16)
+- [ ] Ailleurs, C1 : la hausse de la part des nés à l'étranger 2022-2025 repose sur des années provisoires (drapeau « ep » pour l'UE en 2025) ; à revoir au millésime suivant (claude, 2026-11-16)

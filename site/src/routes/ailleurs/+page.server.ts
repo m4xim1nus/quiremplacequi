@@ -22,6 +22,9 @@ export const load = () => {
 
   const e = d.entrees.find((x) => x.code === 'FRA');
   const c3 = classement(d.entrees.map((x) => ({ libelle: x.pays, valeur: x.total })));
+  const c3h = classement(
+    d.entrees.map((x) => ({ libelle: x.pays, valeur: x.total - x.cats.libre_circulation }))
+  );
 
   return {
     ...d,
@@ -42,6 +45,7 @@ export const load = () => {
       part,
       entreesFr: e ?? null,
       rangEntrees: e ? c3.rang('France') : null,
+      rangEntreesHorsLC: e ? c3h.rang('France') : null,
       nEntrees: c3.n
     }
   };

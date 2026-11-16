@@ -180,7 +180,12 @@ chiffre est retrouvé à la source primaire.
 - [x] **Renvois** : navigation, deux portes sur l'accueil, piscine → D4,
   Méthode (section « Les arrivées et les comparaisons »), Données (licences
   par source).
-- [ ] Relecture factuelle indépendante.
+- [x] Relecture factuelle indépendante (2026-11-16) : aucun bloquant, tous les
+  chiffres recalculés exacts ; 13 points corrigés (total et motifs avant 2015,
+  « régularisation » des Britanniques remplacée, soldes publiés par l'Insee au
+  lieu d'un recalcul, sorties de 2022 signalées, rang OCDE aussi sans la libre
+  circulation, phrases en dur rendues conditionnelles, minuscules des
+  traitements d'incertitude, espaces insécables…).
 - [ ] Revue de Max, `CHANGELOG.md` et tag.
 
 **Livrable** : les pages C et D en ligne, relues par Max.

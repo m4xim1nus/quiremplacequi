@@ -18,7 +18,7 @@ def _figure(raw: Path, nom: str) -> dict[int, tuple]:
     for r in feuille(fichier(raw, "flux"), nom):
         a = annee(r[0])
         if a:
-            out[a.annee] = (a, milliers(r[1]), milliers(r[2]))
+            out[a.annee] = (a, milliers(r[1]), milliers(r[2]), milliers(r[3]))
     return out
 
 
@@ -37,8 +37,8 @@ def lire_flux(raw: Path) -> list[dict]:
             }
     out = []
     for a in sorted(imm):
-        info, e_imm, s_imm = imm[a]
-        _, e_ni, s_ni = ni[a]
+        info, e_imm, s_imm, sm_imm = imm[a]
+        _, e_ni, s_ni, sm_ni = ni[a]
         t = tc1.get(a, {})
         sn_imm = t.get("solde_naturel_imm")
         out.append(
@@ -49,6 +49,9 @@ def lire_flux(raw: Path) -> list[dict]:
                 "sorties_imm": None if s_imm is None else -s_imm,
                 "entrees_ni": e_ni,
                 "sorties_ni": None if s_ni is None else -s_ni,
+                # Soldes publiés (arrondis au millier par l'Insee, pas recalculés).
+                "solde_imm": sm_imm,
+                "solde_ni": sm_ni,
                 "deces_imm": None if sn_imm is None else -sn_imm,
                 "solde_naturel_ni": t.get("solde_naturel_ni"),
                 "evolution_imm": t.get("evolution_imm"),

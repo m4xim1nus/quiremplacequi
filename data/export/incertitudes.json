@@ -70,7 +70,7 @@
  },
  "U11": {
   "titre": "Titres de séjour ≠ entrées",
-  "detail": "Le ministère de l'Intérieur compte des premiers titres de séjour, délivrés aux adultes de pays hors de l'Union européenne, parfois des années après leur arrivée (régularisations, Britanniques installés avant le Brexit). L'Insee compte des personnes qui s'installent, quels que soient leur âge, leur nationalité et leur situation administrative. Les deux chiffres ne mesurent pas la même chose et ne s'additionnent pas.",
+  "detail": "Le ministère de l'Intérieur compte des premiers titres de séjour, délivrés aux ressortissants de pays hors de l'Union européenne (le titre n'est en principe obligatoire qu'à partir de 18 ans), parfois des années après leur arrivée : régularisations de séjours irréguliers, titres délivrés après le Brexit aux Britanniques déjà installés. L'Insee compte des personnes qui s'installent, quels que soient leur âge, leur nationalité et leur situation administrative. Les deux chiffres ne mesurent pas la même chose et ne s'additionnent pas.",
   "traitement": "Les deux séries côte à côte, page « Les arrivées », avec ce qui les sépare",
   "verifie": true,
   "reference": "DSED, fichiers annuels des titres de séjour (champ : ressortissants de pays tiers) ; Insee Première 2107 (définition des entrées)"
@@ -154,8 +154,9 @@
  },
  "U23": {
   "titre": "Les entrées de l'OCDE sont « standardisées »",
-  "detail": "L'OCDE range les entrées de chaque pays dans des catégories communes (travail, famille, humanitaire, libre circulation) et ne retient que les migrations à caractère permanent : les étudiants et les travailleurs temporaires n'y sont pas. Les chiffres diffèrent donc des titres de séjour nationaux.",
-  "traitement": "Champ affiché sous le graphique ; aucune addition avec les titres",
-  "verifie": false
+  "detail": "L'OCDE range les entrées de chaque pays dans des catégories communes (travail, famille accompagnant un travailleur, famille, humanitaire, libre circulation, autres) et ne retient que les migrations à caractère permanent : les étudiants et les travailleurs temporaires relèvent d'une autre base. Les pays hors d'Europe n'ont pas de libre circulation. Les chiffres diffèrent donc des titres de séjour nationaux.",
+  "traitement": "Champ affiché sous le graphique, rang aussi donné hors libre circulation ; aucune addition avec les titres",
+  "verifie": true,
+  "reference": "OCDE, base « Standardised inflows of permanent-type migrants » (DSD_MIG_INT@DF_MIG_INT_PER), distincte de « Standardised inflows of temporary migrants » (DF_MIG_INT_TEMP)"
  }
 }

@@ -64,3 +64,12 @@ export function mediane(xs: number[]): number {
   const m = Math.floor(s.length / 2);
   return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
 }
+
+/** « La hausse vient … » : chaque motif avec son article. */
+export const DU_MOTIF: Record<Motif, string> = {
+  etudiants: 'des études',
+  familial: 'de la famille',
+  economique: 'du travail',
+  humanitaire: 'de la protection',
+  divers: 'des autres motifs'
+};

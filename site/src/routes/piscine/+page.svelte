@@ -183,7 +183,12 @@
       <dl class="incertitudes">
         {#each data.incertitudes as u (u.code)}
           <dt><span class="code">{u.code}</span> {u.titre}</dt>
-          <dd>{u.detail} <em>Dans la piscine : {u.traitement.toLowerCase()}.</em></dd>
+          <dd>
+            {u.detail}
+            <em
+              >Dans la piscine : {u.traitement.charAt(0).toLowerCase() + u.traitement.slice(1)}.</em
+            >
+          </dd>
         {/each}
       </dl>
       <p>

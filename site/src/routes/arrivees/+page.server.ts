@@ -20,12 +20,17 @@ export const load = () => {
     .map((f) => ({
       annee: f.annee,
       champ: f.champ,
-      immigres: f.entreesImm - f.sortiesImm!,
-      nonImmigres: f.entreesNi - f.sortiesNi!,
+      // Soldes publiés par l'Insee (arrondis au millier), pas recalculés.
+      immigres: f.soldeImm!,
+      nonImmigres: f.soldeNi!,
+      sortiesImm: f.sortiesImm!,
       entreesNi: f.entreesNi,
       sortiesNi: f.sortiesNi!
     }));
   const cumul = (k: 'immigres' | 'nonImmigres') => soldes.reduce((s, x) => s + x[k], 0);
+  // Année où les sorties d'immigrés publiées sont les plus basses (fragilité des sorties, U2).
+  const sortiesMin = soldes.reduce((a, b) => (b.sortiesImm < a.sortiesImm ? b : a));
+  const sortiesAutres = soldes.filter((s) => s !== sortiesMin).map((s) => s.sortiesImm);
   const fluxOrigines = d.flux.find((f) => f.annee === d.anneeOrigines)!;
 
   return {
@@ -52,6 +57,9 @@ export const load = () => {
       soldesFin: soldes.at(-1)!.annee,
       cumulImmigres: cumul('immigres'),
       cumulNonImmigres: cumul('nonImmigres'),
+      sortiesMin: { annee: sortiesMin.annee, valeur: sortiesMin.sortiesImm },
+      sortiesAutresMin: Math.min(...sortiesAutres),
+      sortiesAutresMax: Math.max(...sortiesAutres),
       niToujoursNegatif: soldes.every((s) => s.nonImmigres < 0)
     }
   };

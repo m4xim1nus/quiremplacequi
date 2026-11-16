@@ -6,7 +6,7 @@
   import Sommaire from '$lib/components/Sommaire.svelte';
   import Detail from '$lib/components/Detail.svelte';
   import { entier, milliers, pct, virgule } from '$lib/format';
-  import { LIBELLES_MOTIFS } from '$lib/comparaisons';
+  import { DU_MOTIF, LIBELLES_MOTIFS, type Motif } from '$lib/comparaisons';
 
   let { data } = $props();
   const c = $derived(data.chiffres);
@@ -14,12 +14,15 @@
   const pctEntier = (x: number) => `${Math.round(x)} %`;
   const signe = (x: number) => (x > 0 ? `+${milliers(x)}` : milliers(x));
   const part = (k: string) => c.hausse.find((h) => h.cle === k)!.part;
+  const minuscule = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
+  // Les deux motifs qui contribuent le plus à la hausse.
+  const grands = $derived([...c.hausse].sort((a, b) => b.part - a.part).slice(0, 2));
 
-  // D1 : bascule nombre ↔ pour 10 000 habitants.
+  // D1 : bascule nombre ↔ pour 10 000 habitants.
   let mesure: 'nombre' | 'relatif' = $state('nombre');
   const val = (n: number, pop: number) => (mesure === 'nombre' ? n : (1e4 * n) / pop);
   const fmtVal = (y: number) =>
-    mesure === 'nombre' ? `${milliers(y)}` : `${virgule(y, 1)} pour 10 000`;
+    mesure === 'nombre' ? `${milliers(y)}` : `${virgule(y, 1)} pour 10 000`;
   const serieTitres = $derived([
     {
       id: 'total',
@@ -48,7 +51,7 @@
   ]);
   const infobulleTitres = (x: number) => {
     const a = ans.find((v) => v.annee === x)!;
-    return `${entier(a.total)} premiers titres, dont ${entier(a.britanniques)} à des Britanniques${a.brexit ? ` (${entier(a.brexit)} au titre de l’accord de retrait)` : ''} · ${virgule((1e4 * a.total) / a.population, 1)} pour 10 000 habitants`;
+    return `${entier(a.total)} premiers titres, dont ${entier(a.britanniques)} à des Britanniques${a.brexit ? ` (${entier(a.brexit)} au titre de l’accord de retrait)` : ''} · ${virgule((1e4 * a.total) / a.population, 1)} pour 10 000 habitants`;
   };
 
   const facettes = $derived(
@@ -122,7 +125,7 @@
       ancre: 'titres',
       question: 'Combien de titres de séjour ?',
       chiffre: milliers(c.dernier.total),
-      reponse: `premiers titres en ${c.dernier.annee}, ${virgule(c.pour10k, 0)} pour 10 000 habitants : le plus haut depuis ${c.premier.annee} (hors Brexit). La hausse vient surtout des études et du travail.`
+      reponse: `premiers titres en ${c.dernier.annee}, ${virgule(c.pour10k, 0)} pour 10 000 habitants${c.pic.annee === c.dernier.annee ? `, le plus haut de la série commencée en ${c.premier.annee} (titres de l’accord de retrait du Brexit à part)` : ''}. La hausse vient d’abord ${grands.map((h) => DU_MOTIF[h.cle as Motif]).join(' et ')}.`
     },
     {
       ancre: 'famille',
@@ -133,7 +136,7 @@
     {
       ancre: 'asile',
       question: 'Asile et titres s’additionnent-ils ?',
-      chiffre: 'Non',
+      chiffre: 'Non.',
       reponse: `ce sont les étapes d’un même parcours : ${milliers(c.premieres)} premières demandes, ${milliers(c.positives)} décisions positives en première instance en ${c.anAsile}.`
     },
     {
@@ -177,16 +180,16 @@
       <p class="reponse">
         {#if c.pic.annee === c.dernier.annee}<strong
             >Le nombre de premiers titres de séjour est le plus élevé de la série</strong
-          >, commencée en {c.premier.annee}, si l’on met à part la régularisation des Britanniques
-          après le Brexit : {milliers(c.dernier.total)} en {c.dernier.annee}{:else}Le ministère a
-          délivré {milliers(c.dernier.total)} premiers titres de séjour en {c.dernier.annee}, moins
-          qu’en {c.pic.annee}{/if}, soit {virgule(c.pour10k, 0)} pour 10 000 habitants, contre {milliers(
-          c.premier.total
-        )} ({virgule(c.pour10kPremier, 0)} pour 10 000) en {c.premier.annee}. La hausse vient pour {pctEntier(
-          part('etudiants')
-        )} des études, pour {pctEntier(part('economique'))} du travail et pour {pctEntier(
-          part('humanitaire')
-        )} de la protection ; la famille y compte pour {pctEntier(part('familial'))}.
+          >, commencée en {c.premier.annee}, si l’on met à part les titres délivrés après le Brexit
+          aux Britanniques déjà installés : {milliers(c.dernier.total)} en {c.dernier
+            .annee}{:else}Le ministère a délivré {milliers(c.dernier.total)} premiers titres de séjour
+          en {c.dernier.annee}, moins qu’en {c.pic.annee}{/if}, soit {virgule(c.pour10k, 0)} pour 10 000
+        habitants, contre {milliers(c.premier.total)} ({virgule(c.pour10kPremier, 0)} pour 10 000) en
+        {c.premier.annee}. La hausse vient pour {pctEntier(part('etudiants'))} des études, pour {pctEntier(
+          part('economique')
+        )} du travail et pour {pctEntier(part('humanitaire'))} de la protection ; la famille y compte
+        pour {pctEntier(part('familial'))} et les autres motifs pour {pctEntier(part('divers'))} (calcul
+        sur les motifs, hors titres de l’accord de retrait).
       </p>
     </div>
     <TLCadre
@@ -195,9 +198,9 @@
         c.dernier.total
       )} premiers titres de séjour ont été délivrés à des ressortissants de pays hors de l’Union européenne, dont {entier(
         c.dernier.britanniques
-      )} à des Britanniques. Le pic de 2021 est celui des Britanniques déjà installés en France, régularisés après le Brexit."
+      )} à des Britanniques. Le pic de 2021 est celui des titres délivrés, au titre de l’accord de retrait du Brexit, aux Britanniques qui vivaient déjà en France ; le creux de 2020 est celui de la crise sanitaire."
       source="Ministère de l’Intérieur (DSED), série publiée le 27 juin 2024 jusqu’en 2014, fichiers annuels définitifs ensuite ; population : Insee, bilan démographique"
-      champ="France ; premiers titres délivrés aux ressortissants de pays tiers (hors Union européenne, Espace économique européen et Suisse) ; avant 2015, sans les Britanniques (moins de 250 titres par an)"
+      champ="France ; premiers titres délivrés aux ressortissants de pays tiers (hors Union européenne, Espace économique européen et Suisse) ; de 2011 à 2014, la ventilation par motif ne compte pas les Britanniques (moins de 250 titres par an), inclus dans le total ; les titres de l’accord de retrait du Brexit sont dans le total, pas dans les motifs"
       statut="définitif"
       fichiers={['titres.csv', 'titres_totaux.csv']}
     >
@@ -208,32 +211,37 @@
         <button
           type="button"
           aria-pressed={mesure === 'relatif'}
-          onclick={() => (mesure = 'relatif')}>Pour 10 000 habitants</button
+          onclick={() => (mesure = 'relatif')}>Pour 10 000 habitants</button
         >
       </div>
       <TLLignes
         series={serieTitres}
-        reperes={[{ x: 2021, libelle: 'Brexit', style: 'rupture' }]}
+        reperes={[
+          { x: 2020, libelle: 'crise sanitaire', style: 'rupture' },
+          { x: 2021, libelle: 'Brexit', style: 'rupture' }
+        ]}
         marqueurs
         yFormat={mesure === 'nombre' ? (y) => `${virgule(y / 1000, 0)} k` : (y) => virgule(y, 0)}
         titre="Premiers titres de séjour, {mesure === 'nombre'
           ? 'en nombre'
-          : 'pour 10 000 habitants'}"
+          : 'pour 10 000 habitants'}"
         infobulle={infobulleTitres}
       />
       {#snippet tableau()}
         <table>
           <thead
             ><tr
-              ><th>Année</th><th>Total</th><th>dont Britanniques</th>{#each data.motifs as m (m)}<th
-                  >{LIBELLES_MOTIFS[m]}</th
-                >{/each}<th>Pour 10 000 hab.</th></tr
+              ><th>Année</th><th>Total</th><th>dont Britanniques</th><th>dont accord de retrait</th
+              >{#each data.motifs as m (m)}<th>{LIBELLES_MOTIFS[m]}</th>{/each}<th
+                >Pour 10 000 hab.</th
+              ></tr
             ></thead
           >
           <tbody>
             {#each ans as a (a.annee)}
               <tr
-                ><td>{a.annee}</td><td>{entier(a.total)}</td><td>{entier(a.britanniques)}</td
+                ><td>{a.annee}</td><td>{entier(a.total)}</td><td>{entier(a.britanniques)}</td><td
+                  >{entier(a.brexit)}</td
                 >{#each data.motifs as m (m)}<td>{entier(a.motifs[m])}</td>{/each}<td
                   >{virgule((1e4 * a.total) / a.population, 1)}</td
                 ></tr
@@ -299,9 +307,11 @@
         En {c.dernier.annee}, {milliers(c.dernier.motifs.familial)} titres pour motif familial, soit {pctEntier(
           (100 * c.dernier.motifs.familial) / c.dernier.total
         )} du total, un nombre resté entre {milliers(c.familialMin)} et {milliers(c.familialMax)} depuis
-        {c.premier.annee}. La première catégorie est celle des membres de famille de Français ({milliers(
-          famDernier.francais
-        )}).
+        {c.premier.annee}. Stable en total, mais recomposé : les membres de famille de Français
+        passent de {milliers(c.premier.famille.francais)} à {milliers(famDernier.francais)}, les
+        membres de famille d’étrangers de {milliers(c.premier.famille.membre)} à {milliers(
+          famDernier.membre
+        )}.
       </p>
     </div>
     <TLCadre
@@ -333,11 +343,11 @@
       <Detail>
         <p>
           « Famille de Français » regroupe les titres délivrés aux membres de la famille d’un
-          Français, au premier rang desquels les conjoints. « Membre de famille » regroupe ceux des
+          Français (conjoints, parents d’enfants français…). « Membre de famille » regroupe ceux des
           familles d’étrangers, dont le regroupement familial au sens du droit, la procédure par
           laquelle un étranger installé fait venir son conjoint et ses enfants ; les fichiers
-          publiés ne l’isolent pas. « Liens personnels et familiaux » désigne des personnes déjà en
-          France, admises au séjour pour l’intensité de leurs attaches.
+          utilisés ici ne l’isolent pas. « Liens personnels et familiaux » désigne des personnes
+          déjà en France, admises au séjour pour l’intensité de leurs attaches.
         </p>
       </Detail>
     </div>
@@ -402,9 +412,9 @@
         )}
         premiers titres de séjour. Ce ne sont ni les mêmes personnes ni la même mesure : {milliers(
           o['Europe']
-        )} de ces immigrés sont nés en Europe, dont {milliers(nesUE)} dans un pays de l’Union européenne,
-        et un citoyen européen n’a pas besoin de titre ; à l’inverse, un premier titre peut être délivré
-        des années après l’arrivée.
+        )} de ces immigrés sont nés en Europe, dont {milliers(nesUE)} nés dans un pays de l’Union européenne,
+        et les citoyens européens n’ont pas besoin de titre ; à l’inverse, un premier titre peut être
+        délivré des années après l’arrivée.
       </p>
     </div>
     <TLCadre
@@ -438,9 +448,9 @@
           L’Insee compte toute personne née étrangère à l’étranger qui s’installe en France pour au
           moins un an, quels que soient son âge, sa nationalité et sa situation administrative ; les
           personnes sans titre sont en partie captées par le recensement. Le ministère compte les
-          titres délivrés aux adultes de pays hors de l’Union européenne : les mineurs n’ont pas
-          besoin de titre, et une régularisation produit un premier titre pour une personne arrivée
-          plus tôt.
+          titres délivrés aux ressortissants de pays hors de l’Union européenne : le titre n’est en
+          principe obligatoire qu’à partir de 18 ans, et une régularisation produit un premier titre
+          pour une personne arrivée plus tôt.
         </p>
         <p>
           Une entrée n’est pas non plus toujours celle d’un immigré : la même année, l’Insee compte
@@ -468,7 +478,12 @@
         c.soldes.at(-1)!.immigres
       )} et celui des non-immigrés de {signe(
         c.soldes.at(-1)!.nonImmigres
-      )}. Le solde migratoire de la France est la somme des deux."
+      )}. Le solde migratoire de la France est la somme des deux. Les sorties d’immigrés de {c
+        .sortiesMin.annee} ({milliers(
+        c.sortiesMin.valeur
+      )}) sont très en dessous des autres années ({milliers(c.sortiesAutresMin)} à {milliers(
+        c.sortiesAutresMax
+      )}) : le solde de cette année est sans doute surestimé (U2)."
       source="Insee, Insee Première 2107"
       champ="France hors Mayotte jusqu’en 2013, France ensuite. Non-immigrés : personnes nées en France ou nées françaises à l’étranger"
       statut="sorties estimées par différence (U2)"
@@ -532,7 +547,7 @@
       <dl class="incertitudes">
         {#each data.incertitudes as u (u.code)}
           <dt><span class="code">{u.code}</span> {u.titre}</dt>
-          <dd>{u.detail} <em>Ici : {u.traitement.toLowerCase()}.</em></dd>
+          <dd>{u.detail} <em>Ici : {minuscule(u.traitement)}.</em></dd>
         {/each}
       </dl>
     </Detail>

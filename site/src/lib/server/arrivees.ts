@@ -69,7 +69,9 @@ export function arrivees() {
     entreesImm: num(r.entrees_imm)!,
     sortiesImm: num(r.sorties_imm),
     entreesNi: num(r.entrees_ni)!,
-    sortiesNi: num(r.sorties_ni)
+    sortiesNi: num(r.sorties_ni),
+    soldeImm: num(r.solde_imm),
+    soldeNi: num(r.solde_ni)
   }));
   const origines = Object.fromEntries(
     csv('entrees_origine.csv').map((r) => [r.origine!, num(r.entrees)!])

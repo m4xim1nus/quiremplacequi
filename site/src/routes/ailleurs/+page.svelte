@@ -58,7 +58,7 @@
   const soldesFr = $derived(data.soldes.find((s) => s.geo === 'FR')!.points);
   const dernierSolde = $derived(soldesFr.at(-1)!);
 
-  // C3 : entrées permanentes par catégorie (OCDE), pour 10 000 habitants.
+  // C3 : entrées permanentes par catégorie (OCDE), pour 10 000 habitants.
   const CATS = $derived([
     { k: 'travail', libelle: 'Travail', couleur: 'var(--serie-1)' },
     { k: 'famille', libelle: 'Famille', couleur: 'var(--cat-2)' },
@@ -84,7 +84,7 @@
       }))
   );
 
-  // C4 : asile, bascule nombre ↔ pour 10 000 habitants.
+  // C4 : asile, bascule nombre ↔ pour 10 000 habitants.
   let mesureAsile: 'relatif' | 'nombre' = $state('relatif');
   const lignesAsile = $derived(
     [...data.asile]
@@ -116,9 +116,9 @@
       ? [
           {
             ancre: 'entrees',
-            question: 'Combien d’entrées pour 10 000 habitants ?',
+            question: 'Combien d’entrées pour 10 000 habitants ?',
             chiffre: virgule(c.entreesFr.total, 0),
-            reponse: `entrées à titre permanent par an pour 10 000 habitants en France (${data.periodeEntrees[0]}-${data.periodeEntrees[1]}) : ${rangTexte(c.rangEntrees!)} pays sur ${c.nEntrees} de l’OCDE.`
+            reponse: `entrées à titre permanent par an pour 10 000 habitants en France (${data.periodeEntrees[0]}-${data.periodeEntrees[1]}) : ${rangTexte(c.rangEntrees!)} pays sur ${c.nEntrees} de l’OCDE.`
           }
         ]
       : []),
@@ -189,10 +189,9 @@
           étrangers à l’étranger :
           {pct(data.insee.part)} en {data.insee.annee}{data.insee.statut === 'provisoire'
             ? ' (provisoire)'
-            : ''}. L’écart tient surtout aux Français nés à l’étranger, dont les rapatriés d’Algérie
-          et leurs enfants. Les parts les plus élevées sont celles de petits pays : {tete.join(
-            ', '
-          )}.
+            : ''}. L’écart correspond aux personnes nées françaises à l’étranger, que la statistique
+          internationale compte et que l’Insee ne compte pas parmi les immigrés. Les parts les plus
+          élevées : {tete.join(', ')}.
         </p>
       </Detail>
     </div>
@@ -206,18 +205,7 @@
         <strong>{points(c.progressionFr)}</strong>
         en France{c.progressionUe !== null
           ? `, contre ${points(c.progressionUe)} dans l’Union européenne`
-          : ''} : la France est au {rangTexte(c.rangProgression)} rang sur {c.nPart}. {#if autresNegatifs.length}
-          Ailleurs, le solde naturel est négatif sans interruption : {autresNegatifs
-            .map(
-              (n) =>
-                `${n.pays} depuis ${n.depuis}${n.debutSerie ? ' au moins (début de la série)' : ''}`
-            )
-            .join(', ')}{franceNegatif === null
-            ? ' ; en France, il est resté positif'
-            : franceNegatif === dernierSolde.annee
-              ? ` ; en France, il passe sous zéro en ${franceNegatif}${dernierSolde.provisoire ? ' (provisoire)' : ''}`
-              : ` ; en France, depuis ${franceNegatif}`}.
-        {/if}
+          : ''} : la France est au {rangTexte(c.rangProgression)} rang sur {c.nPart}.
       </p>
     </div>
     <TLCadre
@@ -257,6 +245,20 @@
       />
     </TLCadre>
     <div class="colonne">
+      {#if autresNegatifs.length}
+        <p>
+          Au dixième de ‰ près, le solde naturel est négatif chaque année : {autresNegatifs
+            .map(
+              (n) =>
+                `${n.pays} depuis ${n.depuis}${n.debutSerie ? ' au moins (début de la série)' : ''}`
+            )
+            .join(', ')}{franceNegatif === null
+            ? ' ; en France, il est resté positif'
+            : franceNegatif === dernierSolde.annee
+              ? ` ; en France, il passe sous zéro en ${franceNegatif}${dernierSolde.provisoire ? ' (provisoire)' : ''}`
+              : ` ; en France, depuis ${franceNegatif}`}.
+        </p>
+      {/if}
       <Detail>
         <p>
           Le solde migratoire d’Eurostat est calculé par différence (croissance de la population
@@ -270,31 +272,32 @@
   {#if c.entreesFr}
     <section id="entrees">
       <div class="colonne">
-        <h2>Combien d’entrées pour 10 000 habitants ?</h2>
+        <h2>Combien d’entrées pour 10 000 habitants ?</h2>
         <p class="reponse">
           De {data.periodeEntrees[0]} à {data.periodeEntrees[1]}, la France a accueilli en moyenne
-          <strong>{virgule(c.entreesFr.total, 0)}</strong> migrants à titre permanent par an pour 10
-          000 habitants : {rangTexte(c.rangEntrees!)} sur {c.nEntrees} pays de l’OCDE. Pour 10 000 habitants,
-          la famille y compte pour {virgule(c.entreesFr.cats.famille, 0)} entrées par an ({compare(
+          <strong>{virgule(c.entreesFr.total, 0)}</strong> migrants à titre permanent par an pour
+          10 000 habitants : {rangTexte(c.rangEntrees!)} sur les {c.nEntrees} pays de l’OCDE qui publient
+          les dix années ({rangTexte(c.rangEntreesHorsLC!)} sans la libre circulation européenne, que
+          les pays hors d’Europe n’ont pas). Pour 10 000 habitants, la famille y compte pour {virgule(
             c.entreesFr.cats.famille,
-            medFamille
-          )} dans le pays médian, {virgule(medFamille, 0)}), le travail pour {virgule(
+            0
+          )} entrées par an ({compare(c.entreesFr.cats.famille, medFamille)} dans le pays médian, {virgule(
+            medFamille,
+            0
+          )}), le travail pour {virgule(c.entreesFr.cats.travail, 0)} ({compare(
             c.entreesFr.cats.travail,
-            0
-          )} ({compare(c.entreesFr.cats.travail, medTravail)} dans le pays médian, {virgule(
-            medTravail,
-            0
-          )}).
+            medTravail
+          )} dans le pays médian, {virgule(medTravail, 0)}).
         </p>
       </div>
       <TLCadre
-        titre="Entrées à titre permanent par catégorie, pour 10 000 habitants, moyenne {data
+        titre="Entrées à titre permanent par catégorie, pour 10 000 habitants, moyenne {data
           .periodeEntrees[0]}-{data.periodeEntrees[1]}"
         lecture="de {data.periodeEntrees[0]} à {data
           .periodeEntrees[1]}, la France a accueilli chaque année {virgule(
           c.entreesFr.total,
           1
-        )} migrants permanents pour 10 000 habitants, dont {virgule(
+        )} migrants permanents pour 10 000 habitants, dont {virgule(
           c.entreesFr.cats.libre_circulation,
           1
         )} au titre de la libre circulation européenne."
@@ -308,7 +311,7 @@
           cles={CATS.map((k) => ({ libelle: k.libelle, couleur: k.couleur }))}
           mode="cumul"
           format={(v) => virgule(v, 0)}
-          titre="Entrées à titre permanent par catégorie pour 10 000 habitants, pays de l’OCDE"
+          titre="Entrées à titre permanent par catégorie pour 10 000 habitants, pays de l’OCDE"
         />
       </TLCadre>
       <div class="colonne">
@@ -316,7 +319,9 @@
           <p>
             L’OCDE range les entrées de chaque pays dans des catégories communes pour pouvoir les
             comparer. Ces chiffres ne sont pas les titres de séjour du ministère : les étudiants,
-            qui reçoivent aujourd’hui le plus de premiers titres en France, n’y figurent pas (U23).
+            nombreux parmi les premiers titres délivrés en France, n’y figurent pas (U23). Une
+            catégorie qu’un pays ne publie pas (libre circulation hors d’Europe, par exemple) compte
+            pour zéro.
           </p>
         </Detail>
       </div>
@@ -332,7 +337,7 @@
         elle passe au <strong>{rangTexte(c.rangAsileRel)}</strong> rang sur {c.nAsile}, avec {virgule(
           c.asileFr.demandes10k,
           0
-        )} demandes par an pour 10 000 habitants{c.premierAsileRel
+        )} demandes par an pour 10 000 habitants{c.premierAsileRel
           ? `, contre ${virgule(c.premierAsileRel.valeur, 0)} pour le premier pays (${c.premierAsileRel.libelle})`
           : ''}.
       </p>
@@ -340,7 +345,7 @@
     <TLCadre
       titre="Premières demandes d’asile, {p0}-{p1}"
       lecture={mesureAsile === 'relatif'
-        ? `de ${p0} à ${p1}, la France a reçu en moyenne ${virgule(c.asileFr.demandes10k, 1)} premières demandes d’asile par an pour 10 000 habitants.`
+        ? `de ${p0} à ${p1}, la France a reçu en moyenne ${virgule(c.asileFr.demandes10k, 1)} premières demandes d’asile par an pour 10 000 habitants.`
         : `de ${p0} à ${p1}, la France a reçu ${entier(c.asileFr.demandes)} premières demandes d’asile.`}
       source="Eurostat, migr_asyappctza et demo_gind"
       champ="pays de l’Union européenne et de l’Association européenne de libre-échange qui publient chaque année de la période ; premières demandes (sans les réexamens)"
@@ -351,7 +356,7 @@
         <button
           type="button"
           aria-pressed={mesureAsile === 'relatif'}
-          onclick={() => (mesureAsile = 'relatif')}>Pour 10 000 habitants, par an</button
+          onclick={() => (mesureAsile = 'relatif')}>Pour 10 000 habitants, par an</button
         >
         <button
           type="button"
@@ -364,7 +369,7 @@
         cles={[{ libelle: 'Premières demandes', couleur: 'var(--serie-1)' }]}
         format={(v) => (mesureAsile === 'relatif' ? virgule(v, 0) : milliers(v))}
         titre="Premières demandes d’asile, {mesureAsile === 'relatif'
-          ? 'par an pour 10 000 habitants'
+          ? 'par an pour 10 000 habitants'
           : `en nombre, cumul ${p0}-${p1}`}"
         accent={estFrance}
       />
@@ -405,10 +410,11 @@
           instance {entier(c.asileFr.positives)} protections, soit {virgule(
             c.asileFr.positives10k,
             1
-          )} par an pour 10 000 habitants ({rangTexte(c.rangPositivesRel)} rang sur {c.nAsile}). Les
+          )} par an pour 10 000 habitants ({rangTexte(c.rangPositivesRel)} rang sur {c.nAsile}). Les
           recours, qui accordent d’autres protections, ne sont pas comptés ici. Les Ukrainiens
-          arrivés depuis 2022 relèvent d’un régime de protection temporaire, distinct de l’asile :
-          ils ne sont pas dans ces {nAns} années de demandes.
+          arrivés depuis 2022 relèvent pour la plupart d’un régime de protection temporaire,
+          distinct de l’asile et compté à part ; seuls ceux qui ont demandé l’asile figurent dans
+          ces {nAns} années de demandes.
         </p>
       </Detail>
     </div>
@@ -426,7 +432,10 @@
       <dl class="incertitudes">
         {#each data.incertitudes as u (u.code)}
           <dt><span class="code">{u.code}</span> {u.titre}</dt>
-          <dd>{u.detail} <em>Ici : {u.traitement.toLowerCase()}.</em></dd>
+          <dd>
+            {u.detail}
+            <em>Ici : {u.traitement.charAt(0).toLowerCase() + u.traitement.slice(1)}.</em>
+          </dd>
         {/each}
       </dl>
     </Detail>
