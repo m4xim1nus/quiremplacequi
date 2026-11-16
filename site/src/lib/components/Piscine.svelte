@@ -641,7 +641,8 @@
       {/if}
       {#if evenement}<strong class="evenement"
           >{evenement.code ? `${evenement.code} · ` : ''}{evenement.libelle}.</strong
-        >{/if}
+        >{#if evenement.source}
+          <span class="source-evenement">Source : {evenement.source}.</span>{/if}{/if}
     </p>
     <p class="legende">
       <span
@@ -899,6 +900,10 @@
   .badge.reconstruit,
   .badge.modele {
     border-style: dashed;
+  }
+  .source-evenement {
+    font-size: 0.85em;
+    color: var(--ardoise);
   }
   .evenement {
     display: block;

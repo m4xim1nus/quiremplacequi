@@ -81,6 +81,9 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
             print(f"{nom:20} {len(df):>5} lignes")
 
     (export / "piscine.json").write_text(json.dumps(psc, ensure_ascii=False, indent=1))
+    (export / "contradicteurs.json").write_text(
+        json.dumps(referentiel("contradicteurs"), ensure_ascii=False, indent=1)
+    )
     (export / "incertitudes.json").write_text(
         json.dumps(referentiel("incertitudes"), ensure_ascii=False, indent=1)
     )

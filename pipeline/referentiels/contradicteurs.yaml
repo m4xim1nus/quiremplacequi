@@ -1,0 +1,24 @@
+# Publications discutées sur le site (CLAUDE.md : traitement des contradicteurs validé par Max).
+# Une saisie par valeur affichée, avec sa citation et sa page. Lu au build, exporté dans
+# data/export/contradicteurs.json.
+oid_2026_09:
+  titre: "Les scénarios démographiques de la France au XXIe siècle"
+  auteur: "Observatoire de l'immigration et de la démographie (OID)"
+  date: "2026-09-21"
+  url: "https://observatoire-immigration.fr/les-scenarios-demographiques-de-la-france-au-xxie-siecle/"
+  pdf: "https://observatoire-immigration.fr/wp-content/uploads/2026/09/Sous-embargo-OID_Etude_Scenarios-demographiques-France_Septembre-2026_v4.pdf"
+  lu_le: "2026-11-16"
+  valeurs:
+    horizon: {valeur: 2100, page: 3, citation: "modéliser l'évolution de la population de la France d'ici à 2100"}
+    entrees_haut: {valeur: 350000, page: 10, citation: "350 000 entrées permanentes par an"}
+    bascule_haut: {valeur: 2050, page: 11, citation: "Les personnes sans ascendance migratoire deviennent minoritaires vers 2050"}
+    entrees_intermediaire: {valeur: 250000, page: 13, citation: "250 000 entrées permanentes par an"}
+    bascule_intermediaire: {valeur: 2060, page: 13, citation: "Les personnes sans ascendance migratoire deviennent minoritaires vers 2060"}
+    preference_endogame: {valeur: 30, unite: "%", page: 8, citation: "On suppose qu'environ 30 % des individus présentent une préférence endogame"}
+  citations:
+    sans_ascendance: {page: 7, texte: "aucun des deux parents ou des quatre grands-parents n'est immigré"}
+    extra_europeenne: {page: 7, texte: "immigré extra-européen, ou personne ayant au moins un parent ou grand-parent immigré extra-européen"}
+    emigration: {page: 7, texte: "le modèle n'intègre pas d'émigration"}
+    hasard: {page: 8, texte: "Les autres individus sont réputés choisir un partenaire « au hasard »"}
+    natifs: {page: 8, texte: "les natifs sont réputés rester sur le territoire"}
+    perennes: {page: 8, texte: "destinés à devenir des résidents pérennes"}

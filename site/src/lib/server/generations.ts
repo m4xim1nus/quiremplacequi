@@ -6,6 +6,44 @@ import { csvParse } from 'd3-dsv';
 import { EXPORT } from './donnees';
 import { ecartA100, etendue, paliers, somme, valeur, type Cellule } from '$lib/generations';
 
+/** Note de l'OID (septembre 2026), saisie dans pipeline/referentiels/contradicteurs.yaml, et ce que
+ * mesure l'Insee sur la même question : solde des entrées et sorties d'immigrés, 2006-2021. */
+function oid() {
+  const c = JSON.parse(readFileSync(resolve(EXPORT, 'contradicteurs.json'), 'utf8')).oid_2026_09;
+  const v = (k: string) => Number(c.valeurs[k].valeur);
+  const fx = csvParse(readFileSync(resolve(EXPORT, 'flux.csv'), 'utf8')).filter(
+    (r) => Number(r.annee) >= 2006 && Number(r.annee) <= 2021 && r.sorties_imm !== ''
+  );
+  const r22 = csvParse(readFileSync(resolve(EXPORT, 'flux.csv'), 'utf8')).find(
+    (r) => r.annee === '2022'
+  )!;
+  const nets = fx.map((r) => Number(r.entrees_imm) - Number(r.sorties_imm));
+  const netsNi = fx.map((r) => ({
+    annee: Number(r.annee),
+    net: Number(r.entrees_ni) - Number(r.sorties_ni)
+  }));
+  return {
+    titre: c.titre as string,
+    date: c.date as string,
+    url: c.url as string,
+    horizon: v('horizon'),
+    haut: { entrees: v('entrees_haut'), bascule: v('bascule_haut') },
+    intermediaire: { entrees: v('entrees_intermediaire'), bascule: v('bascule_intermediaire') },
+    endogame: v('preference_endogame'),
+    citations: Object.fromEntries(
+      Object.entries(c.citations as Record<string, { texte: string }>).map(([k, x]) => [k, x.texte])
+    ) as Record<string, string>,
+    insee: {
+      debut: Number(fx[0].annee),
+      fin: Number(fx[fx.length - 1].annee),
+      netMoyen: Math.round(nets.reduce((s, x) => s + x, 0) / nets.length / 1000) * 1000,
+      netMax: Math.max(...nets),
+      niPositifs: netsNi.filter((x) => x.net > 0).map((x) => x.annee),
+      net2022: Number(r22.entrees_imm) - Number(r22.sorties_imm)
+    }
+  };
+}
+
 function cellules(): Cellule[] {
   return csvParse(readFileSync(resolve(EXPORT, 'teo2.csv'), 'utf8')).map((r) => ({
     fichier: r.fichier!,
@@ -317,6 +355,7 @@ export function donneesGenerations() {
       ip1910_18_59,
       lignages
     },
+    oid: oid(),
     e2: { colonnes: COLS, lignes: e2 },
     e2origine: { colonnes: COLS7, lignes: e2origine },
     e3: { ensemble: e3Ensemble, origines: e3Origines, ip3a },

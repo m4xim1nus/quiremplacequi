@@ -101,7 +101,15 @@ l'étape 2. L'étape 3 traite ce qui reste de leurs limites connues.
   les champs des chiffres TeO2, la fausse précision du sur-chômage, la ligne
   incohérente du ch. 9, le solde des non-immigrés « par différence », l'écart
   maximal du modèle. Restent pour Max : voir `BACKLOG.md` (2026-11-16).
-- [ ] Revue de Max des formulations modifiées par la relecture.
+- [x] Revue de Max des formulations modifiées par la relecture (2026-11-16) ;
+  six suggestions appliquées.
+- [x] Note de l'OID (21/9/2026) lue en entier : encadré réécrit à partir de ses
+  hypothèses citées (définition, aucune émigration, unions « au hasard ») et des
+  flux Insee ; valeurs saisies dans `referentiels/contradicteurs.yaml`.
+- [x] Événement 1931 sourcé (Musée national de l'histoire de l'immigration) ;
+  mention des Polonais retirée faute de source vérifiée.
+- [ ] Revue de Max : profil d'arrivée par époque (`PARAMETRES.md` §7), encadré
+  OID réécrit, libellé de 1931.
 
 **Livrable** : piscine v2 et pages E, F2 relues par Max.
 

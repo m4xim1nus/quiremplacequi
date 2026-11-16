@@ -56,6 +56,7 @@ export interface Evenement {
   annee: number;
   code: string | null;
   libelle: string;
+  source?: string;
 }
 
 export interface DonneesPiscine {

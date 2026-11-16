@@ -7,6 +7,7 @@
   import Sommaire from '$lib/components/Sommaire.svelte';
   import Detail from '$lib/components/Detail.svelte';
   import { pc, pts } from '$lib/generations';
+  import { milliers } from '$lib/format';
 
   let { data } = $props();
   const d = $derived(data.d);
@@ -212,17 +213,39 @@
       encadre
       niveau={3}
       titre="Ce que disent les contradicteurs"
-      resume="Une note de septembre 2026 projette des « sans ascendance migratoire » minoritaires. Ce qu’on peut en dire avec les données de 2019-2020."
+      resume="Une étude de septembre 2026 projette des « sans ascendance migratoire » minoritaires vers {d
+        .oid.haut.bascule}-{d.oid.intermediaire
+        .bascule}. Ses hypothèses, et ce que mesurent les données."
     >
-      <p class="etat">
-        Brouillon. D’après le résumé publié : la note complète n’a pas encore été lue.
+      <p>
+        <strong>La version forte.</strong> L’Observatoire de l’immigration et de la démographie
+        (OID) a publié le 21 septembre 2026 une étude, «&nbsp;<a href={d.oid.url}>{d.oid.titre}</a
+        >&nbsp;», qui projette la population jusqu’en {d.oid.horizon} sur trois générations. Avec {milliers(
+          d.oid.haut.entrees
+        )} « entrées permanentes » d’immigrés par an, les personnes « sans ascendance migratoire » y deviennent
+        minoritaires vers {d.oid.haut.bascule} ; avec {milliers(d.oid.intermediaire.entrees)}, vers {d
+          .oid.intermediaire.bascule}.
       </p>
       <p>
-        <strong>La version forte.</strong> L’Observatoire de l’immigration et de la démographie a publié
-        le 21 septembre 2026 une note intitulée « Les scénarios démographiques de la France au XXIe siècle
-        », qui projette la population par origine sur trois générations. D’après son résumé, les personnes
-        « sans ascendance migratoire » y deviendraient minoritaires dans certains scénarios, et l’émigration,
-        y compris celle des natifs, n’y est pas modélisée.
+        <strong>Ses hypothèses.</strong> Est « sans ascendance migratoire » une personne dont « {d
+          .oid.citations.sans_ascendance} » ; est d’« origine extra-européenne » un « {d.oid
+          .citations.extra_europeenne} ». Un seul grand-parent immigré sur quatre suffit donc à sortir
+        de la première catégorie. Les unions suivent une « préférence endogame » pour {d.oid
+          .endogame} % des individus ; les autres choisissent leur conjoint « au hasard ». Enfin, « {d
+          .oid.citations.emigration} » : ni départs d’immigrés, ni départs de natifs. L’étude présente
+        ces choix comme prudents, et l’absence de départs de natifs joue en effet contre sa conclusion.
+      </p>
+      <p>
+        <strong>Ce que mesure l’Insee.</strong> L’étude ne retient que les immigrés « {d.oid
+          .citations.perennes} » : ses entrées permanentes se comparent donc à un solde. De {d.oid
+          .insee.debut} à {d.oid.insee.fin}, les entrées d’immigrés ont dépassé leurs sorties de {milliers(
+          d.oid.insee.netMoyen
+        )} par an en moyenne, et de {milliers(d.oid.insee.netMax)} au plus : aucune de ces années n’atteint
+        les {milliers(d.oid.intermediaire.entrees)} du scénario intermédiaire. En 2022, année aux sorties
+        atypiques (U2), l’écart atteint {milliers(d.oid.insee.net2022)}. De {d.oid.insee.debut} à {d
+          .oid.insee.fin}, le solde des non-immigrés est négatif chaque année, sauf en {d.oid.insee.niPositifs.join(
+          ', '
+        )}.
       </p>
       <p>
         <strong>L’argument du site</strong>, qui répond à une projection par une photo de 2019-2020
@@ -233,8 +256,8 @@
         {pc(e1.sansAscendance.troisGenerations)} seulement n’ont aucun parent ni grand-parent immigré
         (originaires des outre-mer et Français de l’étranger compris dans ce dernier chiffre). Compter
         une génération de plus fait baisser la part des « sans ascendance », même sans nouvelle arrivée.
-        La définition de l’ascendance retenue par la note n’étant pas connue, on ne peut pas dire si elle
-        produit cet effet.
+        C’est la définition de l’étude : avec elle, les enfants de chaque union mixte sortent de la catégorie
+        « sans ascendance ».
       </p>
       <p>
         Le mélange, lui, est mesuré. {pc(e1.g3Un)} des petits-enfants d’immigrés de 18 à 59 ans n’ont
@@ -245,9 +268,9 @@
         {pc(e1.lignages.grandsParents)} d’entre eux, et à la génération des parents pour
         {pc(e1.lignages.parents)}.
       </p>
-      <p class="etat">
-        À vérifier avant publication : le contenu exact de la note (scénarios, fécondité, mixité,
-        définition de l’ascendance). La contre-projection viendra avec le mode projection de la
+      <p>
+        Une projection n’est pas une prévision (U16). Une contre-projection, avec les départs
+        mesurés et plusieurs définitions de l’ascendance, viendra avec le mode projection de la
         piscine.
       </p>
     </Detail>
@@ -658,11 +681,6 @@
     font-size: var(--t-0);
     color: var(--ardoise);
     margin: 0.5rem 0 0;
-  }
-  .etat {
-    font-size: var(--t-0);
-    color: var(--gris);
-    font-style: italic;
   }
   .paire {
     display: grid;
