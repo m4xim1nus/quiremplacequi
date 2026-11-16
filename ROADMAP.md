@@ -60,7 +60,8 @@ les questions de `docs/CADRAGE.md` §9 et `docs/PISCINE.md` §9.
   replié).
 - [x] Revue de Max (2026-11-16) : piscine v1.1 et phrases « réponse » validées ; couleurs des
   générations reprises (G2 et G3 proches de « autres », « autres » ni blanc ni presque blanc).
-- [ ] Revue des paramètres de `piscine.yaml` par Max.
+- [ ] Revue des paramètres par Max : fiche `docs/PARAMETRES.md` (`piscine.yaml`, `cohortes.yaml`,
+  libellés des événements ; sensibilité par `pipeline/explo/sensibilite_cohortes.py`).
 - [x] Graphiques bruts de relecture de B1 et B2 (`pipeline/explo/relecture_b1_b2.py`, 7 figures) :
   rien à corriger ; l'emboîtement des pays de naissance entre dans `qrq check`.
 
