@@ -13,7 +13,7 @@ fin: 2025                  # dernier stock au 1er janvier
 # période). Ce solde annuel est lui-même une estimation de l'Insee « à partir d'informations
 # fragmentaires provenant de sources diverses », recalée sur chaque recensement (Insee, Méthodes de
 # calcul des populations antérieures à 1990). Avant `de` : interpolation linéaire (1962 : rapatriés).
-# Proposé le 2026-11-16, à valider (docs/PARAMETRES.md §6). `methode: lineaire` rétablit l'ancien calcul.
+# Validé par Max le 2026-11-16 (docs/PARAMETRES.md §6). `methode: lineaire` rétablit l'ancien calcul.
 repartition_flux:
   methode: solde_bilan
   de: 1968

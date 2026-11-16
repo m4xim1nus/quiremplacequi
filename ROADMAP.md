@@ -83,7 +83,7 @@ l'étape 2. L'étape 3 traite ce qui reste de leurs limites connues.
   trouvée avant 2006. De 1968
   à 2005, le flux net des immigrés suit le solde migratoire annuel du bilan
   Insee (1974 se voit) ; le solde des non-immigrés n'absorbe plus la cassure.
-  Paramètre à valider (`docs/PARAMETRES.md` §6).
+  Paramètre validé par Max (`docs/PARAMETRES.md` §6).
 - [ ] Profil d'âge à l'arrivée par époque, si une source publique agrégée le
   donne (corrige l'âge des G1).
 - [ ] TeO2 : chapitre 7, figures 3 et 4 (≈ 168 cellules) ; chapitre 11,
