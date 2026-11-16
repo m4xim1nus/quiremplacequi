@@ -93,7 +93,7 @@
     },
     {
       ancre: 'recentes',
-      question: 'Et les immigrations récentes ?',
+      question: 'Et les immigrations plus tardives ?',
       chiffre: pctEntier(c.g3MaghrebMoins18!),
       reponse: `des petits-enfants d’immigrés de moins de 18 ans ont un grand-parent venu du Maghreb, contre ${pctEntier(c.g3Maghreb18a59!)} chez les 18-59 ans.`
     }
@@ -245,8 +245,10 @@
       </p>
       <p class="note">
         Calcul sur la série ci-dessus (Insee). Le champ diffère : métropole en 1921-1931, France
-        hors Mayotte en 2010, France ensuite. L’effet de collecte de 2024 est l’estimation de
-        l’Insee (note méthodologique de rupture de série), retirée du stock de 2025.
+        hors Mayotte en 2010, France ensuite ; l’entrée de Mayotte dans le champ, en 2014, ajoute
+        environ {milliers(data.vitesses.mayotte)} immigrés à la décennie 2010-2020. L’effet de collecte
+        de 2024 est l’estimation de l’Insee (note méthodologique de rupture de série), retirée du stock
+        de 2025.
       </p>
     </Detail>
   </section>
@@ -448,7 +450,7 @@
 
   <section id="recentes">
     <div class="colonne">
-      <h2>Et les immigrations plus récentes ?</h2>
+      <h2>Et les immigrations plus tardives ?</h2>
       <p class="reponse">
         Leur troisième génération est surtout jeune : <strong
           >{pctEntier(c.g3MaghrebMoins18!)}</strong

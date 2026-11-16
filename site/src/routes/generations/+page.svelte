@@ -77,7 +77,7 @@
       ancre: 'couples',
       question: 'Avec qui vivent-ils ?',
       chiffre: pc(ligneE2(2).mixte),
-      reponse: `des enfants d’un seul parent immigré vivant en couple forment un couple mixte, contre ${pc(ligneE2(0).mixte)} des immigrés.`
+      reponse: `des enfants d’un seul parent immigré vivant en couple forment un couple mixte (avec une personne d’une autre origine, pas forcément de la population majoritaire), contre ${pc(ligneE2(0).mixte)} des immigrés.`
     },
     {
       ancre: 'grands-parents',
@@ -419,9 +419,9 @@
   <section class="colonne" id="inegalites">
     <h2>Le mélange efface-t-il les inégalités ?</h2>
     <p class="reponse">
-      Non. Les enfants d’immigrés vivent plus souvent dans les quartiers où les immigrés sont
-      nombreux. À profil égal, certains ont un risque de chômage plus élevé, et ils déclarent plus
-      de discriminations que la population majoritaire.
+      Pas sur ces trois mesures. Les enfants d’immigrés vivent plus souvent dans les quartiers où
+      les immigrés sont nombreux. À profil égal, certains ont un risque de chômage plus élevé, et
+      ils déclarent plus de discriminations que la population majoritaire.
     </p>
 
     <p>

@@ -305,8 +305,9 @@ export function cumuls(annees: AnneePiscine[], de: number, a: number) {
 /** Libellés des régimes de données, affichés sur la piscine. */
 export const STATUTS: Record<Statut, { libelle: string; detail: string }> = {
   mesure: {
-    libelle: 'Mesuré',
-    detail: 'Entrées, sorties et décès des immigrés publiés par l’Insee.'
+    libelle: 'Publié',
+    detail:
+      'Entrées, sorties et décès des immigrés publiés par l’Insee (sorties calculées par différence, décès estimés).'
   },
   partiel: {
     libelle: 'Partiel',

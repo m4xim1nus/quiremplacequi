@@ -33,7 +33,8 @@
       <strong>Publié par l’Insee</strong> : stocks d’immigrés, naissances, décès, entrées des immigrés
       et des non-immigrés. Les sorties (2006-2022) sont calculées par l’Insee par différence entre le
       solde migratoire et les entrées (U2) ; les décès d’immigrés sont estimés par l’Insee, l’état civil
-      ne les identifiant pas (U18). La piscine les appelle « mesurés » par commodité.
+      ne les identifiant pas (U18). Dans la piscine, ce régime s’appelle « publié » : ces chiffres viennent
+      de l’Insee, mais tous ne sont pas des comptages.
     </li>
     <li>
       <strong>Reconstruit</strong> : ce qui se déduit de mesures sans être publié tel quel (le flux net

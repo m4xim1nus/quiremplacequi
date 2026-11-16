@@ -161,7 +161,9 @@ export function tempsLong() {
       v2010: vitesse(serie, 2010, 2020),
       v2015,
       v2015Corrigee,
-      collecte
+      collecte,
+      // Entrée de Mayotte dans le champ au 1er janvier 2014 (U6) : ajustement de la piscine en 2013.
+      mayotte: piscine().annees.find((a) => a.annee === 2013)?.ajust_imm ?? 0
     },
     g3Synthese,
     ensemble2021: {
