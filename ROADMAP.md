@@ -58,8 +58,9 @@ les questions de `docs/CADRAGE.md` §9 et `docs/PISCINE.md` §9.
 - [x] Piscine v1.1 : colonnes verticales, rubans haut → bas, frise des parts, compteur cumulé ;
   pages Générations, Le temps long et La piscine allégées (sommaire en réponses, « Le détail »
   replié).
-- [ ] Revue de Max : la piscine v1.1 et les nouvelles phrases « réponse » des pages, en local
-  (`cd site && npm run dev`, puis `/piscine`), puis les paramètres de `piscine.yaml`.
+- [x] Revue de Max (2026-11-16) : piscine v1.1 et phrases « réponse » validées ; couleurs des
+  générations reprises (G2 et G3 proches de « autres », « autres » ni blanc ni presque blanc).
+- [ ] Revue des paramètres de `piscine.yaml` par Max.
 - [x] Graphiques bruts de relecture de B1 et B2 (`pipeline/explo/relecture_b1_b2.py`, 7 figures) :
   rien à corriger ; l'emboîtement des pays de naissance entre dans `qrq check`.
 

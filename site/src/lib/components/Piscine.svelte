@@ -660,22 +660,12 @@
     --eau: #eef3f8;
     --bord: #5b6f86;
     --ajustement: #8a8f98;
-    --t0: #c9d3de;
-    --t1: #6da7ec;
-    --t2: #3987e5;
-    --t3: #1c5cab;
-    --t4: #0d366b;
   }
   @media (prefers-color-scheme: dark) {
     .piscine {
       --eau: #1b2a3a;
       --bord: #8ea3bb;
       --ajustement: #9aa3b5;
-      --t0: #4a5a6c;
-      --t1: #2a78d6;
-      --t2: #5598e7;
-      --t3: #86b6ef;
-      --t4: #cde2fb;
     }
   }
   .scene {

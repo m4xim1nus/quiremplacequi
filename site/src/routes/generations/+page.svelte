@@ -582,11 +582,6 @@
 
 <style>
   .generations {
-    --t0: #c9d3de;
-    --t1: #6da7ec;
-    --t2: #3987e5;
-    --t3: #1c5cab;
-    --t4: #0d366b;
     --o0: #86b6ef;
     --o1: #5598e7;
     --o2: #2a78d6;
@@ -600,11 +595,6 @@
   }
   @media (prefers-color-scheme: dark) {
     .generations {
-      --t0: #4a5a6c;
-      --t1: #2a78d6;
-      --t2: #5598e7;
-      --t3: #86b6ef;
-      --t4: #cde2fb;
       --o0: #184f95;
       --o1: #256abf;
       --o2: #3987e5;

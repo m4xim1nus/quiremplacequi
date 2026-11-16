@@ -32,6 +32,15 @@
   --reglure: #d5dfe9;
   --lien: #1d5a96;
 
+  /* Générations (piscine, page Générations) : une seule rampe, de « autres » (gris-bleu, ni blanc
+     ni presque blanc) vers G1. G3 et les G2 restent proches de « autres » (nés en France) ; G1 se
+     détache (nés à l'étranger). OKLCH, positions 0 ; 0,2 ; 0,33 ; 0,46 ; 1. */
+  --t0: #9ea6ae; /* autres */
+  --t1: #7e97b2; /* G3 */
+  --t2: #6a8cb5; /* G2, un parent immigré */
+  --t3: #5582b7; /* G2, deux parents immigrés */
+  --t4: #004cbb; /* G1, immigrés */
+
   --texte: 'Lexend', system-ui, sans-serif;
 
   --t-0: 0.8rem;
@@ -54,6 +63,11 @@
     --gris: #85919f;
     --reglure: #26323f;
     --lien: #8cb8e6;
+    --t0: #5d646c;
+    --t1: #5e748d;
+    --t2: #5f7fa3;
+    --t3: #5f89b9;
+    --t4: #60b3ff;
   }
 }
 
