@@ -146,6 +146,8 @@ Spike court, fait en même temps que le pipeline (`pipeline/qrq/fecondite.py`).
 | Insee Première 1939, PDF | ✅ | Chiffres de l'encadré (2,98 brut, 2,37 ajusté en moyenne 2017-2021 ; 1,81 et 1,84 pour l'ensemble), saisis dans `referentiels/fecondite.yaml` | Vérifiés contre le PDF au build |
 | Bilan démographique 2025, tableaux rétrospectifs (8721207) | ✅ xlsx | ICF et âge moyen (1901-2025), taux de reproduction brut et net, descendance par génération (métropole) | 2023-2025 provisoires |
 | ONU, *Replacement Migration* (2000) | ✅ par la bibliothèque numérique (`digitallibrary.un.org`) ; un.org refuse les scripts | Tableaux 1, IV.4, IV.5, IV.7, IV.10, IV.11 et texte France ; résumé officiel en français (citations) ; saisis dans `referentiels/onu2000.yaml` | Vérifiés contre le PDF au build |
+| Ministère de l'Intérieur, Elipa 2 (*Infos migrations* n° 98, 2020 ; *L'essentiel sur Elipa 2*, 2024) | ❌ site du ministère, 403 ; ✅ dépôt manuel par Max (2026-11-16) | Ancienneté de présence avant le premier titre, situation administrative à l'arrivée et avant les démarches, régularisés (AES) ; saisis dans `referentiels/irreguliers.yaml` | Fiche « parcours et projet migratoire » illisible par script (polices mal encodées) |
+| Projet annuel de performances 2026, mission « Santé » (copie de l'Assemblée nationale) | ✅ par script | Bénéficiaires de l'AME au 31 décembre 2024 (p. 78) | Indice, pas un compte des personnes sans titre (U7) ; la Drees ne publie pas ce nombre en open data |
 | Insee, fiche « Nationalités – Immigration » du recensement (juin 2026) | ✅ PDF | Déclarations et redressements (U27) | Insee-Méthodes n° 66 (1997) introuvable en ligne : U27 non vérifiée |
 
 **Pourquoi pas les chiffres du livre** (2017 : 19 % des naissances de mère

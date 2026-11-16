@@ -1,0 +1,9 @@
+cle,libelle,valeur,unite,source,page
+ame_beneficiaires_2024,Bénéficiaires de l'aide médicale de l'État (droit commun) au 31 décembre 2024,465208,personnes,pap_sante_2026,78
+ame_outre_mer_2024,dont outre-mer,40850,personnes,pap_sante_2026,78
+ame_variation_2024,Variation du nombre de bénéficiaires par rapport à 2023,2,pourcent,pap_sante_2026,78
+elipa_presence_2_ans_ou_moins,Primo-arrivants de 2018 présents en France depuis 2 ans ou moins à l'obtention du premier titre,47,pourcent,elipa2_essentiel,22
+elipa_sans_papier_arrivee,Primo-arrivants de 2018 qui n'avaient aucun papier à leur arrivée en France,26,pourcent,elipa2_essentiel,23
+elipa_sans_papier_avant_demarches,Primo-arrivants de 2018 sans aucun papier juste avant d'entamer les démarches du premier titre,41,pourcent,elipa2_essentiel,23
+elipa_aes_5_ans,"Régularisés (admission exceptionnelle au séjour) présents depuis 5 ans ou plus, sur 10",8,sur 10,elipa2_essentiel,22
+elipa_liens_personnels_avant_2010,"Titres « liens personnels et familiaux » de 2018 : arrivés avant 2010 (plus de neuf ans avant le titre), sur 10",4,sur 10,elipa2_im98,2

@@ -92,8 +92,14 @@ export function arrivees() {
     subsidiaire: asileIndic('protection_subsidiaire')
   };
 
+  // Personnes en situation irrégulière : indices sourcés (U7), jamais un compte.
+  const irreguliers = Object.fromEntries(
+    csv('irreguliers.csv').map((r) => [r.cle!, num(r.valeur)!])
+  ) as Record<string, number>;
+
   const u = incertitudes();
   return {
+    irreguliers,
     annees,
     regions,
     flux,

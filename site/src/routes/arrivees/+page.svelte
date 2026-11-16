@@ -10,6 +10,7 @@
 
   let { data } = $props();
   const c = $derived(data.chiffres);
+  const irr = $derived(data.irreguliers);
   const ans = $derived(data.annees);
   const pctEntier = (x: number) => `${Math.round(x)} %`;
   const signe = (x: number) => (x > 0 ? `+${milliers(x)}` : milliers(x));
@@ -150,6 +151,12 @@
       question: 'Qu’y a-t-il dans le solde migratoire ?',
       chiffre: milliers(c.cumulNonImmigres),
       reponse: `de solde pour les non-immigrés de ${c.soldesDebut} à ${c.soldesFin}, face à ${signe(c.cumulImmigres)} pour les immigrés : les premiers partent plus qu’ils ne reviennent.`
+    },
+    {
+      ancre: 'sans-titre',
+      question: 'Et les personnes sans titre ?',
+      chiffre: milliers(irr.ame_beneficiaires_2024),
+      reponse: `bénéficiaires de l’aide médicale de l’État fin 2024 : un indice, pas un compte. Aucune source publique ne compte les personnes en situation irrégulière.`
     }
   ]);
 </script>
@@ -530,6 +537,63 @@
           immigrés moins le départ net des non-immigrés. Les sorties ne sont pas comptées
           directement : aucun registre ne note les départs, et l’Insee les estime par différence, ce
           qui les rend fragiles (U2). Ces soldes sont aussi ceux de la piscine.
+        </p>
+      </Detail>
+    </div>
+  </section>
+
+  <section id="sans-titre">
+    <div class="colonne">
+      <h2>Et les personnes sans titre ?</h2>
+      <p class="reponse">
+        Aucune source publique ne les compte, et ce site ne leur donne pas de nombre (U7). Deux
+        indices seulement. Fin 2024, <strong>{entier(irr.ame_beneficiaires_2024)}</strong> personnes
+        bénéficiaient de l’aide médicale de l’État, réservée aux étrangers en situation irrégulière,
+        dont {entier(irr.ame_outre_mer_2024)} outre-mer ; toutes les personnes sans titre ne la demandent
+        pas. Et parmi les étrangers qui ont reçu en 2018 un premier titre de séjour,
+        {irr.elipa_sans_papier_arrivee} % n’avaient aucun papier à leur arrivée en France, {irr.elipa_sans_papier_avant_demarches} %
+        juste avant leurs démarches : l’irrégularité est souvent une étape du parcours, pas un état.
+      </p>
+    </div>
+    <TLCadre
+      titre="Primo-arrivants de 2018 sans aucun papier, à l’arrivée et avant les démarches"
+      lecture="{irr.elipa_sans_papier_arrivee} % des étrangers qui ont reçu en 2018 un premier titre de séjour d’au moins un an n’avaient aucun papier à leur arrivée en France ; juste avant d’entamer leurs démarches, {irr.elipa_sans_papier_avant_demarches} %, surtout parce que des visas de courte durée avaient expiré."
+      source="Ministère de l’Intérieur (DSED), enquête Elipa 2, L’essentiel sur Elipa 2 (2024), p. 22-23"
+      champ="Primo-arrivants de 2018 détenteurs d’un titre de séjour de plus d’un an, hors titre étudiant, majeurs, résidant dans un des départements du champ de l’enquête"
+      statut="enquête, déclaratif"
+      fichiers={['irreguliers.csv']}
+    >
+      <TLBarres
+        lignes={[
+          { libelle: 'À l’arrivée en France', valeurs: [irr.elipa_sans_papier_arrivee] },
+          {
+            libelle: 'Juste avant les démarches',
+            valeurs: [irr.elipa_sans_papier_avant_demarches]
+          }
+        ]}
+        cles={[{ libelle: 'Sans aucun papier', couleur: 'var(--serie-1)' }]}
+        max={100}
+        format={(v) => `${v} %`}
+        titre="Part des primo-arrivants de 2018 sans aucun papier"
+      />
+    </TLCadre>
+    <div class="colonne">
+      <Detail>
+        <p>
+          Elipa 2 montre aussi des séjours longs avant le premier titre : {irr.elipa_presence_2_ans_ou_moins} %
+          des primo-arrivants de 2018 étaient en France depuis 2 ans ou moins quand ils l’ont
+          obtenu, mais
+          {irr.elipa_aes_5_ans} sur 10 des personnes régularisées par une admission exceptionnelle au
+          séjour y étaient depuis 5 ans ou plus, et près de {irr.elipa_liens_personnels_avant_2010} titulaires
+          sur 10 d’un titre « liens personnels et familiaux » étaient arrivés plus de neuf ans avant (DSED,
+          <em>Infos migrations</em> n° 98, 2020).
+        </p>
+        <p>
+          Le nombre de bénéficiaires de l’aide médicale de l’État vient du projet annuel de
+          performances 2026 de la mission « Santé » (p. 78) ; il a augmenté de {irr.ame_variation_2024} %
+          par rapport à 2023. Ce n’est pas une estimation du nombre de personnes sans titre : il en
+          manque celles qui ne demandent pas l’aide, et ces chiffres ne s’additionnent ni aux stocks
+          d’immigrés de l’Insee, qui en comptent déjà une partie, ni aux titres de séjour.
         </p>
       </Detail>
     </div>

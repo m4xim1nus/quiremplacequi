@@ -38,9 +38,10 @@ U6:
   reference: "Notes des tableurs 2381757, 8999013 et 8998082"
 U7:
   titre: "Les personnes en situation irrégulière"
-  detail: "Partiellement captées par le recensement, jamais identifiées comme telles."
-  traitement: "Fourchettes seulement"
-  verifie: false
+  detail: "Aucune source publique ne les compte : le recensement en capte une partie sans les identifier comme telles. On n'a que des indices : le nombre de bénéficiaires de l'aide médicale de l'État, réservée aux étrangers en situation irrégulière, que tous ne demandent pas ; et l'enquête Elipa 2, qui montre qu'une partie des premiers titres de séjour régularisent des personnes présentes en France depuis des années."
+  traitement: "Aucun nombre ni fourchette : des indices sourcés, jamais additionnés aux stocks ni aux flux"
+  verifie: true
+  reference: "Projet annuel de performances 2026, mission « Santé », p. 78 ; DSED, L'essentiel sur Elipa 2 (2024), p. 22-23 et 82 ; DSED, Infos migrations n° 98 (2020), p. 2"
 U8:
   titre: "La troisième génération n'est mesurée qu'avant 60 ans"
   detail: "TeO2 couvre les 18-59 ans ; IP 1910 les 0-59 ans."

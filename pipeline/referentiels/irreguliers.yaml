@@ -1,0 +1,69 @@
+# Personnes en situation irrégulière (U7) : la statistique publique ne les compte pas. Ces valeurs
+# sont des indices, saisis à la main depuis des PDF, une référence par valeur (source, page du
+# fichier PDF, page imprimée, extrait exact). Au build, chaque extrait est cherché dans sa page
+# (espaces ignorés) et chaque valeur dans son extrait.
+valeurs:
+  - cle: ame_beneficiaires_2024
+    libelle: "Bénéficiaires de l'aide médicale de l'État (droit commun) au 31 décembre 2024"
+    valeur: 465208
+    unite: personnes
+    source: pap_sante_2026
+    page_pdf: 78
+    page: 78
+    extrait: "atteignant les 465 208 bénéficiaires, dont 40 850 en outre-mer"
+  - cle: ame_outre_mer_2024
+    libelle: "dont outre-mer"
+    valeur: 40850
+    unite: personnes
+    source: pap_sante_2026
+    page_pdf: 78
+    page: 78
+    extrait: "atteignant les 465 208 bénéficiaires, dont 40 850 en outre-mer"
+  - cle: ame_variation_2024
+    libelle: "Variation du nombre de bénéficiaires par rapport à 2023"
+    valeur: 2
+    unite: pourcent
+    source: pap_sante_2026
+    page_pdf: 78
+    page: 78
+    extrait: "le nombre de bénéficiaires de l’AME de droit commun a augmenté de 2 % par rapport à 2023"
+  - cle: elipa_presence_2_ans_ou_moins
+    libelle: "Primo-arrivants de 2018 présents en France depuis 2 ans ou moins à l'obtention du premier titre"
+    valeur: 47
+    unite: pourcent
+    source: elipa2_essentiel
+    page_pdf: 22
+    page: 22
+    extrait: "Elle est de 2 ans ou moins pour près de la moitié (47 %)"
+  - cle: elipa_sans_papier_arrivee
+    libelle: "Primo-arrivants de 2018 qui n'avaient aucun papier à leur arrivée en France"
+    valeur: 26
+    unite: pourcent
+    source: elipa2_essentiel
+    page_pdf: 23
+    page: 23
+    extrait: "Les 26 % restants n’avaient aucun papier (figure 3)"
+  - cle: elipa_sans_papier_avant_demarches
+    libelle: "Primo-arrivants de 2018 sans aucun papier juste avant d'entamer les démarches du premier titre"
+    valeur: 41
+    unite: pourcent
+    source: elipa2_essentiel
+    page_pdf: 23
+    page: 23
+    extrait: "Juste avant d’entamer les démarches d’obtention du premier titre de séjour, cette proportion atteint même 41 %"
+  - cle: elipa_aes_5_ans
+    libelle: "Régularisés (admission exceptionnelle au séjour) présents depuis 5 ans ou plus, sur 10"
+    valeur: 8
+    unite: sur 10
+    source: elipa2_essentiel
+    page_pdf: 22
+    page: 22
+    extrait: "8 sur 10 étaient en France depuis 5 ans ou plus et un quart depuis 10 ans ou plus"
+  - cle: elipa_liens_personnels_avant_2010
+    libelle: "Titres « liens personnels et familiaux » de 2018 : arrivés avant 2010 (plus de neuf ans avant le titre), sur 10"
+    valeur: 4
+    unite: sur 10
+    source: elipa2_im98
+    page_pdf: 2
+    page: 2
+    extrait: "près de quatre personnes sur dix disposant d’un titre « liens personnels et familiaux » déclarent être arrivées avant 2010 en France, soit plus de neuf ans avant d’obtenir leur premier titre de séjour"

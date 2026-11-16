@@ -192,7 +192,8 @@ def _en_texte(v: float) -> list[str]:
     """Écritures possibles d'une valeur dans un extrait (espaces déjà retirés)."""
     if float(v).is_integer():
         n = int(v)
-        return [str(n), f"{n:,}"]
+        mots = ["zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix"]
+        return [str(n), f"{n:,}"] + ([mots[n]] if 0 <= n <= 10 else [])
     return [str(v), str(v).replace(".", ",")]
 
 
@@ -228,4 +229,15 @@ def lire_textes_ip1939(raw: Path) -> list[dict]:
     for v in ref["valeurs"]:
         _verifier_extrait(pdf, v["page"], v["extrait"], [v["valeur"]], f"fecondite {v['cle']}")
         out.append({k: v[k] for k in ("cle", "libelle", "valeur", "unite", "page")})
+    return out
+
+
+def lire_irreguliers(raw: Path) -> list[dict]:
+    """Indices sur les personnes en situation irrégulière (U7), saisis et vérifiés contre leurs PDF."""
+    ref = yaml.safe_load((REFERENTIELS / "irreguliers.yaml").read_text())
+    out = []
+    for v in ref["valeurs"]:
+        pdf = fichier(raw, v["source"])
+        _verifier_extrait(pdf, v["page_pdf"], v["extrait"], [v["valeur"]], f"irreguliers {v['cle']}")
+        out.append({k: v[k] for k in ("cle", "libelle", "valeur", "unite", "source", "page")})
     return out

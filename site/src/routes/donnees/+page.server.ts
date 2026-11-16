@@ -36,6 +36,8 @@ const FICHIERS: Record<string, string> = {
     'ONU, « Replacement Migration » (2000) : les cinq scénarios pour la France, une référence par ligne',
   'onu2000.json':
     'ONU, « Replacement Migration » (2000) : scénarios et citations du résumé en français',
+  'irreguliers.csv':
+    'Personnes en situation irrégulière : indices (aide médicale de l’État, enquête Elipa 2), une référence par valeur',
   'ip1910.csv': 'Insee Première 1910 : toutes les figures, en format long',
   'teo2.csv': 'TeO2 : cellules ressaisies des tableaux et figures (une référence par cellule)',
   'incertitudes.json': 'Registre des incertitudes (codes U1…)',

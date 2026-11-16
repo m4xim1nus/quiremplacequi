@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-11-16T19:37:33+00:00",
+ "genere_le": "2026-11-16T20:04:56+00:00",
  "sources": {
   "stock": {
    "fichier": "insee/demo-etran-part-pop-etran-immig.xlsx",
@@ -501,7 +501,39 @@
    "telecharge_le": "2026-11-16T19:12:04+00:00",
    "titre": "ONU, Division de la population : Replacement Migration (ESA/P/WP.160, 2000)",
    "url": "https://digitallibrary.un.org/record/412547/files/unpd-egm_200010_un_2001_replacementmigration.pdf"
+  },
+  "elipa2_im98": {
+   "depot": "manuel",
+   "fichier": "dsed/infos_migrations_98.pdf",
+   "licence": "Licence Ouverte 2.0 (Etalab)",
+   "octets": 5343628,
+   "page": "https://www.immigration.interieur.gouv.fr/taxonomy/term/204",
+   "sha256": "83a540d876770731e4fa1f50406590aa427512a997fd85481f73733f57b25ce1",
+   "telecharge_le": "2026-11-16T20:03:26+00:00",
+   "titre": "DSED, Infos migrations n° 98 : les primo-arrivants en 2019, premiers résultats de l'enquête Elipa 2 (juin 2020)",
+   "url": "https://www.immigration.interieur.gouv.fr/taxonomy/term/204"
+  },
+  "elipa2_essentiel": {
+   "depot": "manuel",
+   "fichier": "dsed/elipa2_essentiel_2024.pdf",
+   "licence": "Licence Ouverte 2.0 (Etalab)",
+   "octets": 10932482,
+   "page": "https://www.immigration.interieur.gouv.fr/documentation/etudes-et-statistiques/enquete-longitudinale-sur-lintegration-des-primo-arrivants-2-elipa-2.html",
+   "sha256": "e8a454bcddfd1ae83b6fb9d00bbcab890cee7b6151836bc36b6081b13a5ffc82",
+   "telecharge_le": "2026-11-16T20:03:26+00:00",
+   "titre": "DSED, L'essentiel sur Elipa 2 : enquête longitudinale sur l'intégration des primo-arrivants (2024)",
+   "url": "https://www.immigration.interieur.gouv.fr/documentation/etudes-et-statistiques/enquete-longitudinale-sur-lintegration-des-primo-arrivants-2-elipa-2.html"
+  },
+  "pap_sante_2026": {
+   "fichier": "etat/PAP2026_BG_Sante.pdf",
+   "licence": "Licence Ouverte 2.0 (Etalab)",
+   "octets": 1360892,
+   "page": "https://www.assemblee-nationale.fr/dyn/17/textes/l17b1906_projet-loi",
+   "sha256": "f1cbe14522e6490406a86eb43a52ecaec300ac66929e7efa7124782bf75f09d5",
+   "telecharge_le": "2026-11-16T20:03:26+00:00",
+   "titre": "Projet annuel de performances 2026, mission « Santé » (programme 183, aide médicale de l'État), annexe au projet de loi de finances",
+   "url": "https://www.assemblee-nationale.fr/dyn/dyn/contenu/visualisation/1088032/file/PAP2026_BG_Sante_SA.pdf"
   }
  },
- "licence_sources": "Licence Ouverte 2.0 (Insee, ministère de l'Intérieur) ; CC BY 4.0 (Eurostat, OCDE) ; CC BY 3.0 IGO (ONU)"
+ "licence_sources": "Licence Ouverte 2.0 (Insee, ministère de l'Intérieur, documents budgétaires de l'État) ; CC BY 4.0 (Eurostat, OCDE) ; CC BY 3.0 IGO (ONU)"
 }

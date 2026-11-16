@@ -264,6 +264,11 @@ def verifier(export: Path) -> tuple[bool, list[str]]:
     ecart = max(abs(50 * an2[s] - tot2[s]) for s in tot2)
     controle("onu 2000 : 50 × moyenne annuelle = total 2000-2050 (± 25 000)", ecart <= 25 and tot2["II"] == 0, f"écart max {ecart:.0f} milliers")
 
+    # Personnes en situation irrégulière : indices (U7), cohérence et témoin.
+    irr = dict(pl.read_csv(export / "irreguliers.csv").select("cle", "valeur").rows())
+    controle("témoin AME : 465 208 bénéficiaires au 31 décembre 2024, dont outre-mer moins", irr["ame_beneficiaires_2024"] == 465_208 and irr["ame_outre_mer_2024"] < irr["ame_beneficiaires_2024"])
+    controle("Elipa 2 : sans papier avant les démarches ≥ sans papier à l'arrivée", irr["elipa_sans_papier_avant_demarches"] >= irr["elipa_sans_papier_arrivee"])
+
     # Témoins lus dans les sources (docs/spike/insee.md).
     temoins = {
         ("b1_stock", 2025, "immigres"): 7_970_000,

@@ -202,7 +202,7 @@ onze dernières années ; OCDE : dix ans). **Reste à Max** : la Drees comme
 source de la fourchette des irréguliers (hors liste des sources admises) ;
 une saisie manuelle de l'ONU pour C7 (faite : fichier déposé par Max).
 
-## Cycle 3 : les naissances et le mot « remplacement »
+## Cycle 3 : les naissances et le mot « remplacement » ✅ (2026-11-16)
 
 Lancé par Max le 2026-11-16 (« go cycle 3 »).
 
@@ -231,7 +231,14 @@ Lancé par Max le 2026-11-16 (« go cycle 3 »).
   +0,17 selon l'ajustement) ; « semble inaccessible » cité tel quel ;
   mécanisme des naissances retardées attribué à l'Insee ; Méthode (« ce choix
   suit le cadre légal », numérotation de l'article de la loi de 1978).
-- [ ] Revue de Max.
+- [x] **U7, les personnes sans titre** (décisions de Max : Drees et Elipa 2
+  admises, 2026-11-16) : section « Et les personnes sans titre ? » sur
+  `/arrivees` ; indices sourcés (AME au 31 décembre 2024, projet annuel de
+  performances ; Elipa 2), aucun nombre ni fourchette ; U7 vérifiée.
+- [x] Revue de Max (2026-11-16) : validé ; `CHANGELOG.md` et tag `v1.3.0`.
+
+**Livrable** : la page « Les naissances » et les personnes sans titre en ligne
+(v1.3.0, 2026-11-16).
 
 **Tranché en autonomie, à relire par Max** : voir `docs/SOURCES.md` §7.
 

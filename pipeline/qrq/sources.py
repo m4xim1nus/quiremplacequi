@@ -27,6 +27,7 @@ LICENCES = {
     "eurostat": "CC BY 4.0 (politique de réutilisation de la Commission européenne)",
     "ocde": "CC BY 4.0 (OCDE)",
     "onu": "CC BY 3.0 IGO (ONU, Division de la population)",
+    "etat": "Licence Ouverte 2.0 (Etalab)",
 }
 UA = {"User-Agent": "qrq-pipeline/0.1"}
 
@@ -246,6 +247,38 @@ SOURCES["onu_2000"] = {
     "url": "https://digitallibrary.un.org/record/412547/files/unpd-egm_200010_un_2001_replacementmigration.pdf",
     "nom": "replacement_migration_2000.pdf",
     "titre": "ONU, Division de la population : Replacement Migration (ESA/P/WP.160, 2000)",
+}
+
+
+# Personnes en situation irrégulière (U7) : des indices, jamais un compte. Enquête Elipa 2 du
+# ministère de l'Intérieur (son site refuse les scripts : PDF déposés à la main par Max, 2026-11-16)
+# et projet annuel de performances 2026 de la mission « Santé » (aide médicale de l'État), annexe
+# au projet de loi de finances publiée par l'Assemblée nationale. Chiffres saisis dans
+# referentiels/irreguliers.yaml, vérifiés contre ces PDF au build.
+SOURCES["elipa2_im98"] = {
+    "famille": "dsed",
+    "manuel": True,
+    "page": "https://www.immigration.interieur.gouv.fr/taxonomy/term/204",
+    "url": "https://www.immigration.interieur.gouv.fr/taxonomy/term/204",
+    "nom": "infos_migrations_98.pdf",
+    "titre": "DSED, Infos migrations n° 98 : les primo-arrivants en 2019, premiers résultats de l'enquête Elipa 2 (juin 2020)",
+}
+SOURCES["elipa2_essentiel"] = {
+    "famille": "dsed",
+    "manuel": True,
+    "page": "https://www.immigration.interieur.gouv.fr/documentation/etudes-et-statistiques/"
+    "enquete-longitudinale-sur-lintegration-des-primo-arrivants-2-elipa-2.html",
+    "url": "https://www.immigration.interieur.gouv.fr/documentation/etudes-et-statistiques/"
+    "enquete-longitudinale-sur-lintegration-des-primo-arrivants-2-elipa-2.html",
+    "nom": "elipa2_essentiel_2024.pdf",
+    "titre": "DSED, L'essentiel sur Elipa 2 : enquête longitudinale sur l'intégration des primo-arrivants (2024)",
+}
+SOURCES["pap_sante_2026"] = {
+    "famille": "etat",
+    "page": "https://www.assemblee-nationale.fr/dyn/dyn/contenu/visualisation/1088032/file/PAP2026_BG_Sante_SA.pdf",
+    "url": "https://www.assemblee-nationale.fr/dyn/dyn/contenu/visualisation/1088032/file/PAP2026_BG_Sante_SA.pdf",
+    "nom": "PAP2026_BG_Sante.pdf",
+    "titre": "Projet annuel de performances 2026, mission « Santé » (programme 183, aide médicale de l'État), annexe au projet de loi de finances",
 }
 
 

@@ -1,5 +1,30 @@
 # Journal des versions
 
+## v1.3.0 (2026-11-16)
+
+Cycle 3 : les naissances et le mot « remplacement ».
+
+- **Les naissances** (nouvelle page) : naissances selon le pays de naissance des parents, trois
+  définitions côte à côte ; fécondité des femmes nées à l'étranger (indicateur ajusté de l'Insee)
+  et par région de naissance ; effet sur l'indicateur national (+0,14 à +0,17 enfant par femme) ;
+  pourquoi le calcul classique la surestime (naissances qui suivent l'arrivée) ; descendance
+  finale selon le lien à la migration et par génération ; seuil de remplacement calculé depuis
+  1901 ; les cinq scénarios du rapport de l'ONU sur les « migrations de remplacement » (2000), ses
+  conclusions citées et ce qui a été observé depuis, à champ égal.
+- **Les arrivées** : « Et les personnes sans titre ? », des indices sourcés (aide médicale de
+  l'État, enquête Elipa 2), sans nombre ni fourchette.
+- **Méthode** : « Pourquoi ces catégories » (loi de 1978, décision 2007-557 DC du Conseil
+  constitutionnel) ; « Les naissances et la fécondité ». Piscine : la légende du robinet des
+  naissances distingue les trois définitions de l'état civil.
+- Les chiffres saisis depuis un PDF (ONU 2000, Insee Première 1939, Elipa 2, projet annuel de
+  performances) portent leur extrait exact et sont vérifiés contre le PDF à chaque calcul.
+- Nouvelles sources : Insee Première 1939, tableaux rétrospectifs du bilan démographique 2025,
+  ONU (rapport de 2000), ministère de l'Intérieur (Elipa 2), projet annuel de performances 2026 ;
+  incertitudes U25 à U27, U7 vérifiée.
+- Correction : l'année 2023 manquait dans les naissances selon les parents ; le modèle de la
+  piscine lit désormais l'état civil de 2023 (générations recalculées de 2023 à 2025).
+- Pourcentages insécables sur tout le site.
+
 ## v1.2.0 (2026-11-16)
 
 - **Ailleurs**, C7 : la bosse migratoire (part d'émigrés de 158 pays selon leur PIB par habitant,

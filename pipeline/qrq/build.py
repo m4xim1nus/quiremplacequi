@@ -79,6 +79,8 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     tables["descendance_generations"] = fecondite.lire_descendance_nationale(raw)
     tables["fecondite_textes"] = fecondite.lire_textes_ip1939(raw)
     tables["onu2000"] = fecondite.lire_onu2000(raw)
+    # Personnes en situation irrégulière : indices (U7).
+    tables["irreguliers"] = fecondite.lire_irreguliers(raw)
 
     if export.exists():
         shutil.rmtree(export)
@@ -110,7 +112,7 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     meta = {
         "genere_le": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "sources": {k: manifeste[k] | {"titre": SOURCES[k]["titre"], "licence": licence(k)} for k in SOURCES},
-        "licence_sources": "Licence Ouverte 2.0 (Insee, ministère de l'Intérieur) ; CC BY 4.0 (Eurostat, OCDE) ; CC BY 3.0 IGO (ONU)",
+        "licence_sources": "Licence Ouverte 2.0 (Insee, ministère de l'Intérieur, documents budgétaires de l'État) ; CC BY 4.0 (Eurostat, OCDE) ; CC BY 3.0 IGO (ONU)",
     }
     (export / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1))
     print(f"export : {len(list(export.iterdir()))} fichiers dans {export}")
