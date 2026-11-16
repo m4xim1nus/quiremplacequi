@@ -17,6 +17,13 @@ export const load = () => {
       observe: Number(r.observe)
     }));
   const desc = cal.find((r) => r.temoin === 'descendants_2025' && r.cle === 'effectif')!;
+  const rp = (cle: string) => {
+    const r = cal.find((x) => x.temoin === 'rp_ages_g1' && x.cle === cle)!;
+    return { modele: Number(r.modele), observe: Number(r.observe) };
+  };
+  const anRp = Math.max(
+    ...cal.filter((x) => x.temoin === 'rp_ages_g1').map((x) => Number(x.cle!.slice(0, 4)))
+  );
   const dec = cal.filter((r) => r.temoin === 'deces_immigres_insee');
   const somme = (k: 'modele' | 'observe') => dec.reduce((s, r) => s + Number(r[k]), 0);
   return {
@@ -24,6 +31,7 @@ export const load = () => {
     calage: p.cohortes.calage,
     ip,
     descendants: { modele: Number(desc.modele), observe: Number(desc.observe) },
+    rp: { annee: anRp, jeunes: rp(`${anRp} 15-24`), ages: rp(`${anRp} 55 ou plus`) },
     deces: { modele: somme('modele'), observe: somme('observe'), annees: dec.length },
     ratio: p.ratio_deces
   };

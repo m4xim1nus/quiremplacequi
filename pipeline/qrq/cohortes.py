@@ -140,6 +140,21 @@ def lire_cibles_ip1910(raw: Path) -> list[dict]:
     return out
 
 
+CLASSES_RP = {"0-14": (0, 15), "15-24": (15, 25), "25-54": (25, 55), "55 ou plus": (55, AGES)}
+
+
+def lire_ages_immigres(raw: Path) -> dict[int, dict[str, float]]:
+    """Répartition des immigrés par grande classe d'âge, en % (recensements 1990-2025, 2381759).
+    Tous logements, contrairement à IP 1910 (logement ordinaire)."""
+    rows = feuille(fichier(raw, "ages_immigres"), "Données")
+    entete = next(r for r in rows if annee(r[1]))
+    # Colonnes par paires (immigrés, étrangers) : l'année est sur la colonne des immigrés.
+    cols = [(i, annee(v).annee) for i, v in enumerate(entete) if annee(v)]
+    lignes = {texte(r[0]): r for r in rows if r[0]}
+    noms = dict(zip(CLASSES_RP, ("Moins de 15 ans", "15 à 24 ans", "25 à 54 ans", "55 ans ou plus")))
+    return {a: {c: nombre(lignes[n][i]) for c, n in noms.items()} for i, a in cols}
+
+
 def lire_descendants_2025(raw: Path) -> dict:
     """Descendants d'immigrés en 2025 (enquête Emploi) : effectif et part à un seul parent immigré."""
     for r in feuille(fichier(raw, "descendants"), "Données"):
@@ -415,6 +430,12 @@ def ecarts_calage(sim: dict, e: Entrees, cibles: list[dict], flux: list[dict], r
     g2 = an[2025]["G2a"] + an[2025]["G2b"]
     out.append({"temoin": "descendants_2025", "groupe": "G2", "cle": "effectif", "modele": round(g2), "observe": d["effectif"], "unite": "personnes"})
     out.append({"temoin": "descendants_2025", "groupe": "G2b", "cle": "part_un_parent", "modele": round(100 * an[2025]["G2b"] / g2, 1), "observe": d["part_un_parent"], "unite": "%"})
+    # Âges des immigrés au recensement (tous logements) : témoin de la forme par âge des G1.
+    for t, parts in lire_ages_immigres(raw).items():
+        if t in an:
+            g1 = an[t]["etat"]["G1"]
+            for c, (a, b) in CLASSES_RP.items():
+                out.append({"temoin": "rp_ages_g1", "groupe": "G1", "cle": f"{t} {c}", "modele": round(100 * float(g1[a:b].sum() / g1.sum()), 2), "observe": parts[c], "unite": "%"})
     for f in flux:
         t = f["annee"]
         if f["deces_imm"] is not None and t in an and "deces_G1" in an[t]:

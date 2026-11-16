@@ -54,13 +54,32 @@ libres : `pipeline/explo/sensibilite_cohortes.py`, synthèse dans
 
 **Témoins indépendants** (non utilisés pour caler, contrôlés par `qrq check`) :
 descendants mesurés en 2025 (enquête Emploi) à ± 10 % ; décès d'immigrés
-estimés par l'Insee 2006-2022 à ± 15 %. Écarts publiés dans
-`data/export/cohortes_calage.csv`.
+estimés par l'Insee 2006-2022 à ± 15 % ; répartition des immigrés en quatre
+classes d'âge aux recensements de 2007 à 2025 (Insee 2381759, tous logements)
+à ± 5 points. Écarts publiés dans `data/export/cohortes_calage.csv`.
 
-**Limites connues** : la part des G2 à un seul parent (48 % dans le modèle,
-55 % mesurés en 2025) ; les immigrés de 18-29 ans surestimés par rapport à IP
-1910 (qui exclut les foyers et les résidences) ; la G3 au-delà de 60 ans n'a
-aucune cible.
+**Limites connues** :
+
+- *Un ou deux parents immigrés (U21).* Le modèle suit la convention de l'enquête
+  Emploi 2019-2020 (IP 1910 : 49 % des G2 avec un seul parent immigré ; le
+  modèle donne 49 % en 2020 et 48 % en 2025). En 2021, l'Insee a modifié le
+  traitement des parents d'origine inconnue, ce qui réduit la part des « deux
+  parents » ; les publications depuis 2021 donnent 55 % à 58 %. L'écart au
+  témoin de 2025 est donc une rupture de série, pas un défaut du modèle : il
+  n'existe pas de cible par âge dans la nouvelle convention. Le même changement
+  réduit le nombre de descendants d'environ 3 %, ce qui explique une partie de
+  l'écart au témoin des effectifs (le reste : Mayotte et les logements
+  collectifs, inclus dans le modèle, exclus de l'enquête).
+- *Âge des immigrés.* Les jeunes adultes sont surestimés par rapport à IP 1910
+  (18-29 ans) mais aussi par rapport au recensement, qui couvre tous les
+  logements (15-24 ans : ≈ +2 points depuis 2007). Le champ n'explique donc
+  qu'une partie de l'écart. La cause principale est le profil d'âge à
+  l'arrivée, unique (entrées 2024) et appliqué à toutes les époques. Aucune
+  forme des départs ne corrige l'écart (grille de 160 formes testée contre le
+  recensement le 2026-11-16). Effet sur la piscine : les totaux des G1 sont
+  imposés par les recensements, et l'âge des G1 ne pèse que sur leurs décès
+  (témoin à −5 %).
+- La G3 au-delà de 60 ans n'a aucune cible.
 
 ## 3. TeO2 (`pipeline/referentiels/teo2/`)
 

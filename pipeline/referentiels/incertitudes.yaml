@@ -117,3 +117,9 @@ U20:
   traitement: "Fourchette affichée au survol de chaque colonne (modèle recalé aux deux bornes, à chaque build)"
   verifie: true
   reference: "pipeline/referentiels/cohortes.yaml (sensibilite) ; docs/PARAMETRES.md"
+U21:
+  titre: "Enfants d'un ou de deux parents immigrés : une rupture de série en 2021"
+  detail: "En 2021, l'Insee a modifié le traitement des cas où l'origine d'un parent est inconnue dans l'enquête Emploi, ce qui réduit la part des descendants dont les deux parents sont immigrés, et a rénové le questionnaire (nombre de descendants réduit d'environ 3 %). L'enquête de 2019-2020, sur laquelle le modèle est calé, donne environ un descendant sur deux avec un seul parent immigré ; les publications depuis 2021, un peu plus de la moitié. Les deux mesures ne sont pas comparables."
+  traitement: "Le modèle suit la convention de 2019-2020 ; la part publiée depuis 2021 est citée comme une observation, pas comme une cible"
+  verifie: true
+  reference: "Insee Références, Immigrés et descendants d'immigrés, édition 2023, fiche 1.4, notes de la figure 1 ; Insee Première 1910, figure 1"

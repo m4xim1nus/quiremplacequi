@@ -70,8 +70,24 @@ les questions de `docs/CADRAGE.md` §9 et `docs/PISCINE.md` §9.
 
 ## Étape 3 : modèle de la piscine et modules E, F2
 
-Modèle de cohortes calé sur les observations (piscine v2), saisies
-référencées de TeO2, curseur de définition.
+Le modèle de cohortes, la saisie de TeO2 et le curseur F2 existent depuis
+l'étape 2. L'étape 3 traite ce qui reste de leurs limites connues.
+
+- [x] Écart des G2 à un seul parent (48 % contre 55 %) : rupture de série de
+  l'enquête Emploi en 2021 (traitement des parents d'origine inconnue),
+  documentée (U21) ; le modèle garde la convention de 2019-2020.
+- [x] Âge des immigrés : nouveau témoin, les recensements de 2007 à 2025 (tous
+  logements, Insee 2381759), contrôlé à ± 5 points. Les jeunes adultes restent
+  surestimés (≈ +2 points) ; la cause est le profil d'âge à l'arrivée, unique.
+- [ ] Série annuelle des entrées avant 2006 (ONI, OMI, Ined), pour que la
+  piscine montre 1974 au lieu d'un flux lissé ; à défaut, le dire (déjà fait).
+- [ ] Profil d'âge à l'arrivée par époque, si une source publique agrégée le
+  donne (corrige l'âge des G1).
+- [ ] TeO2 : chapitre 7, figures 3 et 4 (≈ 168 cellules) ; chapitre 11,
+  contradiction entre le §35 et la figure 1, signalée sur le site.
+- [ ] Relecture factuelle indépendante des textes ajoutés depuis le 2026-11-05.
+
+**Livrable** : piscine v2 et pages E, F2 relues par Max.
 
 ## Étape 4 : site v1
 

@@ -1,6 +1,6 @@
 import { descendants2025, incertitudes, nesAvant, piscine, teo2 } from '$lib/server/donnees';
 
-const CODES = ['U17', 'U19', 'U20', 'U18', 'U1', 'U2', 'U3', 'U5', 'U6'];
+const CODES = ['U17', 'U19', 'U20', 'U21', 'U18', 'U1', 'U2', 'U3', 'U5', 'U6'];
 
 export const load = () => {
   const p = piscine();
