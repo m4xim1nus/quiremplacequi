@@ -68,7 +68,7 @@ les questions de `docs/CADRAGE.md` §9 et `docs/PISCINE.md` §9.
 
 **Livrable** : piscine v0 relue par Max, paramètres validés.
 
-## Étape 3 : modèle de la piscine et modules E, F2
+## Étape 3 : modèle de la piscine et modules E, F2 ✅ (2026-11-16)
 
 Le modèle de cohortes, la saisie de TeO2 et le curseur F2 existent depuis
 l'étape 2. L'étape 3 traite ce qui reste de leurs limites connues.
@@ -87,8 +87,8 @@ l'étape 2. L'étape 3 traite ce qui reste de leurs limites connues.
 - [x] Profil d'âge à l'arrivée par époque : aucune série publique par période
   d'arrivée ; avant 1990, profil de 2024 rajeuni à l'âge médian à l'arrivée des
   immigrés présents en 1999 (22 ans, Insee 2005). Âges au recensement à 2,6
-  points au plus (5,5 avant) ; témoin des décès à −13 % (−5 % avant). Proposé,
-  à valider (`docs/PARAMETRES.md` §7).
+  points au plus (5,5 avant) ; témoin des décès à −13 % (−5 % avant). Validé
+  par Max (`docs/PARAMETRES.md` §7).
 - [x] TeO2 : chapitre 7, figures 3 et 4 (160 cellules, seconde lecture
   indépendante identique), figure 4 affichée dans le détail de « Avec qui
   vivent-ils ? » ; chapitre 11 : la contradiction entre le §35 et la figure 1
@@ -108,15 +108,36 @@ l'étape 2. L'étape 3 traite ce qui reste de leurs limites connues.
   flux Insee ; valeurs saisies dans `referentiels/contradicteurs.yaml`.
 - [x] Événement 1931 sourcé (Musée national de l'histoire de l'immigration) ;
   mention des Polonais retirée faute de source vérifiée.
-- [ ] Revue de Max : profil d'arrivée par époque (`PARAMETRES.md` §7), encadré
-  OID réécrit, libellé de 1931.
+- [x] Revue de Max (2026-11-16) : profil d'arrivée par époque, encadré OID
+  réécrit, libellé de 1931 validés.
 
 **Livrable** : piscine v2 et pages E, F2 relues par Max.
 
 ## Étape 4 : site v1
 
-Conception (`docs/CONCEPTION.md`), site SvelteKit statique, mise en ligne
-sur Cloudflare Pages.
+Le contenu de la v1 existe (piscine, temps long, générations, méthode,
+limites, données). L'étape 4 lui donne une forme propre, le rend publiable et
+le met en ligne.
+
+- [ ] Conception (`docs/CONCEPTION.md`) : direction visuelle propre au projet
+  (typographie, palette hors rampe des générations, style des figures), plan
+  et navigation, gabarits de page. Proposition, puis validation de Max.
+- [ ] Application de la direction visuelle à toutes les pages ; retrait des
+  mentions « brouillon » et « prototype ».
+- [ ] Accessibilité : contrastes, clavier, alternative textuelle et tableau
+  de données pour la piscine (Canvas) ; mobile ; poids des pages.
+- [ ] Pages et éléments manquants : « À propos » (auteur, contact, licence,
+  sources, absence de traceur), image de partage (Open Graph), en-têtes de
+  sécurité (`_headers` : CSP sans CDN tiers).
+- [ ] Vérification visuelle dans un navigateur, page par page (par Max, ou
+  par capture si l'outil est autorisé).
+- [ ] Relecture finale de bout en bout (faits et lisibilité pour un
+  non-spécialiste).
+- [ ] Mise en ligne : projet Cloudflare Pages relié au dépôt (`bash
+  build.sh`, `NODE_VERSION=22`, sortie `site/build`), domaine
+  `quiremplacequi.technoperchoir.fr` ; tag `v1.0.0` et `CHANGELOG.md`.
+
+**Livrable** : site v1 en ligne, relu par Max.
 
 ## Ensuite : cycles
 

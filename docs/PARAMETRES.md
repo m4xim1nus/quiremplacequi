@@ -98,8 +98,8 @@ Variante écartée : flux net des immigrés proportionnel au solde du bilan.
 Résultats proches, mais le solde des non-immigrés varie alors sans raison
 documentée (`pipeline/explo/flux_avant_2006.py`).
 
-## 7. Proposition du 2026-11-16 : l'âge à l'arrivée selon l'époque (à valider)
+## 7. L'âge à l'arrivée selon l'époque (proposé et validé par Max le 2026-11-16)
 
 | Paramètre | Valeur | D'où elle vient | Effet | Recommandation | Décision |
 |---|---|---|---|---|---|
-| `arrivees` (`cohortes.yaml`) | avant 1990 : profil de 2024 rajeuni à une médiane de 22 ans | Âge médian à l'arrivée des immigrés présents en 1999 (Insee, *Les immigrés en France*, 2005, fiche 1.7, figure 2 : quartiles 12, 22, 28 ans) ; bascule choisie sur la grille {1982, 1990, 1999} contre les âges des immigrés aux recensements | Âges au recensement : écart max 5,5 → 2,6 points ; IP 1910 : 4,7 → 4,3 points ; décès d'immigrés : −5 % → −13 % des estimations Insee ; parts des générations : < 0,1 point | Retenir. Variante écartée : les quartiles de 1999 tels quels avant 1982 (recensement 2,8 points, décès −14 %) | ☐ |
+| `arrivees` (`cohortes.yaml`) | avant 1990 : profil de 2024 rajeuni à une médiane de 22 ans | Âge médian à l'arrivée des immigrés présents en 1999 (Insee, *Les immigrés en France*, 2005, fiche 1.7, figure 2 : quartiles 12, 22, 28 ans) ; bascule choisie sur la grille {1982, 1990, 1999} contre les âges des immigrés aux recensements | Âges au recensement : écart max 5,5 → 2,6 points ; IP 1910 : 4,7 → 4,3 points ; décès d'immigrés : −5 % → −13 % des estimations Insee ; parts des générations : < 0,1 point | Retenir. Variante écartée : les quartiles de 1999 tels quels avant 1982 (recensement 2,8 points, décès −14 %) | ☑ |

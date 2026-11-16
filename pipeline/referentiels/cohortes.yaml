@@ -53,7 +53,7 @@ arrivees:
   # Bascule : le recensement de la grille {1982, 1990, 1999} le plus proche des âges des immigrés aux
   # recensements de 1990 à 2025 (explo/profil_arrivee.py). Effet : âges au recensement à 2,6 points au
   # plus (5,5 avant), IP 1910 à 4,3 points (4,7) ; décès d'immigrés à −13 % des estimations Insee
-  # (−5 %). Proposé le 2026-11-16 (docs/PARAMETRES.md §7).
+  # (−5 %). Validé par Max le 2026-11-16 (docs/PARAMETRES.md §7).
   mediane_ancienne: 22
   source_ancien: "https://www.insee.fr/fr/statistiques/fichier/1371777/IMMFRA05.PDF"
   bascule: 1990
