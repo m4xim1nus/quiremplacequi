@@ -1,5 +1,23 @@
 # Journal des versions
 
+## v1.1.0 (2026-11-16)
+
+Cycle 2 : l'espace et la nature des migrations, ajusté par la lecture de *Parlons immigration en
+30 questions* (Héran, 3e éd., 2021).
+
+- **Les arrivées** (D1-D5) : premiers titres de séjour par motif de 2011 à 2024 (nombre et pour
+  10 000 habitants, Britanniques et Brexit séparés) ; migration familiale et regroupement familial ;
+  les étapes de l'asile, jamais additionnées aux titres ; entrées de l'Insee et titres du ministère
+  côte à côte ; soldes migratoires des immigrés et des non-immigrés.
+- **Ailleurs** (C1-C5) : part des personnes nées à l'étranger dans 31 pays européens, avec la
+  définition française à côté ; hausse depuis 2015 ; soldes naturel et migratoire depuis 1960
+  (France, Allemagne, Espagne, Italie) ; entrées à titre permanent par catégorie (OCDE) ; demandes
+  d'asile en nombre et rapportées à la population, et « prendre sa part ».
+- Nouvelles sources : ministère de l'Intérieur (DSED, par data.gouv.fr), Eurostat, OCDE ;
+  incertitudes U22 (solde d'Eurostat avec ajustement) et U23 (entrées « standardisées » de l'OCDE).
+- Corrections : soldes migratoires lus tels que publiés par l'Insee ; minuscules des traitements
+  d'incertitude sur toutes les pages.
+
 ## v1.0.0 (2026-11-16)
 
 Première version publique, en ligne sur <https://quiremplacequi.technoperchoir.fr>.

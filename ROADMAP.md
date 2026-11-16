@@ -146,7 +146,7 @@ le met en ligne.
 **Livrable** : site v1 en ligne (2026-11-16).
 
 
-## Cycle 2 : l'espace et la nature des migrations (C, D)
+## Cycle 2 : l'espace et la nature des migrations (C, D) ✅ (2026-11-16)
 
 Lancé par Max le 2026-11-16. Deux nouvelles pages, ajustées par la lecture
 de *Parlons immigration en 30 questions* (Héran, 3e éd., 2021 ; lignes du
@@ -186,9 +186,9 @@ chiffre est retrouvé à la source primaire.
   lieu d'un recalcul, sorties de 2022 signalées, rang OCDE aussi sans la libre
   circulation, phrases en dur rendues conditionnelles, minuscules des
   traitements d'incertitude, espaces insécables…).
-- [ ] Revue de Max, `CHANGELOG.md` et tag.
+- [x] Revue de Max (2026-11-16) : validé ; `CHANGELOG.md` et tag `v1.1.0`.
 
-**Livrable** : les pages C et D en ligne, relues par Max.
+**Livrable** : les pages C et D en ligne (v1.1.0, 2026-11-16).
 
 **Tranché en autonomie, à relire par Max** (`docs/SOURCES.md` §6) : noms des
 pages ; D6 avec B4 ; Britanniques séparés ; périodes de comparaison (asile :
