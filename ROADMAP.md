@@ -145,11 +145,93 @@ le met en ligne.
 
 **Livrable** : site v1 en ligne (2026-11-16).
 
-## Ensuite : cycles
 
-La v1 est close. Le prochain cycle se détaille ici quand Max le lance ; les
-candidats sont dans `BACKLOG.md`.
+## Cycle 2 : l'espace et la nature des migrations (C, D)
 
-L'international (C), la nature des migrations (D), les projections et les
-contrefactuels de la piscine (F1, F3), la rhétorique (G), la frise des
-discours (B4).
+Lancé par Max le 2026-11-16. Deux nouvelles pages, ajustées par la lecture
+de *Parlons immigration en 30 questions* (Héran, 3e éd., 2021 ; lignes du
+2026-11-16 dans `BACKLOG.md`) et par le catalogue des graphiques d'Héran
+(`docs/spike/heran.md`). Les pages existantes ne reçoivent que des renvois :
+on ne complique pas la piscine. Le livre ne sert jamais de source : chaque
+chiffre est retrouvé à la source primaire.
+
+- [ ] **Spike sources** (`docs/SOURCES.md` §6) : ministère de l'Intérieur
+  (DSED, *Les étrangers en France. Rapport au Parlement* ; premiers titres
+  par motif 2005-2025 ; demandes d'asile ; calendrier provisoire du
+  21 janvier, consolidé du 15 juin ; Elipa 2, *Infos Migrations* n° 98) ;
+  Ofpra (série longue de l'asile) ; Eurostat (asile et décisions, soldes
+  naturel et migratoire, population née à l'étranger) ; ONU, *International
+  Migrant Stock* 2024 (stocks par pays et matrice origine-destination) ;
+  OCDE, *Perspectives des migrations internationales* (entrées permanentes
+  par catégorie). Pour chacune : format, licence, accès par script, ruptures.
+  Les chiffres du livre (France 14e des demandes d'asile par habitant et 16e
+  des décisions positives, 2014-2020) servent de témoins, pas de valeurs.
+- [ ] **Page « nature des migrations » (D)** :
+  - D1 : premiers titres de séjour par motif, 2005-2025, en petits multiples,
+    absolu ↔ pour 10 000 habitants, et la décomposition de la hausse ;
+  - D2 : migration familiale ≠ regroupement familial ;
+  - D3 : le parcours de l'asile sans double compte (demandes, décisions,
+    titres de réfugié ne s'additionnent jamais) ;
+  - D4 : réconciliation des entrées Insee et des titres (U11) : Européens,
+    Français nés à l'étranger, mineurs, irréguliers ; une « entrée » n'est pas
+    toujours un nouvel immigré (Insee Focus n° 145) ;
+  - D5 : ce qu'il y a dans le solde migratoire : immigrés et non-immigrés
+    séparés, 2006-2024 (déjà dans `flux.csv`) ;
+  - U7 enrichie : le stock irrégulier se régularise au fil de l'eau (Elipa 2),
+    fourchette seulement ;
+  - statut provisoire ou consolidé affiché sous les graphiques ;
+  - D6 (lois sur la courbe des titres, *policy gap*) : seulement avec une
+    règle fixe de sélection des lois, validée par Max.
+- [ ] **Page « la France parmi les autres » (C)** :
+  - C1 : part d'immigrés par pays, avec la bascule de définition (ONU, né à
+    l'étranger ; Insee, né étranger à l'étranger ; U12) ;
+  - C2 : progression depuis 2000, et les soldes naturel et migratoire en ‰
+    de l'Allemagne, de l'Espagne et de la France ;
+  - C3 : entrées par catégorie pour 10 000 habitants (OCDE) ;
+  - C4 et C5 : l'asile, demandes et décisions, absolu ↔ pour 10 000
+    habitants, et « prendre sa part » (poids démographique et économique) ;
+  - C7 : la bosse migratoire, et l'émigration subsaharienne mesurée (part
+    des émigrés, part restée dans la région) par la matrice de l'ONU. Les
+    projections à 2050 restent hors du cycle.
+- [ ] **Renvois ailleurs, sans plus** : depuis la vanne d'arrivée de la
+  piscine vers D4, depuis l'accueil vers les deux pages, sources nouvelles
+  sur Méthode et Données.
+- [ ] Relecture factuelle indépendante, revue de Max, `CHANGELOG.md` et tag.
+
+**Livrable** : les pages C et D en ligne, relues par Max.
+
+**À trancher par Max en cours de route** : les noms des deux pages ; la
+règle de sélection des lois pour D6 ; la Drees (aide médicale d'État) comme
+source de la fourchette des irréguliers, hors de la liste des sources
+admises ; la Banque mondiale, citée par le livre, remplacée par la matrice
+de l'ONU (même usage, source admise).
+
+## Cycle 3 : les naissances et le mot « remplacement » (pressenti)
+
+Une nouvelle page « Les naissances », et quelques retouches ailleurs.
+
+- F3 et E7 : la fécondité en poids × taux, l'indicateur national avec et
+  sans les immigrées, la descendance finale par génération (la convergence),
+  l'incertitude de la fécondité d'avant migration (Toulemon 2004) ; trois
+  niveaux jamais mêlés : naissances, indicateur conjoncturel, descendance
+  finale. Seuil de remplacement sourcé (le livre dit « deux enfants »).
+- Le robinet des naissances : mère immigrée, parent né à l'étranger, deux
+  parents immigrés, trois notions distinctes ; légende de la piscine
+  retouchée en conséquence.
+- F4 : encadré « migrations de remplacement » sur la page, à partir du
+  rapport de l'ONU de 2000 lu en entier (ses scénarios, sa conclusion sur le
+  vieillissement, le sens des démographes) et de son détournement. **Pas de
+  contrefactuel au cycle 3** : refaire « sans migrations depuis 1974 » avec
+  le modèle de cohortes est une projection à rebours, qui demande la même
+  mise en scène et les mêmes garde-fous que F1 ; il ira avec F1.
+- Retouches : encadré Méthode « pourquoi ces catégories » (loi de 1978,
+  Cnil) ; incertitude sur la sous-déclaration de l'ascendance aux
+  recensements (sens : le chiffre réel est plus haut, à dire).
+
+## Ensuite
+
+Les projections (F1), avec les contrefactuels de la piscine et la
+contre-projection de l'OID ; B2 en petits multiples, B3 « débuts
+spectaculaires » ; l'intégration par cohorte, la binationalité et l'habitat
+(E) ; la rhétorique (G) ; la frise des discours (B4). Le coût de
+l'immigration et la religion restent hors périmètre sauf décision de Max.
