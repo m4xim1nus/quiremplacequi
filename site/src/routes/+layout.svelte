@@ -22,6 +22,26 @@
   );
 </script>
 
+<svelte:head>
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={SITE.nom} />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:title" content={SITE.nom} />
+  <meta property="og:description" content={SITE.description} />
+  <meta
+    property="og:url"
+    content="{SITE.url}{page.url.pathname === '/' ? '' : page.url.pathname}"
+  />
+  <meta property="og:image" content="{SITE.url}/partage.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta
+    property="og:image:alt"
+    content="Qui remplace qui ? Une règle graduée montre la part des immigrés dans la population, lue comme un niveau d’eau."
+  />
+  <meta name="twitter:card" content="summary_large_image" />
+</svelte:head>
+
 <a class="evitement" href="#contenu">Aller au contenu</a>
 
 <header class="entete page">

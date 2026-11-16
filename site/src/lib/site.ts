@@ -2,6 +2,9 @@
 // le code, les données et leur historique sont publics, les contributions passent par GitHub.
 export const SITE = {
   nom: 'Qui remplace qui ?',
+  url: 'https://quiremplacequi.technoperchoir.fr',
+  description:
+    'La démographie des migrations en France, mesurée avec la statistique publique : combien, depuis quand, à quelle vitesse, qui arrive, qui part, ce que deviennent les enfants.',
   depot: 'https://github.com/m4xim1nus/quiremplacequi',
   tickets: 'https://github.com/m4xim1nus/quiremplacequi/issues',
   contact: 'quiremplacequi.uncork864@passmail.net',
