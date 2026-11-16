@@ -1,0 +1,17 @@
+source:
+  chapitre: 11
+  objet: "Texte (conclusion) et note de lecture de la figure 1"
+  titre: "Sur-chômage « net » des personnes originaires d’Afrique du Nord : valeurs du texte"
+  auteurs: "Dominique Meurs, Mathieu Ichou, Emmanuel Valat"
+  url: "https://books.openedition.org/ined/26387"
+  emplacement: "§35 (conclusion) ; note « Lecture » de la figure 1 (après le §10)"
+  image: "sans objet (valeurs du texte)"
+  champ: "Actifs (France métropolitaine, 18-59 ans), écart par rapport à la population majoritaire à caractéristiques identiques"
+  unite: "points de pourcentage"
+  note: "Valeurs de texte, saisies pour documenter une contradiction de la source, pas pour être affichées comme résultats. §35 : « Le taux de chômage « net » des hommes immigrés d’Afrique du Nord est supérieur de 11 points […] celui de leurs descendants de 7 points. […] Il en est de même pour les femmes (respectivement, 4 points et 6 points). » Note de lecture de la figure 1 : « Par exemple, les hommes immigrés du Maghreb ont un risque supérieur de 6 points de pourcentage ». La figure (ch11_figure1.yaml, valeurs lues) donne ≈ +6,1 / +6,3 pour les hommes et ≈ +11,7 / +6,0 pour les femmes : le §35 contredit la figure et sa propre note de lecture pour les immigrés (l’écart le plus fort y est attribué aux hommes, la figure le donne aux femmes). Le site suit la figure. Citations relevées le 2026-11-16."
+cellules:
+  - {ligne: "§35, immigrés d’Afrique du Nord", colonne: "Hommes", valeur: 11, approx: false}
+  - {ligne: "§35, descendants d’immigrés d’Afrique du Nord", colonne: "Hommes", valeur: 7, approx: false}
+  - {ligne: "§35, immigrés d’Afrique du Nord", colonne: "Femmes", valeur: 4, approx: false}
+  - {ligne: "§35, descendants d’immigrés d’Afrique du Nord", colonne: "Femmes", valeur: 6, approx: false}
+  - {ligne: "Note de lecture de la figure 1, immigrés du Maghreb", colonne: "Hommes", valeur: 6, approx: false}

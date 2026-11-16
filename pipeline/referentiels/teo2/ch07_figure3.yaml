@@ -1,0 +1,94 @@
+source:
+  chapitre: 7
+  objet: "Figure 3"
+  titre: "Origine du ou de la conjoint·e des immigré·es (%)"
+  auteurs: "Ognjen Obucina, Ariane Pailhé"
+  url: "https://books.openedition.org/ined/26359"
+  emplacement: "§21 (figure appelée au §21 ; commentée aux §21-23)"
+  image: "data/raw/spike/teo2/ch07/Chap7_fig3.jpg.jpg"
+  champ: "Immigré·es en couple, âgé·es de 18 à 59 ans, qui ont rencontré leur conjoint·e actuel·le après la migration (France métropolitaine)"
+  unite: "%"
+  note: "Source : enquête Trajectoires et Origines 2, Ined-Insee, 2019-2020. Lecture : 45 % des hommes immigrés sont en couple avec une personne immigrée née dans le même pays. Note : résultats pondérés. Saisie : barres empilées, valeurs lues sur les étiquettes de la figure. Les segments trop fins pour porter une étiquette sont marqués approx (± 1 point) : valeur = 100 − somme des étiquettes de la barre (0 si celle-ci fait déjà 100). Champ restreint aux unions formées après la migration (§4, §9) : les couples formés avant l'arrivée en sont exclus. Seconde lecture indépendante le 2026-11-16 : 160 cellules identiques (figures 3 et 4). Ne pas confondre avec le tableau 3 du ch. 8 (champ et catégories différents)."
+cellules:
+  - {ligne: "Ensemble, hommes", colonne: "Immigré·e de même origine", valeur: 45, approx: false}
+  - {ligne: "Ensemble, hommes", colonne: "Descendant·e de même origine", valeur: 9, approx: false}
+  - {ligne: "Ensemble, hommes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 14, approx: false}
+  - {ligne: "Ensemble, hommes", colonne: "Français·e sur deux générations", valeur: 32, approx: false}
+  - {ligne: "Ensemble, femmes", colonne: "Immigré·e de même origine", valeur: 40, approx: false}
+  - {ligne: "Ensemble, femmes", colonne: "Descendant·e de même origine", valeur: 5, approx: false}
+  - {ligne: "Ensemble, femmes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 14, approx: false}
+  - {ligne: "Ensemble, femmes", colonne: "Français·e sur deux générations", valeur: 40, approx: false}
+  - {ligne: "Arrivé·es avant 17 ans (G1.5), hommes", colonne: "Immigré·e de même origine", valeur: 37, approx: false}
+  - {ligne: "Arrivé·es avant 17 ans (G1.5), hommes", colonne: "Descendant·e de même origine", valeur: 9, approx: false}
+  - {ligne: "Arrivé·es avant 17 ans (G1.5), hommes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 14, approx: false}
+  - {ligne: "Arrivé·es avant 17 ans (G1.5), hommes", colonne: "Français·e sur deux générations", valeur: 41, approx: false}
+  - {ligne: "Arrivé·es avant 17 ans (G1.5), femmes", colonne: "Immigré·e de même origine", valeur: 44, approx: false}
+  - {ligne: "Arrivé·es avant 17 ans (G1.5), femmes", colonne: "Descendant·e de même origine", valeur: 8, approx: false}
+  - {ligne: "Arrivé·es avant 17 ans (G1.5), femmes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 12, approx: false}
+  - {ligne: "Arrivé·es avant 17 ans (G1.5), femmes", colonne: "Français·e sur deux générations", valeur: 36, approx: false}
+  - {ligne: "Arrivé·es après 16 ans (G1), hommes", colonne: "Immigré·e de même origine", valeur: 50, approx: false}
+  - {ligne: "Arrivé·es après 16 ans (G1), hommes", colonne: "Descendant·e de même origine", valeur: 9, approx: false}
+  - {ligne: "Arrivé·es après 16 ans (G1), hommes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 15, approx: false}
+  - {ligne: "Arrivé·es après 16 ans (G1), hommes", colonne: "Français·e sur deux générations", valeur: 27, approx: false}
+  - {ligne: "Arrivé·es après 16 ans (G1), femmes", colonne: "Immigré·e de même origine", valeur: 38, approx: false}
+  - {ligne: "Arrivé·es après 16 ans (G1), femmes", colonne: "Descendant·e de même origine", valeur: 4, approx: false}
+  - {ligne: "Arrivé·es après 16 ans (G1), femmes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 16, approx: false}
+  - {ligne: "Arrivé·es après 16 ans (G1), femmes", colonne: "Français·e sur deux générations", valeur: 42, approx: false}
+  - {ligne: "Maghreb, hommes", colonne: "Immigré·e de même origine", valeur: 53, approx: false}
+  - {ligne: "Maghreb, hommes", colonne: "Descendant·e de même origine", valeur: 13, approx: false}
+  - {ligne: "Maghreb, hommes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 7, approx: false}
+  - {ligne: "Maghreb, hommes", colonne: "Français·e sur deux générations", valeur: 26, approx: false}
+  - {ligne: "Maghreb, femmes", colonne: "Immigré·e de même origine", valeur: 57, approx: false}
+  - {ligne: "Maghreb, femmes", colonne: "Descendant·e de même origine", valeur: 16, approx: false}
+  - {ligne: "Maghreb, femmes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 9, approx: false}
+  - {ligne: "Maghreb, femmes", colonne: "Français·e sur deux générations", valeur: 19, approx: false}
+  - {ligne: "Afrique subsaharienne, hommes", colonne: "Immigré·e de même origine", valeur: 37, approx: false}
+  - {ligne: "Afrique subsaharienne, hommes", colonne: "Descendant·e de même origine", valeur: 7, approx: false}
+  - {ligne: "Afrique subsaharienne, hommes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 23, approx: false}
+  - {ligne: "Afrique subsaharienne, hommes", colonne: "Français·e sur deux générations", valeur: 33, approx: false}
+  - {ligne: "Afrique subsaharienne, femmes", colonne: "Immigré·e de même origine", valeur: 42, approx: false}
+  - {ligne: "Afrique subsaharienne, femmes", colonne: "Descendant·e de même origine", valeur: 1, approx: true, precision: 1}
+  - {ligne: "Afrique subsaharienne, femmes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 16, approx: false}
+  - {ligne: "Afrique subsaharienne, femmes", colonne: "Français·e sur deux générations", valeur: 41, approx: false}
+  - {ligne: "Turquie, Moyen-Orient, hommes", colonne: "Immigré·e de même origine", valeur: 64, approx: false}
+  - {ligne: "Turquie, Moyen-Orient, hommes", colonne: "Descendant·e de même origine", valeur: 11, approx: false}
+  - {ligne: "Turquie, Moyen-Orient, hommes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 9, approx: false}
+  - {ligne: "Turquie, Moyen-Orient, hommes", colonne: "Français·e sur deux générations", valeur: 15, approx: false}
+  - {ligne: "Turquie, Moyen-Orient, femmes", colonne: "Immigré·e de même origine", valeur: 68, approx: false}
+  - {ligne: "Turquie, Moyen-Orient, femmes", colonne: "Descendant·e de même origine", valeur: 7, approx: false}
+  - {ligne: "Turquie, Moyen-Orient, femmes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 8, approx: false}
+  - {ligne: "Turquie, Moyen-Orient, femmes", colonne: "Français·e sur deux générations", valeur: 17, approx: false}
+  - {ligne: "Asie, hommes", colonne: "Immigré·e de même origine", valeur: 57, approx: false}
+  - {ligne: "Asie, hommes", colonne: "Descendant·e de même origine", valeur: 4, approx: false}
+  - {ligne: "Asie, hommes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 14, approx: false}
+  - {ligne: "Asie, hommes", colonne: "Français·e sur deux générations", valeur: 25, approx: false}
+  - {ligne: "Asie, femmes", colonne: "Immigré·e de même origine", valeur: 38, approx: false}
+  - {ligne: "Asie, femmes", colonne: "Descendant·e de même origine", valeur: 0, approx: true, precision: 1}
+  - {ligne: "Asie, femmes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 15, approx: false}
+  - {ligne: "Asie, femmes", colonne: "Français·e sur deux générations", valeur: 47, approx: false}
+  - {ligne: "Europe du Sud, hommes", colonne: "Immigré·e de même origine", valeur: 29, approx: false}
+  - {ligne: "Europe du Sud, hommes", colonne: "Descendant·e de même origine", valeur: 7, approx: false}
+  - {ligne: "Europe du Sud, hommes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 15, approx: false}
+  - {ligne: "Europe du Sud, hommes", colonne: "Français·e sur deux générations", valeur: 49, approx: false}
+  - {ligne: "Europe du Sud, femmes", colonne: "Immigré·e de même origine", valeur: 35, approx: false}
+  - {ligne: "Europe du Sud, femmes", colonne: "Descendant·e de même origine", valeur: 5, approx: false}
+  - {ligne: "Europe du Sud, femmes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 12, approx: false}
+  - {ligne: "Europe du Sud, femmes", colonne: "Français·e sur deux générations", valeur: 48, approx: false}
+  - {ligne: "Autres UE 27, hommes", colonne: "Immigré·e de même origine", valeur: 29, approx: false}
+  - {ligne: "Autres UE 27, hommes", colonne: "Descendant·e de même origine", valeur: 0, approx: true, precision: 1}
+  - {ligne: "Autres UE 27, hommes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 18, approx: false}
+  - {ligne: "Autres UE 27, hommes", colonne: "Français·e sur deux générations", valeur: 53, approx: false}
+  - {ligne: "Autres UE 27, femmes", colonne: "Immigré·e de même origine", valeur: 14, approx: false}
+  - {ligne: "Autres UE 27, femmes", colonne: "Descendant·e de même origine", valeur: 1, approx: true, precision: 1}
+  - {ligne: "Autres UE 27, femmes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 21, approx: false}
+  - {ligne: "Autres UE 27, femmes", colonne: "Français·e sur deux générations", valeur: 64, approx: false}
+  - {ligne: "Autres pays, hommes", colonne: "Immigré·e de même origine", valeur: 27, approx: false}
+  - {ligne: "Autres pays, hommes", colonne: "Descendant·e de même origine", valeur: 2, approx: false}
+  - {ligne: "Autres pays, hommes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 30, approx: false}
+  - {ligne: "Autres pays, hommes", colonne: "Français·e sur deux générations", valeur: 41, approx: false}
+  - {ligne: "Autres pays, femmes", colonne: "Immigré·e de même origine", valeur: 24, approx: false}
+  - {ligne: "Autres pays, femmes", colonne: "Descendant·e de même origine", valeur: 1, approx: true, precision: 1}
+  - {ligne: "Autres pays, femmes", colonne: "Immigré·e ou descendant·e d’une autre origine", valeur: 22, approx: false}
+  - {ligne: "Autres pays, femmes", colonne: "Français·e sur deux générations", valeur: 53, approx: false}
+controles:
+  - {"axe": "ligne", "pour": ["Ensemble, hommes", "Ensemble, femmes", "Arrivé·es avant 17 ans (G1.5), hommes", "Arrivé·es avant 17 ans (G1.5), femmes", "Arrivé·es après 16 ans (G1), hommes", "Arrivé·es après 16 ans (G1), femmes", "Maghreb, hommes", "Maghreb, femmes", "Afrique subsaharienne, hommes", "Afrique subsaharienne, femmes", "Turquie, Moyen-Orient, hommes", "Turquie, Moyen-Orient, femmes", "Asie, hommes", "Asie, femmes", "Europe du Sud, hommes", "Europe du Sud, femmes", "Autres UE 27, hommes", "Autres UE 27, femmes", "Autres pays, hommes", "Autres pays, femmes"], "parmi": ["Immigré·e de même origine", "Descendant·e de même origine", "Immigré·e ou descendant·e d’une autre origine", "Français·e sur deux générations"], "attendu": 100, "tolerance": 1}

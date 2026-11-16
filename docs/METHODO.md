@@ -95,7 +95,7 @@ classes d'âge aux recensements de 2007 à 2025 (Insee 2381759, tous logements)
 
 ## 3. TeO2 (`pipeline/referentiels/teo2/`)
 
-506 cellules ressaisies depuis les images du livre, une référence par cellule
+671 cellules ressaisies depuis les images du livre, une référence par cellule
 (chapitre, tableau ou figure, champ, image), relues deux fois ; valeurs lues sur
 graphique marquées `approx` avec leur précision. `qrq check` signale les
 anomalies de la source (ch. 9, tableau 4 : la ligne G1 somme à 123).

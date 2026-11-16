@@ -63,10 +63,14 @@ def test_pas_de_doublon_ni_anomalie_hors_g1(lignes):
 
 
 def test_approx_ont_precision(lignes):
+    # ch. 11 figure 1 : points sans étiquette (± 0,5) ; ch. 7 figures 3-4 : segments trop fins pour
+    # porter une étiquette (± 1).
     approx = [c for c in lignes if c["approx"]]
-    assert len(approx) == 32 and {c["fichier"] for c in approx} == {"ch11_figure1.yaml"}
-    assert all(c["precision"] == 0.5 and c["unite"] == "points de pourcentage" for c in approx)
-    assert not any(c["approx"] for c in lignes if c["fichier"] != "ch11_figure1.yaml")
+    ch11 = [c for c in approx if c["fichier"] == "ch11_figure1.yaml"]
+    ch07 = [c for c in approx if c["fichier"].startswith("ch07_figure")]
+    assert len(ch11) == 32 and len(ch07) == 8 and len(approx) == 40
+    assert all(c["precision"] == 0.5 and c["unite"] == "points de pourcentage" for c in ch11)
+    assert all(c["precision"] == 1 and c["valeur"] <= 1 for c in ch07)
 
 
 # --- verifier_teo2 (cas synthétiques) -----------------------------------------------------------

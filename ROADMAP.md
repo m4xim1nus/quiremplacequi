@@ -86,8 +86,10 @@ l'étape 2. L'étape 3 traite ce qui reste de leurs limites connues.
   Paramètre validé par Max (`docs/PARAMETRES.md` §6).
 - [ ] Profil d'âge à l'arrivée par époque, si une source publique agrégée le
   donne (corrige l'âge des G1).
-- [ ] TeO2 : chapitre 7, figures 3 et 4 (≈ 168 cellules) ; chapitre 11,
-  contradiction entre le §35 et la figure 1, signalée sur le site.
+- [x] TeO2 : chapitre 7, figures 3 et 4 (160 cellules, seconde lecture
+  indépendante identique), figure 4 affichée dans le détail de « Avec qui
+  vivent-ils ? » ; chapitre 11 : la contradiction entre le §35 et la figure 1
+  (et sa note de lecture) est saisie et expliquée sur la page.
 - [ ] Relecture factuelle indépendante des textes ajoutés depuis le 2026-11-05.
 
 **Livrable** : piscine v2 et pages E, F2 relues par Max.

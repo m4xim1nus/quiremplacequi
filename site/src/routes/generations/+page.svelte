@@ -33,6 +33,18 @@
       claire: i >= 3
     }))
   );
+  const LEG_E2O = $derived(
+    d.e2origine.colonnes.map((c, i) => ({
+      cle: c,
+      libelle: c,
+      couleur: `var(--o${i === 3 ? 0 : 4 - i})`,
+      claire: i === 3
+    }))
+  );
+  const natifE2O = (libelle: string) =>
+    d.e2origine.lignes
+      .find((l) => l.libelle === libelle)!
+      .segments.find((s) => s.cle === 'Français·e sur deux générations')!.valeur;
   const LEG_GP = ['1', '2', '3', '4'].map((n, i) => ({
     cle: n,
     libelle: `${n} grand-parent${n === '1' ? '' : 's'} immigré${n === '1' ? '' : 's'}`,
@@ -298,6 +310,25 @@
         mixtes sont des sommes : conjoint immigré d’une autre origine, enfant d’immigrés d’une autre origine,
         et conjoint de la population majoritaire.
       </p>
+      <GENFigure
+        titre="Origine du conjoint des enfants d’immigrés, selon leur origine et leur sexe"
+        lecture="{pc(
+          natifE2O('Un parent immigré (G2.5), hommes')
+        )} des fils d’un seul parent immigré vivant en couple ont un conjoint français sur deux générations (ni immigré, ni enfant d’immigré)."
+        source="TeO2 (Ined-Insee, 2026), ch. 7, figure 4"
+        champ={d.champs.couples_desc}
+        badges={['U14']}
+      >
+        <GENEmpile
+          lignes={d.e2origine.lignes.map((l) => ({ libelle: l.libelle, segments: l.segments }))}
+          legende={LEG_E2O}
+        />
+      </GENFigure>
+      <p>
+        Cette figure classe les conjoints en quatre catégories, autrement que le tableau précédent :
+        ses chiffres ne se comparent pas un à un avec lui. Quelques segments trop fins pour porter
+        une étiquette dans la source sont déduits du total (à un point près).
+      </p>
     </Detail>
   </section>
 
@@ -461,6 +492,14 @@
         Les caractéristiques tenues identiques sont l’âge, le diplôme, la nationalité, la vie en
         couple, la santé, le niveau de français, l’arrivée avant 16 ans, le couple mixte des
         parents, le quartier prioritaire et la région.
+      </p>
+      <p>
+        Le texte du chapitre contredit sa propre figure. Sa conclusion (§35) attribue aux hommes
+        immigrés d’Afrique du Nord un écart de {d.e9.texte35.g1.hommes} points et aux femmes de {d
+          .e9.texte35.g1.femmes} points ; la note de lecture de la figure donne {d.e9.texte35
+          .lectureG1Hommes} points pour les hommes, et la figure environ {virgule(
+          choG1Maghreb.femmes
+        )} points pour les femmes. Le site suit la figure.
       </p>
     </Detail>
 

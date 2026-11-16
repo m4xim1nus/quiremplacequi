@@ -39,12 +39,14 @@ const T4 = 'ch08_tableau4.yaml';
 const T6 = 'ch08_tableau6.yaml';
 const SEG = 'ch05_tableau1.yaml';
 const CHO = 'ch11_figure1.yaml';
+const T35 = 'ch11_texte35.yaml';
 const DIS = 'ch16_tableau2.yaml';
 const IDE = 'ch09_tableau4.yaml';
 
 export const CHAMPS = {
   teo2_18_59: 'France métropolitaine, 18-59 ans, logement ordinaire, 2019-2020',
   couples: 'Personnes vivant en couple, 18-59 ans, France métropolitaine, 2019-2020',
+  couples_desc: 'Enfants d’immigrés vivant en couple, 18-59 ans, France métropolitaine, 2019-2020',
   g3: 'Petits-enfants d’immigrés (G3), 18-59 ans, France métropolitaine, 2019-2020',
   g3_enfants: 'Enfants des enquêtés qui sont petits-enfants d’immigrés (G3), tous âges, 2019-2020',
   seg: '18-49 ans, France métropolitaine (TeO1 2008, TeO2 2019-2020)',
@@ -162,6 +164,34 @@ export function donneesGenerations() {
     mixte: somme(cs, T3, ligne, ligne === 'Population majoritaire' ? MIXTE.slice(0, 2) : MIXTE),
     majoritaire: v(T3, ligne, '(e) Population majoritaire')
   }));
+
+  // E2 par origine : conjoint des enfants d'immigrés selon l'origine et le sexe (ch. 7, figure 4).
+  // Quatre catégories, différentes de celles du tableau 3 du ch. 8 : ne pas les mélanger.
+  const F4 = 'ch07_figure4.yaml';
+  const COLS7 = [
+    'Immigré·e de même origine',
+    'Descendant·e de même origine',
+    'Immigré·e ou descendant·e d’une autre origine',
+    'Français·e sur deux générations'
+  ];
+  const GROUPES7 = [
+    'Ensemble',
+    'Deux parents immigrés (G2)',
+    'Un parent immigré (G2.5)',
+    'Maghreb',
+    'Afrique subsaharienne',
+    'Turquie, Moyen-Orient',
+    'Asie',
+    'Europe du Sud',
+    'Autres UE 27',
+    'Autres pays'
+  ];
+  const e2origine = GROUPES7.flatMap((g) =>
+    ['hommes', 'femmes'].map((sexe) => ({
+      libelle: `${g}, ${sexe}`,
+      segments: COLS7.map((c) => ({ cle: c, valeur: v(F4, `${g}, ${sexe}`, c) }))
+    }))
+  );
 
   // E3 : généalogies des G3.
   const nbGp = ['1', '2', '3', '4'];
@@ -288,8 +318,22 @@ export function donneesGenerations() {
       lignages
     },
     e2: { colonnes: COLS, lignes: e2 },
+    e2origine: { colonnes: COLS7, lignes: e2origine },
     e3: { ensemble: e3Ensemble, origines: e3Origines, ip3a },
-    e9: { segregation, chomage, precisionCho, discriminations },
+    e9: {
+      segregation,
+      chomage,
+      precisionCho,
+      discriminations,
+      // Contradiction de la source (ch. 11) : valeurs du §35 et de la note de lecture de la figure 1.
+      texte35: {
+        g1: {
+          hommes: v(T35, '§35, immigrés d’Afrique du Nord', 'Hommes'),
+          femmes: v(T35, '§35, immigrés d’Afrique du Nord', 'Femmes')
+        },
+        lectureG1Hommes: v(T35, 'Note de lecture de la figure 1, immigrés du Maghreb', 'Hommes')
+      }
+    },
     e10: { identification, discriParGen, anomalieG1: ecartA100(cs, IDE, 'G1') },
     champs: CHAMPS
   };
