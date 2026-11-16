@@ -90,7 +90,15 @@ l'étape 2. L'étape 3 traite ce qui reste de leurs limites connues.
   indépendante identique), figure 4 affichée dans le détail de « Avec qui
   vivent-ils ? » ; chapitre 11 : la contradiction entre le §35 et la figure 1
   (et sa note de lecture) est saisie et expliquée sur la page.
-- [ ] Relecture factuelle indépendante des textes ajoutés depuis le 2026-11-05.
+- [x] Relecture factuelle indépendante (2026-11-16) : 1 bloquant, 14 points à
+  corriger, 11 suggestions. Corrigés : le bloquant (hausse du stock d'immigrés :
+  champ et collecte de 2024), la concession sur le solde migratoire premier
+  moteur de la croissance (absente du site), les naissances estimées marquées,
+  le droit du sol, la mixité « teinte se diluera » remplacée par les chiffres,
+  les champs des chiffres TeO2, la fausse précision du sur-chômage, la ligne
+  incohérente du ch. 9, le solde des non-immigrés « par différence », l'écart
+  maximal du modèle. Restent pour Max : voir `BACKLOG.md` (2026-11-16).
+- [ ] Revue de Max des formulations modifiées par la relecture.
 
 **Livrable** : piscine v2 et pages E, F2 relues par Max.
 

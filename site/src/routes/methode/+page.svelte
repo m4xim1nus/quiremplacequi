@@ -109,16 +109,16 @@
 
   <p>
     Limites connues : le modèle surestime les immigrés d’environ un point de pourcentage par rapport
-    à l’enquête de 2019-2020, surtout chez les jeunes adultes et les plus de 75 ans. Une partie de
-    l’écart tient au champ (l’enquête ne couvre que les logements ordinaires, sans foyers ni
-    résidences), mais le recensement, qui couvre tous les logements, montre aussi trop de jeunes
-    adultes : le modèle fait arriver les immigrés de toutes les époques avec l’âge des arrivants de
-    2024. La répartition des enfants d’immigrés entre un et deux parents immigrés suit la convention
-    de l’enquête de 2019-2020 ; l’Insee l’a modifiée en 2021, et les deux mesures ne sont pas
-    comparables (U21) ; la troisième génération au-delà de 60 ans n’a aucune cible ; dans les années
-    anciennes, les générations dépendent d’une hypothèse sur les enfants d’immigrés vivants en 1911
-    : le modèle est recalé avec la moitié et une fois et demie cette hypothèse, et la fourchette
-    obtenue s’affiche au survol de la piscine (U20).
+    à l’enquête de 2019-2020, et jusqu’à {v(data.ecartMaxG1, 1)} points pour certaines classes d’âge,
+    surtout chez les jeunes adultes et les plus de 75 ans. Une partie de l’écart tient au champ (l’enquête
+    ne couvre que les logements ordinaires, sans foyers ni résidences), mais le recensement, qui couvre
+    tous les logements, montre aussi trop de jeunes adultes : le modèle fait arriver les immigrés de toutes
+    les époques avec l’âge des arrivants de 2024. La répartition des enfants d’immigrés entre un et deux
+    parents immigrés suit la convention de l’enquête de 2019-2020 ; l’Insee l’a modifiée en 2021, et les
+    deux mesures ne sont pas comparables (U21) ; la troisième génération au-delà de 60 ans n’a aucune
+    cible ; dans les années anciennes, les générations dépendent d’une hypothèse sur les enfants d’immigrés
+    vivants en 1911 : le modèle est recalé avec la moitié et une fois et demie cette hypothèse, et la
+    fourchette obtenue s’affiche au survol de la piscine (U20).
   </p>
 
   <h2>Les décès d’immigrés dans la piscine</h2>

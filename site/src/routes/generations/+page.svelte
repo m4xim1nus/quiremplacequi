@@ -240,9 +240,9 @@
         Le mélange, lui, est mesuré. {pc(e1.g3Un)} des petits-enfants d’immigrés de 18 à 59 ans n’ont
         qu’un grand-parent immigré sur quatre ; chez les moins de 18 ans, les plus concernés par une projection,
         c’est {pc(e1.g3Moins18.un)}, et {pc(e1.g3Moins18.quatre)} en ont quatre (Insee, IP 1910, fig.
-        3a). Selon TeO2 (ch. 8, §39), la mixité s’installe dès la génération des grands-parents pour
-        {pc(e1.lignages.grandsParents)} des petits-enfants d’immigrés, et à la génération des parents
-        pour
+        3a). Selon TeO2 (ch. 8, §39), parmi les enfants des enquêtés qui sont petits-enfants d’immigrés
+        (tous âges), la mixité s’installe dès la génération des grands-parents pour
+        {pc(e1.lignages.grandsParents)} d’entre eux, et à la génération des parents pour
         {pc(e1.lignages.parents)}.
       </p>
       <p class="etat">
@@ -427,7 +427,7 @@
     <p>
       En 2019, chez les 18-49 ans, <strong>{pc(seg[1].v2019)}</strong> des enfants d’immigrés vivent
       dans les quartiers à plus forte concentration d’immigrés, contre {pc(seg[2].v2019)} de la population
-      majoritaire. L’écart s’est creusé depuis 2008.
+      majoritaire. L’écart, en points, s’est creusé depuis 2008.
     </p>
     <GENFigure
       titre="Vivre dans un quartier à forte concentration d’immigrés (quintile supérieur), 2008 et 2019"
@@ -458,8 +458,9 @@
 
     <p>
       À profil égal, le risque de chômage reste plus élevé pour certaines origines, y compris chez
-      les enfants d’immigrés : environ <strong>{pts(choG2Maghreb.hommes)}</strong> pour les fils d’immigrés
-      du Maghreb. Pour d’autres, comme les enfants d’immigrés d’Europe du Sud, l’écart est proche de zéro.
+      les enfants d’immigrés : environ <strong>{Math.round(choG2Maghreb.hommes)} points</strong> pour
+      les fils d’immigrés du Maghreb (valeur lue sur la figure ; sa significativité n’est pas reprise
+      ici). Pour d’autres, comme les enfants d’immigrés d’Europe du Sud, l’écart est proche de zéro.
     </p>
     <GENFigure
       titre="Écart de risque de chômage avec la population majoritaire, à caractéristiques identiques"
@@ -539,8 +540,9 @@
       D’une génération à l’autre, ils citent plus souvent la France seule : <strong
         >{pc(ide[3].valeur)}</strong
       >
-      des petits-enfants d’immigrés, contre {pc(ide[0].valeur)} des immigrés. Pourtant, les enfants de
-      deux parents immigrés déclarent plus de discriminations que les immigrés. C’est un paradoxe.
+      des petits-enfants d’immigrés, contre {pc(ide[0].valeur)} des immigrés (valeur fragile : la ligne
+      des immigrés est incohérente dans la source). Pourtant, les enfants de deux parents immigrés déclarent
+      plus de discriminations que les immigrés : les deux mouvements ne vont pas dans le même sens.
     </p>
     <div class="paire">
       <GENFigure
@@ -591,7 +593,7 @@
       </p>
       <p>
         La comparaison est transversale : les immigrés enquêtés ne sont pas les parents des enfants
-        d’immigrés enquêtés. Le paradoxe vaut pour certaines origines seulement : les enfants
+        d’immigrés enquêtés. Cet écart vaut pour certaines origines seulement : les enfants
         d’immigrés d’Europe du Sud déclarent moins de discriminations ({pc(
           disDe('Enfants d’immigrés (un ou deux parents), Europe du Sud')
         )}) que les immigrés venus d’Europe du Sud ({pc(disDe('Immigrés, Europe du Sud'))}). Cette

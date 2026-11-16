@@ -1,6 +1,7 @@
 <script lang="ts">
   import { milliers, pct } from '$lib/format';
   let { data } = $props();
+  const signe = (x: number) => (x < 0 ? '−' : '+') + milliers(Math.abs(x));
 </script>
 
 <svelte:head>
@@ -25,8 +26,14 @@
         data.collecte2024
       )} dus à l’amélioration de la collecte du recensement en 2024), soit {pct(data.part2025)} de la
       population, contre {pct(data.part1931)} au sommet de 1931 et {pct(data.partDebut)} en
-      {data.debut} (France métropolitaine avant 1990). Puis il regarde ce que les chiffres bruts cachent
-      : les départs, les définitions, les générations qui se mêlent.
+      {data.debut} (France métropolitaine avant 1990). Et le solde migratoire est devenu le premier moteur
+      de la croissance de la population : il dépasse le solde naturel chaque année depuis
+      {data.soldes.depuis}, et en {data.soldes.dernier}{data.soldes.provisoire
+        ? ' (provisoire)'
+        : ''}, les naissances ne compensent plus les décès ({signe(data.soldes.naturel)}, contre {signe(
+        data.soldes.migratoire
+      )} pour le solde migratoire). Puis il regarde ce que les chiffres bruts cachent : les départs, les
+      définitions, les générations qui se mêlent.
     </p>
     <p class="brouillon">Site en construction. Textes en brouillon.</p>
   </div>

@@ -496,7 +496,9 @@
       >
       <span class="val"
         ><span class="long">non-immigrés</span><span class="court">non-imm.</span>
-        {valeur(reconstruit ? ligne.net_ni : ligne.entrees_ni)}</span
+        {valeur(reconstruit ? ligne.net_ni : ligne.entrees_ni)}{reconstruit
+          ? ' (par diff.)'
+          : ''}</span
       >
     </div>
     <div class="etiquette bas gauche" style:left="{pos('deces')}%">

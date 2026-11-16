@@ -76,13 +76,13 @@
       ancre: 'vitesse',
       question: 'Plus vite qu’avant ?',
       chiffre: pts(data.vitesses.v1920.points),
-      reponse: `de part des immigrés en dix ans dans les années 1920, contre ${points(data.vitesses.v2015.points)} de 2015 à 2025 (${points(data.vitesses.v2015Corrigee.points)} corrigé de la collecte de 2024).`
+      reponse: `de part des immigrés en dix ans dans les années 1920, contre ${points(data.vitesses.v2015.points)} de 2015 à 2025 (${points(data.vitesses.v2015Corrigee.points)} corrigé de la collecte de 2024). En nombre, la hausse récente est plus forte.`
     },
     {
       ancre: 'vagues',
       question: 'Comment une vague se tarit ?',
       chiffre: pct(italiens.pic.part),
-      reponse: `de la population : les Italiens au plus haut, en ${italiens.pic.annee} ; ${pct(italiens.derniere.part)} en ${italiens.derniere.annee}. La plupart des vagues européennes montent, culminent puis refluent.`
+      reponse: `de la population : les étrangers de nationalité italienne au plus haut, en ${italiens.pic.annee} ; ${pct(italiens.derniere.part)} en ${italiens.derniere.annee}. La plupart des vagues européennes montent, culminent puis refluent.`
     },
     {
       ancre: 'descendants',
@@ -492,7 +492,7 @@
         )
         .join(
           ' ; '
-        )}. Les origines s’ajoutent : la troisième génération issue du Maghreb est surtout jeune, celle d’Europe du Sud présente à tous les âges."
+        )}. Un petit-enfant peut compter dans plusieurs origines : la troisième génération issue du Maghreb est surtout jeune, celle d’Europe du Sud présente à tous les âges."
       source="Insee Première n° 1910 (2022, révisé 2023), figure 2c"
       champ={data.champs.fig2c.replace(/^Champ : /, '').replace(/\.$/, '')}
       statut="enquêtes 2019-2020 ; G3 mesurés seulement avant 60 ans (U8)"

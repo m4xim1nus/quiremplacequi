@@ -68,3 +68,28 @@ export function nesAvant(debut: number): Record<number, number[]> {
   }
   return out;
 }
+
+/** Bilan démographique (Insee), champ France : soldes naturel et migratoire d'une année, et première
+ * année à partir de laquelle le solde migratoire dépasse chaque année le solde naturel. */
+export function soldes(): {
+  annee: (a: number) => { naturel: number; migratoire: number; provisoire: boolean };
+  dernier: number;
+  migratoireDevantDepuis: number;
+} {
+  const rows = csvParse(readFileSync(resolve(EXPORT, 'bilan.csv'), 'utf8')).filter(
+    (r) => r.onglet === 'FR' && r.solde_naturel !== '' && r.solde_migratoire !== ''
+  );
+  const ligne = (a: number) => {
+    const r = rows.find((x) => Number(x.annee) === a)!;
+    return {
+      naturel: Number(r.solde_naturel),
+      migratoire: Number(r.solde_migratoire),
+      provisoire: r.statut === 'provisoire'
+    };
+  };
+  const ans = rows.map((r) => Number(r.annee)).sort((a, b) => a - b);
+  let depuis = ans[ans.length - 1];
+  for (let i = ans.length - 1; i >= 0 && ligne(ans[i]).migratoire > ligne(ans[i]).naturel; i--)
+    depuis = ans[i];
+  return { annee: ligne, dernier: ans[ans.length - 1], migratoireDevantDepuis: depuis };
+}

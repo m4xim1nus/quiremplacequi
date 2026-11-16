@@ -16,6 +16,17 @@ export const load = () => {
       modele: Number(r.modele),
       observe: Number(r.observe)
     }));
+  // Pire écart sur la part des immigrés par classe d'âge fine (IP 1910).
+  const ecartMaxG1 = Math.max(
+    ...cal
+      .filter(
+        (r) =>
+          r.temoin === 'ip1910_2020' &&
+          r.groupe === 'G1' &&
+          !['0-17', '18-59', '0-59', '60 ou plus'].includes(r.cle!)
+      )
+      .map((r) => Math.abs(Number(r.modele) - Number(r.observe)))
+  );
   const desc = cal.find((r) => r.temoin === 'descendants_2025' && r.cle === 'effectif')!;
   const rp = (cle: string) => {
     const r = cal.find((x) => x.temoin === 'rp_ages_g1' && x.cle === cle)!;
@@ -30,6 +41,7 @@ export const load = () => {
     statut: p.cohortes.statut_parametres,
     calage: p.cohortes.calage,
     ip,
+    ecartMaxG1,
     descendants: { modele: Number(desc.modele), observe: Number(desc.observe) },
     rp: { annee: anRp, jeunes: rp(`${anRp} 15-24`), ages: rp(`${anRp} 55 ou plus`) },
     deces: { modele: somme('modele'), observe: somme('observe'), annees: dec.length },

@@ -39,17 +39,23 @@
       <li>
         <strong>Le robinet des naissances débite le plus.</strong> En 2022, {milliers(
           c.naissances2022
-        )} naissances contre {milliers(c.entreesImm2022)} arrivées d’immigrés. En un siècle environ, toute
-        l’eau est remplacée, avec ou sans immigration.
+        )} naissances contre {milliers(c.entreesImm2022)} arrivées d’immigrés. Mais elles dépassent à
+        peine les décès : depuis {c.soldesDepuis}, c’est le solde migratoire qui fait l’essentiel de
+        la croissance (+{milliers(c.soldes2022.migratoire)} en 2022, contre +{milliers(
+          c.soldes2022.naturel
+        )} pour le solde naturel). En un siècle environ, toute l’eau est remplacée, avec ou sans immigration.
       </li>
       <li>
         <strong>Les immigrés n’ont pas de robinet « naissances ».</strong> Leurs enfants, nés en
         France, ne sont pas immigrés : ils entrent dans une autre colonne. Le stock d’immigrés ne
-        grossit que par les arrivées : {pct(c.part1968)} de la population en 1968, {pct(c.part2025)} en
-        2025.
+        grossit que par les arrivées : {pct(c.part1968)} de la population en 1968 (métropole), {pct(
+          c.part2025
+        )} en 2025 (France, provisoire, après une amélioration de la collecte du recensement en 2024).
       </li>
       <li>
-        <strong>De qui naissent les enfants ?</strong> En 2022, environ {milliers(c.nais2022.g2a)}
+        <strong>De qui naissent les enfants ?</strong> En 2022, selon l’estimation du site, environ {milliers(
+          c.nais2022.g2a
+        )}
         enfants sur {milliers(c.naissances2022)} avaient deux parents immigrés, et {milliers(
           c.nais2022.g2b
         )}
@@ -57,46 +63,51 @@
       </li>
       <li>
         <strong>Pas deux blocs, des colonnes qui se recouvrent.</strong>
-        {c.descendantsUnParent} % des enfants d’immigrés n’ont qu’un parent immigré (Insee, 2025), et
-        {c.g3UnGrandParent}
-        % des petits-enfants d’immigrés de 18 à 59 ans un seul grand-parent immigré sur quatre (TeO2).
+        {c.descendantsUnParent} % des enfants d’immigrés n’ont qu’un parent immigré (Insee, 2025 ; le
+        modèle de la piscine, qui suit la convention de l’enquête de 2019-2020, en compte moins : U21),
+        et
+        {c.g3UnGrandParent} % des petits-enfants d’immigrés de 18 à 59 ans n’ont qu’un seul grand-parent
+        immigré (TeO2).
       </li>
     </ol>
 
     <Detail>
       <p>
         Chaque année, les naissances renouvellent à elles seules {pct(100 * c.renouvellement2022)}
-        de l’eau ({milliers(c.naissances2022)} naissances et {milliers(c.deces2022)} décès en 2022). Le
-        mot « remplacement » décrit d’abord la condition de toute population.
+        de l’eau ({milliers(c.naissances2022)} naissances et {milliers(c.deces2022)} décès en 2022). Ce
+        renouvellement est celui de toute population ; la thèse du « grand remplacement » parle d’autre
+        chose, de composition (plus bas).
       </p>
       <p>
         Un immigré est né étranger à l’étranger. Le stock d’immigrés ne se vide que par les décès et
-        les départs. Il est passé de {milliers(c.immigres1968)} en 1968 à {milliers(c.immigres2025)}
-        en 2025.
+        les départs. Il est passé de {milliers(c.immigres1968)} en 1968 (métropole) à {milliers(
+          c.immigres2025
+        )} en 2025 (France, provisoire) ; environ {milliers(c.collecte2024)} de l’écart tiennent à la
+        nouvelle collecte du recensement en 2024, pas à des arrivées.
       </p>
       <p>
-        <strong>De qui naissent les enfants</strong> est la vraie question : tout le monde meurt,
-        tout le monde est remplacé, et la thèse du « grand remplacement » parle de composition, pas
-        de renouvellement. Les naissances de 2022 par origine des parents viennent de l’état civil,
-        corrigé de l’écart entre « né à l’étranger » et « immigré » ; environ {milliers(
-          c.nais2022.g3
-        )}
-        étaient des petits-enfants d’immigrés (modèle). Ces enfants sont français dès la naissance si
-        l’un de leurs parents l’est, et le deviennent sinon en principe à leur majorité (droit du sol).
+        <strong>De qui naissent les enfants</strong> est la question de la composition. Les
+        naissances de 2022 par origine des parents viennent de l’état civil, corrigé de l’écart
+        entre « né à l’étranger » et « immigré » ; environ {milliers(c.nais2022.g3)}
+        étaient des petits-enfants d’immigrés (modèle). Nés en France d’un parent lui-même né en France,
+        ceux-ci sont français dès la naissance (double droit du sol). Les enfants d’immigrés le sont si
+        l’un de leurs parents est français ; sinon, ils le deviennent à 18 ans s’ils résident en France
+        et y ont résidé au moins cinq ans depuis l’âge de 11 ans (code civil, art. 21-7).
       </p>
       <p>
-        Si les unions restent aussi mixtes qu’aujourd’hui, leurs propres enfants auront le plus
-        souvent des parents nés en France, et la teinte se diluera de génération en génération.
-        Cette incorporation est « perceptible » pour les descendants des vagues européennes de
-        l’entre-deux-guerres (TeO2, ch. 8) ; pour les immigrations plus récentes, il est trop tôt
-        pour le dire (voir <a href="/generations">Générations</a>).
+        Les unions d’aujourd’hui donnent une indication sur la génération suivante : parmi ceux qui
+        vivent en couple, {c.majoritaireUnParent} % des enfants d’un seul parent immigré ont un conjoint
+        de la population majoritaire, contre {c.majoritaireDeuxParents} % des enfants de deux parents
+        immigrés (TeO2, ch. 8, tableau 3). L’incorporation est « perceptible » pour les descendants des
+        vagues européennes de l’entre-deux-guerres (TeO2, ch. 8) ; pour les immigrations plus récentes,
+        il est trop tôt pour le dire (voir <a href="/generations">Générations</a>).
       </p>
       <p>
         En 2025, le modèle compte {pct((100 * (c.g2a2025 + c.g2b2025)) / c.pop2025)} d’enfants d’immigrés
         ; l’enquête Emploi de l’Insee en mesure {milliers(c.descendants2025)}, soit {pct(
           (100 * c.descendants2025) / c.pop2025
-        )} de la population. Ces catégories ne s’additionnent pas en un « camp » (TeO2, ch. 8, tableau
-        4, pour les grands-parents).
+        )} de la population. L’enquête ne compte que les logements ordinaires, hors Mayotte ; le modèle,
+        toute la population (U19).
       </p>
     </Detail>
   </section>

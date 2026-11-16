@@ -1,4 +1,4 @@
-import { piscine } from '$lib/server/donnees';
+import { piscine, soldes } from '$lib/server/donnees';
 
 export const load = () => {
   const p = piscine();
@@ -6,7 +6,13 @@ export const load = () => {
   const a25 = an(2025);
   const a22 = an(2022);
   const premiere = p.annees[0];
+  const so = soldes();
   return {
+    soldes: {
+      dernier: so.dernier,
+      ...so.annee(so.dernier),
+      depuis: so.migratoireDevantDepuis
+    },
     debut: premiere.annee,
     partDebut: premiere.part_immigres,
     part2025: a25.part_immigres,

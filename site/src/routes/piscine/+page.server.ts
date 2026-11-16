@@ -1,4 +1,11 @@
-import { descendants2025, incertitudes, nesAvant, piscine, teo2 } from '$lib/server/donnees';
+import {
+  descendants2025,
+  incertitudes,
+  nesAvant,
+  piscine,
+  soldes,
+  teo2
+} from '$lib/server/donnees';
 
 const CODES = ['U17', 'U19', 'U20', 'U21', 'U18', 'U1', 'U2', 'U3', 'U5', 'U6'];
 
@@ -33,7 +40,20 @@ export const load = () => {
       pop2025: a25.population,
       descendants2025: descendants2025().effectif,
       descendantsUnParent: descendants2025().part_un_parent,
-      g3UnGrandParent: teo2('ch08_tableau4.yaml', '1', 'Ensemble des G3 (enquête principale)')
+      g3UnGrandParent: teo2('ch08_tableau4.yaml', '1', 'Ensemble des G3 (enquête principale)'),
+      soldes2022: soldes().annee(2022),
+      soldesDepuis: soldes().migratoireDevantDepuis,
+      collecte2024: an(2023).ajust_imm!,
+      majoritaireUnParent: teo2(
+        'ch08_tableau3.yaml',
+        'G2.5 Descendant·e (un parent immigré)',
+        '(e) Population majoritaire'
+      ),
+      majoritaireDeuxParents: teo2(
+        'ch08_tableau3.yaml',
+        'G2 Descendant·e (deux parents immigrés)',
+        '(e) Population majoritaire'
+      )
     },
     incertitudes: CODES.filter((c) => u[c]).map((code) => ({ code, ...u[code] }))
   };
