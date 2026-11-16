@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-11-16T17:48:24+00:00",
+ "genere_le": "2026-11-16T18:08:50+00:00",
  "sources": {
   "stock": {
    "fichier": "insee/demo-etran-part-pop-etran-immig.xlsx",
@@ -400,7 +400,48 @@
    "telecharge_le": "2026-11-16T17:19:50+00:00",
    "titre": "OCDE : population historique, tous âges (2014-2025)",
    "url": "https://sdmx.oecd.org/public/rest/data/OECD.ELS.SAE,DSD_POPULATION@DF_POP_HIST,1.0/.POP.PS._T._T.?startPeriod=2014&format=csvfilewithlabels"
+  },
+  "onu_migrants": {
+   "depot": "manuel",
+   "fichier": "onu/undesa_pd_2024_ims_stock_by_sex_destination_and_origin.xlsx",
+   "licence": "CC BY 3.0 IGO (ONU, Division de la population)",
+   "octets": 6005287,
+   "page": "https://www.un.org/development/desa/pd/content/international-migrant-stock",
+   "sha256": "0e10179d05186041a65cf5c6200943b2231701f9c1fd33cbbe21d23b8ea47316",
+   "telecharge_le": "2026-11-16T18:06:24+00:00",
+   "titre": "ONU DESA, International Migrant Stock 2024 : migrants par pays de destination et d'origine (1990-2024)",
+   "url": "https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/undesa_pd_2024_ims_stock_by_sex_destination_and_origin.xlsx"
+  },
+  "onu_population": {
+   "fichier": "onu/WPP2024_GEN_F01_DEMOGRAPHIC_INDICATORS_COMPACT.xlsx",
+   "licence": "CC BY 3.0 IGO (ONU, Division de la population)",
+   "octets": 26142942,
+   "page": "https://population.un.org/wpp/",
+   "sha256": "98e34d9b65b53858cd08a57a566e45050b08093ad85ba5714fe6fbd78055ae6d",
+   "telecharge_le": "2026-11-16T18:06:25+00:00",
+   "titre": "ONU DESA, World Population Prospects 2024 : indicateurs démographiques par pays",
+   "url": "https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/EXCEL_FILES/1_General/WPP2024_GEN_F01_DEMOGRAPHIC_INDICATORS_COMPACT.xlsx"
+  },
+  "onu_pib": {
+   "fichier": "onu/pib_par_habitant_usd.xlsx",
+   "licence": "Conditions d'utilisation de l'ONU (réutilisation libre, source citée)",
+   "octets": 200369,
+   "page": "https://unstats.un.org/unsd/snaama/downloads",
+   "sha256": "9082e75331f67b8210a102a69494a89cd77cd2ca2648f3fab893dca9383293de",
+   "telecharge_le": "2026-11-16T18:06:26+00:00",
+   "titre": "ONU, Division de statistique : PIB par habitant en dollars courants, tous pays (1970-)",
+   "url": "https://unstats.un.org/unsd/amaapi/api/file/9"
+  },
+  "onu_m49": {
+   "fichier": "onu/m49.html",
+   "licence": "Conditions d'utilisation de l'ONU (réutilisation libre, source citée)",
+   "octets": 1721575,
+   "page": "https://unstats.un.org/unsd/methodology/m49/overview/",
+   "sha256": "b9048114f6e7f2abda83bf03d4263c9d7cd1bd7230e3d0461025ee7839a7a1fb",
+   "telecharge_le": "2026-11-16T18:06:26+00:00",
+   "titre": "ONU, Division de statistique : nomenclature M49 des pays et régions (noms français)",
+   "url": "https://unstats.un.org/unsd/methodology/m49/overview/"
   }
  },
- "licence_sources": "Licence Ouverte 2.0 (Insee, ministère de l'Intérieur) ; CC BY 4.0 (Eurostat, OCDE)"
+ "licence_sources": "Licence Ouverte 2.0 (Insee, ministère de l'Intérieur) ; CC BY 4.0 (Eurostat, OCDE) ; CC BY 3.0 IGO (ONU)"
 }

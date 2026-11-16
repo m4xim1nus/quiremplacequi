@@ -77,7 +77,7 @@ Codes stables : ils servent dans la méthode, le pipeline et le site.
 | B3 | Vitesse comparée des vagues | Années 1920 contre années 2010. | v1 si les données de B1 suffisent |
 | B4 | Frise des discours | Le discours de l'« invasion » à chaque vague, placé sur la courbe B1, avec ce qu'est devenue la population visée. | plus tard |
 | **B5** | Ce qu'il reste d'une vague | Les descendants des vagues anciennes aujourd'hui. | **v1** |
-| C1-C7 | L'espace | Comparaisons internationales : part d'immigrés, progression, entrées par catégorie pour 10 000 habitants, asile, « prendre sa part », bosse migratoire. | **cycle 2** : C1-C5 en ligne (`/ailleurs`) ; C6-C7 plus tard |
+| C1-C7 | L'espace | Comparaisons internationales : part d'immigrés, progression, entrées par catégorie pour 10 000 habitants, asile, « prendre sa part », bosse migratoire. | **cycle 2** : C1-C5 et C7 en ligne (`/ailleurs`) ; C6 plus tard |
 | D1-D6 | La nature des migrations | Titres par motif, famille contre regroupement familial, parcours de l'asile sans double compte, réconciliation Insee ↔ ministère, frise des lois. | **cycle 2** : D1-D5 en ligne (`/arrivees`) ; D6 avec B4 |
 | **E1** | Trois générations | Part des immigrés, des descendants et des petits-enfants d'immigrés, avec les conjoints. | **v1** |
 | **E2** | Mixité conjugale | Les couples mixtes par génération. | **v1** |

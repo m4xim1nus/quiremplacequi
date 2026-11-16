@@ -26,6 +26,7 @@ LICENCES = {
     "dsed": "Licence Ouverte 2.0 (Etalab)",
     "eurostat": "CC BY 4.0 (politique de réutilisation de la Commission européenne)",
     "ocde": "CC BY 4.0 (OCDE)",
+    "onu": "CC BY 3.0 IGO (ONU, Division de la population)",
 }
 UA = {"User-Agent": "qrq-pipeline/0.1"}
 
@@ -168,12 +169,50 @@ SOURCES["ocde_population"] = {
 }
 
 
+# ONU. Le site de la Division de la population (un.org) refuse les scripts (403) : le fichier des
+# stocks de migrants est déposé à la main dans data/raw/onu/ (`manuel`), le programme en note
+# l'empreinte. Les populations (population.un.org), le PIB par habitant et la nomenclature M49 en
+# français (unstats.un.org) se téléchargent.
+SOURCES["onu_migrants"] = {
+    "famille": "onu",
+    "manuel": True,
+    "page": "https://www.un.org/development/desa/pd/content/international-migrant-stock",
+    "url": "https://www.un.org/development/desa/pd/sites/www.un.org.development.desa.pd/files/"
+    "undesa_pd_2024_ims_stock_by_sex_destination_and_origin.xlsx",
+    "titre": "ONU DESA, International Migrant Stock 2024 : migrants par pays de destination et d'origine (1990-2024)",
+}
+SOURCES["onu_population"] = {
+    "famille": "onu",
+    "page": "https://population.un.org/wpp/",
+    "url": "https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/EXCEL_FILES/"
+    "1_General/WPP2024_GEN_F01_DEMOGRAPHIC_INDICATORS_COMPACT.xlsx",
+    "nom": "WPP2024_GEN_F01_DEMOGRAPHIC_INDICATORS_COMPACT.xlsx",
+    "titre": "ONU DESA, World Population Prospects 2024 : indicateurs démographiques par pays",
+}
+SOURCES["onu_pib"] = {
+    "famille": "onu",
+    "page": "https://unstats.un.org/unsd/snaama/downloads",
+    "url": "https://unstats.un.org/unsd/amaapi/api/file/9",
+    "nom": "pib_par_habitant_usd.xlsx",
+    "titre": "ONU, Division de statistique : PIB par habitant en dollars courants, tous pays (1970-)",
+    "licence": "Conditions d'utilisation de l'ONU (réutilisation libre, source citée)",
+}
+SOURCES["onu_m49"] = {
+    "famille": "onu",
+    "page": "https://unstats.un.org/unsd/methodology/m49/overview/",
+    "url": "https://unstats.un.org/unsd/methodology/m49/overview/",
+    "nom": "m49.html",
+    "titre": "ONU, Division de statistique : nomenclature M49 des pays et régions (noms français)",
+    "licence": "Conditions d'utilisation de l'ONU (réutilisation libre, source citée)",
+}
+
+
 def famille(cle: str) -> str:
     return SOURCES[cle].get("famille", "insee")
 
 
 def licence(cle: str) -> str:
-    return LICENCES[famille(cle)]
+    return SOURCES[cle].get("licence") or LICENCES[famille(cle)]
 
 
 def fichier(raw: Path, cle: str) -> Path:
@@ -193,9 +232,16 @@ def download(raw: Path, cles: list[str] | None = None) -> None:
             src = SOURCES[cle]
             cible = fichier(raw, cle)
             cible.parent.mkdir(parents=True, exist_ok=True)
-            r = client.get(src["url"])
-            r.raise_for_status()
-            cible.write_bytes(r.content)
+            if src.get("manuel"):
+                # Déposé à la main : on n'en note que l'empreinte (et on ne le réécrit pas).
+                if not cible.exists():
+                    raise SystemExit(f"{cle} : déposer {src['url']} dans {cible}")
+                contenu = cible.read_bytes()
+            else:
+                r = client.get(src["url"])
+                r.raise_for_status()
+                contenu = r.content
+                cible.write_bytes(contenu)
             manifeste[cle] = {
                 "url": src["url"],
                 "page": src["page"],
@@ -203,9 +249,10 @@ def download(raw: Path, cles: list[str] | None = None) -> None:
                 "licence": licence(cle),
                 "fichier": str(cible.relative_to(raw)),
                 "telecharge_le": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                "octets": len(r.content),
-                "sha256": hashlib.sha256(r.content).hexdigest(),
+                "octets": len(contenu),
+                "sha256": hashlib.sha256(contenu).hexdigest(),
+                **({"depot": "manuel"} if src.get("manuel") else {}),
             }
-            print(f"{cle:20} {len(r.content):>9} o  {src['url']}")
+            print(f"{cle:20} {len(contenu):>9} o  {'(déposé) ' if src.get('manuel') else ''}{src['url']}")
     raw.mkdir(parents=True, exist_ok=True)
     manifeste_f.write_text(json.dumps(manifeste, ensure_ascii=False, indent=2, sort_keys=True))

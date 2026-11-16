@@ -20,7 +20,7 @@
   <h2>Le dépôt</h2>
   <p>
     Tout ce qui produit ce site est sur <a href={SITE.depot}>GitHub</a> : les scripts qui lisent les
-    fichiers de l’Insee, du ministère de l’Intérieur, d’Eurostat et de l’OCDE, les saisies
+    fichiers de l’Insee, du ministère de l’Intérieur, d’Eurostat, de l’OCDE et de l’ONU, les saisies
     référencées des tableaux qui n’existent qu’en PDF, les contrôles, le modèle de la piscine et ses
     paramètres. Chaque chiffre du site peut être recalculé à partir de là (voir
     <a href="/methode">Méthode</a>
@@ -47,9 +47,10 @@
     <li>Code : licence <a href={SITE.licenceCode.url}>{SITE.licenceCode.nom}</a>.</li>
     <li>
       Données sources : celles de l’Insee et du ministère de l’Intérieur, sous Licence Ouverte 2.0 ;
-      celles d’Eurostat et de l’OCDE, sous CC BY 4.0 ; les chiffres de l’enquête TeO2 (Ined-Insee)
-      sont ressaisis à partir des tableaux et figures du livre, avec une référence par cellule, sans
-      reproduire ses illustrations : à citer comme tels.
+      celles d’Eurostat et de l’OCDE, sous CC BY 4.0 ; celles de l’ONU, sous CC BY 3.0 IGO ou ses
+      conditions d’utilisation ; les chiffres de l’enquête TeO2 (Ined-Insee) sont ressaisis à partir
+      des tableaux et figures du livre, avec une référence par cellule, sans reproduire ses
+      illustrations : à citer comme tels.
     </li>
     <li>Polices : Atkinson Hyperlegible Next et Barlow Semi Condensed, licence SIL Open Font.</li>
   </ul>

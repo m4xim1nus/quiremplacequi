@@ -176,7 +176,7 @@ chiffre est retrouvé à la source primaire.
   soldes naturel et migratoire en ‰ depuis 1960 (France, Allemagne, Espagne,
   Italie) ; C3 entrées permanentes par catégorie pour 10 000 habitants (OCDE,
   moyenne sur dix ans) ; C4-C5 asile, nombre ↔ pour 10 000, et « prendre sa
-  part ». C7 (bosse migratoire) reporté : ONU inaccessible aux scripts.
+  part ». C7 (bosse migratoire) ajouté ensuite, voir plus bas.
 - [x] **Renvois** : navigation, deux portes sur l'accueil, piscine → D4,
   Méthode (section « Les arrivées et les comparaisons »), Données (licences
   par source).
@@ -188,13 +188,19 @@ chiffre est retrouvé à la source primaire.
   traitements d'incertitude, espaces insécables…).
 - [x] Revue de Max (2026-11-16) : validé ; `CHANGELOG.md` et tag `v1.1.0`.
 
+- [x] C7 après la v1.1.0 (2026-11-16) : fichier des migrants de l'ONU déposé à la
+  main par Max (le site refuse les scripts), population, PIB par habitant et noms
+  M49 par script ; bosse migratoire (158 pays, médianes par cinquième de PIB
+  par habitant) et émigration d'Afrique subsaharienne ; U24 ajoutée.
+- [ ] Revue de Max de C7, puis tag `v1.2.0`.
+
 **Livrable** : les pages C et D en ligne (v1.1.0, 2026-11-16).
 
 **Tranché en autonomie, à relire par Max** (`docs/SOURCES.md` §6) : noms des
 pages ; D6 avec B4 ; Britanniques séparés ; périodes de comparaison (asile :
 onze dernières années ; OCDE : dix ans). **Reste à Max** : la Drees comme
 source de la fourchette des irréguliers (hors liste des sources admises) ;
-une saisie manuelle de l'ONU pour C7, puisque les scripts sont refusés.
+une saisie manuelle de l'ONU pour C7 (faite : fichier déposé par Max).
 
 ## Cycle 3 : les naissances et le mot « remplacement » (pressenti)
 

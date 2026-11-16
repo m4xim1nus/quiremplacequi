@@ -2,9 +2,10 @@
   import TLCadre from '$lib/components/TLCadre.svelte';
   import TLLignes from '$lib/components/TLLignes.svelte';
   import TLBarres from '$lib/components/TLBarres.svelte';
+  import Nuage from '$lib/components/Nuage.svelte';
   import Sommaire from '$lib/components/Sommaire.svelte';
   import Detail from '$lib/components/Detail.svelte';
-  import { entier, milliers, pct, virgule } from '$lib/format';
+  import { entier, milliers, millions, pct, virgule } from '$lib/format';
   import { mediane, negatifDepuis, rangTexte } from '$lib/comparaisons';
 
   let { data } = $props();
@@ -99,6 +100,28 @@
   const [p0, p1] = $derived(data.periodeAsile);
   const nAns = $derived(p1 - p0 + 1);
 
+  // C7 : la bosse migratoire et l'émigration subsaharienne (ONU).
+  const em = $derived(data.emigration);
+  const q = $derived(em.quintiles);
+  const qMax = $derived(q.reduce((a, b) => (b.mediane > a.mediane ? b : a)));
+  const bosse = $derived(qMax !== q[0] && qMax !== q[q.length - 1]);
+  const af = $derived(em.afrique);
+  const partAbroad = $derived((100 * af.emigres) / (af.population + af.emigres));
+  const partMemeRegion = $derived((100 * af.memeRegion) / af.emigres);
+  const pctEntier = (x: number) => `${Math.round(x)} %`;
+  const dollars = (x: number) =>
+    x >= 1000 ? `${virgule(x / 1000, x >= 10000 ? 0 : 1)} k$` : `${Math.round(x)} $`;
+  const pointsNuage = $derived(
+    em.pays.map((p) => ({
+      id: p.code,
+      libelle: p.pays,
+      x: p.pib,
+      y: p.taux,
+      poids: p.population,
+      accent: p.pays === 'France'
+    }))
+  );
+
   const SOMMAIRE = $derived([
     {
       ancre: 'part',
@@ -127,6 +150,20 @@
       question: 'La France, première terre d’asile ?',
       chiffre: rangTexte(c.rangAsileRel),
       reponse: `sur ${c.nAsile} pays européens pour les demandes d’asile rapportées à la population (${p0}-${p1}), ${rangTexte(c.rangAsileAbs)} en nombre.`
+    },
+    {
+      ancre: 'bosse',
+      question: 'Les plus pauvres émigrent-ils le plus ?',
+      chiffre: bosse ? 'Non.' : `${virgule(q[0].mediane)} %`,
+      reponse: bosse
+        ? `${virgule(q[0].mediane)} % d’émigrés dans les pays les plus pauvres, ${virgule(qMax.mediane)} % dans les pays à revenu intermédiaire, ${virgule(q[q.length - 1].mediane)} % dans les plus riches (médianes, ${em.annee}).`
+        : `d’émigrés dans les pays les plus pauvres (médiane, ${em.annee}).`
+    },
+    {
+      ancre: 'afrique',
+      question: 'Une « ruée » africaine ?',
+      chiffre: pct(partAbroad),
+      reponse: `des personnes nées en Afrique subsaharienne vivent hors de leur pays en ${em.annee} ; ${pctEntier(partMemeRegion)} d’entre elles dans un autre pays d’Afrique subsaharienne.`
     }
   ]);
 </script>
@@ -415,6 +452,130 @@
           arrivés depuis 2022 relèvent pour la plupart d’un régime de protection temporaire,
           distinct de l’asile et compté à part ; seuls ceux qui ont demandé l’asile figurent dans
           ces {nAns} années de demandes.
+        </p>
+      </Detail>
+    </div>
+  </section>
+
+  <section id="bosse">
+    <div class="colonne">
+      <h2>Les plus pauvres émigrent-ils le plus ?</h2>
+      <p class="reponse">
+        {#if bosse}<strong>Non</strong> : en {em.annee}, la part d’émigrés est de {virgule(
+            q[0].mediane
+          )} % dans le cinquième des pays les plus pauvres, monte à {virgule(qMax.mediane)} % dans les
+          pays dont le PIB par habitant va de {dollars(qMax.de)} à {dollars(qMax.a)}, puis retombe à {virgule(
+            q[q.length - 1].mediane
+          )} % dans les plus riches (médianes). C’est la « bosse migratoire » : pour partir, il faut des
+          ressources.{:else}En {em.annee}, la part d’émigrés est de {virgule(q[0].mediane)} % dans le
+          cinquième des pays les plus pauvres et de {virgule(q[q.length - 1].mediane)} % dans les plus
+          riches (médianes).{/if}
+      </p>
+    </div>
+    <TLCadre
+      titre="Part d’émigrés selon le PIB par habitant, {em.annee}"
+      lecture="chaque disque est un pays ; plus il est haut, plus la part de ses natifs vivant à l’étranger est forte. Les traits épais donnent la médiane de chaque cinquième des pays, classés par PIB par habitant (échelle logarithmique). La France est en ocre."
+      source="ONU DESA, International Migrant Stock 2024 et World Population Prospects 2024 ; ONU, Division de statistique (PIB par habitant)"
+      champ="{em.pays
+        .length} pays d’au moins un million d’habitants ; part d’émigrés = émigrés / (population résidente + émigrés) ; PIB par habitant en dollars courants (U24)"
+      statut="estimations de l’ONU"
+      fichiers={['onu_pays.csv']}
+    >
+      <Nuage
+        points={pointsNuage}
+        paliers={q.map((t) => ({ de: t.de, a: t.a, y: t.mediane }))}
+        libellePaliers="Médiane de chaque cinquième des pays"
+        xFormat={dollars}
+        yFormat={(y) => `${virgule(y, 0)} %`}
+        xTicks={[300, 1000, 3000, 10000, 30000, 100000]}
+        titre="Part d’émigrés selon le PIB par habitant, {em.pays.length} pays, {em.annee}"
+        infobulle={(p) => {
+          const d = em.pays.find((x) => x.code === p.id)!;
+          return `${d.pays} : ${virgule(d.taux)} % d’émigrés (${milliers(d.emigres)}), PIB ${dollars(d.pib)} par habitant`;
+        }}
+      />
+      {#snippet tableau()}
+        <table>
+          <thead
+            ><tr><th>Cinquième</th><th>PIB par habitant</th><th>Pays</th><th>Médiane</th></tr
+            ></thead
+          >
+          <tbody>
+            {#each q as t, i (i)}
+              <tr
+                ><td>{i + 1}</td><td>{dollars(t.de)} à {dollars(t.a)}</td><td>{t.n}</td><td
+                  >{virgule(t.mediane)} %</td
+                ></tr
+              >
+            {/each}
+          </tbody>
+        </table>
+      {/snippet}
+    </TLCadre>
+    <div class="colonne">
+      <Detail>
+        <p>
+          Émigrer coûte : le voyage, les papiers, les réseaux. Les pays les plus pauvres ont moins
+          de ressources pour partir ; les plus riches, moins de raisons. Une hausse du revenu d’un
+          pays pauvre peut donc s’accompagner d’abord de plus de départs ; une photographie à une
+          date ne le prouve pas à elle seule. Les écarts entre pays tiennent aussi aux guerres, à la
+          taille et à la géographie : une médiane par tranche les lisse.
+        </p>
+      </Detail>
+    </div>
+  </section>
+
+  <section id="afrique">
+    <div class="colonne">
+      <h2>Une « ruée » africaine ?</h2>
+      <p class="reponse">
+        En {em.annee}, <strong>{pct(partAbroad)}</strong> des personnes nées en Afrique
+        subsaharienne vivent hors de leur pays de naissance, soit {millions(af.emigres)}. {partMemeRegion >
+        50
+          ? 'La plupart restent dans la région'
+          : 'Une partie reste dans la région'} : {pctEntier(partMemeRegion)} vivent dans un autre pays
+        d’Afrique subsaharienne,
+        {pctEntier((100 * af.europeAmerique) / af.emigres)} en Europe ou en Amérique du Nord, dont {milliers(
+          af.france
+        )} en France.
+      </p>
+    </div>
+    <TLCadre
+      titre="Où vivent les émigrés d’Afrique subsaharienne, {em.annee}"
+      lecture="en {em.annee}, {entier(
+        af.emigres
+      )} personnes nées en Afrique subsaharienne vivent dans un autre pays, dont {entier(
+        af.memeRegion
+      )} dans un autre pays de la région et {entier(af.france)} en France."
+      source="ONU DESA, International Migrant Stock 2024 (tableaux 1 et 2) ; World Population Prospects 2024"
+      champ="personnes nées en Afrique subsaharienne et vivant dans un autre pays que leur pays de naissance, au 1er juillet ; grandes régions des objectifs de développement durable (U24)"
+      statut="estimations de l’ONU"
+      fichiers={['onu_regions.csv']}
+    >
+      <TLBarres
+        lignes={[
+          { libelle: 'Autre pays d’Afrique subsaharienne', valeurs: [af.memeRegion] },
+          { libelle: 'Europe et Amérique du Nord', valeurs: [af.europeAmerique] },
+          { libelle: 'dont France', valeurs: [af.france] },
+          { libelle: 'Afrique du Nord et Asie de l’Ouest', valeurs: [af.nordOuest] },
+          {
+            libelle: 'Ailleurs',
+            valeurs: [af.emigres - af.memeRegion - af.europeAmerique - af.nordOuest]
+          }
+        ]}
+        cles={[{ libelle: 'Émigrés', couleur: 'var(--serie-1)' }]}
+        format={(v) => millions(v)}
+        titre="Où vivent les émigrés d’Afrique subsaharienne en {em.annee}"
+        accent={(l) => l === 'dont France'}
+      />
+    </TLCadre>
+    <div class="colonne">
+      <Detail>
+        <p>
+          Les projections démographiques ne disent pas combien partiront : ce sont des scénarios,
+          pas des prévisions, et la bosse migratoire rappelle que le départ dépend des ressources
+          autant que du nombre. Ce que l’on mesure aujourd’hui : une émigration faible rapportée à
+          la population, et surtout régionale.
         </p>
       </Detail>
     </div>

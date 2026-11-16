@@ -160,6 +160,13 @@
     définition de l’immigré est précisée sur chaque graphique (U12) ; le solde migratoire d’Eurostat
     contient un ajustement statistique (U22).
   </p>
+  <p>
+    L’émigration dans le monde vient de l’ONU : les migrants par pays d’origine et de destination
+    (International Migrant Stock 2024), la population (World Population Prospects 2024) et le PIB
+    par habitant. Le site de la Division de la population refuse les programmes : le fichier des
+    migrants y est téléchargé à la main, et le programme en note l’empreinte comme pour les autres
+    sources (U24).
+  </p>
 
   <h2>Reproduire</h2>
   <p>

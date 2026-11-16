@@ -138,3 +138,9 @@ U23:
   verifie: true
   reference: "OCDE, base « Standardised inflows of permanent-type migrants » (DSD_MIG_INT@DF_MIG_INT_PER), distincte de « Standardised inflows of temporary migrants » (DF_MIG_INT_TEMP)"
 
+U24:
+  titre: "Les émigrés du monde sont estimés"
+  detail: "L'ONU estime les migrants de chaque pays d'origine à partir des recensements et registres des pays d'accueil, de qualité et de dates inégales ; certains pays d'accueil ne publient pas le pays de naissance. Le taux d'émigration rapporte ces émigrés à la population d'origine (résidents plus émigrés), elle aussi estimée, et le PIB par habitant est en dollars courants, sans correction des prix."
+  traitement: "Médianes par tranche plutôt que pays isolés ; pays de moins d'un million d'habitants écartés"
+  verifie: true
+  reference: "ONU DESA, International Migrant Stock 2024, notes ; World Population Prospects 2024"

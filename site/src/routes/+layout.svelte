@@ -65,8 +65,9 @@
 
 <footer class="pied page">
   <p>
-    Statistique publique uniquement (Insee, Ined, ministère de l’Intérieur, Eurostat, OCDE). Calculs
-    arrêtés au {date}, reproductibles à partir des <a href="/donnees">fichiers publiés</a> et du
+    Statistique publique uniquement (Insee, Ined, ministère de l’Intérieur, Eurostat, OCDE, ONU).
+    Calculs arrêtés au {date}, reproductibles à partir des <a href="/donnees">fichiers publiés</a>
+    et du
     <a href={SITE.depot}>code</a>.
   </p>
   <p>

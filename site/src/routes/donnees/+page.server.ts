@@ -30,6 +30,9 @@ const FICHIERS: Record<string, string> = {
   'eurostat.csv':
     'Eurostat, pays européens : population, soldes naturel et migratoire (‰), pays de naissance, asile, PIB',
   'ocde.csv': 'OCDE : entrées à titre permanent par catégorie et population, 2014-2025',
+  'onu_pays.csv':
+    'ONU : émigrés, immigrés, population et PIB par habitant par pays, 2024 (noms M49 en français)',
+  'onu_regions.csv': 'ONU : où vivent les émigrés d’Afrique subsaharienne, par grande région, 2024',
   'contradicteurs.json': 'Hypothèses citées des publications discutées (note de l’OID, 2026)',
   'meta.json': 'Date de calcul et sources (URL, date de téléchargement, empreinte sha256)'
 };
@@ -39,7 +42,7 @@ export const load = () => {
     genere_le: string;
     sources: Record<
       string,
-      { titre: string; page: string; telecharge_le: string; licence?: string }
+      { titre: string; page: string; telecharge_le: string; licence?: string; depot?: string }
     >;
   };
   const fichiers = readdirSync(EXPORT)

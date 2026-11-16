@@ -209,6 +209,18 @@ def verifier(export: Path) -> tuple[bool, list[str]]:
     fx = flux.filter(pl.col("annee") == a_eo)["entrees_imm"][0]
     controle("entrées par origine : ensemble = flux.csv de la même année", fx == eo["Ensemble des immigrés"], f"{fx} et {eo['Ensemble des immigrés']}")
 
+    # ONU : les huit grandes régions de destination font le total des émigrés d'Afrique
+    # subsaharienne ; les pays ont presque tous émigrés, population et PIB par habitant.
+    reg = pl.read_csv(export / "onu_regions.csv")
+    rr = dict(reg.select("destination", "migrants").rows())
+    somme = reg.filter(pl.col("code_destination").is_in([1829, 1830, 1831, 1832, 1833, 1834, 1835, 1836]))["migrants"].sum()
+    controle("onu : Σ régions de destination = émigrés d'Afrique subsaharienne", somme == rr["Monde"], f"{somme} et {rr['Monde']}")
+    op = pl.read_csv(export / "onu_pays.csv")
+    complets = op.filter(pl.col("population") >= 1_000_000).drop_nulls(["emigres", "pib_hab_usd"])
+    controle("onu : au moins 150 pays d'un million d'habitants complets", len(complets) >= 150, f"{len(complets)} pays")
+    fr_onu = op.filter(pl.col("code") == 250)
+    controle("témoin onu France 2024 : 9 186 757 migrants (définition large)", fr_onu["immigres"][0] == 9_186_757, f"{fr_onu['immigres'][0]}")
+
     # Témoins lus dans les sources (docs/spike/insee.md).
     temoins = {
         ("b1_stock", 2025, "immigres"): 7_970_000,

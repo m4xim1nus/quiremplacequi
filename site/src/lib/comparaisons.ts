@@ -73,3 +73,21 @@ export const DU_MOTIF: Record<Motif, string> = {
   humanitaire: 'de la protection',
   divers: 'des autres motifs'
 };
+
+/**
+ * Tranches d'effectifs égaux selon `x` (quintiles pour k = 5) et médiane de `y` dans chacune.
+ * Les points sont triés par `x` ; une tranche va du plus petit au plus grand `x` qu'elle contient.
+ */
+export function tranchesMedianes<T>(
+  points: T[],
+  x: (p: T) => number,
+  y: (p: T) => number,
+  k: number
+): { de: number; a: number; mediane: number; n: number }[] {
+  const tri = [...points].sort((a, b) => x(a) - x(b));
+  const n = tri.length;
+  return Array.from({ length: k }, (_, i) => {
+    const g = tri.slice(Math.floor((i * n) / k), Math.floor(((i + 1) * n) / k));
+    return { de: x(g[0]), a: x(g[g.length - 1]), mediane: mediane(g.map(y)), n: g.length };
+  });
+}

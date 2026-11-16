@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { csvParse } from 'd3-dsv';
 import { EXPORT, incertitudes } from './donnees';
-import { pour10000 } from '$lib/comparaisons';
+import { pour10000, tranchesMedianes } from '$lib/comparaisons';
 
 const csv = (f: string) => csvParse(readFileSync(resolve(EXPORT, f), 'utf8'));
 const num = (v: string | undefined) => (v === undefined || v === '' ? null : Number(v));
@@ -171,6 +171,31 @@ export function ailleurs() {
     })
     .filter((x) => x !== null);
 
+  // C7 : taux d'émigration (ONU) = émigrés / (population résidente + émigrés), pays d'au moins un
+  // million d'habitants qui publient émigrés et PIB par habitant ; médianes par quintile de PIB.
+  const onu = csv('onu_pays.csv')
+    .map((r) => ({
+      code: r.code!,
+      pays: r.pays!,
+      sousRegion: r.sous_region!,
+      emigres: num(r.emigres),
+      population: num(r.population)!,
+      pib: num(r.pib_hab_usd),
+      anneePib: num(r.annee_pib)
+    }))
+    .filter((r) => r.population >= 1e6 && r.emigres !== null && r.pib !== null)
+    .map((r) => ({ ...r, taux: (100 * r.emigres!) / (r.population + r.emigres!) }));
+  const anOnu = num(csv('onu_pays.csv')[0].annee)!;
+  const quintiles = tranchesMedianes(
+    onu,
+    (p) => p.pib!,
+    (p) => p.taux,
+    5
+  );
+  const reg = Object.fromEntries(
+    csv('onu_regions.csv').map((r) => [r.destination!, num(r.migrants)!])
+  );
+
   // Part des immigrés selon l'Insee (définition française), même année si publiée.
   const stock = csv('b1_stock.csv');
   const insee = stock.find((r) => num(r.annee) === anNaiss) ?? stock.at(-1)!;
@@ -190,6 +215,29 @@ export function ailleurs() {
     entrees,
     periodeEntrees: [ocPeriode[0], ocFin] as [number, number],
     categories: CATS,
-    incertitudes: ['U12', 'U22', 'U23'].filter((c) => u[c]).map((code) => ({ code, ...u[code] }))
+    emigration: {
+      annee: anOnu,
+      pays: onu.map((p) => ({
+        code: p.code,
+        pays: p.pays,
+        afriqueSub: p.sousRegion === 'Afrique subsaharienne',
+        taux: p.taux,
+        pib: p.pib!,
+        population: p.population,
+        emigres: p.emigres!
+      })),
+      quintiles,
+      afrique: {
+        emigres: reg['Monde'],
+        population: reg['population résidente'],
+        memeRegion: reg['Afrique subsaharienne'],
+        nordOuest: reg["Afrique du Nord et Asie de l'Ouest"],
+        europeAmerique: reg['Europe et Amérique du Nord'],
+        france: reg['dont France']
+      }
+    },
+    incertitudes: ['U12', 'U22', 'U23', 'U24']
+      .filter((c) => u[c])
+      .map((code) => ({ code, ...u[code] }))
   };
 }

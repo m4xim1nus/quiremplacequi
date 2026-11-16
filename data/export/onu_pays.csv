@@ -1,0 +1,236 @@
+code,pays,iso3,region,sous_region,emigres,immigres,population,pib_hab_usd,annee_pib,annee
+4,Afghanistan,AFG,Asie,Asie méridionale,7528994,98110,42647492,429,2024,2024
+8,Albanie,ALB,Europe,Europe méridionale,1216628,46377,2791765,9685,2024,2024
+12,Algérie,DZA,Afrique,Afrique septentrionale,1780399,259458,46814308,5703,2024,2024
+16,Samoa américaines,ASM,Océanie,Polynésie,3362,23684,46765,,,2024
+20,Andorre,AND,Europe,Europe méridionale,1982,48408,81938,49304,2024,2024
+24,Angola,AGO,Afrique,Afrique subsaharienne,616967,676507,37885849,3092,2024,2024
+28,Antigua-et-Barbuda,ATG,Amériques,Amérique latine et Caraïbes,13111,30473,93772,23060,2024,2024
+31,Azerbaïdjan,AZE,Asie,Asie occidentale,810116,218460,10336577,7190,2024,2024
+32,Argentine,ARG,Amériques,Amérique latine et Caraïbes,1183381,1958039,45696159,13970,2024,2024
+36,Australie,AUS,Océanie,Australie et Nouvelle-Zélande,430718,8111404,26713205,68528,2024,2024
+40,Autriche,AUT,Europe,Europe occidentale,430560,2327064,9120813,58634,2024,2024
+44,Bahamas,BHS,Amériques,Amérique latine et Caraïbes,2174,67285,401283,39455,2024,2024
+48,Bahreïn,BHR,Asie,Asie occidentale,57160,840202,1607049,29314,2024,2024
+50,Bangladesh,BGD,Asie,Asie méridionale,8706947,2906338,173562364,2493,2024,2024
+51,Arménie,ARM,Asie,Asie occidentale,637604,274645,2973840,8728,2024,2024
+52,Barbade,BRB,Amériques,Amérique latine et Caraïbes,19558,35187,282467,26897,2024,2024
+56,Belgique,BEL,Europe,Europe occidentale,521884,2349032,11738763,56613,2024,2024
+60,Bermudes,BMU,Amériques,Amérique septentrionale,1100,20171,64636,136766,2024,2024
+64,Bhoutan,BTN,Asie,Asie méridionale,66145,55705,791524,4228,2024,2024
+68,Bolivie (État plurinational de),BOL,Amériques,Amérique latine et Caraïbes,783473,183234,12413315,3756,2024,2024
+70,Bosnie-Herzégovine,BIH,Europe,Europe méridionale,1608324,34120,3164253,9632,2024,2024
+72,Botswana,BWA,Afrique,Afrique subsaharienne,16731,116402,2521139,7695,2024,2024
+76,Brésil,BRA,Amériques,Amérique latine et Caraïbes,2194325,1406299,211998573,10311,2024,2024
+84,Belize,BLZ,Amériques,Amérique latine et Caraïbes,7383,68706,417072,7681,2024,2024
+90,Îles Salomon,SLB,Océanie,Mélanésie,8352,2469,819198,1934,2024,2024
+92,Îles Vierges britanniques,VGB,Amériques,Amérique latine et Caraïbes,6185,24520,39471,46358,2024,2024
+96,Brunéi Darussalam,BRN,Asie,Asie du Sud-Est,46552,119933,462721,33418,2024,2024
+100,Bulgarie,BGR,Europe,Europe orientale,1252234,299100,6757689,16773,2024,2024
+104,Myanmar,MMR,Asie,Asie du Sud-Est,4320462,79052,54500091,1189,2024,2024
+108,Burundi,BDI,Afrique,Afrique subsaharienne,576530,387101,14047786,315,2024,2024
+112,Bélarus,BLR,Europe,Europe orientale,790232,1054604,9056696,8387,2024,2024
+116,Cambodge,KHM,Asie,Asie du Sud-Est,778793,83925,17638801,2603,2024,2024
+120,Cameroun,CMR,Afrique,Afrique subsaharienne,409677,642948,29123744,1830,2024,2024
+124,Canada,CAN,Amériques,Amérique septentrionale,1347381,8805839,39742430,57120,2024,2024
+132,Cabo Verde,CPV,Afrique,Afrique subsaharienne,146396,16515,524877,5273,2024,2024
+136,Îles Caïmanes,CYM,Amériques,Amérique latine et Caraïbes,609,31935,74457,102833,2024,2024
+140,République centrafricaine,CAF,Afrique,Afrique subsaharienne,905808,94556,5330690,516,2024,2024
+144,Sri Lanka,LKA,Asie,Asie méridionale,1492103,40698,23103565,4273,2024,2024
+148,Tchad,TCD,Afrique,Afrique subsaharienne,292298,1269673,20299123,981,2024,2024
+152,Chili,CHL,Amériques,Amérique latine et Caraïbes,444451,1538324,19764771,16710,2024,2024
+156,Chine,CHN,Asie,Asie orientale,11701619,1638718,1419321278,13206,2024,2024
+170,Colombie,COL,Amériques,Amérique latine et Caraïbes,3652238,3063518,52886363,7914,2024,2024
+174,Comores,COM,Afrique,Afrique subsaharienne,367574,12449,866628,1808,2024,2024
+175,Mayotte,MYT,Afrique,Afrique subsaharienne,6960,143528,326505,,,2024
+178,Congo,COG,Afrique,Afrique subsaharienne,231080,385589,6332961,2592,2024,2024
+180,République démocratique du Congo,COD,Afrique,Afrique subsaharienne,2097387,1085090,109276265,689,2024,2024
+184,Îles Cook,COK,Océanie,Polynésie,20288,4937,13729,30161,2024,2024
+188,Costa Rica,CRI,Amériques,Amérique latine et Caraïbes,50982,628404,5129910,18587,2024,2024
+191,Croatie,HRV,Europe,Europe méridionale,826166,527831,3875325,23911,2024,2024
+192,Cuba,CUB,Amériques,Amérique latine et Caraïbes,1879613,2144,10979783,22957,2024,2024
+196,Chypre,CYP,Asie,Asie occidentale,80760,202062,1358282,40476,2024,2024
+203,Tchéquie,CZE,Europe,Europe orientale,583214,1025199,10735859,32139,2024,2024
+204,Bénin,BEN,Afrique,Afrique subsaharienne,726530,418202,14462724,1485,2024,2024
+208,Danemark,DNK,Europe,Europe septentrionale,124665,847475,5977412,71021,2024,2024
+212,Dominique,DMA,Amériques,Amérique latine et Caraïbes,21384,8440,66205,10405,2024,2024
+214,République dominicaine,DOM,Amériques,Amérique latine et Caraïbes,1917153,738667,11427557,10876,2024,2024
+218,Équateur,ECU,Amériques,Amérique latine et Caraïbes,1243065,747749,18135478,6875,2024,2024
+222,El Salvador,SLV,Amériques,Amérique latine et Caraïbes,1834670,43342,6338193,5580,2024,2024
+226,Guinée équatoriale,GNQ,Afrique,Afrique subsaharienne,136825,248930,1892516,6493,2024,2024
+231,Éthiopie,ETH,Afrique,Afrique subsaharienne,1240645,1168455,132059767,1077,2024,2024
+232,Érythrée,ERI,Afrique,Afrique subsaharienne,912792,12512,3535603,542,2024,2024
+233,Estonie,EST,Europe,Europe septentrionale,124216,203046,1360546,31432,2024,2024
+234,Îles Féroé,FRO,Europe,Europe septentrionale,12282,8101,55400,,,2024
+238,Îles Falkland (Malvinas),FLK,Amériques,Amérique latine et Caraïbes,93,2333,3470,,,2024
+242,Fidji,FJI,Océanie,Mélanésie,181025,14362,928784,6426,2024,2024
+246,Finlande,FIN,Europe,Europe septentrionale,181834,514432,5617310,53174,2024,2024
+250,France,FRA,Europe,Europe occidentale,2547158,9186757,66548530,45950,2024,2024
+254,Guyane française,GUF,Amériques,Amérique latine et Caraïbes,4490,130924,308522,,,2024
+258,Polynésie française,PYF,Océanie,Polynésie,2008,30099,281807,22438,2024,2024
+262,Djibouti,DJI,Afrique,Afrique subsaharienne,3576,125996,1168722,3553,2024,2024
+266,Gabon,GAB,Afrique,Afrique subsaharienne,61160,449746,2538952,8219,2024,2024
+268,Géorgie,GEO,Asie,Asie occidentale,496486,81582,3807670,8980,2024,2024
+270,Gambie,GMB,Afrique,Afrique subsaharienne,72452,236137,2759988,859,2024,2024
+275,État de Palestine,PSE,Asie,Asie occidentale,4233248,272481,5495443,2915,2024,2024
+276,Allemagne,DEU,Europe,Europe occidentale,4297233,16750084,84552242,55113,2024,2024
+288,Ghana,GHA,Afrique,Afrique subsaharienne,1055494,532286,34427414,2409,2024,2024
+292,Gibraltar,GIB,Europe,Europe méridionale,474,11291,39329,,,2024
+296,Kiribati,KIR,Océanie,Micronésie,6306,3302,134518,2550,2024,2024
+300,Grèce,GRC,Europe,Europe méridionale,780112,1423964,10047817,25592,2024,2024
+304,Groenland,GRL,Amériques,Amérique septentrionale,18491,5812,55840,62078,2024,2024
+308,Grenade,GRD,Amériques,Amérique latine et Caraïbes,26300,7340,117207,11705,2024,2024
+312,Guadeloupe,GLP,Amériques,Amérique latine et Caraïbes,12374,89610,375106,,,2024
+316,Guam,GUM,Océanie,Micronésie,1179,84159,167777,,,2024
+320,Guatemala,GTM,Amériques,Amérique latine et Caraïbes,1460232,92732,18406359,6150,2024,2024
+324,Guinée,GIN,Afrique,Afrique subsaharienne,508203,117416,14754785,2471,2024,2024
+328,Guyana,GUY,Amériques,Amérique latine et Caraïbes,469649,54175,831087,29670,2024,2024
+332,Haïti,HTI,Amériques,Amérique latine et Caraïbes,2017692,19581,11772557,2150,2024,2024
+336,Saint-Siège,VAT,Europe,Europe méridionale,313,496,496,,,2024
+340,Honduras,HND,Amériques,Amérique latine et Caraïbes,1397584,39901,10825703,3426,2024,2024
+344,"Chine, région administrative spéciale de Hong Kong",HKG,Asie,Asie orientale,1240250,3063318,7414909,54871,2024,2024
+348,Hongrie,HUN,Europe,Europe orientale,538794,689565,9676135,23037,2024,2024
+352,Islande,ISL,Europe,Europe septentrionale,23326,98818,393396,84450,2024,2024
+356,Inde,IND,Asie,Asie méridionale,18533845,4796255,1450935791,2724,2024,2024
+360,Indonésie,IDN,Asie,Asie du Sud-Est,3745148,445726,283487931,4925,2024,2024
+364,Iran (République islamique d’),IRN,Asie,Asie méridionale,1733468,3840654,91567738,4894,2024,2024
+368,Iraq,IRQ,Asie,Asie occidentale,2313028,370980,46042015,6074,2024,2024
+372,Irlande,IRL,Europe,Europe septentrionale,714405,1216237,5255017,109874,2024,2024
+376,Israël,ISR,Asie,Asie occidentale,324804,2091569,9387021,57770,2024,2024
+380,Italie,ITA,Europe,Europe méridionale,2941444,6553671,59342867,40120,2024,2024
+384,Côte d’Ivoire,CIV,Afrique,Afrique subsaharienne,1211422,2880839,31934230,2690,2024,2024
+388,Jamaïque,JAM,Amériques,Amérique latine et Caraïbes,1248512,24007,2839175,7754,2024,2024
+392,Japon,JPN,Asie,Asie orientale,1008173,3409529,123753041,32534,2024,2024
+398,Kazakhstan,KAZ,Asie,Asie centrale,2796572,2089797,20592571,14155,2024,2024
+400,Jordanie,JOR,Asie,Asie occidentale,659204,5280168,11552876,4618,2024,2024
+404,Kenya,KEN,Afrique,Afrique subsaharienne,540466,992536,56432944,2132,2024,2024
+408,République populaire démocratique de Corée,PRK,Asie,Asie orientale,46379,50439,26498823,667,2024,2024
+410,République de Corée,KOR,Asie,Asie orientale,2030473,1811507,51717590,36262,2024,2024
+414,Koweït,KWT,Asie,Asie occidentale,167850,3323191,4934507,32471,2024,2024
+417,Kirghizistan,KGZ,Asie,Asie centrale,540573,194816,7186009,2432,2024,2024
+418,République démocratique populaire lao,LAO,Asie,Asie du Sud-Est,660258,51446,7769819,2076,2024,2024
+422,Liban,LBN,Asie,Asie occidentale,681720,1422583,5805962,6543,2024,2024
+426,Lesotho,LSO,Afrique,Afrique subsaharienne,246938,15039,2337423,1023,2024,2024
+428,Lettonie,LVA,Europe,Europe septentrionale,161014,220471,1871871,23337,2024,2024
+430,Libéria,LBR,Afrique,Afrique subsaharienne,145919,72423,5612817,936,2024,2024
+434,Libye,LBY,Afrique,Afrique septentrionale,156874,897751,7381023,6569,2024,2024
+438,Liechtenstein,LIE,Europe,Europe occidentale,346,27669,39870,216392,2024,2024
+440,Lituanie,LTU,Europe,Europe septentrionale,459268,175194,2859110,29684,2024,2024
+442,Luxembourg,LUX,Europe,Europe occidentale,61859,344309,673036,138596,2024,2024
+446,"Chine, région administrative spéciale de Macao",MAC,Asie,Asie orientale,149247,426862,720262,68680,2024,2024
+450,Madagascar,MDG,Afrique,Afrique subsaharienne,212455,38625,31964956,545,2024,2024
+454,Malawi,MWI,Afrique,Afrique subsaharienne,427573,186719,21655286,542,2024,2024
+458,Malaisie,MYS,Asie,Asie du Sud-Est,2433875,3806514,35557673,11867,2024,2024
+462,Maldives,MDV,Asie,Asie méridionale,2773,75099,527799,13379,2024,2024
+466,Mali,MLI,Afrique,Afrique subsaharienne,1292519,545323,24478595,1086,2024,2024
+470,Malte,MLT,Europe,Europe méridionale,43940,199466,539607,46386,2024,2024
+474,Martinique,MTQ,Amériques,Amérique latine et Caraïbes,12893,68187,343195,,,2024
+478,Mauritanie,MRT,Afrique,Afrique subsaharienne,91705,195937,5169395,2111,2024,2024
+480,Maurice,MUS,Afrique,Afrique subsaharienne,114314,29142,1271169,11763,2024,2024
+484,Mexique,MEX,Amériques,Amérique latine et Caraïbes,11596529,1726089,130861007,14158,2024,2024
+492,Monaco,MCO,Europe,Europe occidentale,36682,27106,38631,288002,2024,2024
+496,Mongolie,MNG,Asie,Asie orientale,175596,22589,3475540,6786,2024,2024
+498,République de Moldova,MDA,Europe,Europe orientale,864257,188207,3034961,5997,2024,2024
+499,Monténégro,MNE,Europe,Europe méridionale,90678,92237,638479,12959,2024,2024
+500,Montserrat,MSR,Amériques,Amérique latine et Caraïbes,3341,1402,4389,18451,2024,2024
+504,Maroc,MAR,Afrique,Afrique septentrionale,3627829,111069,38081173,4217,2024,2024
+508,Mozambique,MOZ,Afrique,Afrique subsaharienne,702796,353143,34631766,657,2024,2024
+512,Oman,OMN,Asie,Asie occidentale,17095,2283366,5281538,20285,2024,2024
+516,Namibie,NAM,Afrique,Afrique subsaharienne,40371,116035,3030131,4413,2024,2024
+520,Naoero,NRU,Océanie,Micronésie,2484,2548,11947,15645,2024,2024
+524,Népal,NPL,Asie,Asie méridionale,2637195,470719,29651054,1440,2024,2024
+528,Pays-Bas (Royaume des),NLD,Europe,Europe occidentale,631391,2956518,18228742,66649,2024,2024
+531,Curaçao,CUW,Amériques,Amérique latine et Caraïbes,10103,80020,185482,19200,2024,2024
+533,Aruba,ABW,Amériques,Amérique latine et Caraïbes,29305,73494,108066,38791,2024,2024
+534,Saint-Martin (partie néerlandaise),SXM,Amériques,Amérique latine et Caraïbes,2464,30148,43350,38515,2024,2024
+535,"Bonaire, Saint-Eustache et Saba",BES,Amériques,Amérique latine et Caraïbes,4744,30676,30675,,,2024
+540,Nouvelle-Calédonie,NCL,Océanie,Mélanésie,5082,76738,292639,29213,2024,2024
+548,Vanuatu,VUT,Océanie,Mélanésie,15202,3315,327777,3332,2024,2024
+554,Nouvelle-Zélande,NZL,Océanie,Australie et Nouvelle-Zélande,679772,1467989,5213944,49899,2024,2024
+558,Nicaragua,NIC,Amériques,Amérique latine et Caraïbes,905251,43757,6916140,2848,2024,2024
+562,Niger,NER,Afrique,Afrique subsaharienne,439378,449236,27032412,647,2024,2024
+566,Nigéria,NGA,Afrique,Afrique subsaharienne,2094265,1403281,232679478,1083,2024,2024
+570,Nioué,NIU,Océanie,Polynésie,4955,588,1819,,,2024
+578,Norvège,NOR,Europe,Europe septentrionale,120891,1012404,5576660,86717,2024,2024
+580,Îles Mariannes du Nord,MNP,Océanie,Micronésie,2779,22000,44278,,,2024
+583,Micronésie (États fédérés de),FSM,Océanie,Micronésie,13568,2894,113160,4166,2024,2024
+584,Îles Marshall,MHL,Océanie,Micronésie,400,3309,37548,7491,2024,2024
+585,Palaos,PLW,Océanie,Micronésie,2674,5212,17695,17513,2024,2024
+586,Pakistan,PAK,Asie,Asie méridionale,6915057,4175958,251269164,1509,2024,2024
+591,Panama,PAN,Amériques,Amérique latine et Caraïbes,194816,477749,4515577,19103,2024,2024
+598,Papouasie-Nouvelle-Guinée,PNG,Océanie,Mélanésie,35050,31171,10576502,3050,2024,2024
+600,Paraguay,PRY,Amériques,Amérique latine et Caraïbes,746362,180837,6929153,6457,2024,2024
+604,Pérou,PER,Amériques,Amérique latine et Caraïbes,1672482,1837219,34217848,8456,2024,2024
+608,Philippines,PHL,Asie,Asie du Sud-Est,6988383,87212,115843670,3985,2024,2024
+616,Pologne,POL,Europe,Europe orientale,4572613,1739901,38539201,23734,2024,2024
+620,Portugal,PRT,Europe,Europe méridionale,1799179,1127184,10425292,30049,2024,2024
+624,Guinée-Bissau,GNB,Afrique,Afrique subsaharienne,103999,15064,2201352,912,2024,2024
+626,Timor-Leste,TLS,Asie,Asie du Sud-Est,109613,8303,1400638,1332,2024,2024
+630,Porto Rico,PRI,Amériques,Amérique latine et Caraïbes,1948223,223323,3242204,38814,2024,2024
+634,Qatar,QAT,Asie,Asie occidentale,19821,2337000,3048423,71894,2024,2024
+638,Réunion,REU,Afrique,Afrique subsaharienne,2357,135534,878591,,,2024
+642,Roumanie,ROU,Europe,Europe orientale,4583819,655579,19015088,20130,2024,2024
+643,Fédération de Russie,RUS,Europe,Europe orientale,9134094,7605774,144820423,15007,2024,2024
+646,Rwanda,RWA,Afrique,Afrique subsaharienne,539046,513316,14256567,1060,2024,2024
+652,Saint-Barthélemy,BLM,Amériques,Amérique latine et Caraïbes,,0,11258,,,2024
+654,Sainte-Hélène,SHN,Afrique,Afrique subsaharienne,591,492,5237,,,2024
+659,Saint-Kitts-et-Nevis,KNA,Amériques,Amérique latine et Caraïbes,13872,7958,46843,23961,2024,2024
+660,Anguilla,AIA,Amériques,Amérique latine et Caraïbes,1614,5918,14598,31269,2024,2024
+662,Sainte-Lucie,LCA,Amériques,Amérique latine et Caraïbes,21706,8079,179744,14323,2024,2024
+663,Saint-Martin (partie française),MAF,Amériques,Amérique latine et Caraïbes,,0,26129,,,2024
+666,Saint-Pierre-et-Miquelon,SPM,Amériques,Amérique septentrionale,156,1008,5628,,,2024
+670,Saint-Vincent-et-les Grenadines,VCT,Amériques,Amérique latine et Caraïbes,35264,4820,100616,11294,2024,2024
+674,Saint-Marin,SMR,Europe,Europe méridionale,1991,5838,33581,62013,2024,2024
+678,Sao Tomé-et-Principe,STP,Afrique,Afrique subsaharienne,41433,1955,235536,3517,2024,2024
+682,Arabie saoudite,SAU,Asie,Asie occidentale,236699,13683841,33962757,36927,2024,2024
+686,Sénégal,SEN,Afrique,Afrique subsaharienne,741357,281867,18501984,1984,2024,2024
+688,Serbie,SRB,Europe,Europe méridionale,963307,712550,6736216,13223,2024,2024
+690,Seychelles,SYC,Afrique,Afrique subsaharienne,22191,13261,130418,16576,2024,2024
+694,Sierra Leone,SLE,Afrique,Afrique subsaharienne,63631,49997,8642022,786,2024,2024
+702,Singapour,SGP,Asie,Asie du Sud-Est,269613,2841665,5832387,93853,2024,2024
+703,Slovaquie,SVK,Europe,Europe orientale,389909,323991,5506760,25746,2024,2024
+704,Viet Nam,VNM,Asie,Asie du Sud-Est,3693537,326418,100987686,4717,2024,2024
+705,Slovénie,SVN,Europe,Europe méridionale,78808,315122,2118697,34212,2024,2024
+706,Somalie,SOM,Afrique,Afrique subsaharienne,1935594,77972,19009151,629,2024,2024
+710,Afrique du Sud,ZAF,Afrique,Afrique subsaharienne,1005800,2631100,64007187,6267,2024,2024
+716,Zimbabwe,ZWE,Afrique,Afrique subsaharienne,1519324,429108,16634373,2748,2024,2024
+724,Espagne,ESP,Europe,Europe méridionale,1623550,8870527,47910526,35958,2024,2024
+728,Soudan du Sud,SSD,Afrique,Afrique subsaharienne,3168836,914001,11943408,295,2024,2024
+729,Soudan,SDN,Afrique,Afrique septentrionale,3786603,2397113,50448963,507,2024,2024
+732,Sahara occidental,ESH,Afrique,Afrique septentrionale,202107,5628,590506,,,2024
+740,Suriname,SUR,Amériques,Amérique latine et Caraïbes,258026,51902,634431,6990,2024,2024
+748,Eswatini,SWZ,Afrique,Afrique subsaharienne,11561,33268,1242822,3981,2024,2024
+752,Suède,SWE,Europe,Europe septentrionale,223508,2272158,10606999,57028,2024,2024
+756,Suisse,CHE,Europe,Europe occidentale,512547,2773840,8921981,104973,2024,2024
+760,République arabe syrienne,SYR,Asie,Asie occidentale,8927523,896042,24672760,699,2024,2024
+762,Tadjikistan,TJK,Asie,Asie centrale,514478,276777,10590927,1317,2024,2024
+764,Thaïlande,THA,Asie,Asie du Sud-Est,1178757,3179399,71668011,7347,2024,2024
+768,Togo,TGO,Afrique,Afrique subsaharienne,584790,281994,9515236,1068,2024,2024
+772,Tokélaou,TKL,Océanie,Polynésie,688,1282,2506,,,2024
+776,Tonga,TON,Océanie,Polynésie,53237,3581,104175,6218,2024,2024
+780,Trinité-et-Tobago,TTO,Amériques,Amérique latine et Caraïbes,323630,113478,1507782,17001,2024,2024
+784,Émirats arabes unis,ARE,Asie,Asie occidentale,166074,8157000,11027129,50088,2024,2024
+788,Tunisie,TUN,Afrique,Afrique septentrionale,715249,63201,12277109,4357,2024,2024
+792,Türkiye,TUR,Asie,Asie occidentale,3130337,7083501,87473805,15127,2024,2024
+795,Turkménistan,TKM,Asie,Asie centrale,365787,193763,7494498,9161,2024,2024
+796,Îles Turques-et-Caïques,TCA,Amériques,Amérique latine et Caraïbes,2663,28455,46535,37760,2024,2024
+798,Tuvalu,TUV,Océanie,Polynésie,1239,246,9646,5851,2024,2024
+800,Ouganda,UGA,Afrique,Afrique subsaharienne,578034,2057759,50015092,1127,2024,2024
+804,Ukraine,UKR,Europe,Europe orientale,9769216,5064173,37860221,5038,2024,2024
+807,Macédoine du Nord,MKD,Europe,Europe méridionale,534616,150902,1823009,9299,2024,2024
+818,Égypte,EGY,Afrique,Afrique septentrionale,4820002,1139820,116538258,2634,2024,2024
+826,Royaume-Uni de Grande-Bretagne et d’Irlande du Nord,GBR,Europe,Europe septentrionale,4804944,11845479,69138192,53312,2024,2024
+831,Guernesey,GGY,Europe,Europe septentrionale,,,64280,,,2024
+832,Jersey,JEY,Europe,Europe septentrionale,,,103846,,,2024
+833,Île de Man,IMN,Europe,Europe septentrionale,908,43693,84160,,,2024
+834,République-Unie de Tanzanie,TZA,Afrique,Afrique subsaharienne,225017,462371,68560157,,,2024
+840,États-Unis d’Amérique,USA,Amériques,Amérique septentrionale,3186999,52375047,345426571,84817,2024,2024
+850,Îles Vierges américaines,VIR,Amériques,Amérique latine et Caraïbes,4047,56779,84905,,,2024
+854,Burkina Faso,BFA,Afrique,Afrique subsaharienne,2050050,739820,23548781,987,2024,2024
+858,Uruguay,URY,Amériques,Amérique latine et Caraïbes,263285,160064,3386588,23907,2024,2024
+860,Ouzbékistan,UZB,Asie,Asie centrale,2114480,1154963,36361859,3162,2024,2024
+862,Venezuela (République bolivarienne du),VEN,Amériques,Amérique latine et Caraïbes,8328514,1263304,28405543,5298,2024,2024
+876,Îles Wallis-et-Futuna,WLF,Océanie,Polynésie,12822,2032,11277,,,2024
+882,Samoa,WSM,Océanie,Polynésie,119313,3843,218019,5749,2024,2024
+887,Yémen,YEM,Asie,Asie occidentale,2480734,392997,40583164,352,2024,2024
+894,Zambie,ZMB,Afrique,Afrique subsaharienne,122793,249205,21314956,1187,2024,2024

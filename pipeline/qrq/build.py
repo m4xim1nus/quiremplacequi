@@ -9,7 +9,7 @@ from pathlib import Path
 import polars as pl
 import yaml
 
-from . import bilan, cohortes, europe, flux, ip1910, naissances, piscine, stock, teo2, titres
+from . import bilan, cohortes, europe, flux, ip1910, naissances, onu, piscine, stock, teo2, titres
 from .sources import SOURCES, licence
 
 REFERENTIELS = Path(__file__).resolve().parents[1] / "referentiels"
@@ -69,6 +69,7 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     tables["eurostat"] = europe.lire_eurostat(raw)
     tables["ocde"] = europe.lire_ocde(raw)
     tables["entrees_origine"] = flux.lire_entrees_origine(raw)
+    tables["onu_pays"], tables["onu_regions"] = onu.lire_onu(raw)
 
     if export.exists():
         shutil.rmtree(export)
@@ -96,7 +97,7 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     meta = {
         "genere_le": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "sources": {k: manifeste[k] | {"titre": SOURCES[k]["titre"], "licence": licence(k)} for k in SOURCES},
-        "licence_sources": "Licence Ouverte 2.0 (Insee, ministère de l'Intérieur) ; CC BY 4.0 (Eurostat, OCDE)",
+        "licence_sources": "Licence Ouverte 2.0 (Insee, ministère de l'Intérieur) ; CC BY 4.0 (Eurostat, OCDE) ; CC BY 3.0 IGO (ONU)",
     }
     (export / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1))
     print(f"export : {len(list(export.iterdir()))} fichiers dans {export}")

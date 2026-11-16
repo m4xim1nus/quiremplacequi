@@ -19,4 +19,4 @@ test -f build/piscine.html && test -f build/temps-long.html && test -f build/gen
 test -f build/limites.html && test -f build/methode.html && test -f build/donnees.html
 test -f build/donnees/piscine.csv && test -f build/donnees/teo2.csv
 test -f build/a-propos.html && test -f build/partage.png
-test -f build/arrivees.html && test -f build/ailleurs.html && test -f build/donnees/titres.csv && test -f build/donnees/eurostat.csv
+test -f build/arrivees.html && test -f build/ailleurs.html && test -f build/donnees/titres.csv && test -f build/donnees/eurostat.csv && test -f build/donnees/onu_pays.csv

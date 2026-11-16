@@ -8,7 +8,8 @@ import {
   mediane,
   negatifDepuis,
   pour10000,
-  rangTexte
+  rangTexte,
+  tranchesMedianes
 } from './comparaisons';
 
 const csv = (f: string) =>
@@ -40,6 +41,21 @@ describe('comparaisons', () => {
     expect(negatifDepuis(p([1, 2]))).toBeNull();
     expect(mediane([3, 1, 2])).toBe(2);
     expect(mediane([4, 1, 2, 3])).toBe(2.5);
+  });
+
+  it('médianes par tranches d’effectifs égaux', () => {
+    const pts = [1, 2, 3, 4, 5, 6].map((v) => ({ v, y: v * 10 }));
+    const t = tranchesMedianes(
+      pts,
+      (p) => p.v,
+      (p) => p.y,
+      3
+    );
+    expect(t.map((x) => [x.de, x.a, x.mediane, x.n])).toEqual([
+      [1, 2, 15, 2],
+      [3, 4, 35, 2],
+      [5, 6, 55, 2]
+    ]);
   });
 
   it('titres de séjour : témoin 2024 et somme des motifs', () => {
