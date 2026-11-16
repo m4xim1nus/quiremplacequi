@@ -40,7 +40,7 @@ niveaux, le focus clavier et les codes d'incertitude. Aucun rouge.
 | `--reglure` | `#ccd4d8` | `#2b363d` | filets, cadres |
 | `--repere` | `#c08a12` | `#e3ad3a` | niveaux, focus, codes U (marques, pas de texte) |
 | `--repere-texte` | `#865f05` | `#e8b84f` | le repère quand il porte du texte |
-| `--t0` à `--t4` | inchangés | inchangés | rampe des générations (validée le 2026-11-16) |
+| `--t0` à `--t4` | `#acb3bc` → `#002c9c` | `#43484e` → `#5dc0ff` | rampe des générations, élargie le 2026-11-16 (écart entre voisins ≥ 0,075 en OKLab) |
 
 Les liens sont à l'encre, soulignés d'ocre : ils ne se confondent pas avec les
 données.

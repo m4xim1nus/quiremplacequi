@@ -133,13 +133,15 @@
   --lien: var(--encre);
 
   /* Générations (piscine, page Générations) : une seule rampe, de « autres » (gris-bleu, ni blanc
-     ni presque blanc) vers G1. G3 et les G2 restent proches de « autres » (nés en France) ; G1 se
-     détache (nés à l'étranger). OKLCH, positions 0 ; 0,2 ; 0,33 ; 0,46 ; 1. */
-  --t0: #9ea6ae; /* autres */
-  --t1: #7e97b2; /* G3 */
-  --t2: #6a8cb5; /* G2, un parent immigré */
-  --t3: #5582b7; /* G2, deux parents immigrés */
-  --t4: #004cbb; /* G1, immigrés */
+     ni presque blanc) vers G1. G3 et les G2 sont des bleus grisés, en escalier régulier depuis
+     « autres » ; G1 se détache, saturé (nés à l'étranger). OKLCH, teinte 252 : L 0,765 / 0,69 /
+     0,62 / 0,55 et chroma 0,014 à 0,09 ; G1 L 0,36, C 0,185. Écart entre voisins ≥ 0,075 en
+     OKLab (revue de Max du 2026-11-16 : G2 et G3 indiscernables avec 0,04). */
+  --t0: #acb3bc; /* autres */
+  --t1: #899eb5; /* G3 */
+  --t2: #6989ad; /* G2, un parent immigré */
+  --t3: #4974a5; /* G2, deux parents immigrés */
+  --t4: #002c9c; /* G1, immigrés */
 
   --texte: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif;
   --titre: 'Barlow Semi Condensed', 'Arial Narrow', system-ui, sans-serif;
@@ -166,11 +168,11 @@
     --reglure: #2b363d;
     --repere: #e3ad3a;
     --repere-texte: #e8b84f;
-    --t0: #5d646c;
-    --t1: #5e748d;
-    --t2: #5f7fa3;
-    --t3: #5f89b9;
-    --t4: #60b3ff;
+    --t0: #43484e;
+    --t1: #4d5f74;
+    --t2: #587697;
+    --t3: #638cbb;
+    --t4: #5dc0ff;
   }
 }
 
