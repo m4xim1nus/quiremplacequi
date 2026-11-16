@@ -251,10 +251,10 @@
           .map((r) => r.annee)
           .join(' et ')}, l’Insee publie les entrées ({d.oid.insee.recentes
           .map((r) => milliers(r.entrees))
-          .join(' et ')}) mais pas encore les sorties : le solde n’est pas connu. Le scénario haut
-        de l’étude part, lui, des {milliers(d.oid.ministere)} entrées qu’annonce le ministère de l’Intérieur
-        pour 2024, dont « les deux tiers » seraient permanentes. De {d.oid.insee.debut} à {d.oid
-          .insee.fin}, le solde des non-immigrés est négatif chaque année, sauf en {d.oid.insee.niPositifs.join(
+          .join(' et ')}) mais pas encore les sorties : le solde n’est pas connu. Pour justifier son
+        scénario haut, l’étude s’appuie sur les {milliers(d.oid.ministere)} entrées qu’annonce le ministère
+        de l’Intérieur pour 2024, dont « les deux tiers » seraient permanentes. De {d.oid.insee
+          .debut} à {d.oid.insee.fin}, le solde des non-immigrés est négatif chaque année, sauf en {d.oid.insee.niPositifs.join(
           ', '
         )}.
       </p>
