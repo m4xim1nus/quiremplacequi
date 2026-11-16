@@ -619,7 +619,7 @@
     font: inherit;
     font-size: var(--t-0);
     padding: 0.3rem 0.85rem;
-    border-radius: 999px;
+    border-radius: 2px;
     border: 1.5px solid var(--encre);
     background: transparent;
     color: var(--encre);

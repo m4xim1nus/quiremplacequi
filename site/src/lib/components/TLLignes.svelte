@@ -245,7 +245,7 @@
     pointer-events: none;
     background: var(--papier);
     border: 1px solid var(--reglure);
-    border-radius: 6px;
+    border-radius: 2px;
     padding: 0.35rem 0.55rem;
     font-size: var(--t-0);
     display: flex;

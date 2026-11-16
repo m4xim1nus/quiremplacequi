@@ -162,7 +162,7 @@
     display: inline-block;
     width: 0.75em;
     height: 0.75em;
-    border-radius: 3px;
+    border-radius: 2px;
     margin-right: 0.35em;
     vertical-align: -0.05em;
   }
@@ -171,7 +171,7 @@
     pointer-events: none;
     background: var(--papier);
     border: 1px solid var(--reglure);
-    border-radius: 6px;
+    border-radius: 2px;
     padding: 0.2rem 0.5rem;
     font-size: var(--t-0);
     z-index: 1;

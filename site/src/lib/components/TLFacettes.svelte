@@ -172,7 +172,7 @@
     pointer-events: none;
     background: var(--papier);
     border: 1px solid var(--reglure);
-    border-radius: 6px;
+    border-radius: 2px;
     padding: 0.15rem 0.45rem;
     font-size: var(--t-0);
     font-variant-numeric: tabular-nums;

@@ -767,7 +767,7 @@
     width: max-content;
     max-width: 16rem;
     padding: 0.35rem 0.6rem;
-    border-radius: 0.4rem;
+    border-radius: 2px;
     background: var(--papier);
     border: 1px solid var(--bord);
     box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
@@ -852,7 +852,7 @@
     font: inherit;
     font-size: var(--t-0);
     padding: 0.35rem 0.9rem;
-    border-radius: 999px;
+    border-radius: 2px;
     border: 1.5px solid var(--encre);
     background: transparent;
     color: var(--encre);
@@ -950,7 +950,7 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     padding: 0.05rem 0.45rem;
-    border-radius: 0.25rem;
+    border-radius: 2px;
     border: 1px solid currentColor;
   }
   .badge.reconstruit,

@@ -18,3 +18,4 @@ test -f build/index.html && test -f build/404.html && test -f build/_headers
 test -f build/piscine.html && test -f build/temps-long.html && test -f build/generations.html
 test -f build/limites.html && test -f build/methode.html && test -f build/donnees.html
 test -f build/donnees/piscine.csv && test -f build/donnees/teo2.csv
+test -f build/a-propos.html && test -f build/partage.png

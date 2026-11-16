@@ -191,7 +191,7 @@
     background: var(--papier);
     color: var(--ardoise);
     border: 1px solid var(--reglure);
-    border-radius: 4px;
+    border-radius: 2px;
     padding: 0.25rem 0.5rem;
     font-size: var(--t-0);
     white-space: nowrap;

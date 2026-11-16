@@ -126,7 +126,7 @@
     color: var(--gris);
     cursor: pointer;
     padding: 0.15rem 0.3rem;
-    border-radius: 4px;
+    border-radius: 2px;
   }
   label.actif {
     color: var(--encre);

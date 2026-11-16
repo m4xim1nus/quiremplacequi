@@ -126,21 +126,23 @@ le met en ligne.
   et pied, accueil avec l'échelle lue dans les données, cadres de figures,
   sommaires, encadrés ; mentions « brouillon » retirées ; plus d'orange codant
   une origine (temps long) ni de rouge.
-- [ ] Application, second passage après revue visuelle (composants de
-  graphiques, piscine, arrondis restants).
-- [ ] Accessibilité : contrastes, clavier, alternative textuelle et tableau
-  de données pour la piscine (Canvas) ; mobile ; poids des pages.
+- [x] Application, second passage (revue de Max) : piscine (« Faire ressortir »
+  en eau mélangée, « Voir l'eau de X se renouveler »), rampe des générations
+  élargie, arrondis à 2 px partout.
+- [x] Accessibilité : contrastes au seuil WCAG (gris, ocre du focus), tableau
+  annuel de la piscine, compteur muet pendant la lecture ; poids : 55 Ko
+  compressés pour la page la plus lourde. Mobile : à vérifier visuellement.
 - [x] Page « À propos » : dépôt GitHub, contact (alias dédié), licences (MIT,
   CC BY 4.0), vie privée.
-- [ ] Image de partage (Open Graph) ; en-têtes de sécurité à revoir
-  (`_headers` : CSP sans CDN tiers, déjà en place).
+- [x] Image de partage (Open Graph), générée depuis les données
+  (`site/scripts/partage.py`) ; en-têtes de sécurité en place (`_headers`).
 - [ ] Vérification visuelle dans un navigateur, page par page (par Max, ou
   par capture si l'outil est autorisé).
 - [ ] Relecture finale de bout en bout (faits et lisibilité pour un
   non-spécialiste).
-- [ ] Mise en ligne : projet Cloudflare Pages relié au dépôt (`bash
-  build.sh`, `NODE_VERSION=22`, sortie `site/build`), domaine
-  `quiremplacequi.technoperchoir.fr` ; tag `v1.0.0` et `CHANGELOG.md`.
+- [ ] Mise en ligne (`docs/DEPLOIEMENT.md`) : identité des commits, dépôt
+  public, projet Cloudflare Pages, domaine `quiremplacequi.technoperchoir.fr` ;
+  tag `v1.0.0` et `CHANGELOG.md`.
 
 **Livrable** : site v1 en ligne, relu par Max.
 
