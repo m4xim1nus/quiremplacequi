@@ -6,11 +6,11 @@ donnée : il part de l'instantané versionné `data/export/`.
 
 ## 1. Avant le passage en public du dépôt
 
-- [ ] **Identité des commits.** L'historique porte l'adresse de l'auteur des commits. Pour une
-  signature quasi anonyme, la remplacer par l'adresse « noreply » de GitHub avant le passage en
-  public (réécriture de l'historique, puis `git push --force` ; à faire pendant que le dépôt est
-  encore privé, et une seule fois). Configurer ensuite `git config user.email` sur cette adresse
-  dans ce dépôt.
+- [x] **Identité des commits** (2026-11-16) : historique réécrit avec l'adresse « noreply » de
+  GitHub (`git filter-repo --mailmap`), poussé en force ; ce dépôt est réglé sur cette adresse
+  (`git config user.email`). Les anciens commits peuvent rester joignables sur GitHub par leur
+  empreinte directe tant que GitHub ne les a pas purgés : si besoin, demander la purge au support
+  avant le passage en public.
 - [x] Le dossier privé `source/` n'a jamais été commité (`git log --all -- source` est vide) ;
   aucun secret dans l'historique (vérifié le 2026-11-16).
 - [ ] Passer le dépôt en public : GitHub, Settings, General, Danger Zone, Change visibility (ou
