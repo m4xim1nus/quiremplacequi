@@ -32,7 +32,7 @@ le robinet des naissances ; partiel pour la piscine (4 vannes mesurées de 2006
 à 2022 seulement), B2, E9-E10. Quatre décisions de Max (§5). Restent ouvertes
 les questions de `docs/CADRAGE.md` §9 et `docs/PISCINE.md` §9.
 
-## Étape 2 : pipeline et piscine v0 (en cours)
+## Étape 2 : pipeline et piscine v0 ✅ (2026-11-16)
 
 - [x] Package `qrq` (`download` → `build` → `check`) : 7 tableurs Insee, export
   `data/export/` (stock 1911-2025, pays 1968-2021, nationalités 1901-2020,
@@ -60,8 +60,9 @@ les questions de `docs/CADRAGE.md` §9 et `docs/PISCINE.md` §9.
   replié).
 - [x] Revue de Max (2026-11-16) : piscine v1.1 et phrases « réponse » validées ; couleurs des
   générations reprises (G2 et G3 proches de « autres », « autres » ni blanc ni presque blanc).
-- [ ] Revue des paramètres par Max : fiche `docs/PARAMETRES.md` (`piscine.yaml`, `cohortes.yaml`,
-  libellés des événements ; sensibilité par `pipeline/explo/sensibilite_cohortes.py`).
+- [x] Revue des paramètres par Max (2026-11-16) : fiche `docs/PARAMETRES.md`, recommandations
+  retenues ; `piscine.yaml` et `cohortes.yaml` en `valide`, fourchette de la condition initiale
+  calculée au build et affichée (U20).
 - [x] Graphiques bruts de relecture de B1 et B2 (`pipeline/explo/relecture_b1_b2.py`, 7 figures) :
   rien à corriger ; l'emboîtement des pays de naissance entre dans `qrq check`.
 

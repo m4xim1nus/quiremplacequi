@@ -43,6 +43,15 @@ parent), G3 (parents non immigrés dont au moins un G2). Chaque année :
    G2 parmi les 20-44 ans non immigrés.
 4. Ni les G2 ni les G3 n'émigrent (U19).
 
+**Condition initiale (U20)** : en 1911, 0,8 enfant d'immigré vivant par immigré
+présent (inconnu). Le build recale le modèle avec 0,4 et 1,2
+(`cohortes.yaml`, `sensibilite`) et exporte chaque année la fourchette des G2 et
+des G3 (`g3_min`, `g3_max`…), affichée au survol des colonnes de la piscine.
+Elle est large dans les années anciennes et s'éteint ensuite ; `qrq check`
+vérifie qu'en 2025 elle reste à ± 0,15 point. Sensibilité des autres paramètres
+libres : `pipeline/explo/sensibilite_cohortes.py`, synthèse dans
+`docs/PARAMETRES.md`.
+
 **Témoins indépendants** (non utilisés pour caler, contrôlés par `qrq check`) :
 descendants mesurés en 2025 (enquête Emploi) à ± 10 % ; décès d'immigrés
 estimés par l'Insee 2006-2022 à ± 15 %. Écarts publiés dans

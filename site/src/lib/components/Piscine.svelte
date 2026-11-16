@@ -25,6 +25,7 @@
     somme,
     cumuls,
     partNesAvant,
+    fourchette,
     type DonneesPiscine,
     type Teinte
   } from '$lib/piscine';
@@ -382,6 +383,7 @@
     gauche?: boolean;
     titre: string;
     texte: string;
+    note?: string;
   } | null>(null);
   function survoler(e: PointerEvent) {
     if (!moteur) return;
@@ -429,7 +431,13 @@
               gauche: px > w * 0.6,
               y: py,
               titre: GENERATIONS[t].libelle,
-              texte: `${milliers(st[t])} au 1er janvier ${annee}, soit ${pct((100 * st[t]) / ligne.population)}${t > 0 && t < 4 ? ' (modèle)' : ''}`
+              texte: `${milliers(st[t])} au 1er janvier ${annee}, soit ${pct((100 * st[t]) / ligne.population)}${t > 0 && t < 4 ? ' (modèle)' : ''}`,
+              note: (() => {
+                const f = fourchette(ligne, t);
+                return f
+                  ? `De ${pct(f[0])} à ${pct(f[1])} selon l’hypothèse de départ du modèle (U20).`
+                  : undefined;
+              })()
             };
       return;
     }
@@ -468,6 +476,7 @@
       >
         <strong>{bulle.titre}</strong>
         <span>{bulle.texte}</span>
+        {#if bulle.note}<span class="note">{bulle.note}</span>{/if}
       </div>
     {/if}
     <div role="img" aria-label={lectureTexte}>
@@ -723,6 +732,10 @@
   }
   .bulle strong {
     color: var(--encre);
+  }
+  .bulle .note {
+    margin-top: 0.2rem;
+    font-style: italic;
   }
   .flou {
     opacity: 0.65;

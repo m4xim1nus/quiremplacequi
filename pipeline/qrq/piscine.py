@@ -197,3 +197,14 @@ def ajouter_generations(psc: dict, sim: dict) -> None:
         x["naissances_autres"] = x["naissances"] - sum(x[f"naissances_{g.lower()}"] for g in GENERATIONS)
         x["deces_autres"] = x["deces_ni"] - sum(x[f"deces_{g.lower()}"] for g in GENERATIONS)
         x["regime_naissances"] = m["regime_naissances"]
+
+
+def ajouter_fourchette(psc: dict, variantes: list[dict]) -> None:
+    """Bornes des G2 et des G3, chaque année, sur les variantes du modèle de cohortes (U20)."""
+    par_annee = [{a["annee"]: a for a in v["annees"]} for v in variantes]
+    for x in psc["annees"]:
+        if "g2a" not in x:
+            continue
+        for g in GENERATIONS:
+            vals = [v[x["annee"]][g] for v in par_annee]
+            x[f"{g.lower()}_min"], x[f"{g.lower()}_max"] = round(min(vals)), round(max(vals))

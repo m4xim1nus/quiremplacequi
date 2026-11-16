@@ -38,6 +38,13 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     sorties = {f["annee"]: f["sorties_imm"] for f in tables["flux"] if f["sorties_imm"] is not None}
     sim, cal = cohortes.caler(entrees, pc, cibles, sorties)
     piscine.ajouter_generations(psc, sim)
+    # Fourchette des générations selon l'hypothèse sur les G2 vivants en 1911 (U20) : recalage aux
+    # deux bornes de cohortes.yaml, la référence comprise dans la fourchette.
+    variantes = [sim] + [
+        cohortes.caler(entrees, {**pc, "initial": {**pc["initial"], "g2_rapport_g1": r}}, cibles, sorties)[0]
+        for r in pc["sensibilite"]["g2_rapport_g1"]
+    ]
+    piscine.ajouter_fourchette(psc, variantes)
     psc["cohortes"] = {"statut_parametres": pc["statut"], "calage": cal}
     tables["piscine"] = psc["annees"]
     tables["cohortes"] = [

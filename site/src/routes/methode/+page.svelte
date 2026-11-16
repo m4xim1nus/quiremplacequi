@@ -108,7 +108,9 @@
     à l’enquête de 2019-2020, surtout chez les jeunes adultes et les plus de 75 ans (l’enquête ne
     couvre que les logements ordinaires, sans foyers ni résidences) ; il compte moins d’enfants d’un
     seul parent immigré que l’enquête Emploi de 2025 ; la troisième génération au-delà de 60 ans n’a
-    aucune cible ; avant 1968, les générations dépendent d’une hypothèse sur 1911.
+    aucune cible ; dans les années anciennes, les générations dépendent d’une hypothèse sur les
+    enfants d’immigrés vivants en 1911 : le modèle est recalé avec la moitié et une fois et demie
+    cette hypothèse, et la fourchette obtenue s’affiche au survol de la piscine (U20).
   </p>
 
   <h2>Les décès d’immigrés dans la piscine</h2>

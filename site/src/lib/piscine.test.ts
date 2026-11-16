@@ -5,6 +5,7 @@ import { Moteur } from './moteur';
 import {
   cumuls,
   debits,
+  fourchette,
   mouvements,
   particules,
   partNesAvant,
@@ -141,5 +142,24 @@ describe("l'eau d'une année", () => {
     expect(attendu).toBeGreaterThan(0.3);
     expect(attendu).toBeLessThan(0.6);
     expect(Math.abs(m.restantes() / total - attendu)).toBeLessThan(0.02);
+  });
+});
+
+describe('fourchette U20', () => {
+  const an = (a: number) => donnees.annees.find((x) => x.annee === a)!;
+  it('encadre la valeur du modèle et ne concerne que les G2 et les G3', () => {
+    const f = fourchette(an(1968), 1)!;
+    const g3 = Math.round((1000 * an(1968).g3!) / an(1968).population) / 10;
+    expect(f[0]).toBeLessThanOrEqual(g3);
+    expect(f[1]).toBeGreaterThanOrEqual(g3);
+    expect(fourchette(an(1968), 0)).toBeNull();
+    expect(fourchette(an(1968), 4)).toBeNull();
+  });
+  it('se resserre avec le temps', () => {
+    const l = (a: number) => {
+      const f = fourchette(an(a), 1);
+      return f ? f[1] - f[0] : 0;
+    };
+    expect(l(2025)).toBeLessThan(l(1968));
   });
 });

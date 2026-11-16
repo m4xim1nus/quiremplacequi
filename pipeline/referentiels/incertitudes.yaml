@@ -111,3 +111,9 @@ U19:
   traitement: "Badge « modèle », écarts aux cibles publiés (cohortes_calage.csv)"
   verifie: true
   reference: "pipeline/qrq/cohortes.py ; pipeline/referentiels/cohortes.yaml"
+U20:
+  titre: "On ne sait pas combien d'enfants d'immigrés vivaient en 1911"
+  detail: "Le modèle de cohortes part de 1911 avec une hypothèse sur les enfants d'immigrés alors vivants. Faire varier cette hypothèse du simple au triple change la part des enfants et petits-enfants d'immigrés dans les années anciennes ; l'effet s'éteint avec le renouvellement de la population et ne pèse plus sur les années récentes."
+  traitement: "Fourchette affichée au survol de chaque colonne (modèle recalé aux deux bornes, à chaque build)"
+  verifie: true
+  reference: "pipeline/referentiels/cohortes.yaml (sensibilite) ; docs/PARAMETRES.md"

@@ -59,3 +59,5 @@ réfléchir avant d'arbitrer, `[refusé]` tranché négatif (trace gardée).
 - [ ] Relecture B1/B2 : « Autres pays d'Afrique » chute de 1999 à 2006 parce que les Afriques sahélienne et guinéenne en sortent ; ne jamais l'afficher seul en série (claude, 2026-11-16)
 - [ ] Relecture B1 : en 1921 et 1926, plus d'étrangers que d'immigrés (étrangers nés en France) ; une phrase sur le site si la série des étrangers y est montrée (claude, 2026-11-16)
 - [→A] Couleurs des générations : G2 et G3 trop proches de G1, « autres » presque blanc (connoté) ; rampe unique dans `app.css`, G1 seul détaché (user:max, 2026-11-16)
+- [refusé] Jalons de lois sur la frise de la piscine (1927, 1945, 1976) : pas en v1, la frise explique les mouvements des courbes ; les lois et les discours relèvent de B4 (user:max, 2026-11-16)
+- [creuser] Événement 1962 : chiffrer les rapatriés seulement si une source agrégée publique le donne (user:max, 2026-11-16)

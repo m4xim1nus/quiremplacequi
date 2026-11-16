@@ -1,6 +1,6 @@
 # Paramètres de la piscine v0 (docs/PISCINE.md §6 et §8). Choix sensibles : validés par Max.
 # Décision de Max (2026-11-05) : 2006-2022 mesuré ; avant 2006, reconstruit et marqué (vanne nette).
-statut: a_valider          # passe à `valide` quand Max a relu ces paramètres
+statut: valide             # relu par Max le 2026-11-16 (docs/PARAMETRES.md)
 echelle: 10000             # personnes représentées par une particule
 debut: 1921
 fin: 2025                  # dernier stock au 1er janvier

@@ -1,6 +1,6 @@
 {
  "echelle": 10000,
- "statut_parametres": "a_valider",
+ "statut_parametres": "valide",
  "ratio_deces": {
   "moyen": 1.0471,
   "min": 0.9773,
@@ -125,7 +125,13 @@
    "deces_g3": 5931,
    "naissances_autres": 712467,
    "deces_autres": 644376,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 440425,
+   "g2a_max": 845027,
+   "g2b_min": 412077,
+   "g2b_max": 816678,
+   "g3_min": 105752,
+   "g3_max": 317255
   },
   {
    "annee": 1922,
@@ -165,7 +171,13 @@
    "deces_g3": 4707,
    "naissances_autres": 666857,
    "deces_autres": 639193,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 469063,
+   "g2a_max": 869430,
+   "g2b_min": 437053,
+   "g2b_max": 837420,
+   "g3_min": 119809,
+   "g3_max": 359428
   },
   {
    "annee": 1923,
@@ -205,7 +217,13 @@
    "deces_g3": 5360,
    "naissances_autres": 668323,
    "deces_autres": 613320,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 496530,
+   "g2a_max": 892416,
+   "g2b_min": 460984,
+   "g2b_max": 856870,
+   "g3_min": 133432,
+   "g3_max": 400295
   },
   {
    "annee": 1924,
@@ -245,7 +263,13 @@
    "deces_g3": 4713,
    "naissances_autres": 661627,
    "deces_autres": 624153,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 523360,
+   "g2a_max": 914796,
+   "g2b_min": 484355,
+   "g2b_max": 875791,
+   "g3_min": 146686,
+   "g3_max": 440059
   },
   {
    "annee": 1925,
@@ -285,7 +309,13 @@
    "deces_g3": 5100,
    "naissances_autres": 676464,
    "deces_autres": 646829,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 550352,
+   "g2a_max": 937004,
+   "g2b_min": 507849,
+   "g2b_max": 894501,
+   "g3_min": 159949,
+   "g3_max": 479847
   },
   {
    "annee": 1926,
@@ -325,7 +355,13 @@
    "deces_g3": 5548,
    "naissances_autres": 674129,
    "deces_autres": 646579,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 577480,
+   "g2a_max": 959033,
+   "g2b_min": 531444,
+   "g2b_max": 912997,
+   "g3_min": 173179,
+   "g3_max": 519538
   },
   {
    "annee": 1927,
@@ -365,7 +401,13 @@
    "deces_g3": 4806,
    "naissances_autres": 653757,
    "deces_autres": 612722,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 603865,
+   "g2a_max": 980168,
+   "g2b_min": 554375,
+   "g2b_max": 930678,
+   "g3_min": 186090,
+   "g3_max": 558269
   },
   {
    "annee": 1928,
@@ -405,7 +447,13 @@
    "deces_g3": 5247,
    "naissances_autres": 658651,
    "deces_autres": 608191,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 630026,
+   "g2a_max": 1001182,
+   "g2b_min": 577116,
+   "g2b_max": 948272,
+   "g3_min": 198775,
+   "g3_max": 596324
   },
   {
    "annee": 1929,
@@ -445,7 +493,13 @@
    "deces_g3": 5396,
    "naissances_autres": 641806,
    "deces_autres": 665199,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 655844,
+   "g2a_max": 1021721,
+   "g2b_min": 599546,
+   "g2b_max": 965423,
+   "g3_min": 211291,
+   "g3_max": 633873
   },
   {
    "annee": 1930,
@@ -485,7 +539,13 @@
    "deces_g3": 4543,
    "naissances_autres": 659478,
    "deces_autres": 583421,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 680239,
+   "g2a_max": 1040151,
+   "g2b_min": 620681,
+   "g2b_max": 980594,
+   "g3_min": 223274,
+   "g3_max": 669822
   },
   {
    "annee": 1931,
@@ -525,7 +585,13 @@
    "deces_g3": 4588,
    "naissances_autres": 645541,
    "deces_autres": 609751,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 706675,
+   "g2a_max": 1061017,
+   "g2b_min": 643639,
+   "g2b_max": 997981,
+   "g3_min": 235935,
+   "g3_max": 707805
   },
   {
    "annee": 1932,
@@ -565,7 +631,13 @@
    "deces_g3": 4657,
    "naissances_autres": 632994,
    "deces_autres": 593032,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 732235,
+   "g2a_max": 1080926,
+   "g2b_min": 665820,
+   "g2b_max": 1014511,
+   "g3_min": 248041,
+   "g3_max": 744123
   },
   {
    "annee": 1933,
@@ -605,7 +677,13 @@
    "deces_g3": 4808,
    "naissances_autres": 592268,
    "deces_autres": 594579,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 757204,
+   "g2a_max": 1100166,
+   "g2b_min": 687475,
+   "g2b_max": 1030437,
+   "g3_min": 263114,
+   "g3_max": 781748
   },
   {
    "annee": 1934,
@@ -645,7 +723,13 @@
    "deces_g3": 5003,
    "naissances_autres": 589104,
    "deces_autres": 570972,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 780172,
+   "g2a_max": 1117330,
+   "g2b_min": 707363,
+   "g2b_max": 1044521,
+   "g3_min": 279993,
+   "g3_max": 818439
   },
   {
    "annee": 1935,
@@ -685,7 +769,13 @@
    "deces_g3": 5202,
    "naissances_autres": 554489,
    "deces_autres": 594627,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 803143,
+   "g2a_max": 1134428,
+   "g2b_min": 727250,
+   "g2b_max": 1058535,
+   "g3_min": 299563,
+   "g3_max": 856775
   },
   {
    "annee": 1936,
@@ -725,7 +815,13 @@
    "deces_g3": 5352,
    "naissances_autres": 544866,
    "deces_autres": 580885,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 824438,
+   "g2a_max": 1149786,
+   "g2b_min": 745657,
+   "g2b_max": 1071005,
+   "g3_min": 320237,
+   "g3_max": 894001
   },
   {
    "annee": 1937,
@@ -765,7 +861,13 @@
    "deces_g3": 5471,
    "naissances_autres": 532692,
    "deces_autres": 569162,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 845353,
+   "g2a_max": 1164709,
+   "g2b_min": 763725,
+   "g2b_max": 1083081,
+   "g3_min": 342115,
+   "g3_max": 931550
   },
   {
    "annee": 1938,
@@ -805,7 +907,13 @@
    "deces_g3": 5584,
    "naissances_autres": 526475,
    "deces_autres": 586513,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 865720,
+   "g2a_max": 1179038,
+   "g2b_min": 781308,
+   "g2b_max": 1094626,
+   "g3_min": 364750,
+   "g3_max": 968883
   },
   {
    "annee": 1939,
@@ -845,7 +953,13 @@
    "deces_g3": 5772,
    "naissances_autres": 523093,
    "deces_autres": 580294,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 885837,
+   "g2a_max": 1193080,
+   "g2b_min": 798668,
+   "g2b_max": 1105911,
+   "g3_min": 388528,
+   "g3_max": 1006548
   },
   {
    "annee": 1940,
@@ -885,7 +999,13 @@
    "deces_g3": 5963,
    "naissances_autres": 476620,
    "deces_autres": 670015,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 905953,
+   "g2a_max": 1207092,
+   "g2b_min": 816027,
+   "g2b_max": 1117165,
+   "g3_min": 415454,
+   "g3_max": 1047482
   },
   {
    "annee": 1941,
@@ -925,7 +1045,13 @@
    "deces_g3": 6132,
    "naissances_autres": 436021,
    "deces_autres": 607367,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 917314,
+   "g2a_max": 1212333,
+   "g2b_min": 836281,
+   "g2b_max": 1131299,
+   "g3_min": 441447,
+   "g3_max": 1085235
   },
   {
    "annee": 1942,
@@ -965,7 +1091,13 @@
    "deces_g3": 6534,
    "naissances_autres": 478436,
    "deces_autres": 589927,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 927823,
+   "g2a_max": 1216710,
+   "g2b_min": 854484,
+   "g2b_max": 1143371,
+   "g3_min": 472140,
+   "g3_max": 1127619
   },
   {
    "annee": 1943,
@@ -1005,7 +1137,13 @@
    "deces_g3": 7171,
    "naissances_autres": 509337,
    "deces_autres": 561730,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 940407,
+   "g2a_max": 1223163,
+   "g2b_min": 875234,
+   "g2b_max": 1157990,
+   "g3_min": 508555,
+   "g3_max": 1175804
   },
   {
    "annee": 1944,
@@ -1045,7 +1183,13 @@
    "deces_g3": 7834,
    "naissances_autres": 517347,
    "deces_autres": 598668,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 954330,
+   "g2a_max": 1230964,
+   "g2b_min": 897833,
+   "g2b_max": 1174468,
+   "g3_min": 550641,
+   "g3_max": 1229518
   },
   {
    "annee": 1945,
@@ -1085,7 +1229,13 @@
    "deces_g3": 8429,
    "naissances_autres": 529760,
    "deces_autres": 577072,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 968634,
+   "g2a_max": 1239160,
+   "g2b_min": 920943,
+   "g2b_max": 1191468,
+   "g3_min": 597300,
+   "g3_max": 1287158
   },
   {
    "annee": 1946,
@@ -1125,7 +1275,13 @@
    "deces_g3": 9120,
    "naissances_autres": 701350,
    "deces_autres": 486761,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 977213,
+   "g2a_max": 1241648,
+   "g2b_min": 948867,
+   "g2b_max": 1213302,
+   "g3_min": 648189,
+   "g3_max": 1348175
   },
   {
    "annee": 1947,
@@ -1165,7 +1321,13 @@
    "deces_g3": 9152,
    "naissances_autres": 719848,
    "deces_autres": 479238,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 990753,
+   "g2a_max": 1249118,
+   "g2b_min": 987310,
+   "g2b_max": 1245676,
+   "g3_min": 708846,
+   "g3_max": 1419138
   },
   {
    "annee": 1948,
@@ -1205,7 +1367,13 @@
    "deces_g3": 7979,
    "naissances_autres": 716819,
    "deces_autres": 458104,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1005211,
+   "g2a_max": 1257580,
+   "g2b_min": 1027034,
+   "g2b_max": 1279403,
+   "g3_min": 775771,
+   "g3_max": 1495652
   },
   {
    "annee": 1949,
@@ -1245,7 +1413,13 @@
    "deces_g3": 8832,
    "naissances_autres": 714791,
    "deces_autres": 512262,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1020217,
+   "g2a_max": 1266718,
+   "g2b_min": 1067646,
+   "g2b_max": 1314148,
+   "g3_min": 847716,
+   "g3_max": 1576221
   },
   {
    "annee": 1950,
@@ -1285,7 +1459,13 @@
    "deces_g3": 7991,
    "naissances_autres": 706656,
    "deces_autres": 477663,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1034786,
+   "g2a_max": 1274685,
+   "g2b_min": 1107648,
+   "g2b_max": 1347548,
+   "g3_min": 923173,
+   "g3_max": 1658983
   },
   {
    "annee": 1951,
@@ -1325,7 +1505,13 @@
    "deces_g3": 8122,
    "naissances_autres": 674159,
    "deces_autres": 506306,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1049744,
+   "g2a_max": 1283454,
+   "g2b_min": 1143523,
+   "g2b_max": 1377233,
+   "g3_min": 1003039,
+   "g3_max": 1745001
   },
   {
    "annee": 1952,
@@ -1365,7 +1551,13 @@
    "deces_g3": 7500,
    "naissances_autres": 667025,
    "deces_autres": 469605,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1063634,
+   "g2a_max": 1290740,
+   "g2b_min": 1177601,
+   "g2b_max": 1404706,
+   "g3_min": 1083143,
+   "g3_max": 1829679
   },
   {
    "annee": 1953,
@@ -1405,7 +1597,13 @@
    "deces_g3": 7245,
    "naissances_autres": 649445,
    "deces_autres": 499323,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1077923,
+   "g2a_max": 1298905,
+   "g2b_min": 1212210,
+   "g2b_max": 1433192,
+   "g3_min": 1167377,
+   "g3_max": 1917382
   },
   {
    "annee": 1954,
@@ -1445,7 +1643,13 @@
    "deces_g3": 7237,
    "naissances_autres": 650944,
    "deces_autres": 464206,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1091629,
+   "g2a_max": 1306032,
+   "g2b_min": 1245918,
+   "g2b_max": 1460321,
+   "g3_min": 1253879,
+   "g3_max": 2006099
   },
   {
    "annee": 1955,
@@ -1485,7 +1689,13 @@
    "deces_g3": 7198,
    "naissances_autres": 643748,
    "deces_autres": 470498,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1105775,
+   "g2a_max": 1314114,
+   "g2b_min": 1280288,
+   "g2b_max": 1488627,
+   "g3_min": 1345074,
+   "g3_max": 2098347
   },
   {
    "annee": 1956,
@@ -1525,7 +1735,13 @@
    "deces_g3": 7098,
    "naissances_autres": 641378,
    "deces_autres": 487808,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1121800,
+   "g2a_max": 1323989,
+   "g2b_min": 1312325,
+   "g2b_max": 1514514,
+   "g3_min": 1439713,
+   "g3_max": 2192854
   },
   {
    "annee": 1957,
@@ -1565,7 +1781,13 @@
    "deces_g3": 7097,
    "naissances_autres": 649291,
    "deces_autres": 474808,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1137668,
+   "g2a_max": 1333459,
+   "g2b_min": 1344426,
+   "g2b_max": 1540216,
+   "g3_min": 1538326,
+   "g3_max": 2290177
   },
   {
    "annee": 1958,
@@ -1605,7 +1827,13 @@
    "deces_g3": 6688,
    "naissances_autres": 646243,
    "deces_autres": 446239,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1153838,
+   "g2a_max": 1343450,
+   "g2b_min": 1377115,
+   "g2b_max": 1566727,
+   "g3_min": 1637874,
+   "g3_max": 2388406
   },
   {
    "annee": 1959,
@@ -1645,7 +1873,13 @@
    "deces_g3": 6635,
    "naissances_autres": 659913,
    "deces_autres": 453507,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1170233,
+   "g2a_max": 1354072,
+   "g2b_min": 1410007,
+   "g2b_max": 1593846,
+   "g3_min": 1736913,
+   "g3_max": 2486195
   },
   {
    "annee": 1960,
@@ -1685,7 +1919,13 @@
    "deces_g3": 6356,
    "naissances_autres": 648444,
    "deces_autres": 464052,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1186971,
+   "g2a_max": 1364976,
+   "g2b_min": 1443640,
+   "g2b_max": 1621646,
+   "g3_min": 1838140,
+   "g3_max": 2586074
   },
   {
    "annee": 1961,
@@ -1725,7 +1965,13 @@
    "deces_g3": 6232,
    "naissances_autres": 663326,
    "deces_autres": 444705,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1211845,
+   "g2a_max": 1383857,
+   "g2b_min": 1474456,
+   "g2b_max": 1646468,
+   "g3_min": 1936233,
+   "g3_max": 2682772
   },
   {
    "annee": 1962,
@@ -1765,7 +2011,13 @@
    "deces_g3": 6458,
    "naissances_autres": 658359,
    "deces_autres": 481020,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1237334,
+   "g2a_max": 1403681,
+   "g2b_min": 1506298,
+   "g2b_max": 1672645,
+   "g3_min": 2036883,
+   "g3_max": 2781921
   },
   {
    "annee": 1963,
@@ -1805,7 +2057,13 @@
    "deces_g3": 6649,
    "naissances_autres": 687247,
    "deces_autres": 496029,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1262149,
+   "g2a_max": 1422411,
+   "g2b_min": 1537480,
+   "g2b_max": 1697742,
+   "g3_min": 2136583,
+   "g3_max": 2879979
   },
   {
    "annee": 1964,
@@ -1845,7 +2103,13 @@
    "deces_g3": 6544,
    "naissances_autres": 694308,
    "deces_autres": 461356,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1288109,
+   "g2a_max": 1442178,
+   "g2b_min": 1570112,
+   "g2b_max": 1724181,
+   "g3_min": 2240774,
+   "g3_max": 2982408
   },
   {
    "annee": 1965,
@@ -1885,7 +2149,13 @@
    "deces_g3": 6505,
    "naissances_autres": 689198,
    "deces_autres": 482271,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1314634,
+   "g2a_max": 1463014,
+   "g2b_min": 1603391,
+   "g2b_max": 1751772,
+   "g3_min": 2346234,
+   "g3_max": 3086038
   },
   {
    "annee": 1966,
@@ -1925,7 +2195,13 @@
    "deces_g3": 6417,
    "naissances_autres": 687478,
    "deces_autres": 468135,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1348479,
+   "g2a_max": 1490935,
+   "g2b_min": 1635180,
+   "g2b_max": 1777636,
+   "g3_min": 2438354,
+   "g3_max": 3176132
   },
   {
    "annee": 1967,
@@ -1965,7 +2241,13 @@
    "deces_g3": 6472,
    "naissances_autres": 669200,
    "deces_autres": 480422,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1382079,
+   "g2a_max": 1518874,
+   "g2b_min": 1666894,
+   "g2b_max": 1803688,
+   "g3_min": 2530373,
+   "g3_max": 3266014
   },
   {
    "annee": 1968,
@@ -2005,7 +2287,13 @@
    "deces_g3": 6662,
    "naissances_autres": 665401,
    "deces_autres": 489004,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1414386,
+   "g2a_max": 1545395,
+   "g2b_min": 1697389,
+   "g2b_max": 1828398,
+   "g3_min": 2619830,
+   "g3_max": 3353173
   },
   {
    "annee": 1969,
@@ -2045,7 +2333,13 @@
    "deces_g3": 6960,
    "naissances_autres": 670535,
    "deces_autres": 505611,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1446258,
+   "g2a_max": 1571437,
+   "g2b_min": 1727465,
+   "g2b_max": 1852643,
+   "g3_min": 2708643,
+   "g3_max": 3439518
   },
   {
    "annee": 1970,
@@ -2085,7 +2379,13 @@
    "deces_g3": 6671,
    "naissances_autres": 690630,
    "deces_autres": 477105,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1478079,
+   "g2a_max": 1597302,
+   "g2b_min": 1757481,
+   "g2b_max": 1876704,
+   "g3_min": 2798016,
+   "g3_max": 3526159
   },
   {
    "annee": 1971,
@@ -2125,7 +2425,13 @@
    "deces_g3": 6652,
    "naissances_autres": 715728,
    "deces_autres": 486721,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1521379,
+   "g2a_max": 1635078,
+   "g2b_min": 1787345,
+   "g2b_max": 1901043,
+   "g3_min": 2864811,
+   "g3_max": 3590189
   },
   {
    "annee": 1972,
@@ -2165,7 +2471,13 @@
    "deces_g3": 6847,
    "naissances_autres": 712660,
    "deces_autres": 481757,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1566063,
+   "g2a_max": 1674219,
+   "g2b_min": 1818271,
+   "g2b_max": 1926426,
+   "g3_min": 2934370,
+   "g3_max": 3656731
   },
   {
    "annee": 1973,
@@ -2205,7 +2517,13 @@
    "deces_g3": 7018,
    "naissances_autres": 696156,
    "deces_autres": 488711,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1610358,
+   "g2a_max": 1713128,
+   "g2b_min": 1848890,
+   "g2b_max": 1951659,
+   "g3_min": 3003519,
+   "g3_max": 3722650
   },
   {
    "annee": 1974,
@@ -2245,7 +2563,13 @@
    "deces_g3": 7120,
    "naissances_autres": 650704,
    "deces_autres": 482146,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1653249,
+   "g2a_max": 1750604,
+   "g2b_min": 1878448,
+   "g2b_max": 1975802,
+   "g3_min": 3070860,
+   "g3_max": 3786594
   },
   {
    "annee": 1975,
@@ -2285,7 +2609,13 @@
    "deces_g3": 7328,
    "naissances_autres": 580765,
    "deces_autres": 487821,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1692716,
+   "g2a_max": 1784826,
+   "g2b_min": 1905497,
+   "g2b_max": 1997607,
+   "g3_min": 3133463,
+   "g3_max": 3845580
   },
   {
    "annee": 1976,
@@ -2325,7 +2655,13 @@
    "deces_g3": 7622,
    "naissances_autres": 561534,
    "deces_autres": 484203,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1736039,
+   "g2a_max": 1822901,
+   "g2b_min": 1937830,
+   "g2b_max": 2024692,
+   "g3_min": 3200130,
+   "g3_max": 3908349
   },
   {
    "annee": 1977,
@@ -2365,7 +2701,13 @@
    "deces_g3": 7741,
    "naissances_autres": 580514,
    "deces_autres": 465184,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1777461,
+   "g2a_max": 1859215,
+   "g2b_min": 1968609,
+   "g2b_max": 2050363,
+   "g3_min": 3264242,
+   "g3_max": 3968317
   },
   {
    "annee": 1978,
@@ -2405,7 +2747,13 @@
    "deces_g3": 8016,
    "naissances_autres": 574526,
    "deces_autres": 474132,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1820633,
+   "g2a_max": 1897604,
+   "g2b_min": 2000756,
+   "g2b_max": 2077728,
+   "g3_min": 3330651,
+   "g3_max": 4030454
   },
   {
    "annee": 1979,
@@ -2445,7 +2793,13 @@
    "deces_g3": 8364,
    "naissances_autres": 590343,
    "deces_autres": 468853,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1862956,
+   "g2a_max": 1935125,
+   "g2b_min": 2032206,
+   "g2b_max": 2104375,
+   "g3_min": 3396190,
+   "g3_max": 4091431
   },
   {
    "annee": 1980,
@@ -2485,7 +2839,13 @@
    "deces_g3": 8779,
    "naissances_autres": 634878,
    "deces_autres": 472714,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1906524,
+   "g2a_max": 1974078,
+   "g2b_min": 2064583,
+   "g2b_max": 2132137,
+   "g3_min": 3463456,
+   "g3_max": 4153905
   },
   {
    "annee": 1981,
@@ -2525,7 +2885,13 @@
    "deces_g3": 9027,
    "naissances_autres": 638929,
    "deces_autres": 478989,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 1955021,
+   "g2a_max": 2018033,
+   "g2b_min": 2098580,
+   "g2b_max": 2161592,
+   "g3_min": 3521717,
+   "g3_max": 4207118
   },
   {
    "annee": 1982,
@@ -2565,7 +2931,13 @@
    "deces_g3": 9387,
    "naissances_autres": 632377,
    "deces_autres": 467741,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2003543,
+   "g2a_max": 2062050,
+   "g2b_min": 2132560,
+   "g2b_max": 2191067,
+   "g3_min": 3580285,
+   "g3_max": 4260353
   },
   {
    "annee": 1983,
@@ -2605,7 +2977,13 @@
    "deces_g3": 9880,
    "naissances_autres": 593748,
    "deces_autres": 481618,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2051280,
+   "g2a_max": 2105545,
+   "g2b_min": 2165925,
+   "g2b_max": 2220189,
+   "g3_min": 3637958,
+   "g3_max": 4312430
   },
   {
    "annee": 1984,
@@ -2645,7 +3023,13 @@
    "deces_g3": 10140,
    "naissances_autres": 602802,
    "deces_autres": 465624,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2095049,
+   "g2a_max": 2145043,
+   "g2b_min": 2196246,
+   "g2b_max": 2246240,
+   "g3_min": 3691397,
+   "g3_max": 4359905
   },
   {
    "annee": 1985,
@@ -2685,7 +3069,13 @@
    "deces_g3": 10756,
    "naissances_autres": 558049,
    "deces_autres": 473365,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2139566,
+   "g2a_max": 2185594,
+   "g2b_min": 2227101,
+   "g2b_max": 2273129,
+   "g3_min": 3745623,
+   "g3_max": 4407913
   },
   {
    "annee": 1986,
@@ -2725,7 +3115,13 @@
    "deces_g3": 11507,
    "naissances_autres": 565338,
    "deces_autres": 467038,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2184761,
+   "g2a_max": 2226859,
+   "g2b_min": 2265720,
+   "g2b_max": 2307819,
+   "g3_min": 3843355,
+   "g3_max": 4499050
   },
   {
    "annee": 1987,
@@ -2765,7 +3161,13 @@
    "deces_g3": 11836,
    "naissances_autres": 557611,
    "deces_autres": 448890,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2230403,
+   "g2a_max": 2268783,
+   "g2b_min": 2304660,
+   "g2b_max": 2343040,
+   "g3_min": 3941867,
+   "g3_max": 4590656
   },
   {
    "annee": 1988,
@@ -2805,7 +3207,13 @@
    "deces_g3": 12382,
    "naissances_autres": 560108,
    "deces_autres": 445269,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2275194,
+   "g2a_max": 2310160,
+   "g2b_min": 2342840,
+   "g2b_max": 2377806,
+   "g3_min": 4038689,
+   "g3_max": 4680379
   },
   {
    "annee": 1989,
@@ -2845,7 +3253,13 @@
    "deces_g3": 13006,
    "naissances_autres": 555901,
    "deces_autres": 448241,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2319943,
+   "g2a_max": 2351672,
+   "g2b_min": 2380944,
+   "g2b_max": 2412673,
+   "g3_min": 4135574,
+   "g3_max": 4769890
   },
   {
    "annee": 1990,
@@ -2885,7 +3299,13 @@
    "deces_g3": 13476,
    "naissances_autres": 576618,
    "deces_autres": 453056,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2363848,
+   "g2a_max": 2392457,
+   "g2b_min": 2418262,
+   "g2b_max": 2446872,
+   "g3_min": 4231225,
+   "g3_max": 4857799
   },
   {
    "annee": 1991,
@@ -2925,7 +3345,13 @@
    "deces_g3": 14182,
    "naissances_autres": 574442,
    "deces_autres": 450246,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2405649,
+   "g2a_max": 2431296,
+   "g2b_min": 2468513,
+   "g2b_max": 2494160,
+   "g3_min": 4322004,
+   "g3_max": 4940554
   },
   {
    "annee": 1992,
@@ -2965,7 +3391,13 @@
    "deces_g3": 14750,
    "naissances_autres": 563300,
    "deces_autres": 446325,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2446816,
+   "g2a_max": 2469694,
+   "g2b_min": 2518012,
+   "g2b_max": 2540890,
+   "g3_min": 4411894,
+   "g3_max": 5022028
   },
   {
    "annee": 1993,
@@ -3005,7 +3437,13 @@
    "deces_g3": 15539,
    "naissances_autres": 538981,
    "deces_autres": 454339,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2486575,
+   "g2a_max": 2506870,
+   "g2b_min": 2565932,
+   "g2b_max": 2586228,
+   "g3_min": 4499475,
+   "g3_max": 5100804
   },
   {
    "annee": 1994,
@@ -3045,7 +3483,13 @@
    "deces_g3": 15989,
    "naissances_autres": 538594,
    "deces_autres": 442252,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2523425,
+   "g2a_max": 2541229,
+   "g2b_min": 2610634,
+   "g2b_max": 2628438,
+   "g3_min": 4582310,
+   "g3_max": 5174291
   },
   {
    "annee": 1995,
@@ -3085,7 +3529,13 @@
    "deces_g3": 16747,
    "naissances_autres": 572538,
    "deces_autres": 451529,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2560039,
+   "g2a_max": 2575603,
+   "g2b_min": 2655084,
+   "g2b_max": 2670648,
+   "g3_min": 4664769,
+   "g3_max": 5247119
   },
   {
    "annee": 1996,
@@ -3125,7 +3575,13 @@
    "deces_g3": 17374,
    "naissances_autres": 576287,
    "deces_autres": 453827,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2597333,
+   "g2a_max": 2610760,
+   "g2b_min": 2702523,
+   "g2b_max": 2715951,
+   "g3_min": 4726143,
+   "g3_max": 5298223
   },
   {
    "annee": 1997,
@@ -3165,7 +3621,13 @@
    "deces_g3": 17801,
    "naissances_autres": 571275,
    "deces_autres": 447995,
-   "regime_naissances": "ip1910"
+   "regime_naissances": "ip1910",
+   "g2a_min": 2634358,
+   "g2a_max": 2645807,
+   "g2b_min": 2749792,
+   "g2b_max": 2761241,
+   "g3_min": 4787658,
+   "g3_max": 5348887
   },
   {
    "annee": 1998,
@@ -3205,7 +3667,13 @@
    "deces_g3": 18664,
    "naissances_autres": 567592,
    "deces_autres": 449877,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 2670607,
+   "g2a_max": 2680265,
+   "g2b_min": 2796205,
+   "g2b_max": 2805863,
+   "g3_min": 4848288,
+   "g3_max": 5398307
   },
   {
    "annee": 1999,
@@ -3245,7 +3713,13 @@
    "deces_g3": 19499,
    "naissances_autres": 576776,
    "deces_autres": 451623,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 2717047,
+   "g2a_max": 2725099,
+   "g2b_min": 2844369,
+   "g2b_max": 2852421,
+   "g3_min": 4909355,
+   "g3_max": 5447585
   },
   {
    "annee": 2000,
@@ -3285,7 +3759,13 @@
    "deces_g3": 20133,
    "naissances_autres": 601041,
    "deces_autres": 443683,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 2762552,
+   "g2a_max": 2769157,
+   "g2b_min": 2890281,
+   "g2b_max": 2896885,
+   "g3_min": 4970590,
+   "g3_max": 5496545
   },
   {
    "annee": 2001,
@@ -3325,7 +3805,13 @@
    "deces_g3": 21011,
    "naissances_autres": 595458,
    "deces_autres": 441665,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 2809885,
+   "g2a_max": 2815250,
+   "g2b_min": 2938069,
+   "g2b_max": 2943433,
+   "g3_min": 5034361,
+   "g3_max": 5547778
   },
   {
    "annee": 2002,
@@ -3365,7 +3851,13 @@
    "deces_g3": 21864,
    "naissances_autres": 567833,
    "deces_autres": 443118,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 2858227,
+   "g2a_max": 2862521,
+   "g2b_min": 2985672,
+   "g2b_max": 2989966,
+   "g3_min": 5097037,
+   "g3_max": 5597546
   },
   {
    "annee": 2003,
@@ -3405,7 +3897,13 @@
    "deces_g3": 23143,
    "naissances_autres": 564381,
    "deces_autres": 455291,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 2908802,
+   "g2a_max": 2912168,
+   "g2b_min": 3034032,
+   "g2b_max": 3037398,
+   "g3_min": 5172219,
+   "g3_max": 5659368
   },
   {
    "annee": 2004,
@@ -3445,7 +3943,13 @@
    "deces_g3": 22483,
    "naissances_autres": 564089,
    "deces_autres": 417817,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 2960485,
+   "g2a_max": 2963039,
+   "g2b_min": 3083209,
+   "g2b_max": 3085762,
+   "g3_min": 5246536,
+   "g3_max": 5719562
   },
   {
    "annee": 2005,
@@ -3485,7 +3989,13 @@
    "deces_g3": 23686,
    "naissances_autres": 566335,
    "deces_autres": 431466,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3016723,
+   "g2a_max": 3018687,
+   "g2b_min": 3135520,
+   "g2b_max": 3137484,
+   "g3_min": 5321849,
+   "g3_max": 5781521
   },
   {
    "annee": 2006,
@@ -3525,7 +4035,13 @@
    "deces_g3": 24042,
    "naissances_autres": 580517,
    "deces_autres": 417307,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3073826,
+   "g2a_max": 3075286,
+   "g2b_min": 3189664,
+   "g2b_max": 3191124,
+   "g3_min": 5397143,
+   "g3_max": 5842792
   },
   {
    "annee": 2007,
@@ -3565,7 +4081,13 @@
    "deces_g3": 24811,
    "naissances_autres": 571675,
    "deces_autres": 419987,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3133536,
+   "g2a_max": 3134616,
+   "g2b_min": 3247061,
+   "g2b_max": 3248140,
+   "g3_min": 5474582,
+   "g3_max": 5906347
   },
   {
    "annee": 2008,
@@ -3605,7 +4127,13 @@
    "deces_g3": 25823,
    "naissances_autres": 577685,
    "deces_autres": 427291,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3192207,
+   "g2a_max": 3192977,
+   "g2b_min": 3304041,
+   "g2b_max": 3304811,
+   "g3_min": 5550181,
+   "g3_max": 5967773
   },
   {
    "annee": 2009,
@@ -3645,7 +4173,13 @@
    "deces_g3": 26722,
    "naissances_autres": 571062,
    "deces_autres": 431638,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3251890,
+   "g2a_max": 3252425,
+   "g2b_min": 3361422,
+   "g2b_max": 3361957,
+   "g3_min": 5626067,
+   "g3_max": 6029099
   },
   {
    "annee": 2010,
@@ -3685,7 +4219,13 @@
    "deces_g3": 27360,
    "naissances_autres": 565821,
    "deces_autres": 432319,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3312460,
+   "g2a_max": 3312824,
+   "g2b_min": 3420419,
+   "g2b_max": 3420784,
+   "g3_min": 5700698,
+   "g3_max": 6089027
   },
   {
    "annee": 2011,
@@ -3725,7 +4265,13 @@
    "deces_g3": 27660,
    "naissances_autres": 559706,
    "deces_autres": 427097,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3372018,
+   "g2a_max": 3372267,
+   "g2b_min": 3481609,
+   "g2b_max": 3481858,
+   "g3_min": 5786519,
+   "g3_max": 6160097
   },
   {
    "annee": 2012,
@@ -3765,7 +4311,13 @@
    "deces_g3": 29103,
    "naissances_autres": 555050,
    "deces_autres": 446584,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3439158,
+   "g2a_max": 3439325,
+   "g2b_min": 3533328,
+   "g2b_max": 3533495,
+   "g3_min": 5870724,
+   "g3_max": 6229796
   },
   {
    "annee": 2013,
@@ -3805,7 +4357,13 @@
    "deces_g3": 29620,
    "naissances_autres": 542230,
    "deces_autres": 444350,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3507449,
+   "g2a_max": 3507557,
+   "g2b_min": 3584599,
+   "g2b_max": 3584707,
+   "g3_min": 5953523,
+   "g3_max": 6297416
   },
   {
    "annee": 2014,
@@ -3845,7 +4403,13 @@
    "deces_g3": 29567,
    "naissances_autres": 539234,
    "deces_autres": 435236,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3580425,
+   "g2a_max": 3580497,
+   "g2b_min": 3635571,
+   "g2b_max": 3635643,
+   "g3_min": 6034498,
+   "g3_max": 6363407
   },
   {
    "annee": 2015,
@@ -3885,7 +4449,13 @@
    "deces_g3": 31698,
    "naissances_autres": 509838,
    "deces_autres": 461795,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3660455,
+   "g2a_max": 3660505,
+   "g2b_min": 3689406,
+   "g2b_max": 3689456,
+   "g3_min": 6116151,
+   "g3_max": 6430614
   },
   {
    "annee": 2016,
@@ -3925,7 +4495,13 @@
    "deces_g3": 32264,
    "naissances_autres": 494829,
    "deces_autres": 460532,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3741581,
+   "g2a_max": 3741614,
+   "g2b_min": 3740465,
+   "g2b_max": 3740498,
+   "g3_min": 6204831,
+   "g3_max": 6504050
   },
   {
    "annee": 2017,
@@ -3965,7 +4541,13 @@
    "deces_g3": 33378,
    "naissances_autres": 481743,
    "deces_autres": 468970,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3825190,
+   "g2a_max": 3825212,
+   "g2b_min": 3791015,
+   "g2b_max": 3791037,
+   "g3_min": 6290605,
+   "g3_max": 6574934
   },
   {
    "annee": 2018,
@@ -4005,7 +4587,13 @@
    "deces_g3": 34256,
    "naissances_autres": 471986,
    "deces_autres": 471110,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3910475,
+   "g2a_max": 3910490,
+   "g2b_min": 3840014,
+   "g2b_max": 3840029,
+   "g3_min": 6373282,
+   "g3_max": 6642714
   },
   {
    "annee": 2019,
@@ -4045,7 +4633,13 @@
    "deces_g3": 35049,
    "naissances_autres": 464463,
    "deces_autres": 472674,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 3997426,
+   "g2a_max": 3997436,
+   "g2b_min": 3887332,
+   "g2b_max": 3887342,
+   "g3_min": 6453409,
+   "g3_max": 6708193
   },
   {
    "annee": 2020,
@@ -4085,7 +4679,13 @@
    "deces_g3": 38736,
    "naissances_autres": 446656,
    "deces_autres": 509541,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 4087714,
+   "g2a_max": 4087721,
+   "g2b_min": 3934124,
+   "g2b_max": 3934131,
+   "g3_min": 6531872,
+   "g3_max": 6772280
   },
   {
    "annee": 2021,
@@ -4125,7 +4725,13 @@
    "deces_g3": 39479,
    "naissances_autres": 453691,
    "deces_autres": 501266,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 4172092,
+   "g2a_max": 4172096,
+   "g2b_min": 3976176,
+   "g2b_max": 3976180,
+   "g3_min": 6613360,
+   "g3_max": 6838255
   },
   {
    "annee": 2022,
@@ -4165,7 +4771,13 @@
    "deces_g3": 40859,
    "naissances_autres": 438139,
    "deces_autres": 513590,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 4253456,
+   "g2a_max": 4253459,
+   "g2b_min": 4018805,
+   "g2b_max": 4018808,
+   "g3_min": 6696691,
+   "g3_max": 6907025
   },
   {
    "annee": 2023,
@@ -4205,7 +4817,13 @@
    "deces_g3": 39720,
    "naissances_autres": 491099,
    "deces_autres": 481516,
-   "regime_naissances": "ip1910_extrapole"
+   "regime_naissances": "ip1910_extrapole",
+   "g2a_min": 4339252,
+   "g2a_max": 4339253,
+   "g2b_min": 4058756,
+   "g2b_max": 4058757,
+   "g3_min": 6775457,
+   "g3_max": 6971421
   },
   {
    "annee": 2024,
@@ -4245,7 +4863,13 @@
    "deces_g3": 40829,
    "naissances_autres": 386765,
    "deces_autres": 479789,
-   "regime_naissances": "etat_civil"
+   "regime_naissances": "etat_civil",
+   "g2a_min": 4348100,
+   "g2a_max": 4348102,
+   "g2b_min": 4061534,
+   "g2b_max": 4061535,
+   "g3_min": 6870707,
+   "g3_max": 7053859
   },
   {
    "annee": 2025,
@@ -4259,11 +4883,17 @@
    "g2a": 4435302,
    "g2b": 4097387,
    "g3": 7025903,
-   "autres": 45323404
+   "autres": 45323404,
+   "g2a_min": 4435301,
+   "g2a_max": 4435302,
+   "g2b_min": 4097387,
+   "g2b_max": 4097388,
+   "g3_min": 6940522,
+   "g3_max": 7111285
   }
  ],
  "cohortes": {
-  "statut_parametres": "a_valider",
+  "statut_parametres": "valide",
   "calage": {
    "taux_departs": 0.00940687590623384,
    "correction_deux": 0.8696832467358493,

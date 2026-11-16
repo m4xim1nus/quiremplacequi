@@ -101,6 +101,12 @@ def verifier(export: Path) -> tuple[bool, list[str]]:
     gens = [x for x in ans if "g2a" in x]
     ecart = max(abs(x["immigres"] + x["g2a"] + x["g2b"] + x["g3"] + x["autres"] - x["population"]) for x in gens)
     controle("piscine : G1 + G2 + G3 + autres = population", ecart == 0, f"écart max {ecart}")
+    # Fourchette U20 (G2 vivants en 1911) : la référence est dedans ; en 2025, elle ne pèse pas.
+    hors = [x["annee"] for x in gens for g in ("g2a", "g2b", "g3") if not x[f"{g}_min"] <= x[g] <= x[f"{g}_max"]]
+    controle("piscine : générations dans leur fourchette U20", not hors, f"années {hors}" if hors else "")
+    a25 = next(x for x in gens if x["annee"] == 2025)
+    large = max(100 * max(a25[g] - a25[f"{g}_min"], a25[f"{g}_max"] - a25[g]) / a25["population"] for g in ("g2a", "g2b", "g3"))
+    controle("piscine : fourchette U20 en 2025 à ± 0,15 point", large <= 0.15, f"± {large:.2f} point")
     neg = [x["annee"] for x in gens if min(x["autres"], x.get("naissances_autres") or 0, x.get("deces_autres") or 0) < 0]
     controle("piscine : aucun flux ni stock « autres » négatif", not neg, f"années {neg}" if neg else "")
     cal = pl.read_csv(export / "cohortes_calage.csv")

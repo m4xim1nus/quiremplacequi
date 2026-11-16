@@ -34,6 +34,13 @@ export interface AnneePiscine {
   g2b?: number;
   g3?: number;
   autres?: number;
+  // Fourchette selon l'hypothèse sur les G2 vivants en 1911 (U20).
+  g2a_min?: number;
+  g2a_max?: number;
+  g2b_min?: number;
+  g2b_max?: number;
+  g3_min?: number;
+  g3_max?: number;
   naissances_g2a?: number | null;
   naissances_g2b?: number | null;
   naissances_g3?: number | null;
@@ -86,6 +93,20 @@ export const GENERATIONS: Record<Teinte, { cle: string; libelle: string; court: 
   1: { cle: 'g3', libelle: 'Petits-enfants d’immigrés (G3)', court: 'G3' },
   0: { cle: 'autres', libelle: 'Ni immigré, ni enfant ou petit-enfant d’immigré', court: 'autres' }
 };
+
+/**
+ * Fourchette (en % de la population) d'une génération modélisée selon l'hypothèse sur les G2
+ * vivants en 1911 (U20), ou null si elle ne se voit pas à 0,1 point près.
+ */
+export function fourchette(l: AnneePiscine, t: Teinte): [number, number] | null {
+  if (t < 1 || t > 3) return null;
+  const cle = GENERATIONS[t].cle as 'g2a' | 'g2b' | 'g3';
+  const lo = l[`${cle}_min`];
+  const hi = l[`${cle}_max`];
+  if (lo == null || hi == null) return null;
+  const p = (x: number) => Math.round((1000 * x) / l.population) / 10;
+  return p(lo) === p(hi) ? null : [p(lo), p(hi)];
+}
 
 /** Effectif de chaque teinte au 1er janvier (sans générations : deux teintes, 0 et 4). */
 export function stocks(l: AnneePiscine): Record<Teinte, number> {
@@ -294,7 +315,7 @@ export const STATUTS: Record<Statut, { libelle: string; detail: string }> = {
   reconstruit: {
     libelle: 'Reconstruit',
     detail:
-      'Avant 2006, seul le flux net des immigrés se reconstruit (recensements et décès estimés) : arrivées et départs ne sont pas séparables.'
+      'Avant 2006, seul le flux net des immigrés se reconstruit (recensements et décès estimés) : arrivées et départs ne sont pas séparables, et le flux est lissé entre deux recensements, si bien qu’une rupture comme celle de 1974 n’apparaît pas.'
   }
 };
 
