@@ -2,6 +2,9 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { csvParse } from 'd3-dsv';
 import { EXPORT, piscine, soldes } from '$lib/server/donnees';
+import { arrivees } from '$lib/server/arrivees';
+import { ailleurs } from '$lib/server/ailleurs';
+import { classement, LIBELLES_MOTIFS, MOTIFS } from '$lib/comparaisons';
 
 /** Échelle de l'accueil : part des immigrés aux recensements (série B1), plaques choisies par règle :
  * premier point affiché, sommet d'avant 1946, sommet de 1946 à 1989 (le premier atteint), dernier
@@ -37,7 +40,19 @@ export const load = () => {
   const a22 = an(2022);
   const premiere = p.annees[0];
   const so = soldes();
+  // Portes « Les arrivées » et « Ailleurs ».
+  const ti = arrivees().annees.at(-1)!;
+  const premierMotif = MOTIFS.reduce((a, b) => (ti.motifs[b] > ti.motifs[a] ? b : a));
+  const ai = ailleurs();
+  const cPart = classement(ai.nesEtranger.map((x) => ({ libelle: x.pays, valeur: x.part })));
+  const cAsile = classement(ai.asile.map((x) => ({ libelle: x.pays, valeur: x.demandes10k })));
   return {
+    titres: {
+      annee: ti.annee,
+      total: ti.total,
+      premierMotif: LIBELLES_MOTIFS[premierMotif].toLowerCase()
+    },
+    ailleurs: { rang: cPart.rang('France'), n: cPart.n, rangAsile: cAsile.rang('France') },
     echelle: echelle(p.annees[0].annee),
     soldes: {
       dernier: so.dernier,

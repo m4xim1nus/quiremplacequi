@@ -7,7 +7,9 @@ milliers dans la source, converties en personnes.
 
 from pathlib import Path
 
-from .lecture import annee, feuille, milliers
+import re
+
+from .lecture import annee, feuille, milliers, texte
 from .sources import fichier
 
 
@@ -54,4 +56,20 @@ def lire_flux(raw: Path) -> list[dict]:
                 "champ": "france_hors_mayotte" if a <= 2013 else "france",
             }
         )
+    return out
+
+
+def lire_entrees_origine(raw: Path) -> list[dict]:
+    """Entrées d'immigrés de la dernière année par région de naissance (IP 2107, figure 3)."""
+    lignes = feuille(fichier(raw, "flux"), "Figure 3")
+    titre = texte(lignes[0][0])
+    annee_ = int(re.search(r"en (20\d\d)", titre).group(1))
+    out = []
+    for r in lignes[3:]:
+        nom = texte(r[0])
+        if not nom or nom.startswith(("Lecture", "Champ", "Source", "Note")):
+            continue
+        n = milliers(r[1])
+        if n is not None:
+            out.append({"annee": annee_, "origine": nom, "entrees": n})
     return out

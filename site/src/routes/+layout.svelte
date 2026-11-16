@@ -9,6 +9,8 @@
     { href: '/piscine', libelle: 'La piscine' },
     { href: '/temps-long', libelle: 'Le temps long' },
     { href: '/generations', libelle: 'Générations' },
+    { href: '/arrivees', libelle: 'Les arrivées' },
+    { href: '/ailleurs', libelle: 'Ailleurs' },
     { href: '/limites', libelle: 'Ce qu’on ne sait pas' },
     { href: '/methode', libelle: 'Méthode' },
     { href: '/donnees', libelle: 'Données' }
@@ -63,8 +65,9 @@
 
 <footer class="pied page">
   <p>
-    Données publiques uniquement (Insee, Ined). Calculs arrêtés au {date}, reproductibles à partir
-    des <a href="/donnees">fichiers publiés</a> et du <a href={SITE.depot}>code</a>.
+    Statistique publique uniquement (Insee, Ined, ministère de l’Intérieur, Eurostat, OCDE). Calculs
+    arrêtés au {date}, reproductibles à partir des <a href="/donnees">fichiers publiés</a> et du
+    <a href={SITE.depot}>code</a>.
   </p>
   <p>
     Aucun cookie, aucun traceur, aucune ressource tierce. <a href="/a-propos">À propos</a> : contact,

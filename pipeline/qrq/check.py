@@ -155,6 +155,57 @@ def verifier(export: Path) -> tuple[bool, list[str]]:
         f"pire {pire} : {100 * ecarts[pire]:+.2f} %",
     )
 
+    # Titres de séjour (DSED) : chaque fichier annuel est cohérent (motifs, sous-motifs, nationalités),
+    # et les deux sources se raccordent (série du 27 juin 2024 + Britanniques = fichier annuel).
+    tit = pl.read_csv(export / "titres.csv")
+    tot = pl.read_csv(export / "titres_totaux.csv")
+    somme = dict(tit.group_by("annee").agg(pl.col("titres").sum()).rows())
+    # Avant 2015, la série par motif est publiée hors Britanniques (moins de 250 titres par an).
+    ecarts = {a: somme[a] - n + (b if a < 2015 else 0) for a, n, b in tot.select("annee", "total", "britanniques").rows()}
+    pire = max(ecarts, key=lambda a: abs(ecarts[a]))
+    controle("titres : Σ sous-motifs = total publié (2011-2024 ; hors Britanniques avant 2015)", ecarts[pire] == 0 and len(ecarts) >= 14, f"pire {pire} : {ecarts[pire]:+}")
+    an = tot.drop_nulls("total_nationalites")
+    ecart = max((an["total"] - an["total_nationalites"]).abs().max(), (an["total"] - an["somme_motifs_annuel"]).abs().max())
+    controle("titres : total = Σ motifs = Σ nationalités (fichiers annuels)", ecart == 0, f"écart max {ecart}")
+    rac = tot.drop_nulls("serie_hors_britanniques")
+    defi = rac.filter(pl.col("serie_statut") == "definitif")
+    ecart = (defi["serie_hors_britanniques"] + defi["serie_britanniques"] - defi["total"]).abs().max()
+    controle("titres : raccord des deux sources DSED (années définitives)", ecart == 0 and len(defi) >= 8, f"écart max {ecart}, {len(defi)} années")
+    prov = rac.filter(pl.col("serie_statut") == "provisoire")
+    rev = (prov["total"] / (prov["serie_hors_britanniques"] + prov["serie_britanniques"]) - 1).abs().max()
+    controle("titres : révision du provisoire au définitif ≤ 2 %", rev <= 0.02, f"{100 * rev:.1f} %")
+
+    # Eurostat : décisions positives = réfugié + protection subsidiaire + raisons humanitaires ;
+    # nés à l'étranger + nés dans le pays ≤ population ; croissance = naturel + migratoire (‰).
+    eu = pl.read_csv(export / "eurostat.csv")
+    piv = eu.pivot(on="indicateur", index=["geo", "annee"], values="valeur")
+    d = piv.drop_nulls(["decisions_positives", "statut_refugie", "protection_subsidiaire"])
+    ecart = (d["statut_refugie"] + d["protection_subsidiaire"] + d["raisons_humanitaires"].fill_null(0) - d["decisions_positives"]).abs().max()
+    controle("eurostat : décisions positives = Σ statuts", ecart <= 5, f"écart max {ecart}")
+    n = piv.drop_nulls(["nes_etranger", "nes_pays", "pop_naissance_total"])
+    inc = (n["pop_naissance_total"] - n["nes_etranger"] - n["nes_pays"]) / n["pop_naissance_total"]
+    controle("eurostat : naissance inconnue entre 0 et 2 % de la population", inc.min() >= 0 and inc.max() <= 0.02, f"de {100 * inc.min():.2f} à {100 * inc.max():.2f} %")
+    g = piv.drop_nulls(["taux_croissance", "taux_naturel", "taux_migratoire"])
+    ecart = (g["taux_croissance"] - g["taux_naturel"] - g["taux_migratoire"]).abs().max()
+    controle("eurostat : croissance = naturel + migratoire (± 0,15 ‰)", ecart <= 0.15, f"écart max {ecart:.2f} ‰")
+    fr = piv.filter((pl.col("geo") == "FR") & (pl.col("annee") == 2025))
+    insee25 = bilan.filter((pl.col("onglet") == "FR") & (pl.col("annee") == 2025))["population"][0]
+    r = fr["population"][0] / insee25 - 1
+    controle("eurostat : population de la France 2025 = bilan Insee (± 0,5 %)", abs(r) <= 0.005, f"{100 * r:+.2f} %")
+
+    # OCDE : chaque pays publie ses six catégories et sa population.
+    oc = pl.read_csv(export / "ocde.csv")
+    p = oc.filter((pl.col("pays_code") == "FRA") & (pl.col("annee") == 2024))
+    controle("ocde : France 2024, six catégories et population", len(p) == 7 and p["valeur"].min() > 0, f"{len(p)} indicateurs")
+
+    # Entrées par origine (IP 2107, figure 3) : régions = ensemble, ensemble = flux.csv.
+    eo = dict(pl.read_csv(export / "entrees_origine.csv").select("origine", "entrees").rows())
+    a_eo = pl.read_csv(export / "entrees_origine.csv")["annee"][0]
+    ecart = abs(eo["Afrique"] + eo["Asie"] + eo["Europe"] + eo["Amérique, Océanie"] - eo["Ensemble des immigrés"])
+    controle("entrées par origine : Σ régions = ensemble des immigrés (± 2 000)", ecart <= 2000, f"écart {ecart}")
+    fx = flux.filter(pl.col("annee") == a_eo)["entrees_imm"][0]
+    controle("entrées par origine : ensemble = flux.csv de la même année", fx == eo["Ensemble des immigrés"], f"{fx} et {eo['Ensemble des immigrés']}")
+
     # Témoins lus dans les sources (docs/spike/insee.md).
     temoins = {
         ("b1_stock", 2025, "immigres"): 7_970_000,
@@ -166,4 +217,7 @@ def verifier(export: Path) -> tuple[bool, list[str]]:
         controle(f"témoin {t} {a} {col}", v == attendu, f"{v}")
     a22 = next(x for x in ans if x["annee"] == 2022)
     controle("témoin piscine 2022 : 375 000 entrées, 26 000 sorties, 71 000 décès", (a22["entrees_imm"], a22["sorties_imm"], a22["deces_imm"]) == (375000, 26000, 71000))
+    controle("témoin titres 2024 : 345 587 premiers titres", tot.filter(pl.col("annee") == 2024)["total"][0] == 345_587)
+    v = piv.filter((pl.col("geo") == "FR") & (pl.col("annee") == 2024))["premieres_demandes"][0]
+    controle("témoin eurostat FR 2024 : 129 910 premières demandes d'asile", v == 129_910, f"{v}")
     return ok, lignes

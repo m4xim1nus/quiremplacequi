@@ -1,7 +1,7 @@
 <script lang="ts">
-  // Barres horizontales : groupées (une barre par série, valeur au bout) ou empilées à 100 %
-  // (segments séparés par un espace de 2 px, valeur dans le segment quand elle tient). Légende
-  // dès deux séries ; infobulle au survol de chaque barre ou segment.
+  // Barres horizontales : groupées (une barre par série, valeur au bout), empilées à 100 % ou
+  // empilées en valeur (`cumul`, total au bout) ; segments séparés par un espace de 2 px, valeur
+  // dans le segment quand elle tient. Légende dès deux séries ; infobulle au survol.
   import { scaleLinear } from 'd3-scale';
 
   interface Ligne {
@@ -21,14 +21,17 @@
     mode = 'groupe',
     max,
     format,
-    titre
+    titre,
+    accent
   }: {
     lignes: Ligne[];
     cles: Cle[];
-    mode?: 'groupe' | 'empile';
+    mode?: 'groupe' | 'empile' | 'cumul';
     max?: number;
     format: (v: number) => string;
     titre: string;
+    /** Lignes mises en évidence (mode groupé) : libellé en gras, barre ocre (repère). */
+    accent?: (libelle: string) => boolean;
   } = $props();
 
   let largeur = $state(640);
@@ -41,13 +44,17 @@
     (mode === 'groupe' ? cles.length * (epais + 3) + 10 : epais + 12) + dessus
   );
   const hauteur = $derived(lignes.length * hauteurLigne + 4);
+  const somme = (l: Ligne) => l.valeurs.reduce<number>((s, v) => s + (v ?? 0), 0);
   const vmax = $derived(
-    max ?? Math.max(...lignes.flatMap((l) => l.valeurs.map((v) => v ?? 0))) * 1.05
+    max ??
+      (mode === 'cumul'
+        ? Math.max(...lignes.map(somme))
+        : Math.max(...lignes.flatMap((l) => l.valeurs.map((v) => v ?? 0)))) * 1.05
   );
   const x = $derived(
     scaleLinear()
       .domain([0, mode === 'empile' ? 100 : vmax])
-      .range([0, largeur - gaucheLib - (mode === 'groupe' ? 44 : 4)])
+      .range([0, largeur - gaucheLib - (mode === 'empile' ? 4 : 44)])
   );
 
   let survol: { l: number; k: number } | null = $state(null);
@@ -74,17 +81,27 @@
     {#each lignes as l, i (l.libelle)}
       {@const y0 = i * hauteurLigne + 4}
       {#if etroit}
-        <text class="libelle" x="0" y={y0 + 6} text-anchor="start">{l.libelle}</text>
+        <text
+          class="libelle"
+          class:accent={accent?.(l.libelle)}
+          x="0"
+          y={y0 + 6}
+          text-anchor="start">{l.libelle}</text
+        >
       {:else}
-        <text class="libelle" x={gaucheLib - 8} y={y0 + (hauteurLigne - 10) / 2} text-anchor="end"
-          >{l.libelle}</text
+        <text
+          class="libelle"
+          class:accent={accent?.(l.libelle)}
+          x={gaucheLib - 8}
+          y={y0 + (hauteurLigne - 10) / 2}
+          text-anchor="end">{l.libelle}</text
         >
       {/if}
       {#each l.valeurs as v, k (k)}
         {#if v !== null && v > 0}
-          {@const bx = mode === 'empile' ? gaucheLib + x(debut(l, k)) : gaucheLib}
-          {@const by = (mode === 'empile' ? y0 : y0 + k * (epais + 3)) + dessus}
-          {@const bw = Math.max(0, x(v) - (mode === 'empile' ? 2 : 0))}
+          {@const bx = mode !== 'groupe' ? gaucheLib + x(debut(l, k)) : gaucheLib}
+          {@const by = (mode !== 'groupe' ? y0 : y0 + k * (epais + 3)) + dessus}
+          {@const bw = Math.max(0, x(v) - (mode !== 'groupe' ? 2 : 0))}
           <rect
             role="presentation"
             x={bx}
@@ -92,7 +109,9 @@
             width={bw}
             height={epais}
             rx="3"
-            style:fill={cles[k].couleur}
+            style:fill={accent?.(l.libelle) && mode === 'groupe'
+              ? 'var(--repere)'
+              : cles[k].couleur}
             opacity={survol && (survol.l !== i || survol.k !== k) ? 0.55 : 1}
             onpointerenter={() => (survol = { l: i, k })}
           />
@@ -112,6 +131,14 @@
           {/if}
         {/if}
       {/each}
+      {#if mode === 'cumul'}
+        <text
+          class="valeur"
+          x={gaucheLib + x(somme(l)) + 4}
+          y={y0 + dessus + epais / 2}
+          dominant-baseline="middle">{format(somme(l))}</text
+        >
+      {/if}
     {/each}
   </svg>
   {#if survol}
@@ -141,6 +168,10 @@
     font-size: 11.5px;
     fill: var(--ardoise);
     dominant-baseline: middle;
+  }
+  .libelle.accent {
+    fill: var(--encre);
+    font-weight: 700;
   }
   .valeur,
   .dedans {

@@ -103,3 +103,33 @@ Ce que le spike corrige (détail dans chaque rapport) :
 Par défaut (règles du cadrage, non reposées) : sorties d'immigrés en moyenne
 pluriannuelle avec les valeurs annuelles en pointillés (U2) ; axes à zéro
 pour les niveaux, toute troncature signalée.
+
+## 6. Cycle 2 : l'espace et la nature des migrations (2026-11-16)
+
+Spike court, fait en même temps que le pipeline (`pipeline/qrq/sources.py`).
+
+| Famille | Accès | Ce qui est pris | Limites |
+|---|---|---|---|
+| Ministère de l'Intérieur (DSED) | ✅ data.gouv.fr (`static.data.gouv.fr`), CSV ; le site du ministère refuse les scripts (403) | Premiers titres par motif : série publiée le 27 juin 2024 (2011-2023, hors Britanniques) et fichiers annuels définitifs publiés en août 2026 (2015-2024, par motif, sous-motif et nationalité) | Pas de série avant 2011 à champ constant : la publication de juin 2019 (2007-2018) ne couvre que la métropole, en `.xls` ; non retenue. Cellules « nc » (secret) déduites du total du motif |
+| Eurostat | ✅ API SDMX 2.1, SDMX-CSV | `demo_gind` (population, taux naturel, migratoire y c. ajustement, croissance), `migr_pop3ctb` (pays de naissance), `migr_asyappctza` (demandes), `migr_asydcfsta` (décisions de 1re instance), `nama_10_gdp` (PIB) | Solde migratoire = croissance − naturel (U22) ; Royaume-Uni absent après 2019 |
+| OCDE | ✅ API SDMX (`sdmx.oecd.org`) | Entrées standardisées à titre permanent par catégorie (`DF_MIG_INT_PER`, 2014-2025) ; population historique (`DF_POP_HIST`) | Catégories harmonisées, sans étudiants ni temporaires (U23) ; stocks de nés à l'étranger (`DF_MIG_POPF`) incohérents pour la France en 2000 : non retenus |
+| ONU (*International Migrant Stock* 2024) | ❌ 403 aux scripts | — | C7 (bosse migratoire) et l'émigration subsaharienne reportés |
+| Elipa 2 (*Infos Migrations* n° 98) | ❌ site du ministère, 403 | — | U7 non enrichie |
+
+**Raccord des titres** : de 2015 à 2022, total de la série de 2024 + Britanniques
+= total du fichier annuel, à l'unité près (`qrq check`). 2023 : révision du
+provisoire au définitif de 1,1 %.
+
+**Témoins** : le livre d'Héran (3e éd., 2021) donne, pour 2017, 261 000
+entrées d'immigrés ; l'export (IP 2107) en donne 291 000. Les entrées sont
+révisées à chaque millésime ; le livre n'est pas un témoin utilisable. Ses
+rangs pour l'asile (France 14e des demandes par habitant sur 2014-2020) sont
+de même ordre que ceux du site (15e sur 2015-2025), sans être comparables
+(période, pays).
+
+**Décisions prises en autonomie** (à relire par Max) : noms des pages
+(« Les arrivées », « Ailleurs ») ; D6 (lois sur la courbe des titres) renvoyé
+à B4, comme les jalons de lois refusés sur la piscine ; Britanniques séparés
+(accord de retrait retiré des motifs, total « hors Britanniques » tracé) ;
+période de l'asile = onze dernières années publiées ; entrées OCDE en moyenne
+sur dix ans, catégories secondaires absentes comptées zéro.

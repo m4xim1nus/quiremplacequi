@@ -141,9 +141,28 @@
     à {v(data.ratio.max)}).
   </p>
 
+  <h2>Les arrivées et les comparaisons</h2>
+  <p>
+    Les titres de séjour viennent du ministère de l’Intérieur (département des statistiques, des
+    études et de la documentation), par les fichiers qu’il publie sur data.gouv.fr : la série
+    publiée en juin 2024 pour 2011-2014, les fichiers annuels définitifs pour 2015-2024. Les deux se
+    raccordent exactement, ce que le programme vérifie. Le ministère publie ses chiffres en deux
+    temps, provisoires en janvier, consolidés en juin : le statut de chaque série est indiqué sous
+    son graphique.
+  </p>
+  <p>
+    Les comparaisons internationales viennent d’Eurostat (pays européens) et de l’OCDE (entrées à
+    titre permanent). Chaque nombre est rapporté à la population publiée par la même source, et un
+    pays n’est classé que s’il publie toutes les années de la période. Trois règles : les titres,
+    les demandes d’asile et les entrées de l’Insee ne s’additionnent jamais (ce sont des mesures
+    différentes, souvent des mêmes personnes) ; la définition de l’immigré est précisée sur chaque
+    graphique (U12) ; le solde migratoire d’Eurostat contient un ajustement statistique (U22).
+  </p>
+
   <h2>Reproduire</h2>
   <p>
-    Le programme télécharge les tableurs de l’Insee, en note l’empreinte, calcule et contrôle tout :
+    Le programme télécharge les fichiers de l’Insee, du ministère de l’Intérieur, d’Eurostat et de
+    l’OCDE, en note l’empreinte, calcule et contrôle tout :
     <code>qrq download</code>, <code>qrq build</code>, <code>qrq check</code>. Les fichiers produits
     sont sur la page <a href="/donnees">Données</a>.
   </p>

@@ -2,6 +2,9 @@
 
 `download` note dans `<raw>/manifeste.json` l'URL, la date de téléchargement, la taille et le
 sha256 de chaque fichier : ce manifeste est recopié dans l'export et date l'instantané.
+
+Quatre familles, un sous-dossier de data/raw/ chacune : Insee, ministère de l'Intérieur (DSED, par
+data.gouv.fr), Eurostat (API SDMX) et OCDE (API SDMX). Une source sans `famille` est de l'Insee.
 """
 
 import hashlib
@@ -12,6 +15,18 @@ from pathlib import Path
 import httpx
 
 INSEE = "https://www.insee.fr/fr/statistiques"
+DGF = "https://static.data.gouv.fr/resources"
+ESTAT = "https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data"
+ESTAT_PAGE = "https://ec.europa.eu/eurostat/databrowser/view"
+OCDE = "https://sdmx.oecd.org/public/rest/data"
+OCDE_PAGE = "https://data-explorer.oecd.org/"
+
+LICENCES = {
+    "insee": "Licence Ouverte 2.0 (Etalab)",
+    "dsed": "Licence Ouverte 2.0 (Etalab)",
+    "eurostat": "CC BY 4.0 (politique de réutilisation de la Commission européenne)",
+    "ocde": "CC BY 4.0 (OCDE)",
+}
 UA = {"User-Agent": "qrq-pipeline/0.1"}
 
 # clé locale → page et fichier sur insee.fr (Licence Ouverte 2.0)
@@ -78,9 +93,92 @@ SOURCES: dict[str, dict] = {
     },
 }
 
+# Ministère de l'Intérieur, DSED, sur data.gouv.fr. Premiers titres de séjour délivrés aux
+# ressortissants de pays tiers : la série publiée le 27 juin 2024 (2011-2023, France, hors
+# Britanniques) et les fichiers annuels définitifs publiés en août 2026 (2015-2024, France) :
+# année → (jeu de données, horodatage du fichier par motif, horodatage du fichier par nationalité).
+DSED_ANNUELS = {
+    2015: ("stock-et-flux-des-titres-de-sejour-en-france-sur-lannee-2015-1", "20260819-102526", "20260819-102526"),
+    2016: ("stock-et-flux-des-titres-de-sejour-en-france-sur-lannee-2016", "20260819-100315", "20260819-100314"),
+    2017: ("stock-et-flux-des-titres-de-sejour-en-france-sur-lannee-2017", "20260819-135828", "20260819-135827"),
+    2018: ("stock-et-flux-des-titres-de-sejour-en-france-sur-lannee-2018", "20260819-145553", "20260819-145553"),
+    2019: ("stock-et-flux-des-titres-de-sejour-en-france-sur-lannee-2019", "20260820-083454", "20260820-083454"),
+    2020: ("stock-et-flux-des-titres-de-sejour-en-france-sur-lannee-2020", "20260821-101708", "20260821-101707"),
+    2021: ("stock-et-flux-des-titres-de-sejour-en-france-sur-lannee-2021", "20260821-115449", "20260821-115449"),
+    2022: ("stock-et-flux-des-titres-de-sejour-en-france-sur-lannee-2022", "20260821-121553", "20260821-121553"),
+    2023: ("stock-et-flux-des-titres-de-sejour-en-france-sur-lannee-2023", "20260821-124215", "20260821-124216"),
+    2024: ("stock-et-flux-des-titres-de-sejour-en-france-sur-lannee-2024", "20260821-131354", "20260821-131354"),
+}
+SOURCES["titres_serie"] = {
+    "famille": "dsed",
+    "page": "https://www.data.gouv.fr/datasets/66a8cc809b4750710f18920c",
+    "url": f"{DGF}/titres-de-sejour-publication-du-27-juin-2024/20240730-113905/"
+    "les-titres-de-sejour-au-27-juin-2024-admission-au-sejour-par-motif.csv",
+    "titre": "DSED : premiers titres de séjour par motif, 2011-2023 (publication du 27 juin 2024)",
+}
+for _a, (_jeu, _h_motif, _h_nat) in DSED_ANNUELS.items():
+    SOURCES[f"titres_{_a}"] = {
+        "famille": "dsed",
+        "page": "https://www.data.gouv.fr/organizations/ministere-de-l-interieur/",
+        "url": f"{DGF}/{_jeu}/{_h_motif}/{_a}-sejour-flux-motif-sous-motif.csv",
+        "titre": f"DSED : premiers titres de séjour par motif et sous-motif, {_a} (définitif)",
+    }
+    SOURCES[f"titres_nat_{_a}"] = {
+        "famille": "dsed",
+        "page": "https://www.data.gouv.fr/organizations/ministere-de-l-interieur/",
+        "url": f"{DGF}/{_jeu}/{_h_nat}/{_a}-sejour-flux-region-monde-nationalites.csv",
+        "titre": f"DSED : premiers titres de séjour par nationalité, {_a} (définitif)",
+    }
+
+# Eurostat (requêtes SDMX : seules les dimensions utiles sont demandées).
+for _cle, _ds, _filtre, _titre in [
+    ("eurostat_indicateurs", "demo_gind", "A.JAN+NATGROWRT+CNMIGRATRT+GROWRT./?startPeriod=1960",
+     "Eurostat demo_gind : population au 1er janvier, taux d'accroissement naturel, migratoire (y c. ajustement) et total"),
+    ("eurostat_naissance", "migr_pop3ctb", "A.TOTAL+FOR+NAT.TOTAL.NR.T./?startPeriod=2011",
+     "Eurostat migr_pop3ctb : population au 1er janvier selon le pays de naissance"),
+    ("eurostat_demandes", "migr_asyappctza", "A.TOTAL.FRST+TOTAL.T.PER.TOTAL./?startPeriod=2008",
+     "Eurostat migr_asyappctza : demandeurs d'asile (dont premières demandes), annuel"),
+    ("eurostat_decisions", "migr_asydcfsta", "A.PER.TOTAL.T.TOTAL.TOTAL+POS+POS_RFG+POS_SPROT+POS_HUM+NEG./?startPeriod=2008",
+     "Eurostat migr_asydcfsta : décisions d'asile en première instance, par type"),
+    ("eurostat_pib", "nama_10_gdp", "A.CP_MEUR.B1GQ./?startPeriod=2008",
+     "Eurostat nama_10_gdp : produit intérieur brut aux prix courants (millions d'euros)"),
+]:
+    SOURCES[_cle] = {
+        "famille": "eurostat",
+        "page": f"{ESTAT_PAGE}/{_ds}/default/table",
+        "url": f"{ESTAT}/{_ds}/{_filtre}&format=SDMX-CSV",
+        "nom": f"{_ds}.csv",
+        "titre": _titre,
+    }
+
+# OCDE (Base de données sur les migrations internationales ; population historique).
+SOURCES["ocde_entrees"] = {
+    "famille": "ocde",
+    "page": OCDE_PAGE,
+    "url": f"{OCDE}/OECD.ELS.IMD,DSD_MIG_INT@DF_MIG_INT_PER,1.0/all?startPeriod=2014&format=csvfilewithlabels",
+    "nom": "entrees_permanentes.csv",
+    "titre": "OCDE : entrées standardisées de migrants à titre permanent, par catégorie (2014-2025)",
+}
+SOURCES["ocde_population"] = {
+    "famille": "ocde",
+    "page": OCDE_PAGE,
+    "url": f"{OCDE}/OECD.ELS.SAE,DSD_POPULATION@DF_POP_HIST,1.0/.POP.PS._T._T.?startPeriod=2014&format=csvfilewithlabels",
+    "nom": "population.csv",
+    "titre": "OCDE : population historique, tous âges (2014-2025)",
+}
+
+
+def famille(cle: str) -> str:
+    return SOURCES[cle].get("famille", "insee")
+
+
+def licence(cle: str) -> str:
+    return LICENCES[famille(cle)]
+
 
 def fichier(raw: Path, cle: str) -> Path:
-    return raw / "insee" / Path(SOURCES[cle]["url"]).name
+    src = SOURCES[cle]
+    return raw / famille(cle) / src.get("nom", Path(src["url"].split("?")[0]).name)
 
 
 def download(raw: Path, cles: list[str] | None = None) -> None:
@@ -102,6 +200,7 @@ def download(raw: Path, cles: list[str] | None = None) -> None:
                 "url": src["url"],
                 "page": src["page"],
                 "titre": src["titre"],
+                "licence": licence(cle),
                 "fichier": str(cible.relative_to(raw)),
                 "telecharge_le": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                 "octets": len(r.content),

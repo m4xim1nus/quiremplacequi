@@ -70,15 +70,17 @@
  },
  "U11": {
   "titre": "Titres de séjour ≠ entrées",
-  "detail": "Mineurs exclus, régularisations, délais : les titres du ministère de l'Intérieur et les entrées de l'Insee ne mesurent pas la même chose.",
-  "traitement": "Graphique de réconciliation (cycle 2)",
-  "verifie": false
+  "detail": "Le ministère de l'Intérieur compte des premiers titres de séjour, délivrés aux adultes de pays hors de l'Union européenne, parfois des années après leur arrivée (régularisations, Britanniques installés avant le Brexit). L'Insee compte des personnes qui s'installent, quels que soient leur âge, leur nationalité et leur situation administrative. Les deux chiffres ne mesurent pas la même chose et ne s'additionnent pas.",
+  "traitement": "Les deux séries côte à côte, page « Les arrivées », avec ce qui les sépare",
+  "verifie": true,
+  "reference": "DSED, fichiers annuels des titres de séjour (champ : ressortissants de pays tiers) ; Insee Première 2107 (définition des entrées)"
  },
  "U12": {
   "titre": "Les définitions internationales diffèrent",
   "detail": "Né à l'étranger (ONU, Eurostat) contre né étranger à l'étranger (Insee).",
-  "traitement": "Bascule de définition (cycle 2)",
-  "verifie": false
+  "traitement": "Les deux mesures pour la France, page « Ailleurs »",
+  "verifie": true,
+  "reference": "Eurostat, migr_pop3ctb (pays de naissance) ; Insee, série 2381757 (immigrés)"
  },
  "U13": {
   "titre": "L'origine des enfants de deux parents immigrés",
@@ -142,5 +144,18 @@
   "traitement": "Le modèle suit la convention de 2019-2020 ; la part publiée depuis 2021 est citée comme une observation, pas comme une cible",
   "verifie": true,
   "reference": "Insee Références, Immigrés et descendants d'immigrés, édition 2023, fiche 1.4, notes de la figure 1 ; Insee Première 1910, figure 1"
+ },
+ "U22": {
+  "titre": "Le solde migratoire d'Eurostat contient un ajustement",
+  "detail": "Eurostat publie un « solde migratoire y compris ajustement statistique » : la croissance de la population moins le solde naturel. Il absorbe les corrections de recensement et les changements de méthode, si bien qu'une année peut afficher un solde bas ou négatif pour des raisons statistiques. Pour la France, ce n'est pas le solde migratoire publié par l'Insee.",
+  "traitement": "Mention « y compris ajustement » sur le graphique ; comparaison de tendances, pas d'années isolées",
+  "verifie": true,
+  "reference": "Eurostat, demo_gind, indicateur CNMIGRATRT ; contrôle qrq check (croissance = naturel + migratoire)"
+ },
+ "U23": {
+  "titre": "Les entrées de l'OCDE sont « standardisées »",
+  "detail": "L'OCDE range les entrées de chaque pays dans des catégories communes (travail, famille, humanitaire, libre circulation) et ne retient que les migrations à caractère permanent : les étudiants et les travailleurs temporaires n'y sont pas. Les chiffres diffèrent donc des titres de séjour nationaux.",
+  "traitement": "Champ affiché sous le graphique ; aucune addition avec les titres",
+  "verifie": false
  }
 }

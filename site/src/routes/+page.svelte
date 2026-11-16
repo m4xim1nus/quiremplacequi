@@ -1,6 +1,7 @@
 <script lang="ts">
   import Echelle from '$lib/components/Echelle.svelte';
   import { milliers, pct } from '$lib/format';
+  import { rangTexte } from '$lib/comparaisons';
   let { data } = $props();
   const signe = (x: number) => (x < 0 ? '−' : '+') + milliers(Math.abs(x));
 </script>
@@ -74,6 +75,27 @@
         <span
           >Combien sont-ils ? La réponse change du simple au triple selon qui l’on compte. Le
           mélange, et les discriminations.</span
+        >
+      </a>
+    </li>
+    <li>
+      <a href="/arrivees">
+        <span class="titre">Les arrivées</span>
+        <span
+          >Qui arrive, pour quel motif : {milliers(data.titres.total)} premiers titres de séjour en
+          {data.titres.annee}, d’abord pour motif « {data.titres.premierMotif} ». Pourquoi l’Insee et
+          le ministère ne donnent pas le même chiffre.</span
+        >
+      </a>
+    </li>
+    <li>
+      <a href="/ailleurs">
+        <span class="titre">Ailleurs</span>
+        <span
+          >La France comparée à ses voisins : {rangTexte(data.ailleurs.rang)} pays européen sur {data
+            .ailleurs.n} pour la part des personnes nées à l’étranger, {rangTexte(
+            data.ailleurs.rangAsile
+          )} pour les demandes d’asile rapportées à la population.</span
         >
       </a>
     </li>

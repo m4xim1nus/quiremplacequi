@@ -16,7 +16,8 @@
   <p class="chapeau">
     Tout ce que le site affiche est calculé à partir de ces fichiers, eux-mêmes produits par un
     programme ouvert à partir de la statistique publique. Données sources sous Licence Ouverte 2.0
-    (Insee) ; tableaux de TeO2 ressaisis avec leur référence.
+    (Insee, ministère de l’Intérieur) ou CC BY 4.0 (Eurostat, OCDE) ; tableaux de TeO2 ressaisis
+    avec leur référence.
   </p>
 
   <h2>Fichiers publiés</h2>
@@ -41,7 +42,9 @@
     {#each data.sources as s (s.cle)}
       <li>
         <a href={s.page}>{s.titre}</a>
-        <span class="date">téléchargé le {s.telecharge_le.slice(0, 10)}</span>
+        <span class="date"
+          >téléchargé le {s.telecharge_le.slice(0, 10)}{s.licence ? ` · ${s.licence}` : ''}</span
+        >
       </li>
     {/each}
   </ul>

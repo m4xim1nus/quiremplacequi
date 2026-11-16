@@ -9,8 +9,8 @@ from pathlib import Path
 import polars as pl
 import yaml
 
-from . import bilan, cohortes, flux, ip1910, naissances, piscine, stock, teo2
-from .sources import SOURCES
+from . import bilan, cohortes, europe, flux, ip1910, naissances, piscine, stock, teo2, titres
+from .sources import SOURCES, licence
 
 REFERENTIELS = Path(__file__).resolve().parents[1] / "referentiels"
 
@@ -64,6 +64,11 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     ]
     tables["teo2"] = teo2.lire_teo2()
     tables["ip1910"] = ip1910.lire_ip1910(raw)
+    # Nature des migrations (D) et comparaisons internationales (C).
+    tables["titres"], tables["titres_totaux"] = titres.lire_titres(raw)
+    tables["eurostat"] = europe.lire_eurostat(raw)
+    tables["ocde"] = europe.lire_ocde(raw)
+    tables["entrees_origine"] = flux.lire_entrees_origine(raw)
 
     if export.exists():
         shutil.rmtree(export)
@@ -90,8 +95,8 @@ def build(raw: Path, sqlite: Path, export: Path) -> None:
     manifeste = json.loads((raw / "manifeste.json").read_text())
     meta = {
         "genere_le": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "sources": {k: manifeste[k] | {"titre": SOURCES[k]["titre"]} for k in SOURCES},
-        "licence_sources": "Licence Ouverte 2.0 (Etalab)",
+        "sources": {k: manifeste[k] | {"titre": SOURCES[k]["titre"], "licence": licence(k)} for k in SOURCES},
+        "licence_sources": "Licence Ouverte 2.0 (Insee, ministère de l'Intérieur) ; CC BY 4.0 (Eurostat, OCDE)",
     }
     (export / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1))
     print(f"export : {len(list(export.iterdir()))} fichiers dans {export}")

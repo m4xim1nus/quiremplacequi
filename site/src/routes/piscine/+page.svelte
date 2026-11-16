@@ -110,6 +110,8 @@
         grossit que par les arrivées : {pct(c.part1968)} de la population en 1968 (métropole), {pct(
           c.part2025
         )} en 2025 (France, provisoire, après une amélioration de la collecte du recensement en 2024).
+        Ces arrivées sont celles que compte l’Insee, pas les titres de séjour du ministère de l’Intérieur
+        : <a href="/arrivees#deux-mesures">pourquoi les deux chiffres diffèrent</a>.
       </li>
       <li>
         <strong>De qui naissent les enfants ?</strong> En 2022, selon l’estimation du site, environ {milliers(

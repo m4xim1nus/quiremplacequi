@@ -155,56 +155,41 @@ de *Parlons immigration en 30 questions* (Héran, 3e éd., 2021 ; lignes du
 on ne complique pas la piscine. Le livre ne sert jamais de source : chaque
 chiffre est retrouvé à la source primaire.
 
-- [ ] **Spike sources** (`docs/SOURCES.md` §6) : ministère de l'Intérieur
-  (DSED, *Les étrangers en France. Rapport au Parlement* ; premiers titres
-  par motif 2005-2025 ; demandes d'asile ; calendrier provisoire du
-  21 janvier, consolidé du 15 juin ; Elipa 2, *Infos Migrations* n° 98) ;
-  Ofpra (série longue de l'asile) ; Eurostat (asile et décisions, soldes
-  naturel et migratoire, population née à l'étranger) ; ONU, *International
-  Migrant Stock* 2024 (stocks par pays et matrice origine-destination) ;
-  OCDE, *Perspectives des migrations internationales* (entrées permanentes
-  par catégorie). Pour chacune : format, licence, accès par script, ruptures.
-  Les chiffres du livre (France 14e des demandes d'asile par habitant et 16e
-  des décisions positives, 2014-2020) servent de témoins, pas de valeurs.
-- [ ] **Page « nature des migrations » (D)** :
-  - D1 : premiers titres de séjour par motif, 2005-2025, en petits multiples,
-    absolu ↔ pour 10 000 habitants, et la décomposition de la hausse ;
-  - D2 : migration familiale ≠ regroupement familial ;
-  - D3 : le parcours de l'asile sans double compte (demandes, décisions,
-    titres de réfugié ne s'additionnent jamais) ;
-  - D4 : réconciliation des entrées Insee et des titres (U11) : Européens,
-    Français nés à l'étranger, mineurs, irréguliers ; une « entrée » n'est pas
-    toujours un nouvel immigré (Insee Focus n° 145) ;
-  - D5 : ce qu'il y a dans le solde migratoire : immigrés et non-immigrés
-    séparés, 2006-2024 (déjà dans `flux.csv`) ;
-  - U7 enrichie : le stock irrégulier se régularise au fil de l'eau (Elipa 2),
-    fourchette seulement ;
-  - statut provisoire ou consolidé affiché sous les graphiques ;
-  - D6 (lois sur la courbe des titres, *policy gap*) : seulement avec une
-    règle fixe de sélection des lois, validée par Max.
-- [ ] **Page « la France parmi les autres » (C)** :
-  - C1 : part d'immigrés par pays, avec la bascule de définition (ONU, né à
-    l'étranger ; Insee, né étranger à l'étranger ; U12) ;
-  - C2 : progression depuis 2000, et les soldes naturel et migratoire en ‰
-    de l'Allemagne, de l'Espagne et de la France ;
-  - C3 : entrées par catégorie pour 10 000 habitants (OCDE) ;
-  - C4 et C5 : l'asile, demandes et décisions, absolu ↔ pour 10 000
-    habitants, et « prendre sa part » (poids démographique et économique) ;
-  - C7 : la bosse migratoire, et l'émigration subsaharienne mesurée (part
-    des émigrés, part restée dans la région) par la matrice de l'ONU. Les
-    projections à 2050 restent hors du cycle.
-- [ ] **Renvois ailleurs, sans plus** : depuis la vanne d'arrivée de la
-  piscine vers D4, depuis l'accueil vers les deux pages, sources nouvelles
-  sur Méthode et Données.
-- [ ] Relecture factuelle indépendante, revue de Max, `CHANGELOG.md` et tag.
+- [x] **Spike sources** (`docs/SOURCES.md` §6) : ministère de l'Intérieur
+  par data.gouv.fr (son site refuse les scripts), Eurostat et OCDE par leurs
+  API SDMX. ONU et Elipa 2 inaccessibles aux scripts : C7 et U7 reportés.
+  Écart du livre pour 2017 expliqué (millésime) : pas de témoin tiré du livre.
+- [x] **Pipeline** : `titres.py` (DSED, 2011-2024, raccord exact des deux
+  sources contrôlé), `europe.py` (Eurostat, OCDE), entrées par origine (IP
+  2107) ; 14 contrôles nouveaux dans `qrq check` ; U11 et U12 traitées, U22
+  (solde Eurostat avec ajustement) et U23 (entrées « standardisées » de
+  l'OCDE) ajoutées.
+- [x] **Page « Les arrivées » (`/arrivees`, D)** : D1 titres par motif
+  2011-2024 (petits multiples, nombre ↔ pour 10 000, décomposition de la
+  hausse, Britanniques et Brexit séparés) ; D2 famille (trois catégories,
+  regroupement familial situé) ; D3 étapes de l'asile sans addition ; D4
+  entrées Insee et titres côte à côte (nés en Europe, non-immigrés) ; D5
+  soldes des immigrés et des non-immigrés 2006-2022. Statut sous chaque
+  graphique. D6 renvoyé à B4 (lois et discours ensemble).
+- [x] **Page « Ailleurs » (`/ailleurs`, C)** : C1 part des nés à l'étranger
+  (31 pays, France en ocre, définition Insee à côté) ; C2 hausse 2015-2025 et
+  soldes naturel et migratoire en ‰ depuis 1960 (France, Allemagne, Espagne,
+  Italie) ; C3 entrées permanentes par catégorie pour 10 000 habitants (OCDE,
+  moyenne sur dix ans) ; C4-C5 asile, nombre ↔ pour 10 000, et « prendre sa
+  part ». C7 (bosse migratoire) reporté : ONU inaccessible aux scripts.
+- [x] **Renvois** : navigation, deux portes sur l'accueil, piscine → D4,
+  Méthode (section « Les arrivées et les comparaisons »), Données (licences
+  par source).
+- [ ] Relecture factuelle indépendante.
+- [ ] Revue de Max, `CHANGELOG.md` et tag.
 
 **Livrable** : les pages C et D en ligne, relues par Max.
 
-**À trancher par Max en cours de route** : les noms des deux pages ; la
-règle de sélection des lois pour D6 ; la Drees (aide médicale d'État) comme
-source de la fourchette des irréguliers, hors de la liste des sources
-admises ; la Banque mondiale, citée par le livre, remplacée par la matrice
-de l'ONU (même usage, source admise).
+**Tranché en autonomie, à relire par Max** (`docs/SOURCES.md` §6) : noms des
+pages ; D6 avec B4 ; Britanniques séparés ; périodes de comparaison (asile :
+onze dernières années ; OCDE : dix ans). **Reste à Max** : la Drees comme
+source de la fourchette des irréguliers (hors liste des sources admises) ;
+une saisie manuelle de l'ONU pour C7, puisque les scripts sont refusés.
 
 ## Cycle 3 : les naissances et le mot « remplacement » (pressenti)
 

@@ -59,7 +59,10 @@
   );
   const y = $derived(
     scaleLinear()
-      .domain([0, yMax ?? Math.max(...tous.map((p) => p.y)) * 1.08])
+      .domain([
+        Math.min(0, ...tous.map((p) => p.y * 1.08)),
+        yMax ?? Math.max(0, ...tous.map((p) => p.y)) * 1.08
+      ])
       .nice()
       .range([hauteur - m.bas, m.haut])
   );

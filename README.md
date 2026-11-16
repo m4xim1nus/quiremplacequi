@@ -14,5 +14,6 @@ renouvelle en permanence.
 - Sources vérifiées : [`docs/spike/`](docs/spike/)
 
 Code sous licence MIT (`LICENSE`). Textes, figures et données calculées sous licence
-CC BY 4.0 (`LICENSE-CONTENUS`). Données sources : Insee (Licence Ouverte 2.0) ; chiffres de
-l'enquête TeO2 (Ined-Insee) ressaisis avec une référence par cellule.
+CC BY 4.0 (`LICENSE-CONTENUS`). Données sources : Insee et ministère de l'Intérieur (Licence
+Ouverte 2.0), Eurostat et OCDE (CC BY 4.0) ; chiffres de l'enquête TeO2 (Ined-Insee) ressaisis
+avec une référence par cellule.
